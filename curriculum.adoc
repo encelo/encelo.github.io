@@ -1,0 +1,87 @@
+:nofooter:
+== Angelo Theodorou
+
+|===
+|*Blog:* http://encelo.netsons.org|*LinkedIn:* http://www.linkedin.com/in/encelo
+|===
+
+=== Work Experience
+
+==== March 2017 - to date, Frostbite
+|===
+|*Role:* Rendering Engineer
+|*Description:* Working in the rendering team of the Frostbite engine.
+|*Technologies:* C++, Direct3D, HLSL
+|*Tools:* Visual Studio, Perforce, RenderDoc
+|*Website:* https://www.ea.com/frostbite
+|===
+
+==== June 2015 - February 2017, NaturalMotion Ltd.
+|===
+|*Role:* Android Technology Programmer
+a|*Description:* I have worked in the Core Game Tech team on the in-house Echo engine used for games like _Dawn of Titans_ and _Clumsy Ninja_. Some of my tasks have been:
+
+* Initial porting of the engine from OpenGL to Vulkan
+* Rewrite the API for atomic operations on all supported platforms
+* Refactor the ARM NEON intrinsics code for vector and matrix operations with unit tests
+* Help with the transition from Android Lollipop to Marshmallow
+
+I have also temporarily worked with the CSR2 team to migrate their building process from Ant to Gradle.
+|*Technologies:* C++, Java, OpenGL ES, GLSL, Vulkan, Android API
+|*Tools:* Visual Studio, Subversion, git
+|*Website:* http://www.naturalmotion.com
+|===
+
+==== December 2012 - June 2015, ARM Ltd.
+|===
+|*Role:* Senior Software Engineer
+a|*Description:* I have worked in the Middleware Graphics team in Mali Ecosystem for the Media Processing Group (MPG) to help game companies achieve the best on Mali GPUs. +
+My role has been a combination of graphics and game programming, technical support to game middleware companies, presentations at events worldwide and real-time applications profiling and optimization:
+
+* I have worked on Unreal Engine 4 to help porting it to ARM 64-bit
+* I have written the codebase for a Unity demo revealed at Unite 2014
+* I have presented sponsored sessions at GDC, Unite and Gamelab Barcelona
+* I have assisted companies like Frostbite, Epic Games, Unity and Gameloft with the ARM and Mali tools
+|*Technologies:* C++, C♯, Python, OpenGL ES, GLSL
+|*Tools:* Visual Studio, Qt Creator, cmake, git, Unity
+|*Website:* http://www.arm.com
+|===
+
+==== Jun 2010 - November 2012, SpinVector
+|===
+|*Role:* Programmer
+a|*Description:* I have worked as a game programmer and a multi-platform GUI programmer.
+
+* For the game _From Cheese_ (http://www.samsungapps.com/topApps/topAppsDetail.as?productId=G00009761532[Samsung Apps]) I have worked as an Android programmer (UI and SPen support) and as an additional Unity programmer.
+* For the game _AXL: Full Boost_ (http://axlracing.com) I have worked on the iPhone user interface.
+* For _Bang!: The Official Videogame_ (http://www.mobygames.com/game/bang[MobyGames]) I have worked on the native GUI for multiple platforms and on additional gameplay programming.
+|*Technologies:* C++, Qt4, Objective C, UiKit, Java, Android API
+|*Tools:* Visual Studio, Xcode, Qt Creator, qmake, Eclipse, Subversion, Unity
+|*Website:* http://www.spinvector.com
+|===
+
+==== Nov 2008 - Jun 2009, Raylight
+|===
+|*Role:* Intern programmer
+|*Description:* During my pre-graduation internship I have worked as a programmer for Raylight, an Italian multi-platform videogame software house.
+I have conducted a research to simulate in real-time graphics effects like bloom and rim lighting on platforms without shaders.
+|*Technologies:* C++, OpenGL, GLSL, libSDL
+|*Tools:* Visual Studio, Subversion, Blender, LaTeX
+|*Website:* http://www.raylightgames.com
+|===
+
+=== Personal Projects
+
+[cols="13,87"]
+|===
+|2011 - to date|*nCine*: http://ncine.github.io, a 2D multi-platform game engine
+|2010|*Pacstats*: http://pacstats.googlecode.com, statistical charts generator for Arch Linux pacman activity
+|2005-2010|*OpenGL demos*: http://encelo.netsons.org/programming/opengl, experiments about SSAO, parallax mapping, DoF, deferred shading, HDR, toon shading, water rendering and stencil shadows
+|2006-2007|*GL O.B.S.*: http://globs.sourceforge.net, GL Open Benchmark Suite
+|2004-2007|*Mars: Land of No Mercy*: http://sourceforge.net/projects/mars, a turn based strategy game featuring isometric graphics
+|*Technologies:*|C++, Python, PyGTK, pysqlite, matplotlib, GLFW
+|*Tools:*|git, CMake, Cppcheck, Doxygen, Valgrind
+|===
+
+=== Education
+* Bachelor's Degree in Computer Science at the "Federico II" University of Naples with final mark 110/110 cum laude (highest mark with honours)
