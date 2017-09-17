@@ -7,8 +7,10 @@ I hope you will find my notes useful in case you intend to study more about engi
 === C++
 * ISOCPP https://isocpp.org/faq[FAQ]
 * ISOCPP http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines[C++ Core Guidelines]
-* Newer version of Marshall Cline's FAQ (2012): http://geneura.ugr.es/~jmerelo/c++-faq/
-* Old version of Marshall Cline's FAQ (2003): https://www.cs.rit.edu/~mjh/docs/c++-faq/
+* Marshall Cline's FAQ
+** Mirror of 2012 version: http://www.cs.technion.ac.il/users/yechiel/c++-faq/index.html
+** Mirror of 2006 version: http://www.dietmar-kuehl.de/mirror/c++-faq/
+** Mirror of 2003 version:: https://www.cs.rit.edu/~mjh/docs/c++-faq/
 
 ==== Marshall Cline's C++ FAQ (29/07/2011)
 Questions in round brackets are the ones I find more important or difficult to grasp at first.
@@ -52,7 +54,7 @@ The numbers in round brackets are a reference inside Marshall Cline's C++ FAQ.
 * Private inheritance (24.2, 24.3) (http://www.gotw.ca/publications/mill06.htm[Uses and Abuses of Inheritance, Part 1 by Herb Sutter])
 * Static initialization order fiasco (10.14)
 * Meyer's singleton (10.16)
-* One definition rule
+* https://en.wikipedia.org/wiki/One_Definition_Rule[One definition rule]
 * https://en.wikipedia.org/wiki/Common_subexpression_elimination[Common subexpression elimination]
 * Different kind of casts: C style, `static_cast`, `dynamic_cast`, `const_cast` and `reinterpret_cast`
 * https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization[Resource acquisition is initialization] (RAII)
@@ -70,14 +72,16 @@ As before, the numbers in round brackets are a reference inside Marshall Cline's
 * https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)[Rule of three] / five / zero, https://en.wikipedia.org/wiki/Special_member_functions[special member functions]
 * Return value optimization (NRVO, RVO) (10.9) / Copy elision (https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/[C++ Cargo Cults, RVO and Copy Elision])
 * Copy-and-swap idiom (http://stackoverflow.com/a/3279550[Why do we need the copy-and-swap idiom?])
-* Argument-dependant lookup (Koenig lookup)
+* http://en.cppreference.com/w/cpp/language/adl[Argument-dependant lookup] (Koenig lookup)
 * Substitution Failure Is Not An Error (SFINAE) (35.11)
 * non-dependent types and members (35.18, 35.19, 35.20)
 * Proxy template (35.22), in C++11 you would employ the Type alias declaration with `using`
 * Type traits, concepts, tag dispatching (http://www.boost.org/community/generic_programming.html[Generic Programming Techniques])
+* https://en.wikipedia.org/wiki/Most_vexing_parse[Most vexing parse]
+* Two-phase name lookup
 
 ==== C++11
-The book "Effective Modern C++" by Scott Meyers is a must-have.
+The book "_Effective Modern C++_" by Scott Meyers is a must-have.
 
 * Rvalues (http://thbecker.net/articles/rvalue_references/section_01.html[C++ Rvalue References Explained by Thomas Becker])
 * Auto keyword and type deduction
@@ -103,9 +107,9 @@ The book "Effective Modern C++" by Scott Meyers is a must-have.
 Read about the same math concepts on more than one book.
 Some books are targeted to game developers, like:
 
-* "Essential Mathematics for Games and Interactive Applications" by James M. Van Verth and Lars M. Bishop
-* "3D Math Primer for Graphics and Game Development" by Fletcher Dunn and Ian Parberry
-* "Mathematics for 3D Game Programming and Computer Graphics" by Eric Lengyel and John Flynt
+* "_Essential Mathematics for Games and Interactive Applications_" by James M. Van Verth and Lars M. Bishop
+* "_3D Math Primer for Graphics and Game Development_" by Fletcher Dunn and Ian Parberry
+* "_Mathematics for 3D Game Programming and Computer Graphics_" by Eric Lengyel and John Flynt
 
 ==== Topics
 * Trigonometry
@@ -135,11 +139,11 @@ Some books are targeted to game developers, like:
 
 === CPU
 Important links from Wikipedia about the architecture of a CPU.
-One of the book you could read to learn more on the subject is "Computer Architecture: A Quantitative Approach" by David A. Patterson.
+One of the book you could read to learn more on the subject is "_Computer Architecture: A Quantitative Approach_" by David A. Patterson.
 
 * https://en.wikipedia.org/wiki/Von_Neumann_architecture[Von Neumann architecture], https://en.wikipedia.org/wiki/Harvard_architecture[Harvard architecture]
 * https://en.wikipedia.org/wiki/Instruction_pipelining[Instruction pipelining], https://en.wikipedia.org/wiki/Classic_RISC_pipeline[Classic RISC pipeline] -> (fetch, decode, execute, memory access, writeback), https://en.wikipedia.org/wiki/Branch_predication[Branch predication]
-* https://en.wikipedia.org/wiki/Out-of-order_execution[Out-of-order execution], https://en.wikipedia.org/wiki/Register_renaming[Register renaming], https://en.wikipedia.org/wiki/Register_allocation#Spilling[Register spilling], https://en.wikipedia.org/wiki/Superscalar_processor[Superscalar processor], https://en.wikipedia.org/wiki/Very_long_instruction_word[VLIW (Very Long Instruction Word)], https://en.wikipedia.org/wiki/Barrel_processor[Barrell processor]
+* https://en.wikipedia.org/wiki/Instruction-level_parallelism[Instruction-level parallelism], https://en.wikipedia.org/wiki/Out-of-order_execution[Out-of-order execution], https://en.wikipedia.org/wiki/Register_renaming[Register renaming], https://en.wikipedia.org/wiki/Register_allocation#Spilling[Register spilling], https://en.wikipedia.org/wiki/Superscalar_processor[Superscalar processor], https://en.wikipedia.org/wiki/Very_long_instruction_word[VLIW (Very Long Instruction Word)], https://en.wikipedia.org/wiki/Barrel_processor[Barrell processor]
 * https://en.wikipedia.org/wiki/Cycles_per_instruction[Cycles per instruction], https://en.wikipedia.org/wiki/Instructions_per_cycle[Instructions per cycle (IPC)]
 * https://en.wikipedia.org/wiki/Branch_predictor[Branch predictor], https://en.wikipedia.org/wiki/Branch_target_predictor[Branch target predictor]
 * https://en.wikipedia.org/wiki/Hazard_%28computer_architecture%29[Hazard (computer architecture)] -> (RAW, WAR, WAW data hazards, pipeline bubbling, register forwarding)
@@ -148,9 +152,10 @@ One of the book you could read to learn more on the subject is "Computer Archite
 * https://en.wikipedia.org/wiki/Cache_coherence[Cache coherence] (https://en.wikipedia.org/wiki/MESI_protocol[MESI protocol], https://en.wikipedia.org/wiki/MOESI_protocol[MOESI protocol]), https://en.wikipedia.org/wiki/Bus_snooping[Bus snooping], https://en.wikipedia.org/wiki/Write_combining[Write combining]
 * https://en.wikipedia.org/wiki/Clock_gating[Clock gating]
 * https://en.wikipedia.org/wiki/Multiply%E2%80%93accumulate_operation[Multiply–accumulate operation] -> (Fused multiply–add)
+* https://en.wikipedia.org/wiki/Symmetric_multiprocessing[Symmetric multiprocessing], https://en.wikipedia.org/wiki/Simultaneous_multithreading[Simultaneous multithreading]
 
 ==== Multi-threading
-One of the book on the topic is "The Art of Multiprocessor Programming" by Maurice Herlihy and Nir Shavit
+One of the book on the topic is "_The Art of Multiprocessor Programming_" by Maurice Herlihy and Nir Shavit
 
 * Critical section, mutex, semaphore, https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem[Producer-consumer problem], https://en.wikipedia.org/wiki/Dining_philosophers_problem[Dining philosophers problem], https://en.wikipedia.org/wiki/Priority_inversion[Priority inversion], race condition
 * Atomics and lock-free programming (http://preshing.com/[Preshing on Programming]), http://preshing.com/20120226/roll-your-own-lightweight-mutex/[Benaphore], https://en.wikipedia.org/wiki/ABA_problem[ABA problem], https://en.wikipedia.org/wiki/Load-link/store-conditional[Load-link/store-conditional], http://preshing.com/20120913/acquire-and-release-semantics/[acquire and release semantics] (Load-Acquire/Store-Release in the ARM Reference Manual)
@@ -166,7 +171,7 @@ One of the book on the topic is "The Art of Multiprocessor Programming" by Mauri
 * https://www.scratchapixel.com/[Scratchapixel - Learn Computer Graphics From Scratch!]
 
 ==== Mobile GPUs architecture
-The book "OpenGL ES 3.0 Programming Guide" by Dan Ginsburg and Budirijanto Purnomo is a must-have.
+The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Purnomo is a must-have.
 
 * http://www.seas.upenn.edu/~pcozzi/OpenGLInsights/OpenGLInsights-TileBasedArchitectures.pdf[Performance Tuning for Tile-Based Architectures (PDF)], from chapter 23 of the "OpenGL Insights" book
 * http://gpuopen.com/vulkan-renderpasses/[Vulkan Renderpasses]
