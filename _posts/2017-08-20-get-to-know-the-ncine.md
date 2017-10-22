@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Get to know the nCine
-tags: [C++, OpenGL]
+tags: [nCine]
 ---
 
 I am writing this to present my latest and biggest project to date, the nCine.
