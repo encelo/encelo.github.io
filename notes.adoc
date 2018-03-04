@@ -78,8 +78,9 @@ As before, the numbers in round brackets are a reference inside Marshall Cline's
 * Proxy template (35.22), in C++11 you would employ the Type alias declaration with `using`
 * Type traits, concepts, tag dispatching (http://www.boost.org/community/generic_programming.html[Generic Programming Techniques])
 * https://en.wikipedia.org/wiki/Most_vexing_parse[Most vexing parse]
-* Two-phase name lookup
+* http://blog.llvm.org/2009/12/dreaded-two-phase-name-lookup.html[Two-phase name lookup]
 * https://en.wikipedia.org/wiki/Sequence_point[Sequence point]
+* https://en.wikipedia.org/wiki/Tail_call[Tail call]
 
 ==== C++11
 The book "_Effective Modern C++_" by Scott Meyers is a must-have.
