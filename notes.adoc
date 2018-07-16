@@ -263,6 +263,14 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * https://gamedev.stackexchange.com/questions/130888/what-are-screen-space-derivatives-and-when-would-i-use-them/130933#130933[What are screen space derivatives and when would I use them?]
 * https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_HelperInvocation.xhtml[gl_HelperInvocation] - OpenGL 4 Reference Pages
 * https://developer.nvidia.com/content/life-triangle-nvidias-logical-pipeline[Life of a triangle - NVIDIA's logical pipeline] by Christoph Kubisch
+* https://mynameismjp.wordpress.com/2018/03/06/breaking-down-barriers-part-1-whats-a-barrier/[Breaking Down Barriers - Part 1: What's a Barrier?] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/04/01/breaking-down-barriers-part-2-synchronizing-gpu-threads/[Breaking Down Barriers - Part 2: Synchronizing GPU Threads] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/06/17/breaking-down-barriers-part-3-multiple-command-processors/[Breaking Down Barriers - Part 3: Multiple Command Processors] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/07/03/breaking-down-barriers-part-4-gpu-preemption/[Breaking Down Barriers - Part 4: GPU Preemption] by Matt Pettineo
+* https://anteru.net/blog/2018/intro-to-compute-shaders/index.html[Introduction to compute shaders] by Matthäus G. Chajdas
+* https://anteru.net/blog/2018/more-compute-shaders/index.html[More compute shaders] by Matthäus G. Chajdas
+* https://anteru.net/blog/2018/even-more-compute-shaders/index.html[Even more compute shaders] by Matthäus G. Chajdas
+* https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92[The Elusive Frame Timing] by Alen Ladavac
 
 === Data Oriented Design
 * http://harmful.cat-v.org/software/OO_programming/_pdf/Pitfalls_of_Object_Oriented_Programming_GCAP_09.pdf[Pitfalls of Object Oriented Programming (PDF)] by Tony Albrecht (SCEE)
