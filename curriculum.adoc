@@ -2,21 +2,21 @@
 == Angelo Theodorou
 
 |===
-|*Blog:* http://encelo.netsons.org|*LinkedIn:* http://www.linkedin.com/in/encelo
+|*Blog:* https://encelo.github.io|*LinkedIn:* http://www.linkedin.com/in/encelo
 |===
 
 === Work Experience
 
-==== March 2017 - to date, Frostbite
+==== March 2017 - to date, Frostbite (Stockholm)
 |===
 |*Role:* Rendering Engineer
-|*Description:* Working in the rendering team of the Frostbite engine.
+|*Description:* Working in the Image Quality rendering team of the Frostbite engine.
 |*Technologies:* C++, Direct3D, HLSL
 |*Tools:* Visual Studio, Perforce, RenderDoc
 |*Website:* https://www.ea.com/frostbite
 |===
 
-==== June 2015 - February 2017, NaturalMotion Ltd.
+==== June 2015 - February 2017, NaturalMotion Ltd. (Oxford)
 |===
 |*Role:* Android Technology Programmer
 a|*Description:* I have worked in the Core Game Tech team on the in-house Echo engine used for games like _Dawn of Titans_ and _Clumsy Ninja_. Some of my tasks have been:
@@ -26,13 +26,13 @@ a|*Description:* I have worked in the Core Game Tech team on the in-house Echo e
 * Refactor the ARM NEON intrinsics code for vector and matrix operations with unit tests
 * Help with the transition from Android Lollipop to Marshmallow
 
-I have also temporarily worked with the CSR2 team to migrate their building process from Ant to Gradle.
+I have also worked with the CSR2 team to migrate their building process from Ant to Gradle.
 |*Technologies:* C++, Java, OpenGL ES, GLSL, Vulkan, Android API
 |*Tools:* Visual Studio, Subversion, git
 |*Website:* http://www.naturalmotion.com
 |===
 
-==== December 2012 - June 2015, ARM Ltd.
+==== December 2012 - June 2015, ARM Ltd. (Cambridge)
 |===
 |*Role:* Senior Software Engineer
 a|*Description:* I have worked in the Middleware Graphics team in Mali Ecosystem for the Media Processing Group (MPG) to help game companies achieve the best on Mali GPUs. +
@@ -43,11 +43,11 @@ My role has been a combination of graphics and game programming, technical suppo
 * I have presented sponsored sessions at GDC, Unite and Gamelab Barcelona
 * I have assisted companies like Frostbite, Epic Games, Unity and Gameloft with the ARM and Mali tools
 |*Technologies:* C++, C♯, Python, OpenGL ES, GLSL
-|*Tools:* Visual Studio, Qt Creator, cmake, git, Unity
+|*Tools:* Visual Studio, Qt Creator, CMake, git, Unity
 |*Website:* http://www.arm.com
 |===
 
-==== Jun 2010 - November 2012, SpinVector
+==== Jun 2010 - November 2012, SpinVector (Benevento)
 |===
 |*Role:* Programmer
 a|*Description:* I have worked as a game programmer and a multi-platform GUI programmer.
@@ -60,7 +60,7 @@ a|*Description:* I have worked as a game programmer and a multi-platform GUI pro
 |*Website:* http://www.spinvector.com
 |===
 
-==== Nov 2008 - Jun 2009, Raylight
+==== Nov 2008 - Jun 2009, Raylight (Napoli)
 |===
 |*Role:* Intern programmer
 |*Description:* During my pre-graduation internship I have worked as a programmer for Raylight, an Italian multi-platform videogame software house.
@@ -72,15 +72,15 @@ I have conducted a research to simulate in real-time graphics effects like bloom
 
 === Personal Projects
 
-[cols="13,87"]
+[cols="16,84"]
 |===
 |2011 - to date|*nCine*: http://ncine.github.io, a 2D multi-platform game engine
 |2010|*Pacstats*: http://pacstats.googlecode.com, statistical charts generator for Arch Linux pacman activity
-|2005-2010|*OpenGL demos*: http://encelo.netsons.org/programming/opengl, experiments about SSAO, parallax mapping, DoF, deferred shading, HDR, toon shading, water rendering and stencil shadows
-|2006-2007|*GL O.B.S.*: http://globs.sourceforge.net, GL Open Benchmark Suite
-|2004-2007|*Mars: Land of No Mercy*: http://sourceforge.net/projects/mars, a turn based strategy game featuring isometric graphics
-|*Technologies:*|C++, Python, PyGTK, pysqlite, matplotlib, GLFW
-|*Tools:*|git, CMake, Cppcheck, Doxygen, Valgrind
+|2005 - 2010|*OpenGL demos*: http://encelo.netsons.org/programming/opengl, experiments about SSAO, parallax mapping, DoF, deferred shading, HDR, toon shading, water rendering and stencil shadows
+|2006 - 2007|*GL O.B.S.*: http://globs.sourceforge.net, GL Open Benchmark Suite
+|2004 - 2007|*Mars: Land of No Mercy*: http://sourceforge.net/projects/mars, a turn based strategy game featuring isometric graphics
+|*Technologies:*|C++, GFLW, SDL2, Lua, Python, PyGTK, pysqlite, matplotlib
+|*Tools:*|git, CMake, Cppcheck, Doxygen, Valgrind, Google Test, RenderDoc, Apitrace
 |===
 
 === Education
