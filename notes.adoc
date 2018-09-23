@@ -79,8 +79,10 @@ As before, the numbers in round brackets are a reference inside Marshall Cline's
 * Type traits, concepts, tag dispatching (http://www.boost.org/community/generic_programming.html[Generic Programming Techniques])
 * https://en.wikipedia.org/wiki/Most_vexing_parse[Most vexing parse]
 * http://blog.llvm.org/2009/12/dreaded-two-phase-name-lookup.html[Two-phase name lookup]
+* https://en.wikipedia.org/wiki/Maximal_munch[Maximal munch]
 * https://en.wikipedia.org/wiki/Sequence_point[Sequence point]
 * https://en.wikipedia.org/wiki/Tail_call[Tail call]
+* https://en.wikipedia.org/wiki/Constant_folding[Constant folding]
 
 ==== C++11
 The book "_Effective Modern C++_" by Scott Meyers is a must-have.
@@ -165,6 +167,7 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 * https://www.quora.com/CPUs-How-is-branch-prediction-implemented-in-microprocessors[CPUs: How is branch prediction implemented in microprocessors?]
 * Single Producer / Multiple Consumer
 * Lock-free queues
+* https://en.wikipedia.org/wiki/Hazard_pointer[Hazard pointer]
 * Aligning AoS to cache line size to avoid false sharing
 * https://fgiesen.wordpress.com/2016/08/07/why-do-cpus-have-multiple-cache-levels/[Why do CPUs have multiple cache levels?]
 
@@ -267,6 +270,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * https://mynameismjp.wordpress.com/2018/04/01/breaking-down-barriers-part-2-synchronizing-gpu-threads/[Breaking Down Barriers - Part 2: Synchronizing GPU Threads] by Matt Pettineo
 * https://mynameismjp.wordpress.com/2018/06/17/breaking-down-barriers-part-3-multiple-command-processors/[Breaking Down Barriers - Part 3: Multiple Command Processors] by Matt Pettineo
 * https://mynameismjp.wordpress.com/2018/07/03/breaking-down-barriers-part-4-gpu-preemption/[Breaking Down Barriers - Part 4: GPU Preemption] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/09/08/breaking-down-barriers-part-5-back-to-the-real-world/[Breaking Down Barriers - Part 5: Back to the Real World] by Matt Pettineo
 * https://anteru.net/blog/2018/intro-to-compute-shaders/index.html[Introduction to compute shaders] by Matthäus G. Chajdas
 * https://anteru.net/blog/2018/more-compute-shaders/index.html[More compute shaders] by Matthäus G. Chajdas
 * https://anteru.net/blog/2018/even-more-compute-shaders/index.html[Even more compute shaders] by Matthäus G. Chajdas
