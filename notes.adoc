@@ -171,6 +171,10 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 * Aligning AoS to cache line size to avoid false sharing
 * https://fgiesen.wordpress.com/2016/08/07/why-do-cpus-have-multiple-cache-levels/[Why do CPUs have multiple cache levels?]
 
+==== More topics
+* http://assemblyrequired.crashworks.org/load-hit-stores-and-the-\__restrict-keyword/[Load-Hit-Stores and the `__restrict` keyword] by Elan Ruskin
+* http://www.gamasutra.com/view/feature/132084/sponsored_feature_common_.php[Sponsored Feature: Common Performance Issues in Game Programming] by Becky Heineman
+
 === Graphics
 
 * https://www.scratchapixel.com/[Scratchapixel - Learn Computer Graphics From Scratch!]
@@ -240,8 +244,11 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://blog.selfshadow.com/publications/s2016-shading-course/[SIGGRAPH 2016 Course: Physically Based Shading in Theory and Practice]
 * http://blog.selfshadow.com/publications/s2013-shading-course/hoffman/s2013_pbs_physics_math_notes.pdf[Background: Physics and Math of Shading (PDF)] by Naty Hoffman
 * https://newq.net/publications/more/s2015-many-lights-course[Real-Time Many-Light Management and Shadows with Clustered Shading] a SIGGRAPH 2015 Course
-* http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/[Deus Ex: Human Revolution - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2015/06/23/supreme-commander-graphics-study/[Supreme Commander - Graphics Study] by Adrian Courreges
 * http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/[GTA V - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges
 * http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf[Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)] by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo
 
 ===== Older resources
@@ -297,6 +304,4 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.dataorienteddesign.com/dodbook/[Data-Oriented Design] book by Richard Fabian
 * http://www.bounceapp.com/116414[Mike Acton's review] of `OgreNode.cpp`
 * https://gist.github.com/ocornut/cb980ea183e848685a36[Memory, Cache, CPU optimization resources] by Omar Cornut
-
-* http://assemblyrequired.crashworks.org/load-hit-stores-and-the-\__restrict-keyword/[Load-Hit-Stores and the `__restrict` keyword] by Elan Ruskin
-* http://www.gamasutra.com/view/feature/132084/sponsored_feature_common_.php[Sponsored Feature: Common Performance Issues in Game Programming] by Becky Heineman
+* http://aras-p.info/texts/files/2018Academy%20-%20ECS-DoD.pdf[Entity Component Systems & Data Oriented Design (PDF)] by Aras Pranckevičius (Unity Technologies)
