@@ -76,7 +76,6 @@ social-network-links:
   github: encelo
   twitter: encelo
 #  reddit: yourname
-#  google-plus: +yourname
   linkedin: encelo
 #  xing: yourname
 #  stackoverflow: "1234567/yourname"
@@ -93,7 +92,6 @@ social-network-links:
 share-links-active:
   twitter: true
   facebook: true
-  google: false
   linkedin: true
 
 # How to display the link to the website in the footer
