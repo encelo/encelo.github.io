@@ -1,7 +1,7 @@
 ---
 layout: post
 title: nCine Dev Update 9
-subtitle: Updates from April to May 2019
+subtitle: Updates from April to the first half of May 2019
 tags: [nCine]
 ---
 
