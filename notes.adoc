@@ -50,8 +50,8 @@ The numbers in round brackets are a reference inside Marshall Cline's C++ FAQ.
 * Pure virtual member functions (22.4), abstract base classes (ch. 22)
 * Covariant Return Types and "virtual constructor" (20.8, 22.5)
 * Object slicing (21.4, 31.8, 20.8)
-* Template Method pattern and private virtuals (23.4) (http://www.gotw.ca/publications/mill18.htm[Virtuality by Herb Sutter])
-* Private inheritance (24.2, 24.3) (http://www.gotw.ca/publications/mill06.htm[Uses and Abuses of Inheritance, Part 1 by Herb Sutter])
+* Template Method pattern and private virtuals (23.4) (http://www.gotw.ca/publications/mill18.htm[Virtuality] by Herb Sutter)
+* Private inheritance (24.2, 24.3) (http://www.gotw.ca/publications/mill06.htm[Uses and Abuses of Inheritance, Part 1] by Herb Sutter)
 * Static initialization order fiasco (10.14)
 * Meyer's singleton (10.16)
 * https://en.wikipedia.org/wiki/One_Definition_Rule[One definition rule]
@@ -87,16 +87,20 @@ As before, the numbers in round brackets are a reference inside Marshall Cline's
 ==== C++11
 The book "_Effective Modern C++_" by Scott Meyers is a must-have.
 
-* Rvalues (http://thbecker.net/articles/rvalue_references/section_01.html[C++ Rvalue References Explained by Thomas Becker])
+* Rvalues (http://thbecker.net/articles/rvalue_references/section_01.html[C++ Rvalue References Explained] by Thomas Becker)
 * Auto keyword and type deduction
 * Move semantics, rule of five
 * Reference collapsing
 * Reference qualifiers
-* Forwarding (AKA universal) references (https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers[Universal References in C++11 by Scott Meyers])
+* Forwarding (AKA universal) references (https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers[Universal References in C++11] by Scott Meyers)
 * Perfect forwarding
 * Enum classes
 * Range-based for loops (and issues with `auto` and copying objects around)
 * List initialization
+* Lambdas
+** https://www.bfilipek.com/2019/02/lambdas-story-part1.html[Lambdas: From C++11 to C++20, Part 1] by Bartłomiej Filipek
+** https://www.bfilipek.com/2019/03/lambdas-story-part2.html[Lambdas: From C++11 to C++20, Part 2] by Bartłomiej Filipek
+** https://www.bfilipek.com/2016/11/iife-for-complex-initialization.html[IIFE for Complex Initialization] by Bartłomiej Filipek
 
 ==== Design patterns and OOP
 * https://en.wikipedia.org/wiki/Single_responsibility_principle[Single responsibility principle]
