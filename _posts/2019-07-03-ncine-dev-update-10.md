@@ -11,7 +11,7 @@ This means that lately most of the time was dedicated to publication related tas
 
 But definitely one of the most complex task has been continuous integration, which has a new [page](https://ncine.github.io/ci/) on the site too. :wink:
 
-## Continuous Integration
+### Continuous Integration
 
 A couple of years ago I began experimenting with [Travis](https://travis-ci.org/) and [AppVeyor](https://www.appveyor.com/) and managed to have them build the libraries, the engine and ncPong for all supported platforms: Linux, Windows (both MSVC and MinGW), macOS and Android.
 
@@ -20,7 +20,7 @@ It supports all major desktop systems meaning I now need only one script to supp
 
 Now that the source code is available online, let's have a look at those scripts.
 
-### Building the libraries
+#### Building the libraries
 
 First thing to do is to build the dependencies, both for [desktop](https://github.com/nCine/nCine-libraries/blob/master/azure-pipelines.yml) and for [Android](https://github.com/nCine/nCine-android-libraries/blob/master/azure-pipelines.yml).
 As you can notice libraries are built on Linux with both GCC and clang and on Windows with both VS2019 and VS2017. On Android libraries are built for the three supported architectures but only on Linux.
@@ -29,7 +29,7 @@ Next is when things become interesting, an idea that I kept from my original tes
 
 For libraries the repository is named [nCine-libraries-artifacts](https://github.com/nCine/nCine-libraries-artifacts) and is made of multiple [branches](https://github.com/nCine/nCine-libraries-artifacts/branches/all), each one for a specific platform.
 
-### Building the engine
+#### Building the engine
 
 Next is the engine itself, it pulls the library artifacts and engine data and push installers and portable archives.
 The [script](https://github.com/nCine/nCine/blob/master/azure-pipelines.yml) gets more complicated by a test matrix that now includes build types, like *Debug* and *Release*, together with the *DevDist* preset used for installers.
@@ -40,7 +40,7 @@ Additional steps will build unit tests and run them through `CTest`. Benchmarks 
 
 At the end packages are created via the `package` CMake target and files pushed in the [nCine-artifacts](https://github.com/nCine/nCine-artifacts) repository. It will again have multiple [branches](https://github.com/nCine/nCine-artifacts/branches/all) depending on platforms but this time they will also also depend on engine source branches.
 
-### Building the projects
+#### Building the projects
 
 Now that the engine has been built and its artifacts pushed on GitHub it is the turn of the accompanying projects.
 Both the [pong](https://github.com/nCine/ncPong/blob/master/azure-pipelines.yml) example game and the [particle editor](https://github.com/nCine/ncParticleEditor/blob/master/azure-pipelines.yml) have very similar C.I. scripts.
@@ -48,7 +48,7 @@ Both the [pong](https://github.com/nCine/ncPong/blob/master/azure-pipelines.yml)
 They download the libraries, the engine and the project data and they build for all supported platforms, including Android APKs using Gradle.
 They push artifacts in the [ncPong-artifacts](https://github.com/nCine/ncPong-artifacts) and [ncParticleEditor-artifacts](https://github.com/nCine/ncParticleEditor-artifacts) GitHub repositories.
 
-### Some notes
+#### Some notes
 
 - On Linux CMake is not very recent and a special step has to download and install an updated version from the official site.
 - On Windows all steps use [PowerShell](https://Microsoft.com/PowerShell). Life is too short to mess with the Command Prompt. :sweat_smile:
@@ -59,7 +59,7 @@ They push artifacts in the [ncPong-artifacts](https://github.com/nCine/ncPong-ar
   - `git fetch --unshallow; if (-not $?) { return }` on PowerShell
 - MSYS steps always set the `CHERE_INVOKING` environment variable for Bash to use the current working directory.
 
-## More changes
+### More changes
 
 Continuos integration has been a good way to spot some tricky issues occurring only with specific combinations:
 - Tracy memory profiling not working on macOS

@@ -7,7 +7,7 @@ tags: [nCine]
 
 Exciting news for this development update: a new supported platform! :champagne:
 
-## Emscripten
+### Emscripten
 
 I remember playing with the idea of porting the nCine to [Emscripten](https://emscripten.org/) years ago.
 After all I had every requirement in place: I used OpenGL ES for Android, GLFW and SDL2 as input backends, OpenAL and Vorbis for audio, libpng for images and already supported a POSIX API.
@@ -19,7 +19,7 @@ This time was different, I studied the documentation in detail, put a lot more e
 
 Of course there were a lot of little issues that ended up eating plenty of time. :weary:
 
-### Rendering
+#### Rendering
 
 I encountered the first issue when I tried running apptests on Windows, the browser just froze.
 Further investigations led me to the culprit: shader compilation was super slow when using [ANGLE](http://angleproject.org).
@@ -49,7 +49,7 @@ When I was lucky rendering fixes came from extending Android OpenGL ES specific 
 Buffer mapping might have been another big issue as it is not supported on WebGL 2. Fortunately it gets emulated when you pass `-s FULL_ES3=1` to *emcc* and it's an optional engine feature that can be disabled.
 This way I got the code to compile with no modifications while avoiding a possibly slower emulated path.
 
-### Input backends
+#### Input backends
 
 Rendering was not the only area in need for a change. On SDL2 auto-suspension on focus lost just hangs the application indefinitely. That is caused by `SDL_WaitEvent()` and it appears the only fix is not to call this function.
 
@@ -58,7 +58,7 @@ I also had to exclude some GLFW 3.3 code I added recently, but nothing that coul
 
 At least joystick mapping worked without much hassle, I just had to return the special "`default`" GUID for every connected joystick in order to match the Emscripten entry in the SDL2 game controller database.
 
-### Additional changes
+#### Additional changes
 
 After guarding [death tests](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#death-tests) with `#ifndef __EMSCRIPTEN__`, unit tests were also good to go. Thanks to the Emscripten CMake platform script, running `ctest` invokes `node` as the `CMAKE_CROSSCOMPILING_EMULATOR` allowing unit tests to run from the console. :muscle:
 
@@ -72,7 +72,7 @@ For apptests I directly call the [file packager tool](https://emscripten.org/doc
 
 The `nCine-libraries` project also gained Emscripten support and it can now compile Lua and WebP for the new platform.
 
-## OpenAL fixes
+### OpenAL fixes
 
 While working on the port I had some people try my [web tests](https://ncine.github.io/web-tests/) and a tester reported a strange issue with music and sound effects in `apptest_audio`.
 In the beginning I thought it was something related with the new platform but the issue could be found on all of them. :scream:
@@ -90,7 +90,7 @@ I have also added querying methods for buffers, streams and players that allowed
 
 ![ImGui_AudioPlayers](/images/ImGui_AudioPlayers.png "ImGui debug overlay - AudioPlayers")
 
-## Monitor video modes
+### Monitor video modes
 
 Last but not least, there is now a way for games to query and change monitor video modes on PC.
 The implementation uses functions like `glfwGetVideoMode()` and `glfwSetWindowMonitor()` on GLFW and `SDL_GetDisplayMode()` and `SDL_SetWindowDisplayMode()` on SDL.
