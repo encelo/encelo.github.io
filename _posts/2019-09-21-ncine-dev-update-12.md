@@ -42,7 +42,7 @@ Two more Windows improvements are the use of the Windows subsystem instead of co
 Last but not least the engine and the game projects now generate a [VERSIONINFO resource](https://docs.microsoft.com/en-us/windows/win32/menurc/versioninfo-resource) file.
 Thanks to it you can open the properties window of files like `ncine.dll` or `ncpong.exe` and retrieve product and version information.
 
-![VERSIONINFO resource](/images/VERSIONINFO.png "VERSIONINFO resource")
+![VERSIONINFO resource](/images/VERSIONINFO.png "VERSIONINFO resource"){: .center-block :}
 
 ### Granular library dependencies
 

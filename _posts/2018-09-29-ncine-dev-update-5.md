@@ -19,7 +19,7 @@ The old on-screen HUD has been rewritten and plenty new statistical plots have b
 like the amount of memory used or the number of operations per second.
 While integrating ImGui, the rendering system was enhanced in order to accomodate the *scissor test* and more flexible options for indexed drawing and vertex formats.
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/PQRnxeBpo-c" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/PQRnxeBpo-c" frameborder="0" allowfullscreen></iframe>{: .center-block :}
 
 I have also worked for a month on *ncParticleEditor*, an editor for particle systems that use both new features: Lua for loading and saving and ImGui for the interface.
 As the editor is really just an nCine application, it can run with no problems on Windows, Linux, macOS and of course Android!
@@ -28,6 +28,6 @@ The particle system was overhauled to support additional features like new parti
 I have to thank my friend [Helba](https://www.linkedin.com/in/marcolisci/) for his infinite patience while testing the program and for allowing me to show some of his projects in the video.
 To help with testing I have integrated [CrashRpt](http://crashrpt.sourceforge.net/) in my debug Windows builds to ease the creation of [Minidump](https://docs.microsoft.com/en-us/windows/desktop/debug/minidump-files) files.
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/RLNI5NMCJ1E" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/RLNI5NMCJ1E" frameborder="0" allowfullscreen></iframe>{: .center-block :}
 
 I hope you have enjoyed both the videos and the new features. :wink:

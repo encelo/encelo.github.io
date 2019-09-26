@@ -32,7 +32,7 @@ It didn't fix the issue at all but made loading time faster on every platform. :
 
 Just have a look at the following traces and compare how much `initCommon()` takes with immediate ("_This trace_") versus deferred ("_External trace_") queries.
 
-![Tracy_deferShaderQueries](/images/Tracy_deferShaderQueries.png "Tracy - deferShaderQueries")
+![Tracy_deferShaderQueries](/images/Tracy_deferShaderQueries.png "Tracy - deferShaderQueries"){: .center-block :}
 
 I then consulted a friend about ANGLE and he concluded that the long arrays I used for collecting batching instances information were the cause, and that the Direct3D HLSL compiler is well-known for having a hard time with them.
 After redeclaring those as single element arrays the compilation speed was reasonable again.
@@ -88,7 +88,7 @@ While I was there I took some time to sprinkle a couple of `alGetError()` calls 
 
 I have also added querying methods for buffers, streams and players that allowed for the creation of a new section in the ImGui debug overlay, one showing information about active audio players.
 
-![ImGui_AudioPlayers](/images/ImGui_AudioPlayers.png "ImGui debug overlay - AudioPlayers")
+![ImGui_AudioPlayers](/images/ImGui_AudioPlayers.png "ImGui debug overlay - AudioPlayers"){: .center-block :}
 
 ### Monitor video modes
 
@@ -97,6 +97,6 @@ The implementation uses functions like `glfwGetVideoMode()` and `glfwSetWindowMo
 
 The ImGui debug overlay has been updated to take advantage of this new feature. The user can select a full screen video mode from a drop-down list of supported resolutions and refresh rates combinations.
 
-![ImGui_WindowSettings](/images/ImGui_WindowSettings.png "ImGui debug overlay - WindowSettings")
+![ImGui_WindowSettings](/images/ImGui_WindowSettings.png "ImGui debug overlay - WindowSettings"){: .center-block :}
 
 That's all for now and I hope you are excited about porting your nCine projects to the web. :spider_web:

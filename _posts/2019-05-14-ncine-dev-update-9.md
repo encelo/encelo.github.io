@@ -70,7 +70,7 @@ I have also added set containers, some are based on the hashmap ones stripped of
 ### RenderDoc integration
 Next we are back with graphics, with the [in-application](https://renderdoc.org/docs/in_application_api.html) integration of RenderDoc. This means that the user can now [trigger](https://renderdoc.org/docs/in_application_api.html#_CPPv214TriggerCapturev) a capture, [launch](https://renderdoc.org/docs/in_application_api.html#_CPPv214LaunchReplayUI8uint32_tPKc) the Qt interface when running under `renderdoccmd`, disable the [overlay](https://renderdoc.org/docs/in_application_api.html#_CPPv215MaskOverlayBits8uint32_t8uint32_t), provide [comments](https://renderdoc.org/docs/in_application_api.html#_CPPv222SetCaptureFileCommentsPKcPKc) for a capture, set the [file path template](https://renderdoc.org/docs/in_application_api.html#_CPPv226SetCaptureFilePathTemplatePKc) for saving and more.
 
-![RenderDoc in-application integration](/images/RenderDoc_integration.png "RenderDoc in-application integration")
+![RenderDoc in-application integration](/images/RenderDoc_integration.png "RenderDoc in-application integration"){: .center-block :}
 
 ### Buffer mapping
 The last change I'm going to cover in this update is another long standing graphics issue that seems to only manifest itself on Windows 10 and Intel GPUs. There are some reproducible cases when the driver would end up displaying the first frame and doing nothing more, while the application continues to run and process events. The error does not occur when running the tests under [apitrace](http://apitrace.github.io/), [RenderDoc](https://renderdoc.org/) or [Intel GPA](https://software.intel.com/en-us/gpa), making it harder to examine.

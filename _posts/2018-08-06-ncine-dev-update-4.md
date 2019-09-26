@@ -24,7 +24,7 @@ I have extended the manager to also handle VBO memory and thus enabling the use 
 Another important addition is the support for the [KHR_debug](https://www.khronos.org/registry/OpenGL/extensions/KHR/KHR_debug.txt) extension in the form of debug groups and object labels.
 This feature is really important with tools like [apitrace](http://apitrace.github.io/) and [RenderDoc](https://renderdoc.org/) that offer support for them.
 
-![apitrace](/images/apitrace.png "apitrace")
+![apitrace](/images/apitrace.png "apitrace"){: .center-block :}
 
 Handling vertex formats has been renewed as well and there is now a pool of [Vertex Array Objects](https://www.khronos.org/opengl/wiki/Vertex_Specification#Vertex_Array_Object) that minimize the number of calls when changing formats.
 
@@ -45,7 +45,7 @@ For entities with external vertex data, like text nodes and custom meshes, it ha
 
 It's degenerate vertices and patched indices all the way down. :wink:
 
-![RenderDoc](/images/RenderDoc.png "RenderDoc")
+![RenderDoc](/images/RenderDoc.png "RenderDoc"){: .center-block :}
 
 Some of those new features have a runtime setting, like switching automatic batching on and off:
 
@@ -76,6 +76,6 @@ void enableGlDebug(bool shouldEnable);
 
 There is also a bunch of new rendering statistics that are aggregated per frame and displayed on screen, like the amount of video memory used by textures and buffer objects, or the number of VAO pool recycles.
 
-![apptest_sinescroller](/images/apptest_sinescroller.png "apptest_sinescroller")
+![apptest_sinescroller](/images/apptest_sinescroller.png "apptest_sinescroller"){: .center-block :}
 
 Rendering should now be more efficient on all platforms, with fewer draw calls and more sprites on screen! :muscle:

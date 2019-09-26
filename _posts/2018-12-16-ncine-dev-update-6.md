@@ -22,7 +22,7 @@ It was still a fun and learning experience and it allows me to show you my SIMD 
 
 It is powered by ImGUI, it can load and save data from test runs using Lua and then compare them.
 
-![apptest_simdbench](/images/apptest_simdbench.png "apptest_simdbench")
+![apptest_simdbench](/images/apptest_simdbench.png "apptest_simdbench"){: .center-block :}
 
 After archiving the `simd` branch on my repository I jumped on another big project: trying to come up with an ECS implementation for the nCine.
 It would flatten the hierarchy of game elements and allow for a faster and possibly multi-threaded approach at updating them.
@@ -35,6 +35,6 @@ Instrumentation of user code is easy, capturing data has a very low overhead and
 
 The profiler that collects and visualize the data has a super rich ImGui interface with line plots, histograms, colored sections and the ability to compare two captures side by side.
 
-![Tracy](/images/Tracy.png "Tracy")
+![Tracy](/images/Tracy.png "Tracy"){: .center-block :}
 
 With the integration in place I can now be sure that I will be able to assess any performance change related with big refactorings or optimizations. :muscle:

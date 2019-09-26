@@ -75,7 +75,7 @@ In the _Build_ phase CMake is invoked with the `--build` option in order to buil
 | Build                | 22.23s  | 32.93s |         |
 | Build with `/MP`     | 14.87s  | 26.48s |         |
 
-![MSVC chart](/images/MSVC_chart.png "MSVC chart")
+![MSVC chart](/images/MSVC_chart.png "MSVC chart"){: .center-block :}
 
 
 #### MSYS2
@@ -88,7 +88,7 @@ In the _Build_ phase CMake is invoked with the `--build` option in order to buil
 | Build Make           | 46.80s  | 66.12s | 226.53s |
 | Build Make `-j`      | 12.65s  | 30.59s | 84.90s  |
 
-![MSYS2 chart](/images/MSYS2_chart.png "MSYS2 chart")
+![MSYS2 chart](/images/MSYS2_chart.png "MSYS2 chart"){: .center-block :}
 
 #### Arch Linux
 
@@ -100,7 +100,7 @@ In the _Build_ phase CMake is invoked with the `--build` option in order to buil
 | Build Make           | 13.56s  | 17.31s |         |
 | Build Make `-j`      | 4.35s   | 9.17s  |         |
 
-![Arch Linux chart](/images/ArchLinux_chart.png "Arch Linux chart")
+![Arch Linux chart](/images/ArchLinux_chart.png "Arch Linux chart"){: .center-block :}
 
 ### Conclusions
 
