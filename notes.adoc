@@ -10,7 +10,7 @@ I hope you will find my notes useful in case you intend to study more about engi
 * Marshall Cline's FAQ
 ** Mirror of 2012 version: http://www.cs.technion.ac.il/users/yechiel/c++-faq/index.html
 ** Mirror of 2006 version: http://www.dietmar-kuehl.de/mirror/c++-faq/
-** Mirror of 2003 version:: https://www.cs.rit.edu/~mjh/docs/c++-faq/
+** Mirror of 2003 version: https://www.cs.rit.edu/~mjh/docs/c++-faq/
 
 ==== Marshall Cline's C++ FAQ (29/07/2011)
 Questions in round brackets are the ones I find more important or difficult to grasp at first.
@@ -189,8 +189,8 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.seas.upenn.edu/~pcozzi/OpenGLInsights/OpenGLInsights-TileBasedArchitectures.pdf[Performance Tuning for Tile-Based Architectures (PDF)], from chapter 23 of the "OpenGL Insights" book
 * http://gpuopen.com/vulkan-renderpasses/[Vulkan Renderpasses]
 * http://malideveloper.arm.com/downloads/ARM_Game_Developer_Days/PDFs/4-compute_shaders.pdf[Get the most out of the new OpenGL ES 3.1 API (PDF)] by ARM
-* http://malideveloper.arm.com/sample-code/opengl-es-sample-code/[OpenGL ES Sample Code by ARM]
-* http://malideveloper.arm.com/sample-code/vulkan-sample-code/[Vulkan sample code by ARM]
+* https://github.com/ARM-software/opengl-es-sdk-for-android[OpenGL ES SDK for Android by ARM]
+* https://github.com/ARM-software/vulkan-sdk[Vulkan SDK for Android by ARM]
 
 ===== ARM Mali
 * http://malideveloper.arm.com/documentation/developer-guides/mali-gpu-application-optimization-guide/[Mali GPU Application Optimization Guide]
@@ -238,9 +238,12 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 ==== Desktop GPUs architecture
 * http://bps10.idav.ucdavis.edu/talks/03-fatahalian_gpuArchTeraflop_BPS_SIGGRAPH2010.pdf[From Shader Code to a Teraflop: How GPU Shader Cores Work (PDF)] by Kayvon Fatahalian (SIGGRAPH 2010)
 * http://bps11.idav.ucdavis.edu/talks/05-schedulingGraphicsPipeline-BPS2011-ragankelley.pdf[Scheduling the Graphics Pipeline (PDF)] by Jonathan Ragan-Kelley (SIGGRAPH 2011)
+* https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf[Triangles Are Precious - Let's Treat Them With Care (PDF)] by Dominik Baumeister (AMD)
 * https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/[A trip through the Graphics Pipeline 2011: Index] by Fabian "ryg" Giesen
 
 ===== AMD Radeon
+* https://gpuopen.com/discovering-rdna/[Discovering the structure of RDNA]
+* https://gpuopen.com/compute-product/amd-rdna-1-0-instruction-set-architecture/[AMD RDNA 1.0 Instruction Set Architecture]
 * http://gpuopen.com/compute-product/amd-gcn3-isa-architecture-manual/[AMD GCN3 ISA Architecture Manual]
 
 ==== Graphics techniques
