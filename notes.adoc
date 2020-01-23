@@ -257,6 +257,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges
 * http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges
 * http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf[Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)] by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo
+* https://therealmjp.github.io/posts/sss-intro/[An Introduction To Real-Time Subsurface Scattering] by Matt Pettineo
 
 ===== Older resources
 * http://www.punkuser.net/vsm/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen
@@ -266,7 +267,6 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://realtimecollisiondetection.net/blog/?p=86[Order your graphics draw calls around!] from the Real-Time Collision Detection blog
 
 ==== More topics
-* https://mynameismjp.wordpress.com/2012/10/24/msaa-overview/[A Quick Overview of MSAA] by Matt Pettineo
 * https://www.opengl.org/pipeline/article/vol003_6/[GLSL: Center or Centroid?  (Or When Shaders Attack!)] by Bill Licea-Kane (AMD)
 * https://renderdoc.org/vulkan-in-30-minutes.html[Vulkan in 30 minutes] by Baldur Karlsson
 * https://www.cs.cornell.edu/courses/cs4620/2008fa/lectures/texture-filtering.pdf[Texture filtering (PDF)] (Mipmap selection with derivatives) by Steve Marschner
@@ -280,6 +280,10 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * https://gamedev.stackexchange.com/questions/130888/what-are-screen-space-derivatives-and-when-would-i-use-them/130933#130933[What are screen space derivatives and when would I use them?]
 * https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_HelperInvocation.xhtml[gl_HelperInvocation] - OpenGL 4 Reference Pages
 * https://developer.nvidia.com/content/life-triangle-nvidias-logical-pipeline[Life of a triangle - NVIDIA's logical pipeline] by Christoph Kubisch
+* 1 - https://mynameismjp.wordpress.com/2012/10/15/signal-processing-primer/[Signal Processing Primer] by Matt Pettineo
+* 2 - https://mynameismjp.wordpress.com/2012/10/21/applying-sampling-theory-to-real-time-graphics/[Applying Sampling Theory To Real-Time Graphics] by Matt Pettineo
+* 3 - https://mynameismjp.wordpress.com/2012/10/24/msaa-overview/[A Quick Overview of MSAA] by Matt Pettineo
+* 4 - https://mynameismjp.wordpress.com/2012/10/28/msaa-resolve-filters/[Experimenting With Reconstruction Filters for MSAA Resolve] by Matt Pettineo
 * https://mynameismjp.wordpress.com/2018/03/06/breaking-down-barriers-part-1-whats-a-barrier/[Breaking Down Barriers - Part 1: What's a Barrier?] by Matt Pettineo
 * https://mynameismjp.wordpress.com/2018/04/01/breaking-down-barriers-part-2-synchronizing-gpu-threads/[Breaking Down Barriers - Part 2: Synchronizing GPU Threads] by Matt Pettineo
 * https://mynameismjp.wordpress.com/2018/06/17/breaking-down-barriers-part-3-multiple-command-processors/[Breaking Down Barriers - Part 3: Multiple Command Processors] by Matt Pettineo
