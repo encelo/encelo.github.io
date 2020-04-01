@@ -7,6 +7,10 @@
 
 === Work Experience
 
+==== March 2019 - Present, Self Employed (Granada)
+* Working full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine
+* Developing https://encelo.itch.io/spookyghost[SpookyGhost], a procedural animation tool for sprites made with the nCine
+
 ==== March 2017 - February 2019, Frostbite (Stockholm)
 |===
 |*Role:* Rendering Engineer
@@ -74,7 +78,7 @@ I have conducted a research to simulate in real-time graphics effects like bloom
 
 [cols="16,84"]
 |===
-|2011 - to date|*nCine*: http://ncine.github.io, a multi-platform 2D game engine
+|2011 - to date|*nCine*: http://ncine.github.io, a cross-platform 2D game engine
 |2010|*Pacstats*: http://pacstats.googlecode.com, statistical charts generator for Arch Linux pacman activity
 |2005 - 2010|*OpenGL demos*: http://encelo.netsons.org/programming/opengl, experiments about SSAO, parallax mapping, DoF, deferred shading, HDR, toon shading, water rendering and stencil shadows
 |2006 - 2007|*GL O.B.S.*: http://globs.sourceforge.net, GL Open Benchmark Suite
