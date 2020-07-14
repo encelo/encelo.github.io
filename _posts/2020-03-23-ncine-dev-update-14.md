@@ -43,7 +43,7 @@ This will open more possibilities for tool developers, as they can now create a 
 Using Qt5 for the interface does not mean you can't continue to use ImGui and Nuklear too. You can even use all three together if you so want, as the updated `apptest_scene` demonstrates. :wink:
 
 <div class="embed-responsive embed-responsive-16by9">
-  <iframe width="750" height="422" src="https://www.youtube.com/embed/PpVLD3ShiCw" frameborder="0" allowfullscreen></iframe>
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/PpVLD3ShiCw" frameborder="0" allowfullscreen></iframe>{: .center-block :}
 </div>
 
 If the [Qt Gamepad](https://doc.qt.io/qt-5/qtgamepad-index.html) library is found then gamepad events will be supported. I also decided to expose touch events to desktop applications, as both SDL2 and Qt5 support them.
