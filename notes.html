@@ -470,6 +470,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_mobile_gpus_architecture">Mobile GPUs architecture</a></li>
 <li><a href="#_desktop_gpus_architecture">Desktop GPUs architecture</a></li>
 <li><a href="#_graphics_techniques">Graphics techniques</a></li>
+<li><a href="#_vulkan">Vulkan</a></li>
 <li><a href="#_more_topics_3">More topics</a></li>
 </ul>
 </li>
@@ -522,67 +523,424 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Chapter 7</strong>: 7.7</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/classes-and-objects.html"><strong>Section 7: Classes and objects</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/directly-access-private-in-other-instances.html">7.7</a> - Can a method directly access the non-public members of another instance of its class?</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Chapter 8</strong>: 8.3, 8.4, 8.6</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/references.html"><strong>Section 8: References</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/returning-refs.html">8.3</a> - What happens if you return a reference?</p>
 </li>
 <li>
-<p><strong>Chapter 9</strong>: 9.1, 9.5, 9.6, 9.7, 9.8, 9.9</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/method-chaining.html">8.4</a> - What does <code>object.method1().method2()</code> mean?</p>
 </li>
 <li>
-<p><strong>Chapter 10</strong>: 10.3, 10.4, (10.5), 10.6, 10.8, (10.9), 10.10, (10.14), 10.20, (10.22)</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/refs-vs-ptrs.html">8.6</a> - When should I use references, and when should I use pointers?</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Chapter 11</strong>: 11.7, 11.10, 11.14</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/inline-functions.html"><strong>Section 9: Inline functions</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/overview-inline-fns.html">9.1</a> - What&#8217;s the deal with <code>inline</code> functions?</p>
 </li>
 <li>
-<p><strong>Chapter 12</strong>: 12.3, 12.4</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/inline-vs-macros.html">9.5</a> - Why should I use <code>inline</code> functions instead of plain old <code>#define</code> macros?</p>
 </li>
 <li>
-<p><strong>Chapter 13</strong>: 13.9, 13.10, 13.14, 13.15</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/inline-nonmember-fns.html">9.6</a> - How do you tell the compiler to make a non-member function <code>inline</code>?</p>
 </li>
 <li>
-<p><strong>Chapter 14</strong>: 14.3, 14.5</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/inline-member-fns.html">9.7</a> - How do you tell the compiler to make a member function <code>inline</code>?</p>
 </li>
 <li>
-<p><strong>Chapter 16</strong>: 16.4, 16.8, 16.10, 16.21</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/inline-member-fns-more.html">9.8</a> - Is there another way to tell the compiler to make a member function <code>inline</code>?</p>
 </li>
 <li>
-<p><strong>Chapter 17</strong>: 17.2, 17.3, 17.4, 17.8, 17.9, 17.10</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/where-to-put-inline-keyword.html">9.9</a> - With inline member functions that are defined outside the class, is it best to put the <code>inline</code> keyword next to the declaration within the class body, next to the definition outside the class body, or both?</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Chapter 18</strong>: 18.5, 18.7, 18.10, 18.12, (18.13), 18.15</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/ctors.html"><strong>Section 10: Constructors</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/init-methods.html">10.3</a> - Can one constructor of a class call another constructor of the same class to initialize the <code>this</code> object?</p>
 </li>
 <li>
-<p><strong>Chapter 20</strong>: 20.3, 20.4, 20.5, 20.6, (20.7), 20.8</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/default-ctor.html">10.4</a> - Is the default constructor for <code>Fred</code> always <code>Fred::Fred()</code>?</p>
 </li>
 <li>
-<p><strong>Chapter 21</strong>: (21.4), 21.6, 21.8, 21.12</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/arrays-call-default-ctor.html">(<em>10.5</em>)</a> - Which constructor gets called when I create an array of <code>Fred</code> objects?</p>
 </li>
 <li>
-<p><strong>Chapter 22</strong>: 22.4, 22.5</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/init-lists.html">10.6</a> - Should my constructors use "initialization lists" or "assignment"?</p>
 </li>
 <li>
-<p><strong>Chapter 23</strong>: 23.1, 23.3, 23.4, 23.5, (23.9)</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/named-ctor-idiom.html">10.8</a> - What is the "Named Constructor Idiom"?</p>
 </li>
 <li>
-<p><strong>Chapter 24</strong>: 24.2, 24.3, 24.5, 24.6</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/return-by-value-optimization.html">(<em>10.9</em>)</a> - Does return-by-value mean extra copies and extra overhead?</p>
 </li>
 <li>
-<p><strong>Chapter 25</strong>: 25.4, 25.5, (25.9), 25.10</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/return-local-var-by-value-optimization.html">10.10</a> - What about returning a local variable by value? Does the local exist as a separate object, or does it get optimized away?</p>
 </li>
 <li>
-<p><strong>Chapter 26</strong>: 26.12, 26.13</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/static-init-order.html">(<em>10.14</em>)</a> - What&#8217;s the "<code>static</code> initialization order fiasco"?</p>
 </li>
 <li>
-<p><strong>Chapter 27</strong>: 27.10</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/named-parameter-idiom.html">10.20</a> - What is the "Named Parameter Idiom"?</p>
 </li>
 <li>
-<p><strong>Chapter 29</strong>: 29.5, 29.7, 29.17, 29.18, (29.19), 29.20</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/explicit-ctors.html">(<em>10.22</em>)</a> - What is the purpose of the <code>explicit</code> keyword?</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Chapter 35</strong>: 35.2, 35.3, 35.4, (35.7), 35.9, 35.11, 35.16, 35.18, 35.19, 35.22</p>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/dtors.html"><strong>Section 11: Destructors</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/artificial-block-to-control-lifetimes.html">11.7</a> - OK, OK already; I won&#8217;t explicitly call the destructor of a local; but how do I handle the situation from the previous FAQ?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/placement-new.html">11.10</a> - What is "placement <code>new</code>" and why would I use it?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/memory-pools.html">11.14</a> - Is there a way to force <code>new</code> to allocate memory from a specific memory area?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/assignment-operators.html"><strong>Section 12: Assignment operators</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/self-assignment-how.html">12.3</a> - OK, OK, already; I&#8217;ll handle self-assignment. How do I do it?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/assignment-op-in-derived-class.html">12.4</a> - I&#8217;m creating a derived class; should my assignment operator call my base class&#8217;s assignment operator?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/operator-overloading.html"><strong>Section 13: Operator overloading</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/op-ov-rules.html">13.9</a> - What are some guidelines / "rules of thumb" for overloading operators?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/matrix-subscript-op.html">13.10</a> - How do I create a subscript <code>operator</code> for a <code>Matrix</code> class?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/increment-pre-post-overloading.html">13.14</a> - How can I overload the prefix and postfix forms of operators &#43;&#43; and --?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/increment-pre-post-speed.html">13.15</a> - Which is more efficient: <code>i&#43;&#43;</code> or <code>&#43;&#43;i</code>?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/friends.html"><strong>Section 14: Friends</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/pros-cons-friend-fns.html">14.3</a> - What are some advantages/disadvantages of using <code>friend</code> functions?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/member-vs-friend-fns.html">14.5</a> - Should my class declare a member function or a <code>friend</code> function?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/freestore-mgmt.html"><strong>Section 16: Freestore management</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/new-vs-malloc.html">16.4</a> - Why should I use <code>new</code> instead of trustworthy old <code>malloc()</code>?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/delete-handles-null.html">16.8</a> - Do I need to check for <code>NULL</code> before <code>delete p</code>?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/new-doesnt-leak-if-ctor-throws.html">16.10</a> - In <code>p = new Fred()</code>, does the <code>Fred</code> memory "leak" if the Fred constructor throws an exception?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/static-create-methods.html">16.21</a> - How can I force objects of my class to always be created via <code>new</code> rather than as locals or global/<code>static</code> objects?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/exceptions.html"><strong>Section 17: Exceptions and error handling</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/exceptions-avoid-spreading-out-error-logic.html">17.2</a> - I&#8217;m still not convinced: a 4-line code snippet shows that return-codes aren&#8217;t any worse than exceptions; why should I therefore use exceptions on an application that is orders of magnitude larger?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/exceptions-avoid-two-return-types.html">17.3</a> - How do exceptions simplify my function return type and parameter types?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/exceptions-separate-good-and-bad-path.html">17.4</a> - What does it mean that exceptions separate the "good path" (or "happy path") from the "bad path"?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/ctors-can-throw.html">17.8</a> - How can I handle a constructor that fails?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/dtors-shouldnt-throw.html">17.9</a> - How can I handle a destructor that fails?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/selfcleaning-members.html">17.10</a> - How should I handle resources if my constructors may throw exceptions?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/const-correctness.html"><strong>Section 18: Const correctness</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/const-ptr-vs-ptr-const.html">18.5</a> - What&#8217;s the difference between &#8220;<code>Fred const* p</code>&#8221;, &#8220;<code>Fred* const p</code>&#8221; and &#8220;<code>Fred const* const p</code>&#8221;?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/const-ref-nonsense.html">18.7</a> - Does &#8220;<code>Fred&amp; const x</code>&#8221; make any sense?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/const-member-fns.html">18.10</a> - What is a "<code>const</code> member function"?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/const-overloading.html">18.12</a> - What&#8217;s the deal with "<code>const</code>-overloading"?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/mutable-data-members.html">(<em>18.13</em>)</a> - What do I do if I want a <code>const</code> member function to make an "invisible" change to a data member?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/aliasing-and-const.html">18.15</a> - Why does the compiler allow me to change an <code>int</code> after I&#8217;ve pointed at it with a <code>int const*</code>?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/virtual-functions.html"><strong>Section 20: Inheritance — <code>virtual</code> functions</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/dyn-binding.html">20.3</a> - What&#8217;s the difference between how <code>virtual</code> and non-<code>virtual</code> member functions are called?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/dyn-binding2.html">20.4</a> - What happens in the hardware when I call a virtual function? How many layers of indirection are there? How much overhead is there?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/fully-qualified-calls-to-base.html">20.5</a> - How can a member function in my derived class call the same function from its base class?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/inversion.html">20.6</a> - I have a heterogeneous list of objects, and my code needs to do class-specific things to the objects. Seems like this ought to use dynamic binding but can&#8217;t figure it out. What should I do? It&#8217;s surprisingly easy.</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/virtual-dtors.html">(<em>20.7</em>)</a> - When should my destructor be <code>virtual</code>?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/virtual-ctors.html">20.8</a> - What is a "<code>virtual</code> constructor"?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/proper-inheritance.html"><strong>Section 21: Inheritance — proper inheritance and substitutability</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/array-derived-vs-base.html">(<em>21.4</em>)</a> - Is an array of <code>Derived</code> a kind-of array of <code>Base</code>?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/circle-ellipse.html">21.6</a> - Is a <code>Circle</code> a kind-of an <code>Ellipse</code>?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/circle-ellipse-nonintuitive.html">21.8</a> - But I have a Ph.D. in Mathematics, and I&#8217;m <em>sure</em> a Circle is a kind of an Ellipse! Does this mean Marshall Cline is stupid? Or that C&#43;&#43; is stupid? Or that OO is stupid?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/sortedlist-kindof-list.html">21.12</a> - If <code>SortedList</code> has exactly the same public interface as <code>List</code>, is <code>SortedList</code> a kind-of <code>List</code>?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/abcs.html"><strong>Section 22: Inheritance — abstract base classes (ABCs)</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/pure-virtual-fns.html">22.4</a> - What is a "pure virtual" member function?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/copy-of-abc-via-clone.html">22.5</a> - How do you define a copy constructor or assignment <code>operator</code> for a class that contains a pointer to a (abstract) base class?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/strange-inheritance.html"><strong>Section 23: Inheritance — what your mother never told you</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/calling-virtuals-from-base.html">23.1</a> - Is it okay for a non-<code>virtual</code> function of the base class to call a <code>virtual</code> function?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/protected-virtuals.html">23.3</a> - Should I use protected virtuals instead of public virtuals?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/private-virtuals.html">23.4</a> - When should someone use private virtuals?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/calling-virtuals-from-ctors.html">23.5</a> -  When my base class&#8217;s constructor calls a <code>virtual</code> function on its <code>this</code> object, why doesn&#8217;t my derived class&#8217;s override of that <code>virtual</code> function get invoked?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/hiding-rule.html">(<em>23.9</em>)</a> - What&#8217;s the meaning of, <code>Warning: Derived::f(char) hides Base::f(double)</code>?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/private-inheritance.html"><strong>Section 24: Inheritance — <code>private</code> and <code>protected</code> inheritance</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/priv-inherit-like-compos.html">24.2</a> - How are "<code>private</code> inheritance" and "composition" similar?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/priv-inherit-vs-compos.html">24.3</a> - Which should I prefer: composition or private inheritance?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/prot-vs-priv-inherit.html">24.5</a> - How is <code>protected</code> inheritance related to <code>private</code> inheritance?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/access-rules-with-priv-inherit.html">24.6</a> - What are the access rules with <code>private</code> and <code>protected</code> inheritance?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/multiple-inheritance.html"><strong>Section 25: Inheritance — multiple and virtual inheritance</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/mi-disciplines.html">25.4</a> - What are some disciplines for using multiple inheritance?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/mi-example.html">25.5</a> - Can you provide an example that demonstrates the above guidelines?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/virtual-inheritance-where.html">(<em>25.9</em>)</a> - Where in a hierarchy should I use virtual inheritance?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/mi-delegate-to-sister.html">25.10</a> - What does it mean to "delegate to a sister class" via virtual inheritance?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/intrinsic-types.html"><strong>Section 26: Built-in / intrinsic / primitive data types</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/is-power-of-2.html">26.12</a> - How can I tell if an integer is a power of two without looping?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/return-from-functions.html">26.13</a> - What should be returned from a function?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/coding-standards.html"><strong>Section 27: Coding standards</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/lint-guidelines.html">27.10</a> - Are there any lint-like guidelines for C&#43;&#43;?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/newbie.html"><strong>Section 29: Newbie Questions / Answers</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/choosing-int-size.html">29.5</a> - What are the criteria for choosing between <code>short</code> / <code>int</code> / <code>long</code> data types?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/const-vs-define.html">29.7</a> - Why would I use a <code>const</code> variable / <code>const</code> identifier as opposed to <code>#define</code>?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/floating-point-arith.html">29.17</a> - Why doesn&#8217;t my floating-point comparison work?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/floating-point-arith2.html">29.18</a> - Why is <code>cos(x) != cos(y)</code> even though <code>x == y</code>? (Or sine or tangent or log or just about any other floating point computation)</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/enumeration-is-its-own-type.html">(<em>29.19</em>)</a> - What is the type of an enumeration such as <code>enum Color</code>? Is it of type <code>int</code>?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/enumeration-type-ops.html">29.20</a> - If an enumeration type is distinct from any other type, what good is it? What can you do with it?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/templates.html"><strong>Section 35: Templates</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/class-templates.html">35.2</a> - What&#8217;s the syntax / semantics for a "class template"?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/fn-templates.html">35.3</a> - What&#8217;s the syntax / semantics for a "function template"?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/fn-templates-explicit-calls.html">35.4</a> - How do I explicitly select which version of a function template should get called?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/template-specialization.html">(<em>35.7</em>)</a> - My template function does something special when the template type <code>T</code> is <code>int</code> or <code>std::string</code>; how do I write my template so it uses the special code when <code>T</code> is one of those specific types?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/template-specialization-piecemeal.html">35.9</a> - But most of the code in my template function is the same; is there some way to get the benefits of template specialization without duplicating all that source code?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/templates-vs-overloading.html">35.11</a> - So templates are overloading, right?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/template-friends.html">35.16</a> - Why do I get linker errors when I use template friends?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/nondependent-name-lookup-types.html">35.18</a> - Why am I getting errors when my template-derived-class uses a nested type it inherits from its template-base-class?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/nondependent-name-lookup-members.html">35.19</a> - Why am I getting errors when my template-derived-class uses a member it inherits from its template-base-class?</p>
+</li>
+<li>
+<p><a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/template-proxies.html">35.22</a> - Follow-up to previous: can I pass in the underlying structure and the element-type separately?</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -596,43 +954,43 @@ The numbers in round brackets are a reference inside Marshall Cline&#8217;s C++ 
 <div class="ulist">
 <ul>
 <li>
-<p>Method chaining (8.4) / Named Parameter Idiom (10.20)</p>
+<p>Method chaining (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/method-chaining.html">8.4</a>)/ Named Parameter Idiom (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/named-parameter-idiom.html">10.20</a>)</p>
 </li>
 <li>
 <p>Conversion constructor and conversion operator</p>
 </li>
 <li>
-<p>Operator overloading (ch. 13)</p>
+<p>Operator overloading (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/operator-overloading.html">Section 13</a>)</p>
 </li>
 <li>
-<p>Explicit constructor (10.22)</p>
+<p>Explicit constructor (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/explicit-ctors.html">10.22</a>)</p>
 </li>
 <li>
-<p><code>const</code> (29.7) / <code>mutable</code> (18.13) / <code>volatile</code> / <code>restrict</code></p>
+<p><code>const</code> (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/const-vs-define.html">29.7</a>) / <code>mutable</code> (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/mutable-data-members.html">18.13</a>) / <code>volatile</code> / <code>restrict</code></p>
 </li>
 <li>
-<p>v-table mechanism (20.4)</p>
+<p>v-table mechanism <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/dyn-binding2.html">(20.4)</a></p>
 </li>
 <li>
-<p>Pure virtual member functions (22.4), abstract base classes (ch. 22)</p>
+<p>Pure virtual member functions (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/pure-virtual-fns.html">22.4</a>), abstract base classes (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/abcs.html">Section 22</a>)</p>
 </li>
 <li>
-<p>Covariant Return Types and "virtual constructor" (20.8, 22.5)</p>
+<p>Covariant Return Types and "virtual constructor" (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/virtual-ctors.html">20.8</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/copy-of-abc-via-clone.html">22.5</a>)</p>
 </li>
 <li>
-<p>Object slicing (21.4, 31.8, 20.8)</p>
+<p>Object slicing (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/array-derived-vs-base.html">21.4</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/pass-by-value.html">31.8</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/virtual-ctors.html">20.8</a>)</p>
 </li>
 <li>
-<p>Template Method pattern and private virtuals (23.4) (<a href="http://www.gotw.ca/publications/mill18.htm">Virtuality</a> by Herb Sutter)</p>
+<p>Template Method pattern and private virtuals (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/private-virtuals.html">23.4</a>) (<a href="http://www.gotw.ca/publications/mill18.htm">Virtuality</a> by Herb Sutter)</p>
 </li>
 <li>
-<p>Private inheritance (24.2, 24.3) (<a href="http://www.gotw.ca/publications/mill06.htm">Uses and Abuses of Inheritance, Part 1</a> by Herb Sutter)</p>
+<p>Private inheritance (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/priv-inherit-like-compos.html">24.2</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/priv-inherit-vs-compos.html">24.3</a>) (<a href="http://www.gotw.ca/publications/mill06.htm">Uses and Abuses of Inheritance, Part 1</a> by Herb Sutter)</p>
 </li>
 <li>
-<p>Static initialization order fiasco (10.14)</p>
+<p>Static initialization order fiasco (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/static-init-order.html">10.14</a>)</p>
 </li>
 <li>
-<p>Meyer&#8217;s singleton (10.16)</p>
+<p>Meyer&#8217;s singleton (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/construct-on-first-use-v2.html">10.16</a>)</p>
 </li>
 <li>
 <p><a href="https://en.wikipedia.org/wiki/One_Definition_Rule">One definition rule</a></p>
@@ -661,25 +1019,25 @@ As before, the numbers in round brackets are a reference inside Marshall Cline&#
 <div class="ulist">
 <ul>
 <li>
-<p>Placement new (11.10)</p>
+<p>Placement new (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/placement-new.html">11.10</a>)</p>
 </li>
 <li>
 <p>Pointer to member function</p>
 </li>
 <li>
-<p>Diamond problem (25.8, 25.9) and multiple inheritance (ch. 25)</p>
+<p>Diamond problem (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/mi-diamond.html">25.8</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/virtual-inheritance-where.html">25.9</a>) and multiple inheritance (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/multiple-inheritance.html">Section 25</a>)</p>
 </li>
 <li>
-<p>Hiding rule (23.9, 23.3)</p>
+<p>Hiding rule (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/hiding-rule.html">23.9</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/protected-virtuals.html">23.3</a>)</p>
 </li>
 <li>
-<p>Templates (ch. 35)</p>
+<p>Templates (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/templates.html">Section 35</a>)</p>
 </li>
 <li>
 <p><a href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of three</a> / five / zero, <a href="https://en.wikipedia.org/wiki/Special_member_functions">special member functions</a></p>
 </li>
 <li>
-<p>Return value optimization (NRVO, RVO) (10.9) / Copy elision (<a href="https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/">C++ Cargo Cults, RVO and Copy Elision</a>)</p>
+<p>Return value optimization (NRVO, RVO) (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/return-by-value-optimization.html">10.9</a>) / Copy elision (<a href="https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/">C++ Cargo Cults, RVO and Copy Elision</a>)</p>
 </li>
 <li>
 <p>Copy-and-swap idiom (<a href="http://stackoverflow.com/a/3279550">Why do we need the copy-and-swap idiom?</a>)</p>
@@ -688,13 +1046,13 @@ As before, the numbers in round brackets are a reference inside Marshall Cline&#
 <p><a href="http://en.cppreference.com/w/cpp/language/adl">Argument-dependant lookup</a> (Koenig lookup)</p>
 </li>
 <li>
-<p>Substitution Failure Is Not An Error (SFINAE) (35.11)</p>
+<p>Substitution Failure Is Not An Error (SFINAE) (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/templates-vs-overloading.html">35.11</a>)</p>
 </li>
 <li>
-<p>non-dependent types and members (35.18, 35.19, 35.20)</p>
+<p>non-dependent types and members (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/nondependent-name-lookup-types.html">35.18</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/nondependent-name-lookup-members.html">35.19</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/nondependent-name-lookup-silent-bug.html">35.20</a>)</p>
 </li>
 <li>
-<p>Proxy template (35.22), in C++11 you would employ the Type alias declaration with <code>using</code></p>
+<p>Proxy template (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/template-proxies.html">35.22</a>), in C&#43;&#43;11 you would employ the Type alias declaration with <code>using</code></p>
 </li>
 <li>
 <p>Type traits, concepts, tag dispatching (<a href="http://www.boost.org/community/generic_programming.html">Generic Programming Techniques</a>)</p>
@@ -737,7 +1095,7 @@ As before, the numbers in round brackets are a reference inside Marshall Cline&#
 <p>Move semantics, rule of five</p>
 </li>
 <li>
-<p>Reference collapsing</p>
+<p>Reference collapsing (Item 28)</p>
 </li>
 <li>
 <p>Reference qualifiers</p>
@@ -749,7 +1107,7 @@ As before, the numbers in round brackets are a reference inside Marshall Cline&#
 <p>Perfect forwarding</p>
 </li>
 <li>
-<p>Enum classes</p>
+<p>Enum classes (Item 10)</p>
 </li>
 <li>
 <p>Range-based for loops (and issues with <code>auto</code> and copying objects around)</p>
@@ -758,7 +1116,7 @@ As before, the numbers in round brackets are a reference inside Marshall Cline&#
 <p>List initialization</p>
 </li>
 <li>
-<p>Lambdas</p>
+<p>Lambdas (Chapter 6)</p>
 <div class="ulist">
 <ul>
 <li>
@@ -910,10 +1268,13 @@ Some books are targeted to game developers, like:</p>
 <p><a href="https://en.wikipedia.org/wiki/Virtual_memory">Virtual memory</a>, <a href="https://en.wikipedia.org/wiki/Paging">paging</a>, <a href="https://en.wikipedia.org/wiki/Translation_lookaside_buffer">TLB</a>, <a href="https://en.wikipedia.org/wiki/Memory_management_unit">MMU</a>, <a href="https://en.wikipedia.org/wiki/Mmap">mmap</a></p>
 </li>
 <li>
+<p><a href="http://davidad.github.io/blog/2014/02/19/relocatable-vs-position-independent-code-or/">Relocatable vs. Position-Independent Code</a></p>
+</li>
+<li>
 <p><a href="http://gafferongames.com/game-physics/fix-your-timestep/">Fix Your Timestep! by Glenn Fiedler</a></p>
 </li>
 <li>
-<p>Custom allocator with pools</p>
+<p><a href="https://www.gamedev.net/articles/programming/general-and-gameplay-programming/c-custom-memory-allocation-r3010/">C++: Custom memory allocation</a></p>
 </li>
 <li>
 <p><a href="https://en.wikipedia.org/wiki/Quadtree">Quadtree</a>, <a href="https://en.wikipedia.org/wiki/Octree">Octree</a> and <a href="https://en.wikipedia.org/wiki/Binary_space_partitioning">Binary Space Partitioning (BSP)</a></p>
@@ -978,7 +1339,7 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 <p>Critical section, mutex, semaphore, <a href="https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem">Producer-consumer problem</a>, <a href="https://en.wikipedia.org/wiki/Dining_philosophers_problem">Dining philosophers problem</a>, <a href="https://en.wikipedia.org/wiki/Priority_inversion">Priority inversion</a>, race condition</p>
 </li>
 <li>
-<p>Atomics and lock-free programming (<a href="http://preshing.com/">Preshing on Programming</a>), <a href="http://preshing.com/20120226/roll-your-own-lightweight-mutex/">Benaphore</a>, <a href="https://en.wikipedia.org/wiki/ABA_problem">ABA problem</a>, <a href="https://en.wikipedia.org/wiki/Load-link/store-conditional">Load-link/store-conditional</a>, <a href="http://preshing.com/20120913/acquire-and-release-semantics/">acquire and release semantics</a> (Load-Acquire/Store-Release in the ARM Reference Manual)</p>
+<p>Atomics and lock-free programming (<a href="http://preshing.com/">Preshing on Programming</a>), <a href="https://preshing.com/20120710/memory-barriers-are-like-source-control-operations/">memory barriers</a>, <a href="https://preshing.com/20120930/weak-vs-strong-memory-models/">memory models</a>, <a href="http://preshing.com/20120226/roll-your-own-lightweight-mutex/">Benaphore</a>, <a href="https://en.wikipedia.org/wiki/ABA_problem">ABA problem</a>, <a href="https://en.wikipedia.org/wiki/Load-link/store-conditional">Load-link/store-conditional</a>, <a href="http://preshing.com/20120913/acquire-and-release-semantics/">acquire and release semantics</a> (Load-Acquire/Store-Release in the ARM Reference Manual)</p>
 </li>
 <li>
 <p>Cache coherency, <a href="https://en.wikipedia.org/wiki/MOESI_protocol">MOESI protocol</a>, <a href="https://en.wikipedia.org/wiki/MESIF_protocol">MESIF protocol</a>, <a href="https://en.wikipedia.org/wiki/False_sharing">false sharing</a>, <a href="https://en.wikipedia.org/wiki/Branch_misprediction">branch misprediction</a>, <a href="https://en.wikipedia.org/wiki/Scratchpad_memory">scratchpad memory</a></p>
@@ -1036,9 +1397,6 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 <ul>
 <li>
 <p><a href="http://www.seas.upenn.edu/~pcozzi/OpenGLInsights/OpenGLInsights-TileBasedArchitectures.pdf">Performance Tuning for Tile-Based Architectures (PDF)</a>, from chapter 23 of the "OpenGL Insights" book</p>
-</li>
-<li>
-<p><a href="http://gpuopen.com/vulkan-renderpasses/">Vulkan Renderpasses</a></p>
 </li>
 <li>
 <p><a href="http://malideveloper.arm.com/downloads/ARM_Game_Developer_Days/PDFs/4-compute_shaders.pdf">Get the most out of the new OpenGL ES 3.1 API (PDF)</a> by ARM</p>
@@ -1295,14 +1653,30 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 </div>
 </div>
 <div class="sect3">
+<h4 id="_vulkan">Vulkan</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://renderdoc.org/vulkan-in-30-minutes.html">Vulkan in 30 minutes</a> by Baldur Karlsson</p>
+</li>
+<li>
+<p><a href="http://gpuopen.com/vulkan-renderpasses/">Vulkan Renderpasses</a> on GPUOpen</p>
+</li>
+<li>
+<p><a href="http://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/">Yet another blog explaining Vulkan synchronization</a> by Hans-Kristian Arntzen</p>
+</li>
+<li>
+<p><a href="https://zeux.io/2020/02/27/writing-an-efficient-vulkan-renderer/">Writing an efficient Vulkan renderer</a> by Arseny Kapoulkine</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_more_topics_3">More topics</h4>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://www.opengl.org/pipeline/article/vol003_6/">GLSL: Center or Centroid?  (Or When Shaders Attack!)</a> by Bill Licea-Kane (AMD)</p>
-</li>
-<li>
-<p><a href="https://renderdoc.org/vulkan-in-30-minutes.html">Vulkan in 30 minutes</a> by Baldur Karlsson</p>
 </li>
 <li>
 <p><a href="https://www.cs.cornell.edu/courses/cs4620/2008fa/lectures/texture-filtering.pdf">Texture filtering (PDF)</a> (Mipmap selection with derivatives) by Steve Marschner</p>

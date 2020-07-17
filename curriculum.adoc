@@ -56,8 +56,8 @@ My role has been a combination of graphics and game programming, technical suppo
 |*Role:* Programmer
 a|*Description:* I have worked as a game programmer and a multi-platform GUI programmer.
 
-* For the game _From Cheese_ (http://www.samsungapps.com/topApps/topAppsDetail.as?productId=G00009761532[Samsung Apps]) I have worked as an Android programmer (UI and SPen support) and as an additional Unity programmer.
-* For the game _AXL: Full Boost_ (http://axlracing.com) I have worked on the iPhone user interface.
+* For the game _From Cheese_ (https://www.mobygames.com/game/from-cheese[MobyGames]) I have worked as an Android programmer (UI and SPen support) and as an additional Unity programmer.
+* For the game _AXL: Full Boost_ (https://www.mobygames.com/game/axl-full-boost[MobyGames]) I have worked on the iPhone user interface.
 * For _Bang!: The Official Videogame_ (http://www.mobygames.com/game/bang[MobyGames]) I have worked on the native GUI for multiple platforms and on additional gameplay programming.
 |*Technologies:* C++, Qt4, Objective C, UiKit, Java, Android API
 |*Tools:* Visual Studio, Xcode, Qt Creator, qmake, Eclipse, Subversion, Unity

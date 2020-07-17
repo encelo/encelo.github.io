@@ -15,45 +15,136 @@ I hope you will find my notes useful in case you intend to study more about engi
 ==== Marshall Cline's C++ FAQ (29/07/2011)
 Questions in round brackets are the ones I find more important or difficult to grasp at first.
 
-* *Chapter 7*: 7.7
-* *Chapter 8*: 8.3, 8.4, 8.6
-* *Chapter 9*: 9.1, 9.5, 9.6, 9.7, 9.8, 9.9
-* *Chapter 10*: 10.3, 10.4, (10.5), 10.6, 10.8, (10.9), 10.10, (10.14), 10.20, (10.22)
-* *Chapter 11*: 11.7, 11.10, 11.14
-* *Chapter 12*: 12.3, 12.4
-* *Chapter 13*: 13.9, 13.10, 13.14, 13.15
-* *Chapter 14*: 14.3, 14.5
-* *Chapter 16*: 16.4, 16.8, 16.10, 16.21
-* *Chapter 17*: 17.2, 17.3, 17.4, 17.8, 17.9, 17.10
-* *Chapter 18*: 18.5, 18.7, 18.10, 18.12, (18.13), 18.15
-* *Chapter 20*: 20.3, 20.4, 20.5, 20.6, (20.7), 20.8
-* *Chapter 21*: (21.4), 21.6, 21.8, 21.12
-* *Chapter 22*: 22.4, 22.5
-* *Chapter 23*: 23.1, 23.3, 23.4, 23.5, (23.9)
-* *Chapter 24*: 24.2, 24.3, 24.5, 24.6
-* *Chapter 25*: 25.4, 25.5, (25.9), 25.10
-* *Chapter 26*: 26.12, 26.13
-* *Chapter 27*: 27.10
-* *Chapter 29*: 29.5, 29.7, 29.17, 29.18, (29.19), 29.20
-* *Chapter 35*: 35.2, 35.3, 35.4, (35.7), 35.9, 35.11, 35.16, 35.18, 35.19, 35.22
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/classes-and-objects.html[*Section 7: Classes and objects*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/directly-access-private-in-other-instances.html[7.7] - Can a method directly access the non-public members of another instance of its class?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/references.html[*Section 8: References*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/returning-refs.html[8.3] - What happens if you return a reference?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/method-chaining.html[8.4] - What does `object.method1().method2()` mean?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/refs-vs-ptrs.html[8.6] - When should I use references, and when should I use pointers?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/inline-functions.html[*Section 9: Inline functions*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/overview-inline-fns.html[9.1] - What's the deal with `inline` functions?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/inline-vs-macros.html[9.5] - Why should I use `inline` functions instead of plain old `#define` macros?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/inline-nonmember-fns.html[9.6] - How do you tell the compiler to make a non-member function `inline`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/inline-member-fns.html[9.7] - How do you tell the compiler to make a member function `inline`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/inline-member-fns-more.html[9.8] - Is there another way to tell the compiler to make a member function `inline`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/where-to-put-inline-keyword.html[9.9] - With inline member functions that are defined outside the class, is it best to put the `inline` keyword next to the declaration within the class body, next to the definition outside the class body, or both?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/ctors.html[*Section 10: Constructors*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/init-methods.html[10.3] - Can one constructor of a class call another constructor of the same class to initialize the `this` object?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/default-ctor.html[10.4] - Is the default constructor for `Fred` always `Fred::Fred()`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/arrays-call-default-ctor.html[(_10.5_)] - Which constructor gets called when I create an array of `Fred` objects?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/init-lists.html[10.6] - Should my constructors use "initialization lists" or "assignment"?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/named-ctor-idiom.html[10.8] - What is the "Named Constructor Idiom"?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/return-by-value-optimization.html[(_10.9_)] - Does return-by-value mean extra copies and extra overhead?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/return-local-var-by-value-optimization.html[10.10] - What about returning a local variable by value? Does the local exist as a separate object, or does it get optimized away?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/static-init-order.html[(_10.14_)] - What's the "``static`` initialization order fiasco"?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/named-parameter-idiom.html[10.20] - What is the "Named Parameter Idiom"?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/explicit-ctors.html[(_10.22_)] - What is the purpose of the `explicit` keyword?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/dtors.html[*Section 11: Destructors*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/artificial-block-to-control-lifetimes.html[11.7] - OK, OK already; I won't explicitly call the destructor of a local; but how do I handle the situation from the previous FAQ?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/placement-new.html[11.10] - What is "placement ``new``" and why would I use it?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/memory-pools.html[11.14] - Is there a way to force `new` to allocate memory from a specific memory area?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/assignment-operators.html[*Section 12: Assignment operators*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/self-assignment-how.html[12.3] - OK, OK, already; I'll handle self-assignment. How do I do it?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/assignment-op-in-derived-class.html[12.4] - I'm creating a derived class; should my assignment operator call my base class's assignment operator?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/operator-overloading.html[*Section 13: Operator overloading*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/op-ov-rules.html[13.9] - What are some guidelines / "rules of thumb" for overloading operators?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/matrix-subscript-op.html[13.10] - How do I create a subscript `operator` for a `Matrix` class?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/increment-pre-post-overloading.html[13.14] - How can I overload the prefix and postfix forms of operators {plus}{plus} and --?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/increment-pre-post-speed.html[13.15] - Which is more efficient: `i{plus}{plus}` or `{plus}{plus}i`?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/friends.html[*Section 14: Friends*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/pros-cons-friend-fns.html[14.3] - What are some advantages/disadvantages of using `friend` functions?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/member-vs-friend-fns.html[14.5] - Should my class declare a member function or a `friend` function?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/freestore-mgmt.html[*Section 16: Freestore management*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/new-vs-malloc.html[16.4] - Why should I use `new` instead of trustworthy old `malloc()`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/delete-handles-null.html[16.8] - Do I need to check for `NULL` before `delete p`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/new-doesnt-leak-if-ctor-throws.html[16.10] - In `p = new Fred()`, does the `Fred` memory "leak" if the Fred constructor throws an exception?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/static-create-methods.html[16.21] - How can I force objects of my class to always be created via `new` rather than as locals or global/`static` objects?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/exceptions.html[*Section 17: Exceptions and error handling*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/exceptions-avoid-spreading-out-error-logic.html[17.2] - I'm still not convinced: a 4-line code snippet shows that return-codes aren't any worse than exceptions; why should I therefore use exceptions on an application that is orders of magnitude larger?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/exceptions-avoid-two-return-types.html[17.3] - How do exceptions simplify my function return type and parameter types?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/exceptions-separate-good-and-bad-path.html[17.4] - What does it mean that exceptions separate the "good path" (or "happy path") from the "bad path"?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/ctors-can-throw.html[17.8] - How can I handle a constructor that fails?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/dtors-shouldnt-throw.html[17.9] - How can I handle a destructor that fails?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/selfcleaning-members.html[17.10] - How should I handle resources if my constructors may throw exceptions?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/const-correctness.html[*Section 18: Const correctness*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/const-ptr-vs-ptr-const.html[18.5] - What's the difference between "```Fred const* p```", "```Fred* const p```" and "```Fred const* const p```"?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/const-ref-nonsense.html[18.7] - Does "```Fred& const x```" make any sense?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/const-member-fns.html[18.10] - What is a "``const`` member function"?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/const-overloading.html[18.12] - What's the deal with "``const``-overloading"?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/mutable-data-members.html[(_18.13_)] - What do I do if I want a `const` member function to make an "invisible" change to a data member?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/aliasing-and-const.html[18.15] - Why does the compiler allow me to change an `int` after I've pointed at it with a `int const*`?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-functions.html[*Section 20: Inheritance — `virtual` functions*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/dyn-binding.html[20.3] - What's the difference between how `virtual` and non-`virtual` member functions are called?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/dyn-binding2.html[20.4] - What happens in the hardware when I call a virtual function? How many layers of indirection are there? How much overhead is there?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/fully-qualified-calls-to-base.html[20.5] - How can a member function in my derived class call the same function from its base class?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/inversion.html[20.6] - I have a heterogeneous list of objects, and my code needs to do class-specific things to the objects. Seems like this ought to use dynamic binding but can't figure it out. What should I do? It's surprisingly easy.
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-dtors.html[(_20.7_)] - When should my destructor be `virtual`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-ctors.html[20.8] - What is a "``virtual`` constructor"?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/proper-inheritance.html[*Section 21: Inheritance — proper inheritance and substitutability*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/array-derived-vs-base.html[(_21.4_)] - Is an array of `Derived` a kind-of array of `Base`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/circle-ellipse.html[21.6] - Is a `Circle` a kind-of an `Ellipse`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/circle-ellipse-nonintuitive.html[21.8] - But I have a Ph.D. in Mathematics, and I'm _sure_ a Circle is a kind of an Ellipse! Does this mean Marshall Cline is stupid? Or that C{plus}{plus} is stupid? Or that OO is stupid?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/sortedlist-kindof-list.html[21.12] - If `SortedList` has exactly the same public interface as `List`, is `SortedList` a kind-of `List`?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/abcs.html[*Section 22: Inheritance — abstract base classes (ABCs)*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/pure-virtual-fns.html[22.4] - What is a "pure virtual" member function?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/copy-of-abc-via-clone.html[22.5] - How do you define a copy constructor or assignment `operator` for a class that contains a pointer to a (abstract) base class?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/strange-inheritance.html[*Section 23: Inheritance — what your mother never told you*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/calling-virtuals-from-base.html[23.1] - Is it okay for a non-`virtual` function of the base class to call a `virtual` function?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/protected-virtuals.html[23.3] - Should I use protected virtuals instead of public virtuals?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/private-virtuals.html[23.4] - When should someone use private virtuals?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/calling-virtuals-from-ctors.html[23.5] -  When my base class's constructor calls a `virtual` function on its `this` object, why doesn't my derived class's override of that `virtual` function get invoked?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/hiding-rule.html[(_23.9_)] - What's the meaning of, `Warning: Derived::f(char) hides Base::f(double)`?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/private-inheritance.html[*Section 24: Inheritance — `private` and `protected` inheritance*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/priv-inherit-like-compos.html[24.2] - How are "``private`` inheritance" and "composition" similar?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/priv-inherit-vs-compos.html[24.3] - Which should I prefer: composition or private inheritance?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/prot-vs-priv-inherit.html[24.5] - How is `protected` inheritance related to `private` inheritance?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/access-rules-with-priv-inherit.html[24.6] - What are the access rules with `private` and `protected` inheritance?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/multiple-inheritance.html[*Section 25: Inheritance — multiple and virtual inheritance*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/mi-disciplines.html[25.4] - What are some disciplines for using multiple inheritance?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/mi-example.html[25.5] - Can you provide an example that demonstrates the above guidelines?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-inheritance-where.html[(_25.9_)] - Where in a hierarchy should I use virtual inheritance?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/mi-delegate-to-sister.html[25.10] - What does it mean to "delegate to a sister class" via virtual inheritance?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/intrinsic-types.html[*Section 26: Built-in / intrinsic / primitive data types*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/is-power-of-2.html[26.12] - How can I tell if an integer is a power of two without looping?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/return-from-functions.html[26.13] - What should be returned from a function?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/coding-standards.html[*Section 27: Coding standards*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/lint-guidelines.html[27.10] - Are there any lint-like guidelines for C{plus}{plus}?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/newbie.html[*Section 29: Newbie Questions / Answers*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/choosing-int-size.html[29.5] - What are the criteria for choosing between `short` / `int` / `long` data types?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/const-vs-define.html[29.7] - Why would I use a `const` variable / `const` identifier as opposed to `#define`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/floating-point-arith.html[29.17] - Why doesn't my floating-point comparison work?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/floating-point-arith2.html[29.18] - Why is `cos(x) != cos(y)` even though `x == y`? (Or sine or tangent or log or just about any other floating point computation)
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/enumeration-is-its-own-type.html[(_29.19_)] - What is the type of an enumeration such as `enum Color`? Is it of type `int`?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/enumeration-type-ops.html[29.20] - If an enumeration type is distinct from any other type, what good is it? What can you do with it?
+* http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/templates.html[*Section 35: Templates*]
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/class-templates.html[35.2] - What's the syntax / semantics for a "class template"?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/fn-templates.html[35.3] - What's the syntax / semantics for a "function template"?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/fn-templates-explicit-calls.html[35.4] - How do I explicitly select which version of a function template should get called?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/template-specialization.html[(_35.7_)] - My template function does something special when the template type `T` is `int` or `std::string`; how do I write my template so it uses the special code when `T` is one of those specific types?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/template-specialization-piecemeal.html[35.9] - But most of the code in my template function is the same; is there some way to get the benefits of template specialization without duplicating all that source code?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/templates-vs-overloading.html[35.11] - So templates are overloading, right?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/template-friends.html[35.16] - Why do I get linker errors when I use template friends?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/nondependent-name-lookup-types.html[35.18] - Why am I getting errors when my template-derived-class uses a nested type it inherits from its template-base-class?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/nondependent-name-lookup-members.html[35.19] - Why am I getting errors when my template-derived-class uses a member it inherits from its template-base-class?
+** http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/template-proxies.html[35.22] - Follow-up to previous: can I pass in the underlying structure and the element-type separately?
 
 ==== Topics
 A list of concepts, ideas, idioms, patterns and keywords to understand and remember.
 The numbers in round brackets are a reference inside Marshall Cline's C++ FAQ.
 
-* Method chaining (8.4) / Named Parameter Idiom (10.20)
+* Method chaining (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/method-chaining.html[8.4])/ Named Parameter Idiom (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/named-parameter-idiom.html[10.20])
 * Conversion constructor and conversion operator
-* Operator overloading (ch. 13)
-* Explicit constructor (10.22)
-* `const` (29.7) / `mutable` (18.13) / `volatile` / `restrict`
-* v-table mechanism (20.4)
-* Pure virtual member functions (22.4), abstract base classes (ch. 22)
-* Covariant Return Types and "virtual constructor" (20.8, 22.5)
-* Object slicing (21.4, 31.8, 20.8)
-* Template Method pattern and private virtuals (23.4) (http://www.gotw.ca/publications/mill18.htm[Virtuality] by Herb Sutter)
-* Private inheritance (24.2, 24.3) (http://www.gotw.ca/publications/mill06.htm[Uses and Abuses of Inheritance, Part 1] by Herb Sutter)
-* Static initialization order fiasco (10.14)
-* Meyer's singleton (10.16)
+* Operator overloading (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/operator-overloading.html[Section 13])
+* Explicit constructor (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/explicit-ctors.html[10.22])
+* `const` (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/const-vs-define.html[29.7]) / `mutable` (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/mutable-data-members.html[18.13]) / `volatile` / `restrict`
+* v-table mechanism http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/dyn-binding2.html[(20.4)]
+* Pure virtual member functions (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/pure-virtual-fns.html[22.4]), abstract base classes (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/abcs.html[Section 22])
+* Covariant Return Types and "virtual constructor" (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-ctors.html[20.8], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/copy-of-abc-via-clone.html[22.5])
+* Object slicing (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/array-derived-vs-base.html[21.4], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/pass-by-value.html[31.8], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-ctors.html[20.8])
+* Template Method pattern and private virtuals (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/private-virtuals.html[23.4]) (http://www.gotw.ca/publications/mill18.htm[Virtuality] by Herb Sutter)
+* Private inheritance (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/priv-inherit-like-compos.html[24.2], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/priv-inherit-vs-compos.html[24.3]) (http://www.gotw.ca/publications/mill06.htm[Uses and Abuses of Inheritance, Part 1] by Herb Sutter)
+* Static initialization order fiasco (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/static-init-order.html[10.14])
+* Meyer's singleton (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/construct-on-first-use-v2.html[10.16])
 * https://en.wikipedia.org/wiki/One_Definition_Rule[One definition rule]
 * https://en.wikipedia.org/wiki/Common_subexpression_elimination[Common subexpression elimination]
 * Different kind of casts: C style, `static_cast`, `dynamic_cast`, `const_cast` and `reinterpret_cast`
@@ -64,18 +155,18 @@ The numbers in round brackets are a reference inside Marshall Cline's C++ FAQ.
 A second list of concepts to keep in mind, only a bit harder this time.
 As before, the numbers in round brackets are a reference inside Marshall Cline's C++ FAQ.
 
-* Placement new (11.10)
+* Placement new (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/placement-new.html[11.10])
 * Pointer to member function
-* Diamond problem (25.8, 25.9) and multiple inheritance (ch. 25)
-* Hiding rule (23.9, 23.3)
-* Templates (ch. 35)
+* Diamond problem (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/mi-diamond.html[25.8], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-inheritance-where.html[25.9]) and multiple inheritance (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/multiple-inheritance.html[Section 25])
+* Hiding rule (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/hiding-rule.html[23.9], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/protected-virtuals.html[23.3])
+* Templates (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/templates.html[Section 35])
 * https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)[Rule of three] / five / zero, https://en.wikipedia.org/wiki/Special_member_functions[special member functions]
-* Return value optimization (NRVO, RVO) (10.9) / Copy elision (https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/[C++ Cargo Cults, RVO and Copy Elision])
+* Return value optimization (NRVO, RVO) (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/return-by-value-optimization.html[10.9]) / Copy elision (https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/[C++ Cargo Cults, RVO and Copy Elision])
 * Copy-and-swap idiom (http://stackoverflow.com/a/3279550[Why do we need the copy-and-swap idiom?])
 * http://en.cppreference.com/w/cpp/language/adl[Argument-dependant lookup] (Koenig lookup)
-* Substitution Failure Is Not An Error (SFINAE) (35.11)
-* non-dependent types and members (35.18, 35.19, 35.20)
-* Proxy template (35.22), in C++11 you would employ the Type alias declaration with `using`
+* Substitution Failure Is Not An Error (SFINAE) (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/templates-vs-overloading.html[35.11])
+* non-dependent types and members (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/nondependent-name-lookup-types.html[35.18], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/nondependent-name-lookup-members.html[35.19], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/nondependent-name-lookup-silent-bug.html[35.20])
+* Proxy template (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/template-proxies.html[35.22]), in C{plus}{plus}11 you would employ the Type alias declaration with `using`
 * Type traits, concepts, tag dispatching (http://www.boost.org/community/generic_programming.html[Generic Programming Techniques])
 * https://en.wikipedia.org/wiki/Most_vexing_parse[Most vexing parse]
 * http://blog.llvm.org/2009/12/dreaded-two-phase-name-lookup.html[Two-phase name lookup]
@@ -90,14 +181,14 @@ The book "_Effective Modern C++_" by Scott Meyers is a must-have.
 * Rvalues (http://thbecker.net/articles/rvalue_references/section_01.html[C++ Rvalue References Explained] by Thomas Becker)
 * Auto keyword and type deduction
 * Move semantics, rule of five
-* Reference collapsing
+* Reference collapsing (Item 28)
 * Reference qualifiers
 * Forwarding (AKA universal) references (https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers[Universal References in C++11] by Scott Meyers)
 * Perfect forwarding
-* Enum classes
+* Enum classes (Item 10)
 * Range-based for loops (and issues with `auto` and copying objects around)
 * List initialization
-* Lambdas
+* Lambdas (Chapter 6)
 ** https://www.bfilipek.com/2019/02/lambdas-story-part1.html[Lambdas: From C++11 to C++20, Part 1] by Bartłomiej Filipek
 ** https://www.bfilipek.com/2019/03/lambdas-story-part2.html[Lambdas: From C++11 to C++20, Part 2] by Bartłomiej Filipek
 ** https://www.bfilipek.com/2016/11/iife-for-complex-initialization.html[IIFE for Complex Initialization] by Bartłomiej Filipek
@@ -141,8 +232,9 @@ Some books are targeted to game developers, like:
 * https://download-mirror.savannah.gnu.org/releases/pgubook/ProgrammingGroundUp-1-0-booksize.pdf["Programming from the Ground Up" (PDF)] by Jonathan Bartlett
 ** https://en.wikipedia.org/wiki/Call_stack[Call stack], relocating code, dynamic libraries, https://en.wikipedia.org/wiki/Data_segment[data] / https://en.wikipedia.org/wiki/.bss[bss] / https://en.wikipedia.org/wiki/Code_segment[text] segments
 * https://en.wikipedia.org/wiki/Virtual_memory[Virtual memory], https://en.wikipedia.org/wiki/Paging[paging], https://en.wikipedia.org/wiki/Translation_lookaside_buffer[TLB], https://en.wikipedia.org/wiki/Memory_management_unit[MMU], https://en.wikipedia.org/wiki/Mmap[mmap]
+* http://davidad.github.io/blog/2014/02/19/relocatable-vs-position-independent-code-or/[Relocatable vs. Position-Independent Code]
 * http://gafferongames.com/game-physics/fix-your-timestep/[Fix Your Timestep! by Glenn Fiedler]
-* Custom allocator with pools
+* https://www.gamedev.net/articles/programming/general-and-gameplay-programming/c-custom-memory-allocation-r3010/[C++: Custom memory allocation]
 * https://en.wikipedia.org/wiki/Quadtree[Quadtree], https://en.wikipedia.org/wiki/Octree[Octree] and https://en.wikipedia.org/wiki/Binary_space_partitioning[Binary Space Partitioning (BSP)]
 
 === CPU
@@ -166,7 +258,7 @@ One of the book you could read to learn more on the subject is "_Computer Archit
 One of the book on the topic is "_The Art of Multiprocessor Programming_" by Maurice Herlihy and Nir Shavit
 
 * Critical section, mutex, semaphore, https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem[Producer-consumer problem], https://en.wikipedia.org/wiki/Dining_philosophers_problem[Dining philosophers problem], https://en.wikipedia.org/wiki/Priority_inversion[Priority inversion], race condition
-* Atomics and lock-free programming (http://preshing.com/[Preshing on Programming]), http://preshing.com/20120226/roll-your-own-lightweight-mutex/[Benaphore], https://en.wikipedia.org/wiki/ABA_problem[ABA problem], https://en.wikipedia.org/wiki/Load-link/store-conditional[Load-link/store-conditional], http://preshing.com/20120913/acquire-and-release-semantics/[acquire and release semantics] (Load-Acquire/Store-Release in the ARM Reference Manual)
+* Atomics and lock-free programming (http://preshing.com/[Preshing on Programming]), https://preshing.com/20120710/memory-barriers-are-like-source-control-operations/[memory barriers], https://preshing.com/20120930/weak-vs-strong-memory-models/[memory models], http://preshing.com/20120226/roll-your-own-lightweight-mutex/[Benaphore], https://en.wikipedia.org/wiki/ABA_problem[ABA problem], https://en.wikipedia.org/wiki/Load-link/store-conditional[Load-link/store-conditional], http://preshing.com/20120913/acquire-and-release-semantics/[acquire and release semantics] (Load-Acquire/Store-Release in the ARM Reference Manual)
 * Cache coherency, https://en.wikipedia.org/wiki/MOESI_protocol[MOESI protocol], https://en.wikipedia.org/wiki/MESIF_protocol[MESIF protocol], https://en.wikipedia.org/wiki/False_sharing[false sharing], https://en.wikipedia.org/wiki/Branch_misprediction[branch misprediction], https://en.wikipedia.org/wiki/Scratchpad_memory[scratchpad memory]
 * https://www.quora.com/CPUs-How-is-branch-prediction-implemented-in-microprocessors[CPUs: How is branch prediction implemented in microprocessors?]
 * Single Producer / Multiple Consumer
@@ -187,7 +279,6 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Purnomo is a must-have.
 
 * http://www.seas.upenn.edu/~pcozzi/OpenGLInsights/OpenGLInsights-TileBasedArchitectures.pdf[Performance Tuning for Tile-Based Architectures (PDF)], from chapter 23 of the "OpenGL Insights" book
-* http://gpuopen.com/vulkan-renderpasses/[Vulkan Renderpasses]
 * http://malideveloper.arm.com/downloads/ARM_Game_Developer_Days/PDFs/4-compute_shaders.pdf[Get the most out of the new OpenGL ES 3.1 API (PDF)] by ARM
 * https://github.com/ARM-software/opengl-es-sdk-for-android[OpenGL ES SDK for Android by ARM]
 * https://github.com/ARM-software/vulkan-sdk[Vulkan SDK for Android by ARM]
@@ -266,9 +357,14 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://amd-dev.wpengine.netdna-cdn.com/wordpress/media/2012/10/Scheuermann_DepthOfField.pdf[Advanced Depth of Field (PDF)] by Thorsten Scheuermann
 * http://realtimecollisiondetection.net/blog/?p=86[Order your graphics draw calls around!] from the Real-Time Collision Detection blog
 
+==== Vulkan
+* https://renderdoc.org/vulkan-in-30-minutes.html[Vulkan in 30 minutes] by Baldur Karlsson
+* http://gpuopen.com/vulkan-renderpasses/[Vulkan Renderpasses] on GPUOpen
+* http://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/[Yet another blog explaining Vulkan synchronization] by Hans-Kristian Arntzen
+* https://zeux.io/2020/02/27/writing-an-efficient-vulkan-renderer/[Writing an efficient Vulkan renderer] by Arseny Kapoulkine
+
 ==== More topics
 * https://www.opengl.org/pipeline/article/vol003_6/[GLSL: Center or Centroid?  (Or When Shaders Attack!)] by Bill Licea-Kane (AMD)
-* https://renderdoc.org/vulkan-in-30-minutes.html[Vulkan in 30 minutes] by Baldur Karlsson
 * https://www.cs.cornell.edu/courses/cs4620/2008fa/lectures/texture-filtering.pdf[Texture filtering (PDF)] (Mipmap selection with derivatives) by Steve Marschner
 * http://www.3dkingdoms.com/weekly/weekly.php?a=2[Reflecting a Vector] (Vector reflection with vector projection and dot product)
 * https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process[Gram-Schmidt orthogonalization] with vector projection and dot product
