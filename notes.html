@@ -1007,6 +1007,9 @@ The numbers in round brackets are a reference inside Marshall Cline&#8217;s C++ 
 <li>
 <p><a href="https://en.wikipedia.org/wiki/Run-time_type_information">Run-time type information</a> (RTTI)</p>
 </li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/SOLID">SOLID</a> principles</p>
+</li>
 </ul>
 </div>
 </div>
@@ -1028,19 +1031,20 @@ As before, the numbers in round brackets are a reference inside Marshall Cline&#
 <p>Diamond problem (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/mi-diamond.html">25.8</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/virtual-inheritance-where.html">25.9</a>) and multiple inheritance (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/multiple-inheritance.html">Section 25</a>)</p>
 </li>
 <li>
-<p>Hiding rule (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/hiding-rule.html">23.9</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/protected-virtuals.html">23.3</a>)</p>
+<p>Hiding rule (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/hiding-rule.html">23.9</a>, <a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/protected-virtuals.html">23.3</a>), <a href="https://stackoverflow.com/questions/4837399/c-rationale-behind-hiding-rule">C++: rationale behind hiding rule</a></p>
 </li>
 <li>
 <p>Templates (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/templates.html">Section 35</a>)</p>
 </li>
 <li>
-<p><a href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of three</a> / five / zero, <a href="https://en.wikipedia.org/wiki/Special_member_functions">special member functions</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of Three</a> / five / zero, <a href="https://en.wikipedia.org/wiki/Special_member_functions">special member functions</a></p>
 </li>
 <li>
 <p>Return value optimization (NRVO, RVO) (<a href="http://www.cs.technion.ac.il/users/yechiel/c&#43;&#43;-faq/return-by-value-optimization.html">10.9</a>) / Copy elision (<a href="https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/">C++ Cargo Cults, RVO and Copy Elision</a>)</p>
 </li>
 <li>
-<p>Copy-and-swap idiom (<a href="http://stackoverflow.com/a/3279550">Why do we need the copy-and-swap idiom?</a>)</p>
+<p>Copy-and-swap idiom (<a href="http://stackoverflow.com/a/3279550">Why do we need the copy-and-swap idiom?</a>, <a href="https://stackoverflow.com/questions/5695548/public-friend-swap-member-function">public friend swap member function
+</a>)</p>
 </li>
 <li>
 <p><a href="http://en.cppreference.com/w/cpp/language/adl">Argument-dependant lookup</a> (Koenig lookup)</p>
@@ -1070,10 +1074,10 @@ As before, the numbers in round brackets are a reference inside Marshall Cline&#
 <p><a href="https://en.wikipedia.org/wiki/Sequence_point">Sequence point</a></p>
 </li>
 <li>
-<p><a href="https://en.wikipedia.org/wiki/Tail_call">Tail call</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Optimizing_compiler">Optimizing compiler</a> (<a href="https://en.wikipedia.org/wiki/Tail_call">Tail call</a>, <a href="https://en.wikipedia.org/wiki/Constant_folding">Constant folding</a>, <a href="https://en.wikipedia.org/wiki/Dead_code_elimination">Dead code elimination</a>, &#8230;&#8203;)</p>
 </li>
 <li>
-<p><a href="https://en.wikipedia.org/wiki/Constant_folding">Constant folding</a></p>
+<p><a href="https://en.cppreference.com/w/cpp/language/ebo">Empty base optimization</a>, <a href="http://tinf2.vub.ac.be/~dvermeir/c&#43;&#43;/emptyopt.html">The "Empty Member" C++ Optimization</a></p>
 </li>
 </ul>
 </div>
@@ -1092,7 +1096,7 @@ As before, the numbers in round brackets are a reference inside Marshall Cline&#
 <p>Auto keyword and type deduction</p>
 </li>
 <li>
-<p>Move semantics, rule of five</p>
+<p><a href="https://stackoverflow.com/questions/3106110/what-is-move-semantics">Move semantics</a>, Rule of Five</p>
 </li>
 <li>
 <p>Reference collapsing (Item 28)</p>
@@ -1339,7 +1343,7 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 <p>Critical section, mutex, semaphore, <a href="https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem">Producer-consumer problem</a>, <a href="https://en.wikipedia.org/wiki/Dining_philosophers_problem">Dining philosophers problem</a>, <a href="https://en.wikipedia.org/wiki/Priority_inversion">Priority inversion</a>, race condition</p>
 </li>
 <li>
-<p>Atomics and lock-free programming (<a href="http://preshing.com/">Preshing on Programming</a>), <a href="https://preshing.com/20120710/memory-barriers-are-like-source-control-operations/">memory barriers</a>, <a href="https://preshing.com/20120930/weak-vs-strong-memory-models/">memory models</a>, <a href="http://preshing.com/20120226/roll-your-own-lightweight-mutex/">Benaphore</a>, <a href="https://en.wikipedia.org/wiki/ABA_problem">ABA problem</a>, <a href="https://en.wikipedia.org/wiki/Load-link/store-conditional">Load-link/store-conditional</a>, <a href="http://preshing.com/20120913/acquire-and-release-semantics/">acquire and release semantics</a> (Load-Acquire/Store-Release in the ARM Reference Manual)</p>
+<p>Atomics and lock-free programming (<a href="http://preshing.com/">Preshing on Programming</a>), <a href="https://preshing.com/20120710/memory-barriers-are-like-source-control-operations/">memory barriers</a>, <a href="https://preshing.com/20120930/weak-vs-strong-memory-models/">memory models</a>, <a href="http://preshing.com/20120226/roll-your-own-lightweight-mutex/">Benaphore</a>, <a href="https://en.wikipedia.org/wiki/Compare-and-swap">Compare-and-swap</a>, <a href="https://en.wikipedia.org/wiki/ABA_problem">ABA problem</a>, <a href="https://en.wikipedia.org/wiki/Load-link/store-conditional">Load-link/store-conditional</a>, <a href="http://preshing.com/20120913/acquire-and-release-semantics/">acquire and release semantics</a> (Load-Acquire/Store-Release in the ARM Reference Manual)</p>
 </li>
 <li>
 <p>Cache coherency, <a href="https://en.wikipedia.org/wiki/MOESI_protocol">MOESI protocol</a>, <a href="https://en.wikipedia.org/wiki/MESIF_protocol">MESIF protocol</a>, <a href="https://en.wikipedia.org/wiki/False_sharing">false sharing</a>, <a href="https://en.wikipedia.org/wiki/Branch_misprediction">branch misprediction</a>, <a href="https://en.wikipedia.org/wiki/Scratchpad_memory">scratchpad memory</a></p>
@@ -1385,6 +1389,9 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 <ul>
 <li>
 <p><a href="https://www.scratchapixel.com/">Scratchapixel - Learn Computer Graphics From Scratch!</a></p>
+</li>
+<li>
+<p><a href="http://www.cs.uu.nl/docs/vakken/magr/2017-2018/index.html">Advanced Graphics</a> Course 2017/18 from Universiteit Utrecht</p>
 </li>
 </ul>
 </div>
@@ -1483,7 +1490,7 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 <p><a href="https://www.community.arm.com/graphics/b/blog/posts/pixel-local-storage-on-arm-mali-gpus">Pixel Local Storage on ARM&#174; Mali&#8482; GPUs</a></p>
 </li>
 <li>
-<p><a href="http://www.geomerics.com/wp-content/uploads/2014/11/Efficient-Rendering-with-Tile-Local-Storage.pdf">Efficient Rendering with Tile Local Storage (PDF)</a> (SIGGRAPH 2014)</p>
+<p><a href="https://community.arm.com/cfs-file/__key/telligent-evolution-components-attachments/01-2066-00-00-00-00-55-34/siggraph14_2D00_Bjorge_2D00_TLS_2D00_presentation.pdf">Efficient Rendering with Tile Local Storage (PDF)</a> (SIGGRAPH 2014)</p>
 </li>
 <li>
 <p><a href="http://www.anandtech.com/show/8234/arms-mali-midgard-architecture-explored">ARM&#8217;s Mali Midgard Architecture Explored</a></p>
@@ -1574,6 +1581,43 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 </ul>
 </div>
 <div class="sect4">
+<h5 id="_nvidia_geforce">Nvidia GeForce</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.academia.edu/28633432/NVIDIA_Tesla_A_Unified_Graphics_and_Computing_Architecture">NVIDIA Tesla: A Unified Graphics and Computing Architecture</a> from IEEE Micro, March-April 2008</p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/">A History of Nvidia Stream Multiprocessor</a> by Fabien Sanglard</p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/fermi-the_first_complete_gpu_architecture.pdf">Fermi: The First Complete GPU Computing Architecture</a> by Peter N. Glaskowsky</p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/Fermi_Compute_Architecture_Whitepaper.pdf">Fermi (GF100) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/nvidia-gtx-680.pdf">Kepler (GK104) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/GeForce-GTX-750-Ti-Whitepaper.pdf">Maxwell Gen1 (GM107) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/GeForce_GTX_980_Whitepaper.pdf">Maxwell Gen2 (GM200) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/GeForce_GTX_1080_Whitepaper.pdf">Pascal (GP102) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf">Volta (V100) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/Turing-Architecture-Whitepaper.pdf">Turing (TU102) whitepaper</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
 <h5 id="_amd_radeon">AMD Radeon</h5>
 <div class="ulist">
 <ul>
@@ -1620,6 +1664,9 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 </li>
 <li>
 <p><a href="http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/">Metal Gear Solid V - Graphics Study</a> by Adrian Courreges</p>
+</li>
+<li>
+<p><a href="https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html">DOOM Eternal - Graphics Study</a> by Simon Coenen</p>
 </li>
 <li>
 <p><a href="http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf">Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)</a> by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo</p>

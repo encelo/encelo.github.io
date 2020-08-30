@@ -150,6 +150,7 @@ The numbers in round brackets are a reference inside Marshall Cline's C++ FAQ.
 * Different kind of casts: C style, `static_cast`, `dynamic_cast`, `const_cast` and `reinterpret_cast`
 * https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization[Resource acquisition is initialization] (RAII)
 * https://en.wikipedia.org/wiki/Run-time_type_information[Run-time type information] (RTTI)
+* https://en.wikipedia.org/wiki/SOLID[SOLID] principles
 
 ==== More topics
 A second list of concepts to keep in mind, only a bit harder this time.
@@ -158,11 +159,12 @@ As before, the numbers in round brackets are a reference inside Marshall Cline's
 * Placement new (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/placement-new.html[11.10])
 * Pointer to member function
 * Diamond problem (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/mi-diamond.html[25.8], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-inheritance-where.html[25.9]) and multiple inheritance (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/multiple-inheritance.html[Section 25])
-* Hiding rule (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/hiding-rule.html[23.9], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/protected-virtuals.html[23.3])
+* Hiding rule (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/hiding-rule.html[23.9], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/protected-virtuals.html[23.3]), https://stackoverflow.com/questions/4837399/c-rationale-behind-hiding-rule[C++: rationale behind hiding rule]
 * Templates (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/templates.html[Section 35])
-* https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)[Rule of three] / five / zero, https://en.wikipedia.org/wiki/Special_member_functions[special member functions]
+* https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)[Rule of Three] / five / zero, https://en.wikipedia.org/wiki/Special_member_functions[special member functions]
 * Return value optimization (NRVO, RVO) (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/return-by-value-optimization.html[10.9]) / Copy elision (https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/[C++ Cargo Cults, RVO and Copy Elision])
-* Copy-and-swap idiom (http://stackoverflow.com/a/3279550[Why do we need the copy-and-swap idiom?])
+* Copy-and-swap idiom (http://stackoverflow.com/a/3279550[Why do we need the copy-and-swap idiom?], https://stackoverflow.com/questions/5695548/public-friend-swap-member-function[public friend swap member function
+])
 * http://en.cppreference.com/w/cpp/language/adl[Argument-dependant lookup] (Koenig lookup)
 * Substitution Failure Is Not An Error (SFINAE) (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/templates-vs-overloading.html[35.11])
 * non-dependent types and members (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/nondependent-name-lookup-types.html[35.18], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/nondependent-name-lookup-members.html[35.19], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/nondependent-name-lookup-silent-bug.html[35.20])
@@ -172,15 +174,15 @@ As before, the numbers in round brackets are a reference inside Marshall Cline's
 * http://blog.llvm.org/2009/12/dreaded-two-phase-name-lookup.html[Two-phase name lookup]
 * https://en.wikipedia.org/wiki/Maximal_munch[Maximal munch]
 * https://en.wikipedia.org/wiki/Sequence_point[Sequence point]
-* https://en.wikipedia.org/wiki/Tail_call[Tail call]
-* https://en.wikipedia.org/wiki/Constant_folding[Constant folding]
+* https://en.wikipedia.org/wiki/Optimizing_compiler[Optimizing compiler] (https://en.wikipedia.org/wiki/Tail_call[Tail call], https://en.wikipedia.org/wiki/Constant_folding[Constant folding], https://en.wikipedia.org/wiki/Dead_code_elimination[Dead code elimination], ...)
+* https://en.cppreference.com/w/cpp/language/ebo[Empty base optimization], http://tinf2.vub.ac.be/~dvermeir/c{plus}{plus}/emptyopt.html[The "Empty Member" C++ Optimization]
 
 ==== C++11
 The book "_Effective Modern C++_" by Scott Meyers is a must-have.
 
 * Rvalues (http://thbecker.net/articles/rvalue_references/section_01.html[C++ Rvalue References Explained] by Thomas Becker)
 * Auto keyword and type deduction
-* Move semantics, rule of five
+* https://stackoverflow.com/questions/3106110/what-is-move-semantics[Move semantics], Rule of Five
 * Reference collapsing (Item 28)
 * Reference qualifiers
 * Forwarding (AKA universal) references (https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers[Universal References in C++11] by Scott Meyers)
@@ -258,7 +260,7 @@ One of the book you could read to learn more on the subject is "_Computer Archit
 One of the book on the topic is "_The Art of Multiprocessor Programming_" by Maurice Herlihy and Nir Shavit
 
 * Critical section, mutex, semaphore, https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem[Producer-consumer problem], https://en.wikipedia.org/wiki/Dining_philosophers_problem[Dining philosophers problem], https://en.wikipedia.org/wiki/Priority_inversion[Priority inversion], race condition
-* Atomics and lock-free programming (http://preshing.com/[Preshing on Programming]), https://preshing.com/20120710/memory-barriers-are-like-source-control-operations/[memory barriers], https://preshing.com/20120930/weak-vs-strong-memory-models/[memory models], http://preshing.com/20120226/roll-your-own-lightweight-mutex/[Benaphore], https://en.wikipedia.org/wiki/ABA_problem[ABA problem], https://en.wikipedia.org/wiki/Load-link/store-conditional[Load-link/store-conditional], http://preshing.com/20120913/acquire-and-release-semantics/[acquire and release semantics] (Load-Acquire/Store-Release in the ARM Reference Manual)
+* Atomics and lock-free programming (http://preshing.com/[Preshing on Programming]), https://preshing.com/20120710/memory-barriers-are-like-source-control-operations/[memory barriers], https://preshing.com/20120930/weak-vs-strong-memory-models/[memory models], http://preshing.com/20120226/roll-your-own-lightweight-mutex/[Benaphore], https://en.wikipedia.org/wiki/Compare-and-swap[Compare-and-swap], https://en.wikipedia.org/wiki/ABA_problem[ABA problem], https://en.wikipedia.org/wiki/Load-link/store-conditional[Load-link/store-conditional], http://preshing.com/20120913/acquire-and-release-semantics/[acquire and release semantics] (Load-Acquire/Store-Release in the ARM Reference Manual)
 * Cache coherency, https://en.wikipedia.org/wiki/MOESI_protocol[MOESI protocol], https://en.wikipedia.org/wiki/MESIF_protocol[MESIF protocol], https://en.wikipedia.org/wiki/False_sharing[false sharing], https://en.wikipedia.org/wiki/Branch_misprediction[branch misprediction], https://en.wikipedia.org/wiki/Scratchpad_memory[scratchpad memory]
 * https://www.quora.com/CPUs-How-is-branch-prediction-implemented-in-microprocessors[CPUs: How is branch prediction implemented in microprocessors?]
 * Single Producer / Multiple Consumer
@@ -274,6 +276,7 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 === Graphics
 
 * https://www.scratchapixel.com/[Scratchapixel - Learn Computer Graphics From Scratch!]
+* http://www.cs.uu.nl/docs/vakken/magr/2017-2018/index.html[Advanced Graphics] Course 2017/18 from Universiteit Utrecht
 
 ==== Mobile GPUs architecture
 The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Purnomo is a must-have.
@@ -303,7 +306,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 ** https://community.arm.com/graphics/b/blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-ii[Part II]
 ** https://community.arm.com/graphics/b/blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-iii[Part III]
 * https://www.community.arm.com/graphics/b/blog/posts/pixel-local-storage-on-arm-mali-gpus[Pixel Local Storage on ARM(R) Mali(TM) GPUs]
-* http://www.geomerics.com/wp-content/uploads/2014/11/Efficient-Rendering-with-Tile-Local-Storage.pdf[Efficient Rendering with Tile Local Storage (PDF)] (SIGGRAPH 2014)
+* https://community.arm.com/cfs-file/__key/telligent-evolution-components-attachments/01-2066-00-00-00-00-55-34/siggraph14_2D00_Bjorge_2D00_TLS_2D00_presentation.pdf[Efficient Rendering with Tile Local Storage (PDF)] (SIGGRAPH 2014)
 * http://www.anandtech.com/show/8234/arms-mali-midgard-architecture-explored[ARM's Mali Midgard Architecture Explored]
 * http://www.anandtech.com/show/10375/arm-unveils-bifrost-and-mali-g71[ARM Unveils Next Generation Bifrost GPU Architexture & Mali-G71: The New High-End Mali]
 
@@ -332,6 +335,18 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf[Triangles Are Precious - Let's Treat Them With Care (PDF)] by Dominik Baumeister (AMD)
 * https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/[A trip through the Graphics Pipeline 2011: Index] by Fabian "ryg" Giesen
 
+===== Nvidia GeForce
+* https://www.academia.edu/28633432/NVIDIA_Tesla_A_Unified_Graphics_and_Computing_Architecture[NVIDIA Tesla: A Unified Graphics and Computing Architecture] from IEEE Micro, March-April 2008
+* https://fabiensanglard.net/cuda/[A History of Nvidia Stream Multiprocessor] by Fabien Sanglard
+* https://fabiensanglard.net/cuda/fermi-the_first_complete_gpu_architecture.pdf[Fermi: The First Complete GPU Computing Architecture] by Peter N. Glaskowsky
+* https://fabiensanglard.net/cuda/Fermi_Compute_Architecture_Whitepaper.pdf[Fermi (GF100) whitepaper]
+* https://fabiensanglard.net/cuda/nvidia-gtx-680.pdf[Kepler (GK104) whitepaper]
+* https://fabiensanglard.net/cuda/GeForce-GTX-750-Ti-Whitepaper.pdf[Maxwell Gen1 (GM107) whitepaper]
+* https://fabiensanglard.net/cuda/GeForce_GTX_980_Whitepaper.pdf[Maxwell Gen2 (GM200) whitepaper]
+* https://fabiensanglard.net/cuda/GeForce_GTX_1080_Whitepaper.pdf[Pascal (GP102) whitepaper]
+* https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf[Volta (V100) whitepaper]
+* https://fabiensanglard.net/cuda/Turing-Architecture-Whitepaper.pdf[Turing (TU102) whitepaper]
+
 ===== AMD Radeon
 * https://gpuopen.com/discovering-rdna/[Discovering the structure of RDNA]
 * https://gpuopen.com/compute-product/amd-rdna-1-0-instruction-set-architecture/[AMD RDNA 1.0 Instruction Set Architecture]
@@ -347,6 +362,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/[GTA V - Graphics Study] by Adrian Courreges
 * http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges
 * http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges
+* https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html[DOOM Eternal - Graphics Study] by Simon Coenen
 * http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf[Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)] by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo
 * https://therealmjp.github.io/posts/sss-intro/[An Introduction To Real-Time Subsurface Scattering] by Matt Pettineo
 
