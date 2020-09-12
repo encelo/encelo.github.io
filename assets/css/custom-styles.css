@@ -1,0 +1,37 @@
+/* Add your own CSS rules here to overwrite any Beautiful Jekyll defaults */
+
+.post-preview .post-title {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .post-preview .post-title {
+    font-size: 1.75rem;
+  }
+}
+
+.intro-header .page-heading h1 {
+  font-size: 3rem;
+}
+
+.intro-header .post-heading h1 {
+  font-size: 2rem;
+}
+
+.intro-header .page-heading .page-subheading,
+.intro-header .post-heading .post-subheading {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .intro-header .page-heading h1 {
+    font-size: 3rem;
+  }
+  .intro-header .post-heading h1 {
+    font-size: 2rem;
+  }
+}
+
+pre {
+  font-size: 1rem;
+}

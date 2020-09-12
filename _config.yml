@@ -1,3 +1,8 @@
+# Welcome to Beautiful Jekyll!
+# This config file is meant for settings that affect your entire website. When you first
+# set up your website you should go through all these settings and edit them, but after
+# the initial set up you won't need to come back to this file often.
+
 # --- Required options --- #
 
 # Name of website
@@ -80,6 +85,9 @@ excerpt_length: 50
 # Whether or not to show an excerpt for every blog post in the feed page
 feed_show_excerpt: true
 
+# Whether or not to show a list of tags below each post preview in the feed page
+feed_show_tags: true
+
 # The keywords to associate with your website, for SEO purposes
 keywords: "programming,gamedev,game engine,c++,game development,linux"
 
@@ -108,9 +116,13 @@ footer-link-col: "#404040"
 # Suggest a colour for mobile browsers to use as the browser's theme. This is only supported by a few mobile browsers.
 #mobile-theme-col: "#0085A1"
 
-# For any extra customization, you can include additional CSS files in every page on your site. List any custom CSS files here
-#site-css:
-#  - "/assets/css/custom-styles.css"
+# For any extra visual customization, you can include additional CSS files in every page on your site. List any custom CSS files here
+site-css:
+  - "/assets/css/custom-styles.css"
+
+# If you have common JavaScript files that should be included in every page, list them here
+#site-js:
+#  - "/assets/js/custom-script.js"
 
 # --- Web Analytics Section --- #
 
@@ -194,13 +206,11 @@ defaults:
       layout: "post"
       comments: true  # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
-      readtime: false # add estimated reading time on all blog posts
   -
     scope:
-      path: "" # all files
+      path: "" # any file that's not a post will be a "page" layout by default
     values:
       layout: "page"
-      show-avatar: true
 
 # Exclude these files from production site
 exclude:
