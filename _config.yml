@@ -18,7 +18,8 @@ author: Angelo Theodorou
 navbar-links:
   About Me: "aboutme"
   Pages:
-    - Curriculum: "curriculum.html"
+    - Resume: "resume.html"
+    - Resume (PDF): "AngeloTheodorou.pdf"
     - Study Notes: "notes.html"
   nCine: "https://ncine.github.io/"
 
