@@ -139,7 +139,7 @@ The numbers in round brackets are a reference inside Marshall Cline's C++ FAQ.
 * `const` (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/const-vs-define.html[29.7]) / `mutable` (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/mutable-data-members.html[18.13]) / `volatile` / `restrict`
 * v-table mechanism http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/dyn-binding2.html[(20.4)]
 * Pure virtual member functions (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/pure-virtual-fns.html[22.4]), abstract base classes (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/abcs.html[Section 22])
-* Covariant Return Types and "virtual constructor" (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-ctors.html[20.8], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/copy-of-abc-via-clone.html[22.5])
+* Covariant Return Types and "virtual constructor" (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-ctors.html[20.8], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/copy-of-abc-via-clone.html[22.5], https://www.lwithers.me.uk/articles/covariant.html[HOWTO: Covariant Return Types in C++])
 * Object slicing (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/array-derived-vs-base.html[21.4], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/pass-by-value.html[31.8], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/virtual-ctors.html[20.8])
 * Template Method pattern and private virtuals (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/private-virtuals.html[23.4]) (http://www.gotw.ca/publications/mill18.htm[Virtuality] by Herb Sutter)
 * Private inheritance (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/priv-inherit-like-compos.html[24.2], http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/priv-inherit-vs-compos.html[24.3]) (http://www.gotw.ca/publications/mill06.htm[Uses and Abuses of Inheritance, Part 1] by Herb Sutter)
@@ -155,6 +155,9 @@ The numbers in round brackets are a reference inside Marshall Cline's C++ FAQ.
 ==== More topics
 A second list of concepts to keep in mind, only a bit harder this time.
 As before, the numbers in round brackets are a reference inside Marshall Cline's C++ FAQ.
+
+For optimizations have also a look at https://www.agner.org/optimize/optimizing_cpp.pdf[Optimizing software in C{plus}{plus}] and at the other free https://www.agner.org/optimize/[optimization] books by Agner Fog.
+Another free C++ book is http://www.icce.rug.nl/documents/cplusplus/[The C{plus}{plus} Annotations].
 
 * Placement new (http://www.cs.technion.ac.il/users/yechiel/c{plus}{plus}-faq/placement-new.html[11.10])
 * Pointer to member function
@@ -181,7 +184,7 @@ As before, the numbers in round brackets are a reference inside Marshall Cline's
 The book "_Effective Modern C++_" by Scott Meyers is a must-have.
 
 * Rvalues (http://thbecker.net/articles/rvalue_references/section_01.html[C++ Rvalue References Explained] by Thomas Becker)
-* Auto keyword and type deduction
+* Auto keyword (Chapter 2) and type deduction (Chapter 1)
 * https://stackoverflow.com/questions/3106110/what-is-move-semantics[Move semantics], Rule of Five
 * Reference collapsing (Item 28)
 * Reference qualifiers
@@ -219,7 +222,9 @@ Some books are targeted to game developers, like:
 * OpenGL transformations and matrices:
 ** http://www.songho.ca/opengl/gl_transform.html[OpenGL Transformation]
 ** http://www.songho.ca/opengl/gl_projectionmatrix.html[OpenGL Projection Matrix]
+** https://www.scratchapixel.com/lessons/3d-basic-rendering/computing-pixel-coordinates-of-3d-pointComputing the Pixel Coordinates of a 3D Point[]
 ** http://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrix-introduction[The Perspective and Orthographic Projection Matrix]
+** https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/transforming-normals[Transforming Normals]
 ** https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/projection-stage[The Projection Stage]
 ** http://www.terathon.com/gdc07_lengyel.pdf[Projection Matrix Tricks by Eric Lengyel (PDF)]
 ** http://stackoverflow.com/questions/76134/how-do-i-reverse-project-2d-points-into-3d/33976739#33976739[How do I reverse-project 2D points into 3D?]
@@ -330,7 +335,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://developer.download.nvidia.com/assets/mobile/files/tegra_gles2_development.pdf[OpenGL ES 2.0 Development for the Tegra Platform (PDF)]
 
 ==== Desktop GPUs architecture
-* http://bps10.idav.ucdavis.edu/talks/03-fatahalian_gpuArchTeraflop_BPS_SIGGRAPH2010.pdf[From Shader Code to a Teraflop: How GPU Shader Cores Work (PDF)] by Kayvon Fatahalian (SIGGRAPH 2010)
+* https://courses.cs.washington.edu/courses/cse558/11wi/lectures/05_gpuArchShaderCores_BPS_2011.pdf[From Shader Code to a Teraflop: How GPU Shader Cores Work (PDF)] by Kayvon Fatahalian (SIGGRAPH 2010)
 * http://bps11.idav.ucdavis.edu/talks/05-schedulingGraphicsPipeline-BPS2011-ragankelley.pdf[Scheduling the Graphics Pipeline (PDF)] by Jonathan Ragan-Kelley (SIGGRAPH 2011)
 * https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf[Triangles Are Precious - Let's Treat Them With Care (PDF)] by Dominik Baumeister (AMD)
 * https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/[A trip through the Graphics Pipeline 2011: Index] by Fabian "ryg" Giesen
@@ -354,17 +359,34 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 
 ==== Graphics techniques
 * http://advances.realtimerendering.com/[Advances in Real-Time Rendering in 3D Graphics and Games]
-* http://blog.selfshadow.com/publications/s2016-shading-course/[SIGGRAPH 2016 Course: Physically Based Shading in Theory and Practice]
-* http://blog.selfshadow.com/publications/s2013-shading-course/hoffman/s2013_pbs_physics_math_notes.pdf[Background: Physics and Math of Shading (PDF)] by Naty Hoffman
 * https://newq.net/publications/more/s2015-many-lights-course[Real-Time Many-Light Management and Shadows with Clustered Shading] a SIGGRAPH 2015 Course
+* http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf[Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)] by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo
+* https://therealmjp.github.io/posts/sss-intro/[An Introduction To Real-Time Subsurface Scattering] by Matt Pettineo
+* https://www.ea.com/frostbite/news/precomputed-global-illumination-in-frostbite[Precomputed Global Illumination in Frostbite] by Yuriy O'Donnell at GDC 2018
+* https://www.ea.com/frostbite/news/real-time-raytracing-for-interactive-global-illumination-workflows-in-frostbite[Real-time Raytracing for Interactive Global Illumination Workflows in Frostbite] by Sébastien Hillaire at GDC 2018
+* http://jcgt.org/published/0002/02/04/[The Visibility Buffer: A Cache-Friendly Approach to Deferred Shading] by Christopher A. Burns and Warren A. Hunt (Intel)
+
+===== Physically Based Rendering
+* https://blog.selfshadow.com/publications/s2012-shading-course/[SIGGRAPH 2012 Course: Practical Physically Based Shading in Film and Game Production]
+* https://blog.selfshadow.com/publications/s2013-shading-course/[SIGGRAPH 2013 Course: Physically Based Shading in Theory and Practice]
+* http://blog.selfshadow.com/publications/s2016-shading-course/[SIGGRAPH 2016 Course: Physically Based Shading in Theory and Practice]
+* https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf[Moving Frostbite to Physically Based Rendering 3.0]
+* https://google.github.io/filament/Filament.html[Physically Based Rendering in Filament]
+* https://graphics.pixar.com/library/PhysicallyBasedLighting/[Physically Based Lighting at Pixar]
+* https://eheitzresearch.wordpress.com/415-2/[Real-Time Polygonal-Light Shading with Linearly Transformed Cosines]
+* Learn OpenGL: PBR https://learnopengl.com/PBR/Theory[Theory], https://learnopengl.com/PBR/Lighting[Lighting], https://learnopengl.com/PBR/IBL/Diffuse-irradiance[Diffuse irradiance], https://learnopengl.com/PBR/IBL/Specular-IBL[Specular IBL]
+* http://lousodrome.net/blog/light/2020/01/04/physically-based-rendering-references-at-the-end-of-2019/[Physically based shading references, at the end of 2019]
+* http://www.reedbeta.com/blog/hows-the-ndf-really-defined/[How Is The NDF Really Defined?]
+* The PBR Guide by Allegorithmic: https://academy.substance3d.com/courses/the-pbr-guide-part-1[Part 1], https://academy.substance3d.com/courses/the-pbr-guide-part-2[Part 2]
+* https://www.jordanstevenstechart.com/physically-based-rendering[Physically Based Rendering Algorithms: A Comprehensive Study In Unity3D]
+
+===== Graphics Studies of Games
 * http://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/[Deus Ex: Human Revolution - Graphics Study] by Adrian Courreges
 * http://www.adriancourreges.com/blog/2015/06/23/supreme-commander-graphics-study/[Supreme Commander - Graphics Study] by Adrian Courreges
 * http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/[GTA V - Graphics Study] by Adrian Courreges
 * http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges
 * http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges
 * https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html[DOOM Eternal - Graphics Study] by Simon Coenen
-* http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf[Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)] by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo
-* https://therealmjp.github.io/posts/sss-intro/[An Introduction To Real-Time Subsurface Scattering] by Matt Pettineo
 
 ===== Older resources
 * http://www.punkuser.net/vsm/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen
@@ -382,6 +404,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 ==== More topics
 * https://www.opengl.org/pipeline/article/vol003_6/[GLSL: Center or Centroid?  (Or When Shaders Attack!)] by Bill Licea-Kane (AMD)
 * https://www.cs.cornell.edu/courses/cs4620/2008fa/lectures/texture-filtering.pdf[Texture filtering (PDF)] (Mipmap selection with derivatives) by Steve Marschner
+* https://computergraphics.stackexchange.com/a/5560[How are mipmap levels computed in Metal?] replied by Nathan Reed
 * http://www.3dkingdoms.com/weekly/weekly.php?a=2[Reflecting a Vector] (Vector reflection with vector projection and dot product)
 * https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process[Gram-Schmidt orthogonalization] with vector projection and dot product
 * http://s09.idav.ucdavis.edu/talks/05-JP_id_Tech_5_Challenges.pdf[id Tech 5 Challanges - From Texture Virtualization to Massive Parallelization (PDF)] by J.M.P. van Wavewer (id Software) (virtual texturing, sparse resources, parallel job system)
@@ -408,6 +431,8 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92[The Elusive Frame Timing] by Alen Ladavac
 * https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-1/[Intro to GPU Scalarization: Part 1] by Francesco Cifariello Ciardi
 * https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-2-scalarize-all-the-lights/[Intro to GPU Scalarization: Part 2 - Scalarize All the Lights] by Francesco Cifariello Ciardi
+* http://www.joshbarczak.com/blog/?p=667[Why Geometry Shaders Are Slow (Unless you’re Intel)] by Joshua Barczak
+* https://gpuopen.com/learn/optimizing-gpu-occupancy-resource-usage-large-thread-groups/[Optimizing GPU occupancy and resource usage with large thread groups] by Sebastian Aaltonen
 
 === Data Oriented Design
 * http://harmful.cat-v.org/software/OO_programming/_pdf/Pitfalls_of_Object_Oriented_Programming_GCAP_09.pdf[Pitfalls of Object Oriented Programming (PDF)] by Tony Albrecht (SCEE)

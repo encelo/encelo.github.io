@@ -21,6 +21,7 @@ navbar-links:
     - Resume: "resume.html"
     - Resume (PDF): "AngeloTheodorou.pdf"
     - Study Notes: "notes.html"
+    - GPU Trip 2011: "trip_through_graphics_pipeline_2011.html"
   nCine: "https://ncine.github.io/"
 
 # --- Logo --- #

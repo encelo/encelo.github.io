@@ -1,0 +1,597 @@
+:nofooter:
+:toc: left
+:toclevels: 3
+:stem:
+
+== A trip through the Graphics Pipeline 2011
+This is a shorter version of the following series of articles by by Fabian “_ryg_” Giesen: https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/
+
+=== Bookmarks
+* <<glsl-compilation, GLSL compilation>>
+* <<dma-engine, DMA engine>>
+* <<fences, Fences>> (D3D11, Vulkan)
+* <<semaphores, Semaphores>> (Vulkan)
+* <<gradients, Gradients>>
+* <<context_switch, Context Switch>>
+* <<mip_mapping, MIP Mapping>>
+* <<ndc, Normalized Device Coordinate>>
+* <<slivers, Slivers Triangles>>
+* <<scissor_test, Scissor Test>>
+* <<msaa, Multisample Anti-Aliasing >>
+* <<mobile_tiled, Mobile Tiled Renderers and Binning>>
+* <<early_z, Early Z-test>>
+* <<fast_z_clear, Fast Z Clear>>
+* <<nvidia_warp, Nvidia Warp>>
+* <<helper_pixels, Helper pixels>> (OpenGL: https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_HelperInvocation.xhtml[gl_HelperInvocation])
+* <<context_switch2, Context Switch and Occupancy>>
+* <<lockstep_execution, Lockstep Execution>>
+* <<discard, Discard>>
+* <<fast_color_clear, Fast Color Clear>>
+* <<cs_threads, Compute Shader Threads>> (Warps and Wavefronts, context switch, lockstep execution)
+* <<barriers, Barriers>>
+
+=== Part 1: Introduction; the Software stack.
+https://fgiesen.wordpress.com/2011/07/01/a-trip-through-the-graphics-pipeline-2011-part-1/
+
+==== The application
+This is your code.
+
+==== The API runtime
+The API runtime keeps track of the current state your app has set, validates parameters and does other error and consistency checking, manages user-visible resources, may or may not validate shader code and shader linkage.
+
+==== The user-mode graphics driver (or UMD)
+* It’s running in the same context and address space as your app (and the API runtime) and has no elevated privileges whatsoever. It implements a lower-level API (the DDI) that is called by D3D.
+* Some of the API state may actually end up being compiled into the shader.
+* A lot of the creation/compilation work is deferred by the driver and only executed when it’s actually necessary. If you want to make sure something is actually created (as opposed to just having memory reserved), you need to issue a dummy draw call that uses it to “warm it up”.
+* It suballocates some larger memory blocks it gets from the KMD; actually mapping and unmapping pages is a kernel-mode privilege and can’t be done by the UMD.
+* It can do things like swizzling textures and schedule transfers between system memory and (mapped) video memory and the like. It can also write command buffers.
+* Drivers will try to put as much of the actual processing into the UMD as possible; the UMD is user-mode code, so anything that runs in it doesn’t need any costly kernel-mode transitions, it can freely allocate memory, farm work out to multiple threads, and so on – it’s just a regular DLL (even though it’s loaded by the API, not directly by your app).
+* If the UMD crashes, the app crashes with it, but not the whole system; it can just be replaced while the system is running (it’s just a DLL!); it can be debugged with a regular debugger.
+
+===== Did I say “user-mode driver”? I meant “user-mode drivers”.
+
+==== Enter the scheduler.
+* The graphics scheduler arbitrates access to the 3D pipeline by time-slicing it between different apps. A context switch incurs some state switching on the GPU and possibly also swapping some resources in and out of video memory.
+* Only one process gets to actually submit commands to the 3D pipe at any given time.
+
+==== The kernel-mode driver (KMD)
+* There’s only ever one KMD, and if that crashes then it was a “blue screen”. By now Windows actually knows how to kill a crashed driver and reload it.
+* The KMD deals with all the things that are just there once.
+** allocate (and map) physical memory
+** initialize the GPU at startup
+** set display modes (and get mode information from displays)
+** manage the hardware mouse cursor
+** program the HW watchdog timer so the GPU gets reset if it stays unresponsive for a certain time
+** respond to interrupts
+* Manages the _actual_ command buffer, the one that the hardware actually consumes, it usually is a (quite small) ring buffer.
+
+===== The bus
+
+===== The command processor!
+
+==== Small aside: OpenGL
+* There’s not as sharp a distinction between the API and UMD layer.
+* [[glsl-compilation]]The GLSL shader compilation is not handled by the API at all, it’s all done by the driver.
+
+===== Omissions and simplifications
+
+=== Part 2: GPU memory architecture and the Command Processor.
+https://fgiesen.wordpress.com/2011/07/02/a-trip-through-the-graphics-pipeline-2011-part-2/
+
+==== Not so fast.
+
+==== The memory subsystem
+* GPUs get a massive increase in bandwidth, but they pay for it with a massive increase in latency, they are all about throughput over latency; don’t wait for results that aren’t there yet, do something else instead!
+* You can’t reach those peak memory bandwidth figures above by just reading a few bytes all over memory; if you want to saturate memory bandwidth, you better do it one full DRAM row at a time.
+
+==== The PCIe host interface
+* This gives the CPU read/write access to video memory and a bunch of GPU registers, the GPU read/write access to (a portion of) main memory.
+* The bandwidth is decent though – up to about 8GB/s (theoretical) peak aggregate bandwidth across the 16-lane PCIe 2.0 connections. And unlike earlier standards like AGP, this is a symmetrical point-to-point link.
+
+==== Some final memory bits and pieces
+* An MMU gives you a fully virtualized address space and allows you to pull nice tricks like having frequently accessed parts of a texture in video memory, some other parts in system memory, and most of it not mapped at all.
+* It also allows you to defragment your video memory address space without having to actually copy stuff around when you start running out of video memory. And it makes it much easier to have multiple processes share the same GPU.
+* [[dma-engine]]There’s also a DMA engine that can copy memory around without having to involve any of our precious 3D hardware/shader cores. Usually, this can at least copy between system memory and video memory (in both directions). It often can also copy from video memory to video memory (and if you have to do any VRAM defragmenting, this is a useful thing to have).
+
+==== At long last, the command processor!
+* We only have a single command processor that needs to chew through our command buffer in order (since this command buffer contains things such as state changes and rendering commands that need to be executed in the right sequence). So we do the next best thing: Add a large enough buffer and prefetch far enough ahead to avoid hiccups.
+* Then there’s commands that change state. GPU is a massively parallel computer, and you can’t just change a global variable in a parallel system and hope that everything works out OK
+** Whenever you change a state, you require that all pending work that might refer to that state be finished (i.e. basically a partial pipeline flush).
+** You can make hardware units completely stateless. Just pass the state change command through up to the stage that cares about it;
+** Say you have enough registers (“slots”) to store two versions of every state, and some active job references slot 0. You can safely modify slot 1 without stopping that job, or otherwise interfering with it at all. Now you don’t need to send the whole state around through the pipeline – only a single bit per command that selects whether to use slot 0 or 1.
+** You can use a kind of register renaming scheme – have a pool of 128 physical texture descriptors.
+
+==== Synchronization
+* All of these have the form “_if event X happens, do Y_”
+* It can be a push-model notification where the GPU yells at the CPU to do something right now.
+** Typically implemented using interrupts and only used for infrequent and high-priority events because interrupts are fairly expensive.
+* [[fences]]It can be a pull-model thing where the GPU just memorizes that something happened and the CPU can later ask about it (fences).
+** You need some CPU-visible GPU registers and a way to write values into them from the command buffer once a certain event happens.
+* [[semaphores]]if we need to synchronize purely on the GPU side the solution is a “wait”-style instruction: “_Wait until register M contains value N_”.
+** This can either be a compare for equality, or less-than or more fancy stuff. It allows us to build a full GPU flush operation.
+
+===== Closing remarks
+
+=== Part 3: 3D pipeline overview, vertex processing.
+https://fgiesen.wordpress.com/2011/07/03/a-trip-through-the-graphics-pipeline-2011-part-3/
+
+==== Have some Alphabet Soup!
+* `IA` — Input Assembler. Reads index and vertex data.
+* `VS` — Vertex shader. Gets input vertex data, writes out processed vertex data for the next stage.
+* `PA` — Primitive Assembly. Reads the vertices that make up a primitive and passes them on.
+* `HS` — Hull shader; accepts patch primitives, writes transformed (or not) patch control points, inputs for the domain shader, plus some extra data that drives tessellation.
+* `TS` — Tessellator stage. Creates vertices and connectivity for tessellated lines or triangles.
+* `DS` — Domain shader; takes shaded control points, extra data from HS and tessellated positions from TS and turns them into vertices again.
+* `GS` — Geometry shader; inputs primitives, optionally with adjacency information, then outputs different primitives. Also the primary hub for…
+* `SO` — Stream-out. Writes GS output (i.e. transformed primitives) to a buffer in memory.
+* `RS` — Rasterizer. Rasterizes primitives.
+* `PS` — Pixel shader. Gets interpolated vertex data, outputs pixel colors. Can also write to UAVs (unordered access views).
+* `OM` — Output merger. Gets shaded pixels from PS, does alpha blending and writes them back to the backbuffer.
+* `CS` — Compute shader. In its own pipeline all by itself. Only input is constant buffers+thread ID; can write to buffers and UAVs.
+
+==== Input Assembler stage
+* The very first thing that happens here is loading indices from the index buffer – if it’s an indexed batch.
+* It usually has a data cache to exploit locality of index/vertex buffer access.
+* Note that index buffer reads are bounds checked; if you reference elements outside the original index buffer all out-of-bounds reads return zero.
+* We have a declaration of the data layout; just read it from the cache/memory and unpack it into the float format that our shader cores want for input.
+* If one vertex is referenced by multiple triangles it doesn’t need to be shaded every time – we just reference the shaded data that’s already in the cache!
+
+==== Vertex Caching and Shading
+* Reserve enough buffer space for 32 vertices (=1 batch), and similarly cache tag space for 32 entries. Start with an empty “cache”, i.e. all entries invalid. For every primitive in the index buffer, do a lookup on all the indices; if it’s a hit in the cache, fine. If it’s a miss, allocate a slot in the current batch and add the new index to the cache tag array.
+* Once we don’t have enough space left to add a new primitive anymore, dispatch the whole batch for vertex shading, save the cache tag array (i.e. the 32 indices of the vertices we just shaded), and start setting up the next batch, again from an empty cache – ensuring that the batches are completely independent.
+
+==== Shader Unit internals
+* Fast ALU mostly built around a FMAC (Floating Multiply-ACcumulate) unit, some HW support for (at least) reciprocal, reciprocal square root, log2, exp2, sin, cos
+* Optimized for high throughput and high density not low latency, running a high number of threads to cover said latency, fairly small number of registers per thread (since you’re running so many of them!)
+* Very good at executing straight-line code, bad at branches (especially if they’re not coherent).
+
+===== Closing remarks
+
+=== Part 4: Texture samplers.
+https://fgiesen.wordpress.com/2011/07/04/a-trip-through-the-graphics-pipeline-2011-part-4/
+
+==== Texture state
+
+1. Sample state:  Filter mode, addressing mode, max anisotropy, etc.
+2. Texture resource: the raw texture bits in memory. The resource also determines whether it’s a single texture or a texture array, what multisample format the texture has (if any), and the physical layout of the texture bits.
+3. The Shader Resource View: determines how the texture bits are to be interpreted by the sampler.
+
+Creating the SRV allows the API runtime to do all type checking at creation time; if you get a valid SRV back, that means the SRV and resource formats are compatible, and no further type checking needs to be done while that SRV exists.
+
+===== Anatomy of a texture request
+What information do we need to send if we want to do a 2D texture sample with up to 4x anisotropic sampling?
+
+* The 2D texture coordinates – 2 floats, u/v and.
+* The partial derivatives of u and v along the screen “_x_” direction: stem:[\frac{\partial u}{\partial x}, \frac{\partial v}{\partial x}].
+* The partial derivative in the “_y_” direction too: stem:[\frac{\partial u}{\partial y}, \frac{\partial v}{\partial y}].
+
+That’s 6 floats for a fairly pedestrian 2D sampling request (of the `SampleGrad` variety). [[gradients]]The 4 gradient values are used both for mipmap selection and to choose the size and shape of the anisotropic filtering kernel.
+
+In Pixel Shaders, turns out we don’t need to send them along with every texture request; there’s a trick that allows Pixel Shaders to give you gradient instructions (where you can compute some value and then ask the hardware “what is the approximate screen-space gradient of this value?”), and that same trick can be employed by the texture sampler to get all the required partial derivatives just from the coordinates. So for a PS 2D “sample” instruction, you really only need to send the 2 coordinates which imply the rest, provided you’re willing to do some more math in the sampler units.
+
+What’s the worst-case number of parameters required for a single texture sample? In the current D3D11 pipeline, it’s a `SampleGrad` on a Cubemap array.
+
+Let’s see the tally:
+
+* 3D texture coordinates – `u`, `v`, `w`: 3 floats.
+* Cubemap array index: one `int` (let’s just bill that at the same cost as a `float` here).
+* Gradient of (`u`,`v`,`w`) in the screen x and y directions: 6 floats.
+
+For a total of 10 values per pixel sampled – that’s 40 bytes if you actually store it like that.
+
+==== But who asks for a single texture sample?
+Our texture requests are coming from shader units, which we know process somewhere between 16 and 64 pixels / vertices / control points / … at once. So our shaders won’t be sending individual texture samples, they’ll dispatch a bunch of them at once.
+
+Texture samplers have a seriously long pipeline; a texture sampling operation takes way too long for a shader unit to just sit idle for all that time. Again, say it with me: _throughput_. [[context_switch]]So what happens is that on a texture sample, a shader unit will just quietly switch to another thread/batch and do some other work, then switch back a while later when the results are there. Works just fine as long as there’s enough independent work for the shader units to do!
+
+==== And once the texture coordinates arrive…
+
+* If this is a `Sample` or `SampleBias`-type request, calculate texture coordinate gradients first.
+* If no explicit mip level was given, calculate the mip level to be sampled from the gradients and add the LOD bias if specified.
+* For each resulting sample position, apply the address modes (wrap / clamp / mirror etc.) to get the right position in the texture to sample from, in normalized [0,1] coordinates.
+* If this is a cubemap, we also need to determine which cube face to sample from (based on the absolute values and signs of the u/v/w coordinates), and do a division to project the coordinates onto the unit cube so they are in the [-1,1] interval. We also need to drop one of the 3 coordinates (based on the cube face) and scale/bias the other 2 so they’re in the same [0,1] normalized coordinate space we have for regular texture samples.
+* Next, take the [0,1] normalized coordinates and convert them into fixed-point pixel coordinates to sample from – we need some fractional bits for the bilinear interpolation.
+* Finally, from the integer x/y/z and texture array index, we can now compute the address to read texels from.
+
+==== Texture cache
+Everyone seems to be using a two-level texture cache these days.
+[[mip_mapping]]Most texture sampling is done in Pixel Shaders with mip-mapping enabled, and the mip level for sampling is specifically chosen to make the screen pixel:texel ratio roughly 1:1 – that’s the whole point. But this means that, unless you happen to hit the exact same location in a texture again and again, each texture sampling operation will miss about 1 texel on average – the actual measured value with bilinear filtering is around 1.25 misses/request.
+
+Aany texture cache whatsoever is a massive win (since it drops you down from about 4 memory accesses per bilinear sample down to 1.25). But unlike with a CPU or shared memory for shader cores, there’s very little gain in going from say 4k of cache to 16k; we’re streaming larger texture data through the cache no matter what.
+
+Because of the 1.25 misses/sample average, texture sampler pipelines need to be long enough to sustain a full read from memory per sample without stalling. Texture sampler pipes are long enough to not stall for a memory read even though it takes 400-800 cycles.
+
+Compressed texture formats are all block-based methods that encode blocks of 4×4 pixels individually. If you decode them during texture sampling, that means you need to be able to decode up to 4 such blocks (if your 4 bilinear sample points happen to land in the worst-case configuration of straddling 4 blocks) per cycle and get a single pixel from each. Instead, the 4×4 blocks are decoded when it’s brought into the L1 cache: in the case of BC3 (aka DXT5), you fetch one 128-bit block from texture L2, and then decode that into 16 pixels in the texture cache. And suddenly, instead of having to partially decode up to 4 blocks per sample, you now only need to decode 1.25/(4*4) = about 0.08 blocks per sample, at least if your texture access patterns are coherent enough to hit the other 15 pixels you decoded alongside the one you actually asked for :)
+
+==== Filtering
+Bilinear filtering process is fairly straightforward. Grab 4 samples from the texture cache, use the fractional positions to blend between them. Trilinear filtering? Two bilinear samples and another linear interpolation.
+
+Anisotropic filtering? What we do is look at the gradients to determine not just the area but also the shape of a screen pixel in texel space; if it’s roughly as wide as it is high, we just do a regular bilinear/trilinear sample, but if it’s elongated in one direction, we do several samples across that line and blend the results together. This generates several sample positions, so we end up looping through the full bilinear/trilinear pipeline several times, and the actual way the samples are placed and their relative weights are computed is a closely guarded secret for each hardware vendor.
+
+==== Texture returns
+What’s the result of all this? Up to 4 values (r, g, b, a) per texture sample requested. Unlike texture requests where there’s significant variation in the size of requests, here the most common case by far is just the shader consuming all 4 values.
+
+==== The usual post-script
+As for texture L1 cache containing decompressed texture data, to the best of my knowledge this is accurate for current hardware. Some older HW would keep some formats compressed even in L1 texture cache, but because of the “1.25 misses/sample for a large range of cache sizes” rule, that’s not a big win and probably not worth the complexity.
+
+=== Part 5: Primitive Assembly, Clip/Cull, Projection, and Viewport transform.
+https://fgiesen.wordpress.com/2011/07/05/a-trip-through-the-graphics-pipeline-2011-part-5/
+
+==== Primitive Assembly
+We had just gotten a block of shaded vertices back from the shader units, with the implicit promise that this block contains an integral number of primitives – i.e., we don’t allow triangles, lines or patches to be split across multiple blocks.
+
+All that happens here is that we gather vertices. We can either do this by reading the original index buffer and keeping a copy of our vertex index->cache position map around, or we can store the indices for the fully expanded primitives along with the shaded vertex data, which might take a bit more space for the output buffer but means we don’t have to read the indices again here.
+
+==== Viewport culling and clipping
+You can look polygon clipping up in chapter 13 of this Jim Blinn's http://www.amazon.com/Jim-Blinns-Corner-Graphics-Pipeline/dp/1558603875[book].
+
+Your vertex shader returns vertex positions on homogeneous clip space. Clip space is chosen to make the equations that describe the view frustum as simple as possible; in the case of D3D, they are stem:[-w \le x \le w, -w \le y \le w, 0 \le z \le w], and stem:[0 < w]; note that all the last equation really does is exclude the homogeneous point (0,0,0,0), which is something of a degenerate case.
+
+We first need to find out if the triangle is partially or even completely outside any of these clip planes. This can be done very efficiently using http://en.wikipedia.org/wiki/Cohen%E2%80%93Sutherland[Cohen-Sutherland]-style out-codes. You compute the clip out-code for each vertex then, for each primitive, the bitwise AND of the clip-codes will tell you all the view-frustum planes that all vertices in the primitive are on the wrong side of and the bitwise OR of the clip-codes will tell you the planes that you need to clip the primitive against.
+
+The actual clipping process, if invoked, can take one of two forms: we can either use an actual polygon clipping algorithm (which adds extra vertices and triangles), or we can add the clipping planes as extra edge equations to the rasterizer.
+
+==== Guard-band clipping
+Most primitives that are partially outside the left, right, top and bottom clip planes don’t need to be clipped at all. Triangle rasterization on GPUs works by, in effect, scanning over the full screen area and asking if a pixel is covered by the current triangle. And that works just as well for triangles completely within the viewport as it does for triangles that extend past, say, the right and top clipping planes. As long as our triangle coverage test is reliable, we don’t need to clip against the left, right, top and bottom planes at all!
+
+The solution is to clip triangles eventually, just as they’re about to go outside the safe range where the rasterizer calculations can’t overflow. For example, say that your rasterizer has enough internal bits to deal with integer triangle coordinates that have stem:[-32768 \le X \le 32767, -32768 \le Y \le 32767]. You still do your viewport cull test with the regular view planes, but only actually clip against the guard-band clip planes which are chosen so that after the projection and viewport transforms, the resulting coordinates are in the safe range.
+
+==== Aside: Getting clipping right
+Here’s some of the non-obvious rules the triangle clipper has to obey in practice. If it ever breaks any of these rules, there’s cases where it will produce cracks between adjacent triangles that share an edge.
+
+* Vertex positions that are inside the view frustum must be preserved, bit-exact, by the clipper.
+* Clipping an edge AB against a plane must produce the same results, bit-exact, as clipping the edge BA (orientation reversed) against that plane. (This can be ensured by either making the math completely symmetric, or always clipping an edge in the same direction, say from the outside in).
+* Primitives that are clipped against multiple planes must always clip against planes in the same order. (Either that or clip against all planes at once)
+* If you use a guard band, you must clip against the guard band planes; you can’t use a guard band for some triangles but then clip against the original viewport planes if you actually need to clip.
+
+==== Those pesky near and far planes
+What about near and far? Particularly the near plane is bothersome, since with all the stuff that’s only slightly outside the viewport handled, that’s the plane we do most of our clipping for.
+
+So we’re down to one of the regular clip planes: stem:[0 < w]. Can we get rid of this one too? The answer is yes, with a rasterization algorithm that works in homogeneous coordinates, e.g. http://www.cs.unc.edu/~olano/papers/2dh-tri/[this one].
+
+==== Projection and viewport transform
+Projection just takes the x, y and z coordinates and divides them by w. [[ndc]]This gives us normalized device coordinates, or NDCs, between -1 and 1. We then apply the viewport transform which maps the projected x and y to pixel coordinates (which I’ll call X and Y) and the projected z into the range [0,1] (I’ll call this value Z), such that at the z-near plane Z=0 and at the z-far plane Z=1.
+
+At this point, we also snap pixels to fractional coordinates on the sub-pixel grid. As of D3D11, hardware is required to have exactly 8 bits of subpixel precision for triangle coordinates. This snapping turns some very thin slivers (which would otherwise cause problems) into degenerate triangles (which don’t need to be rendered at all).
+
+==== Back-face and other triangle culling
+Once we have the X and Y for all vertices, we can calculate the signed triangle area using a cross product of the edge vectors. If the area is negative, the triangle is wound counter-clockwise. If the area is positive, it’s wound clockwise. If it’s zero, it’s degenerate and doesn’t cover any pixels, so it can be safely culled. At this point, we know the triangle orientation so we can do back-face culling (if enabled).
+
+==== Final remarks
+I skipped some parts and simplified others, so here’s the usual reminder that things are a bit more complicated in reality.
+
+=== Part 6: (Triangle) rasterization and setup.
+https://fgiesen.wordpress.com/2011/07/06/a-trip-through-the-graphics-pipeline-2011-part-6/
+
+==== How _not_ to render a triangle
+In hardware, the “triangle rasterizer” is a block that tells you what (sub-)pixels a triangle covers; in some cases, it’ll also give you barycentric coordinates of those pixels inside the triangle. But that’s it.
+
+If you’ve written your own triangle mappers “back in the day”, you probably used an incremental scanline rasterizer of the kind described in Chris Hecker’s http://chrishecker.com/Miscellaneous_Technical_Articles[series on Perspective Texture Mapping]. That happens to be a great way to do it in sofware on processors without SIMD units, but it doesn’t map well to modern processors with fast SIMD units, and even worse to hardware.
+
+==== A better way
+A much simpler (and more hardware-friendly) way to rasterize triangles was presented in a 1988 http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.157.4621&rep=rep1&type=pdf[paper] by Pineda. The general approach can be summarized in 2 sentences: the signed distance to a line can be computed with a 2D dot product (plus an add) – just as a signed distance to a plane can be compute with a 3D dot product (plus add). And the interior of a triangle can be defined as the set of all points that are on the correct side of all three edges. So… just loop over all candidate pixels and test whether they’re actually inside the triangle.
+
+Our edge equations have the form stem:[E(X,Y) = aX + bY + c], with a, b, c being per-triangle constants, so for X+1 it will be stem:[E(X+1,Y) = a(X+1) + bY + c = E(X,Y) + a]. In other words, once you have the values of the edge equations at a given point, the values of the edge equations for adjacent pixels are just a few adds away. Also note that this is absolutely trivial to parallelize.
+
+You just compute stem:[ia + jb] for stem:[0 \le i, j \le 7] once for each triangle (and edge) and keep that in registers; then, to rasterize a 8×8 block of pixels, you just compute the 3 edge equation for the top-left corner, fire off 8×8 parallel adds of the constants we’ve just computed, and then test the resulting sign bits to see whether each of the 8×8 pixels is inside or outside that edge. Do that for 3 edges, and presto, one 8×8 block of a triangle rasterized in a truly embarrassingly parallel fashion.
+
+There’s another thorny bit here, which is fill rules; you need to have tie-breaking rules to ensure that for any pair of triangles sharing an edge, no pixel near that edge will ever be skipped or rasterized twice. D3D and OpenGL both use the so-called “top-left” fill rule; with this kind of integer rasterizer, it boils down to subtracting 1 from the constant term on some edges during triangle setup.
+
+==== What we need around here is more hierarchy
+What I’ve just described is what the “fine” rasterizer does (the one that actually outputs sample coverage). Now, to avoid wasted work at the pixel level, what we do is add another rasterizer in front of it that doesn’t rasterize the triangle into pixels, but “tiles” – our 8×8 blocks (http://people.csail.mit.edu/ericchan/bib/pdf/p15-mccormack.pdf[This] paper by McCormack and McNamara has some details, as does Greene’s http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.115.1646&rep=rep1&type=pdf[“Hierarchical Polygon Tiling with Coverage Masks”] that takes the idea to its logical conclusion).
+
+We can think this idea further, as in Greene’s paper or Mike Abrash’s description of http://drdobbs.com/architecture-and-design/217200602[Rasterization on Larrabee], and do a full hierarchical rasterizer. But with a hardware rasterizer, there’s little to no point: it actually increases the amount of work done for small triangles.
+
+The problem is small triangles! Even if you have a bunch of tiny triangles that generate 0 or 1 visible pixels, you still need to go through triangle setup, at least one step of coarse rasterization, and then at least one fine rasterization step for an 8×8 block. With tiny triangles, it’s easy to get either triangle setup or coarse rasterization bound.
+
+[[slivers]]One thing to note is that with this kind of algorithm, slivers (long, very thin triangles) are seriously bad news – you need to traverse tons of tiles and only get very few covered pixels for each of them.
+
+==== So what does triangle setup do?
+* The edge equations – a, b, c for all 3 triangle edges.
+* Some of the derived values, like the stem:[ia + jb] for 0 stem:[\le i, j \le 7] that I mentioned; note that you wouldn’t actually store a full 8×8 matrix of these in hardware, certainly not if you’re gonna add another value to it anyway. The best way to do this is in HW probably to just compute the stem:[ia] and stem:[jb], use a http://en.wikipedia.org/wiki/Carry-save_adder[Carry-save adder] (aka 3:2 reducer, I wrote about them https://fgiesen.wordpress.com/2010/08/23/carry-save-adders-and-averaging-bit-packed-values/[before]) to reduce the stem:[ia + jb + c] expression to a single sum, and then finish that off with a regular adder.
+* Which reference corner of the tiles to use to get the upper/lower bounds of the edge equations for coarse rasterizer.
+* The initial value of the edge equations at the first reference point for the coarse rasterizer (adjusted for fill rule).
+
+==== Other rasterization issues and pixel output
+[[scissor_test]]One thing I didn’t mention so far is the scissor rect. That’s just a screen-aligned rectangle that masks pixels; no pixel outside that rect will be generated by the rasterizer. This is fairly easy to implement – the coarse rasterizer can just reject tiles that don’t overlap the scissor rect outright, and the fine rasterizer ANDs all generated coverage masks with the “rasterized” scissor rectangle (where “rasterization” here boils down to a one integer compare per row and column and some bitwise ANDs).
+
+[[msaa]]Another issue is multisample antialiasing. What changes is now you have to test more samples per pixel – as of DX11, HW needs to support at least 8x MSAA. Note that the sample locations inside each pixel aren’t on a regular grid, but dispersed to give good results across a wide range of multiple edge orientations. These irregular sample locations are a total pain to deal with in a scanline rasterizer but very easy to support in a Pineda-style algorithm: it boils down to computing a few more per-edge offsets in triangle setup and multiple additions/sign tests per pixel instead of just one.
+
+==== Caveats
+[[mobile_tiled]]Another implicit assumption in this article is that we’re on high-end PC hardware; a lot of parts, particularly in the mobile/embedded range, are so-called tile renderers, which partition the screen into tiles and render each of them individually. These are not the same as the 8×8 tiles for rasterization I used throughout this article. Tiled renderers need at least another “ultra-coarse” rasterization stage that runs early and finds out which of the (large) tiles are covered by each triangle; this stage is usually called “binning”.
+
+=== Part 7: Z/Stencil processing, 3 different ways.
+https://fgiesen.wordpress.com/2011/07/08/a-trip-through-the-graphics-pipeline-2011-part-7/
+
+==== Interpolated values
+Just linearly interpolating attributes (colors, texture coordinates etc.) across the screen-space triangle does not produce the right results. However, say we want to interpolate a 2D texture coordinate pair stem:[(s,t)]. It turns out you do get the right results if you linearly interpolate stem:[\frac{1}{w}], stem:[\frac{s}{w}] and stem:[\frac{t}{w}] in screen-space (w here is the homogeneous clip-space w from the vertex position), then per-pixel take the reciprocal of stem:[\frac{1}{w}] to get w, and finally multiply the other two interpolated fractions by w to get s and t.
+
+The actual linear interpolation boils down to setting up a plane equation and then plugging the screen-space coordinates in. But if you’re interpolating more than two values, a better approach is to compute (using perspective interpolation) barycentric coordinates – let’s call them stem:[\lambda_0] and stem:[\lambda_1] – for the current pixel in the original clip-space triangle, after which you can interpolate the actual vertex attributes using regular linear interpolation without having to multiply everything by w afterwards.
+
+Setting up the stem:[\frac{\lambda_0}{w}] and stem:[\frac{\lambda_1}{w}] for the triangle requires 4 reciprocals, the triangle area (which we already computed for back-face culling!), and a few subtractions, multiplies and adds. Setting up the vertex attributes for interpolation is really cheap with the barycentric approach – two subtractions per attribute.
+
+Now we want to interpolate Z, and because we computed Z as stem:[\frac{z}{w}] at the vertex level as part of projection, it’s already divided by w and we can just interpolate it linearly in screen space. What we end up with is a plane equation for stem:[Z = aX + bY + c] that we can just plug X and Y into to get a value.
+
+==== [[early_z]]Early Z/Stencil
+So what GPUs actually do when they can is called “early Z” (as opposed to late Z, which is actually at the late stage in the pipeline that traditional API models generally display it at). This executes the Z/stencil tests and writes early, right after the triangle has been rasterized, and before we start sending off pixels to the shaders. That way, we notice all the rejected pixels early, without wasting a lot of computation on them. However, we can’t always do this: the pixel shader may ignore the interpolated depth value, and instead provide its own depth to be written to the Z-buffer (e.g. depth sprites); or it might use discard, alpha test, or alpha-to-coverage, all of which “kill” pixels/samples during pixel shader execution and mean that we can’t update the Z-buffer or stencil buffer early because we might be updating depth values for samples that later get discarded in the shader!
+
+Traditionally, APIs just pretended none of this early-out logic existed; Z/Stencil was in a late stage in the original API model, and any optimizations such as early-Z had to be done in a way that was 100% functionally consistent with that model; i.e. drivers had to detect when early-Z was applicable, and could only turn it on when there were no observable differences. By now APIs have closed that gap; as of DX11, shaders can be declared as “force early-Z”, which means they run with full early-Z processing even when the shader uses primitives that aren’t necessarily “safe” for early-Z, and shaders that write depth can declare that the interpolated Z value is conservative (i.e. early Z reject can still happen).
+
+==== Z/stencil writes: the full truth
+Switching from a shader that does early Z to one that does late Z is no problem. But going back from late Z to early Z is, if early Z does any writes: early Z is, well, earlier in the pipeline than late Z – that’s the whole point! So we may start early-Z processing for one shader, merrily writing to the depth buffer while there’s still stuff down in the pipeline for our old shader that’s running late-Z and may be trying to write the same location at the same time – classic race condition. So how do we fix this?
+
+* Once you go from early-Z to late-Z processing within a render target, you stay at late-Z until the next point where you flush the pipeline anyway. This works but potentially wastes lots of shader cycles while early-Z is unnecessarily off.
+* Trigger a (pixel) pipeline flush when going from a late-Z shader to an early-Z shader – also works, also not exactly subtle. This time, we don’t waste shader cycles (or memory bandwidth) but stall instead – not much of an improvement.
+* Another option is to not ever write Z in the early-Z phase; always do the Z-writes in late-Z. Note that you need to be careful to make conservative Z-testing decisions during early Z if you do this! This avoids the race condition but means the early Z-test results may be stale because the Z-write for the currently-dispatched pixels won’t happen until a while later.
+* Use a separate unit that keeps track of Z-writes for us and enforces the correct ordering; both early-Z and late-Z must go through this unit.
+
+==== Hierarchical Z/Stencil
+The idea here is that we can use our tile trick from rasterization again, and try to Z-reject whole tiles at a time, before we even descend down to the pixel level! What we do here is a strictly conservative test; it may tell us that “_there might be pixels that pass the Z/stencil-test in this tile_” when there are none, but it will never claim that all pixels are rejected when in fact they weren’t.
+
+Assume here that we’re using “less”, “less-equal”, or “equal” as Z-compare mode. Then we need to store the maximum Z-value we’ve written for that tile, per tile. When rasterizing a triangle, we calculate the minimum Z-value the active triangle is going to write to the current tile (one easy conservative approximation is to take the min of the interpolated Z-values at the four corners of the current tile). If our triangle minimum-Z is larger than the stored maximum-Z for the current tile, the triangle is guaranteed to be completely occluded.
+
+What we can’t easily do is change from one of the “less”-based tests to a “greater”-based tests in the middle of the frame, because that would make the information we’ve been tracking useless. What GPUs actually do is turn hierarchical-Z off once you do this (up until the next Clear).
+
+Similar to the hierarchical-Z logic I’ve described, current GPUs also have hierarchical stencil processing.
+
+===== Putting it all together
+
+==== Revenge of the API order
+For Z-compare modes like “less” or “lessequal”, it’s very important what order the pixels arrive in; if we mess with that, we risk changing the results and introducing nondeterministic behavior.
+
+In our current path, the best candidate location to sort things into order again seems to be primitive assembly; so when we start assembling primitives from shaded vertex blocks, we make sure to assemble them strictly in the original order as submitted by the app to the API.
+
+==== Memory bandwidth and Z compression
+The second big point is that Z/Stencil is a serious bandwidth hog. This has a couple of reasons. For one, this is the one thing we really run for all samples generated by the rasterizer. The other big reason is that, when multisampling is enabled, the Z/stencil buffer is per sample; so 4x MSAA means 4x the memory bandwidth cost of Z.
+
+So what GPUs do is Z compression. There’s various approaches, but the general idea is always the same: assuming reasonably-sized triangles, we expect a lot of tiles to just contain one or maybe two triangles. If that happens, then instead of storing Z-values for the whole tile, we just store the plane equation of the triangle that filled up this tile. That plane equation is (hopefully) smaller than the actual Z data. Without MSAA, one tile covers 8×8 actual pixels, so triangles need to be relatively big to cover a full tile; but with 4x MSAA, a tile effectively shrinks to 4×4 pixels.
+
+When this compression works is fully lossless, but it’s not applicable to all tiles. So we need some extra space to denote whether a tile is compressed or not. We add some dedicated SRAM that allows us to store a few (1-3) bits per tile. At its simplest, it’s just a “compressed” or “not compressed” flag, but you can get fancy and add multiple compression modes and such. [[fast_z_clear]]A nice side effect of Z-compression is that it allows us to do fast Z-clears: e.g. when clearing to Z=1, we just set all tiles to “compressed” and store the plane equation for a constant Z=1 triangle.
+
+===== Postscript
+
+=== Part 8: Pixel processing – “fork phase”.
+https://fgiesen.wordpress.com/2011/07/10/a-trip-through-the-graphics-pipeline-2011-part-8/
+
+==== Going wide during rasterization
+GPU architects started using multiple rasterizers; as of 2010, http://www.highperformancegraphics.org/previous/www_2010/media/Hot3D/HPG2010_Hot3D_NVIDIA.pdf[NVidia employs four rasterizers] and http://www.highperformancegraphics.org/previous/www_2010/media/Hot3D/HPG2010_Hot3D_AMD.pdf[AMD uses two].
+
+The work distribution between rasterizers is based on the tiles we’ve already seen for early-Z and coarse rasterization. The frame buffer is divided into tile-sized regions, and each region is assigned to one of the rasterizers. After setup, the bounding box of the triangle is consulted to find out which triangles to hand over to which rasterizers; large triangles will always be sent to all rasterizers, but smaller ones can hit as little as one tile and will only be sent to the rasterizer that owns it.
+
+==== You need to go wider!
+[[nvidia_warp]]For NVidia (they mention this number in http://www.nvidia.com/content/PDF/fermi_white_papers/NVIDIA_Fermi_Compute_Architecture_Whitepaper.pdf[public white papers]), the unit of dispatch to shader units is 32 threads, which they call a “Warp”. Each quad has 4 pixels (each of which in turn can be handled as one thread), so for each shading batch we issue, we need to grab 8 incoming quads from the rasterizer before we can send off a batch to the shader units.
+
+This is a good point to explain why we’re dealing with quads of 2×2 pixels and not individual pixels. The big reason is derivatives. Texture samplers depend on screen-space derivatives of texture coordinates to do their mip-map selection and filtering; and, as of shader model 3.0 and later, the same machinery is directly available to pixel shaders in the form of derivative instructions. In a quad, each pixel has both a horizontal and vertical neighbor within the same quad; this can be used to estimate the derivatives of parameters in the x and y directions using finite differencing (it boils down to a few subtractions). This gives you a very cheap way to get derivatives at the cost of always having to shade groups of 2×2 pixels at once.
+
+This is no problem in the interior of large triangles, but means that between 25-75% of the shading work for quads generated for triangle edges is wasted. That’s because all pixels in a quad, even the masked ones, get shaded. This is necessary to produce correct derivatives for the pixels in the quad that are visible. [[helper_pixels]]The invisible but still-shaded pixels are called “helper pixels”. For small triangles, a large fraction of the total number of pixels shaded are helper pixels, which has attracted some http://graphics.stanford.edu/papers/fragmerging/shade_sig10.pdf[research attention] on how to merge quads of adjacent triangles.
+
+==== Attribute interpolation
+Another unique feature of pixel shaders is attribute interpolation. A plane equation is computed for attributes during triangle setup and then during pixel shading, there’s a separate unit that performs interpolation using the pixel positions of the quads and the plane equations we just computed.
+
+There used to be dedicated interpolators, by now the trend is towards just having them return the barycentric coordinates to plug into the plane equations. The actual evaluation (two multiply-adds per attribute) can be done in the shader unit.
+
+There’s a few extra interpolation types to discuss. First, there’s “constant” interpolators, which are constant across the primitive and take the value for each vertex attribute from the “leading vertex” then there’s no-perspective interpolation. Those attributes are cheaper to evaluate when their plane equation is set up for X, Y-based interpolation without dividing the values at each vertex by the corresponding w.
+
+==== “Centroid” interpolation is tricky
+Next, we have “centroid” interpolation. It can be combined both with the perspective and no-perspective modes and a no-op unless multisampling is enabled.
+GPU takes all of the samples covered by the primitive, computes their centroid, and samples at that position.
+
+Here’s what actually happens:
+
+* If all sample points cover the primitive, interpolation is done as usual, i.e. at the pixel center (which happens to be the centroid of all sample positions for all reasonable sampling patterns).
+* If not all sample points cover the triangle, the hardware picks one of the sample points that do and evaluates there. All covered sample points are (by definition) inside the primitive so this works.
+
+Finally (new in DX11!) there’s “pull-model” attribute interpolation. Regular attribute interpolation is done automatically before the pixel shader starts; pull-model interpolation adds actual instructions that do the interpolation to the pixel shader.
+
+==== The actual shader body
+There are some interesting bits about pixel shader execution that are worth talking about.
+
+The first one is: texture sampling! [[context_switch2]]What shader units actually do is switch to a different batch after they’ve issued a texture sample; then when that batch issues a texture sample (or completes), it switches back to one of the previous batches and checks if the texture samples are there yet. As long as each shader unit has a few batches it can work on at any given time, this makes good use of available resources. One thing to note here is that keeping multiple batches (or “Warps” on NVidia hardware, or “Wavefronts” for AMD) running at the same time requires more registers. If a shader needs a lot of registers, a shader unit can keep less warps around; and if there are less of them, the chance that at some point you’ll run out of runnable batches that aren’t waiting on texture results is higher. If there’s no runnable batches, you’re out of luck and have to stall until one of them gets its results back.
+
+Another point I haven’t talked about yet: Dynamic branches in shaders (i.e. loops and conditionals). [[lockstep_execution]]In shader units, work on all elements of each batch usually proceeds in lockstep. All “threads” run the same code, at the same time. That means that ifs are a bit tricky: If any of the threads want to execute the “then”-branch of an if, all of them have to – even though most of them may end up ignoring the results using a technique called http://en.wikipedia.org/wiki/Branch_predication[predication], because they didn’t want to descend down there in the first place. Similarly for the “else” branch. This works great if conditionals tend to be coherent across elements, and not so great if they’re more or less random. Worst case, you’ll always execute both branches of every if.
+
+[[discard]]Another pixel shader specific is the `discard` instruction. A pixel shader can decide to “kill” the current pixel, which means it won’t get written. Again, if all pixels inside a batch get discarded, the shader unit can stop and go to another batch; but if there’s at least one thread left standing, the rest will be dragged along. DX11 adds more fine-grained control here by way of writing the output pixel coverage from the pixel shader (this is always ANDed with the original triangle/Z-test coverage, to make sure that a shader can’t write outside its primitive, for sanity). This allows the shader to discard individual samples instead of whole pixels; it can be used to implement Alpha-to-Coverage with a custom dithering algorithm in the shader, for example.
+
+Pixel shaders can also write the output depth: this is an excellent way to shoot down early-Z, hierarchical Z and Z compression and in general get the slowest path possible.
+
+There’s one final thing that pixel shaders can do starting with D3D11: they can write to Unordered Access Views (UAVs) – something which only compute and pixel shaders can do. Generally speaking, UAVs take the place of render targets during compute shader execution; but unlike render targets, the shader can determine the position to write to itself, and there’s no implicit API order guarantee (hence the “unordered access” part of the name).
+
+=== Part 9: Pixel processing – “join phase”.
+https://fgiesen.wordpress.com/2011/07/12/a-trip-through-the-graphics-pipeline-2011-part-9/
+
+==== Merging pixels again: blend and late Z
+At the bottom of the pipeline (in what D3D calls the “Output Merger” stage), we have late Z/stencil processing and blending. These two operations are both relatively simple computationally, and they both update the render target(s) / depth buffer respectively. Because all of this happens for every quad that makes it this far through the pipeline, it’s also bandwidth-intensive. Finally, it’s order-sensitive.
+
+Blending is one of these things that work pretty much as you’d expect; it’s a fixed-function block that performs a multiply, a multiply-add and maybe some subtractions first, per render target. This block is kept deliberately simple; it’s separate from the shader units so it needs its own ALU. It has a short, predictable latency: this part of the pipeline needs to process data in-order to be correct. This limits our options as far as trading throughput for latency is concerned; we can still process quads that don’t overlap in parallel.
+
+==== Meet the ROPs
+ROPs are the hardware units that handle this part of the pipeline. The acronym, depending on who you asks, stands for “Render OutPut unit”, “Raster Operations Pipeline”, or “Raster Operations Processor”. The actual name is fairly archaic – it derives from the days of pure 2D hardware acceleration, with hardware whose main purpose was to do fast https://en.wikipedia.org/wiki/Bit_blit[Bit blits].
+
+So what do we need to do, in hardware, for blend/late Z? A simple plan:
+
+1. Read original render target/depth buffer contents from memory – memory access, long latency. Might also involve depth buffer and render target decompression!
+2. Sort incoming shaded quads into the right (API) order. This takes some buffering so we don’t immediately stall when quads don’t finish in the right order (think loops/branches, discard, and variable texture fetch latency). Note we only need to sort based on primitive ID here – two quads from the same primitive can never overlap, and if they don’t overlap they don’t need to be sorted!
+3. Perform the actual blend/late Z/stencil operation. This is math – maybe a few dozen cycles worth, even with deeply pipelined units.
+4. Write the results back to memory again, compressing etc. along the way – long latency again, though this time we’re not waiting for results so it’s less of a problem at this end.
+
+We need to cover the long latencies somehow. And all this happens for every single pixel (well, quad, actually). So we need to worry about memory bandwidth too.
+
+==== Memory bandwidth redux: DRAM pages
+I described the 2D layout of DRAM, and how it’s faster to stay within a single row because changing the active row takes time – so for ideal bandwidth you want to stay in the same row between accesses. Well, the thing is, single DRAM rows are kinda large.
+
+A DRAM page is some more conveniently sized slice of a row (by now, usually 256 or 512 bits) that’s commonly transferred in a single burst. Let’s take 512 bits (64 bytes) for now. At 32 bits per pixel that’s enough memory to fit data for 16 pixels in.
+
+That gives us yet another reason to shade pixels in groups, and also yet another reason to do a two-level traversal. As soon as we’ve rasterized a tile, we know whether it generates any pixels or not. At that point, we can select a ROP to handle our quads for that tile, and queue a command to fetch the associated frame buffer data into a buffer. By the point we get shaded quads back from the shader units, that data should be there, and we can start blending without delay. Similarly for Z data – if we run early Z before the pixel shader, we might need to allocate a ROP and fetch depth/stencil data earlier, maybe as soon as a tile has passes the coarse Z test. If we run late Z, we can just prefetch the depth buffer data at the same time we grab the framebuffer pixels.
+
+There’s also the issue of pixel shaders that output to multiple render targets, but that depends on how exactly that feature is implemented. You could run the shader multiple times, or you could run all the render targets through the same ROP, or you could allocate one ROP per output render target.
+
+==== Depth buffer and color buffer compression
+All the bandwidth issues I mentioned there exist for color values too; it’s not so bad for regular rendering, but it is a serious issue for MSAA, where we suddenly store somewhere between 2 and 8 samples per pixel. Like Z, we want some lossless compression scheme to save bandwidth in common cases. Unlike Z, plane equations per tile are not a good fit to textured pixel data.
+
+MSAA pixel data is even easier to optimize for: pixel shaders only run once per pixel, not per sample. Hence, for all pixels that are fully covered by a single primitive, the 2-8 samples stored will usually be the same. And that’s the idea behind the common color buffer compression schemes: Write a flag bit (either per pixel, or per quad, or on an even larger granularity) that denotes whether for all the pixels in a compression block, all the per-sample colors are in fact the same. It requires some tag bits that we can store in a small on-chip SRAM. If there’s an edge crossing the pixels, we need the full bandwidth, but if the triangles aren’t too small, we can save a good deal of bandwidth on at least part of the frame. And again, we can use the same machinery to accelerate clears.
+
+[[fast_color_clear]]Some GPUs have “hierarchical Z”-like mechanisms that store, for a large block of pixels (a rasterizer tile, maybe even larger) that the block was recently cleared. Then you only need to store one color value for the whole tile (or larger block) in memory. This gives you very fast color clears for some buffers (again, you need some tag bits for this!). However, as soon as any pixel with non-clear color is written to the tile (or larger block), the “this was just cleared” flag needs to be… well, cleared. But we do save a lot of memory bandwidth on the clear itself and the first time a tile is read from memory.
+
+===== Aside: Why no fully programmable blend?
+
+==== 1. Blend in Pixel Shader
+So why not just allow a read to the current render target? Turns out that unconstrained reads are a really bad idea, because it means that every pixel being shaded could (potentially) influence every other pixel being shaded. But what if we get a special render target read instruction that samples one of the active render targets at the current location? Now, that’s a lot better – now we only need to worry about writes to the location of the current quad, which is a way more tractable problem.
+
+However, it still introduces ordering constraints; we have to check all quads generated by the rasterizer vs. the quads currently being pixel-shaded. If a quad just generated by the rasterizer wants to write to a sample that’ll be written by one of the Pixel Shaders that are currently in flight, we need to wait until that PS is completed before we can dispatch the new quad. This doesn’t sound too bad, but how do we track this?
+
+This whole tracking thing is a problem. What if we just force shading to execute in order? That is, keep the whole thing pipelined and all shaders running in lockstep; now we don’t need tracking because pixels will finish in the same order we put them into the pipeline! But the problem here is that we need to make sure the shaders in a batch actually always take the exact same time.
+
+==== 2. “Blend Shaders”
+We now need another full ALU + instruction decoder/sequencer etc. in the ROPs. This is not a small change – not in design effort, nor in area, nor in power. Second, as I mentioned near the start of this post, our regular “just go wide” tactics don’t work so well for blend, because this is a place where we might well get a bunch of quads hitting the same pixels in a row and need to process them in order, so we want low latency. That’s a very different design point than our regular unified shader units – so we can’t use them for this. Third, pure serial execution is out at this point – too low throughput. So we need to pipeline it. But to pipeline it, we need to know how long the pipeline is! For a regular blend unit, it’s a fixed length, so it’s easy. A blend shader would probably be the same. In fact, due to the design constraints, you’re unlikely to get a blend shader – more like a blend register combiner, really, completely with a (presumably relatively low) upper limit on the number of instructions, as determined by the length of the pipeline.
+
+=== Part 10: Geometry Shaders.
+https://fgiesen.wordpress.com/2011/07/20/a-trip-through-the-graphics-pipeline-2011-part-10/
+
+==== There’s multiple pipelines / anatomy of a pipeline stage
+For VS, we went through the Input Assembler, which prepared a block of vertices for shading, then dispatched that batch to a shader unit (which chews on it for a while), and then some time later we get the results back, write them into a buffer (for Primitive Assembly), make sure they’re in the right order, then send them down to the next pipeline stage (Culling/Clipping etc.).
+
+For PS, we receive to-be-shaded quads from the rasterizer, batch them up, buffer them for a while until a shader unit is free to accept a new batch, dispatch a batch to a shader unit (which chews on it for a while), and then some time later we get the results back, write them into a buffer (for the ROPs), make sure they’re in the right order, then do blend/late Z and send the results on to memory.
+
+In fact, this is how it always looks when we want to get something done by the shader units: we need a buffer in the front, then some dispatching logic (which is in fact pretty universal for all shader types and can be shared), then we go wide and run a bunch of shaders in parallel, and finally we need another buffer and a unit that sorts the results (which we received potentially out-of-order from the shader units) back into API order.
+
+We’re not gonna see any big additions to shader unit functionality until we get to Compute Shaders, with their specialized buffer types and atomics. So for the next few parts, I won’t be talking about the shader units.
+
+==== The Shape of Tris to Shade
+So let’s have a look at how our IO buffers for Geometry Shaders look. Let’s start with input. The Geometry Shader looks at primitives, not individual vertices, so what we really need is the output from Primitive Assembly (PA). PA could expand primitives out (duplicating vertices if they’re referenced multiple times), or it could just hand us one block of vertices with an associated small “index buffer”.
+
+One reason you need to worry about amount of buffer space with GS is that it can work on some pretty large primitives, because it doesn’t just support plain lines or triangles, but also lines/triangles with adjacency information and patches with up to 32 control points as input.
+Our input block is guaranteed to contain at least one full primitive, and possibly several – but other than that, the number of primitives in that block completely depends on the vertex cache hit rate.
+
+With GS, we don’t have full control over either ends of the pipeline (since we’re in the middle!), and we need multiple input vertices per primitive (as opposed to multiple quads per one input triangle), so buffering up a lot of input is expensive (both in terms of memory and in the amount of management overhead we get).
+
+==== GS output: no rose garden over here, either
+While a VS only outputs one thing (shaded vertices) with a 1:1 correspondence between unshaded and shaded vertices, a GS outputs a variable number of vertices (up to a maximum that’s specified at compile time), and as of D3D11 it can also have multiple output streams.
+
+A GS produces variable-sized output, but it needs to run with bounded memory requirements, which is why the maximum number of output vertices is fixed at compile-time. This determines how much buffer space is allocated, and thus indirectly the maximum number of parallel GS invocations; if that number is too low, latency can’t be fully hidden, and the GS will stall for some percentage of the time.
+
+Also note that the GS inputs _primitives_ (e.g. points, lines, triangles or patches, optionally with adjacency information), but outputs _vertices_ – even though we send primitives down to the rasterizer! If the output primitive type is points, this is trivial. For lines and triangles however, we need to reassemble those vertices back into primitives again.
+
+So for GS, we need a second primitive assembly stage, which we’d like to keep simple, and assembling triangle strips is very simple indeed: a triangle is always 3 vertices from the output buffer in sequential order, with only a bit of glue logic to keep track of the current winding order.
+
+==== API order again
+For GS, we don’t generally know how many primitives we’re gonna generate before we get the outputs back – in fact, we might not have produced any! But we still need to respect API order: it’s first all primitives generated from GS invocation 0, then all primitives from invocation 1, and so on, through to the end of the batch (and of course the batches need to be processed in order too, same as with VS). So for GS, once we get results back, we first need to scan over the output data to determine the locations where complete primitives start. Only then can we start doing cull, clip and triangle setup (potentially in parallel).
+
+==== VPAI and RTAI
+The Render-target Array Index(RTAI) gives you render-to-texture-array support: you set a texture array as render target, and then in the GS you can select per-primitive to which array index the primitive should go. One example use case for RTAI is rendering cubemaps in one pass: the GS decides per primitive to which of the cube faces it should be sent (potentially several of them).
+
+The Viewport Array Index (VPAI) is an orthogonal feature which allows you to set multiple viewports and scissor rects (up to 15), and then decide per primitive which viewport to use. This can be used, for example, to render multiple cascades in a Cascaded Shadow Map in a single pass.
+
+==== Summary so far
+I checked it when D3D10 hardware was fairly new, and on both AMD and NVidia hardware, even a pure pass-through GS was between 3x and 7x slower than no GS at all (in a geometry-limited scenario, that is). I haven’t re-run this experiment on more recent hardware; I would assume that it’s gotten better by now (this was the first generation to implement GS, and features don’t usually have good performance in the first GPU generation that implements them), but the point still stands: just sending something through the GS pipe, even if nothing at all happens there, has a very visible cost.
+
+==== Bonus: GS Instancing
+GS Instancing is another new feature of D3D11: for each input primitive, the GS gets run not just once but multiple times (this is a static count selected at compile time), by actually generating multiple GS invocations per input primitive, which helps us get larger batch sizes and thus better utilization.
+
+=== Part 11: Stream-Out.
+https://fgiesen.wordpress.com/2011/08/14/a-trip-through-the-graphics-pipeline-2011-part-11/
+
+==== Vertex Shader Stream-Out (i.e. SO with NULL GS)
+You simply pass Vertex Shader bytecode (instead of GS bytecode) to `CreateGeometryShaderWithStreamOutput`. What you get back is a Geometry Shader object that you can then pass to `GSSetShader`. This is, in effect, a NULL Geometry Shader – it doesn’t actually go through GS processing. It’s just some wrapper to make it fit into the API model, where all rendering passes through the GS stage and SO comes right after GS – though, actual HW tends to skip the GS stage completely when there’s no GS set.
+
+So the shaded vertices get assembled into primitives as before, but instead of getting sent down the rest of the pipeline as already described, they get forwarded to Stream-Out, where they arrive – as always – in a buffer. In the Stream-Out declaration, the app gets to specify where it wants each output vector to end up in the Stream-Out targets .
+
+SO usually doesn’t have access to a very high-performance path to the memory subsystem.
+
+Primitive Assembly discards adjacency information if it makes it that far down the pipeline, and since this happens before SO, vertices corresponding to adjacency info won’t make it into SO buffers either. SO working on primitives not individual vertices is relevant for use cases like instancing a single skinned mesh (in a single pose) several times.
+
+==== Geometry Shader SO: Multiple streams
+Every GS can write to (as of D3D11) up to 4 streams. Each stream may be sent on to SO targets: a single stream can write to multiple SO targets, but a single SO target can receive values from only one stream.
+
+The presence of streams has some implications for SO buffering – instead of a single input buffer like I described in the NULL GS case, we now may have multiple input buffers, one per stream.
+
+==== Tracking output size
+We don’t necessarily know how much output data is going to be produced from SO. For GS, this comes about because each GS invocation may produce a variable number of output primitives; but even in the simpler VS case, as soon as indexed primitives are involved, the app might slip some “primitive cut” indices in there that influence how many primitives actually get written. This is a problem if we then want to draw from that SO buffer later, because we don’t know how many vertices are actually in there!
+
+The GPU already knows how many valid vertices it actually wrote to the output buffer; the SO unit keeps track of that while it’s writing, and the final counter is also kept in memory (along with the buffer) since the app may render to a SO buffer in multiple passes. This counter is then used for `DrawAuto`, instead of having the app submit an explicit count itself – simplifying things considerably and avoiding the costly round-trip completely.
+
+=== Part 12: Tessellation.
+https://fgiesen.wordpress.com/2011/09/06/a-trip-through-the-graphics-pipeline-2011-part-12/
+
+==== Tessellation – not quite like you’d expect
+The actual fixed-function tessellation unit deals only with the topology of the output mesh (i.e. how many vertices there are and how they’re connected to each other); and it turns out that from this perspective, there’s basically only two different types of patches: quad-based patches, which are defined on a parameter domain with two orthogonal coordinate axes (which I’ll call u and v here, both are in [0,1]) and usually constructed as a tensor product of two one-parameter basis functions, and triangle-based patches, which use a redundant representation with three coordinates (u, v, w) based on barycentric coordinates (i.e. stem:[u, v, w \ge 0, u + v + w = 1]).
+
+==== Making ends meet
+Tessellating a single triangle (or quad) is easy, but we want to be able to determine tessellation factors per-patch, because we only want to spend triangles where we need them – and not waste tons of triangles on some distant (and possibly backface-culled) parts of the mesh.
+
+The solution is to make all of the actual tessellation work purely local and push the burden of ensuring watertightness for the resulting mesh down to the shaders. This is a topic all by itself and requires http://www.ludicon.com/castano/blog/2010/09/precise/[great care in the Domain Shader code].
+
+The basic mechanism is that each patch has multiple tessellation factors (TFs), which are computed in the Hull Shader: one or two for the actual inside of the patch, plus one for each edge. The TFs for the inside of the patch can be chosen freely; but if two patches share an edge, they’d better compute the exact same TFs along that edge, or there will be cracks. The hardware doesn’t care – it will process each patch by itself. If you do everything correctly, you’ll get a nice watertight mesh.
+
+==== Fractional tessellation factors and overall pipeline flow
+If the shader generates a non-integer TF, it will simply get rounded up to the next acceptable value. More interesting are the remaining two partitioning types: Fractional-odd and Fractional-even tessellation. Instead of jumping from tessellation factor to tessellation factor (which would cause visible pops), new vertices start out at the same position as an existing vertex in the mesh and then gradually move to their new positions as the TF increases.
+
+The output of the tessellator then consists of two things: First, the positions of the tessellated vertices in domain coordinates, and second, the corresponding connectivity information – basically an index buffer.
+
+Let’s see what we need to do to actually churn out primitives. First, we need to input a bunch of input control points comprising a patch into the Hull Shader. The HS then computes output control points and “patch constants” (both of which get passed down to the Domain Shader), plus all Tessellation Factors (which are essentially just more patch constants). Then we run the fixed-function tessellator, which gives us a bunch of Domain Positions to run the Domain Shader at, plus the associated indices. After we’ve run the DS, we then do another round of primitive assembly.
+
+==== Hull Shader execution
+Unlike Geometry Shaders (which run for every primitive), Hull Shaders run once per patch, and as long as there’s any actual tessellation going on (even at modest TFs), we have way less patches than we have output triangles.
+
+The other nice attribute of Hull Shaders is that, unlike Geometry Shaders, they don’t have a variable amount of output data; they produce a fixed amount of control points, each which a fixed amount of associated attributes, plus a fixed amount of patch constants. All of this is statically known at compile time; no dynamic run-time buffer management necessary.
+
+Finally, Hull Shaders are somewhat special in the way they are compiled in D3D11; all other shader types basically consist of one block of code (with some subroutines maybe), but Hull Shaders are generated factored into multiple phases, each of which can consist of multiple (independent) threads of execution.
+
+Hull Shaders produce a bunch of output per patch; most of it is just kept around until the corresponding Domain Shaders run, except for the TFs, which get sent to the tessellator unit. If any of the TFs are less than or equal to zero (or NaN), the patch is culled, and the corresponding control points and patch constants silently get thrown away.
+
+==== Domain Shaders
+Domain Shaders are very simple indeed: the only input they get that actually varies per vertex is the domain point u and v coordinates. Everything else is either patch constants, control points (all of which are the same across a patch) or constant buffers. And output is basically the same as for Vertex Shaders.
+
+This is perhaps the biggest advantage of the D3D11 tessellation pipeline over Geometry Shaders: the actual triangle amplification doesn’t happen in a shader, where we waste precious ALU cycles and need to keep buffer space for a worst-case estimate of vertices, but in a localized element (the tessellator) that is basically a state machine, gets very little input (a few TFs) and produces very compact output (effectively an index buffer, plus a 2D coordinate per output vertex).
+
+==== Final remarks
+The Tessellator has all kinds of symmetry and precision requirements; as far as vertex domain positions are concerned, you can basically expect bit-exact results between the different HW vendors, because the D3D11 spec really nails this bit down.
+
+The tessellator will not produce adjacency information for the GS, just plain triangles.
+
+=== Part 13: Compute Shaders.
+https://fgiesen.wordpress.com/2011/10/09/a-trip-through-the-graphics-pipeline-2011-part-13/
+
+==== Execution environment
+On the input side, there’s not really any buffers for input data at all. The only input Compute Shaders get, aside from API state such as the bound Constant Buffers and resources, is their thread index. There’s a tremendous potential for confusion here, so here’s the most important thing to keep in mind: a “thread” is the atomic unit of dispatch in the CS environment, and it’s a substantially different beast from the threads provided by the OS that you probably associate with the term. CS threads have their own identity and registers, but they don’t have their own Program Counter (Instruction Pointer) or stack, nor are they scheduled individually.
+
+[[cs_threads]]In fact, “threads” in CS take the place that individual vertices had during Vertex Shading, or individual pixels during Pixel Shading. And they get treated the same way: assemble a bunch of them (usually, somewhere between 16 and 64) into a “Warp” or “Wavefront” and let them run the same code in lockstep. CS threads don’t get scheduled – Warps and Wavefronts do. To hide latency, we don’t switch to a different “thread” (in CS parlance), but to a different Warp, i.e. a different bundle of threads. Single threads inside a Warp can’t take branches individually; if at least one thread in such a bundle wants to execute a certain piece of code, it gets processed by all the threads in the bundle – even if most threads then end up throwing the results away. In short, CS “threads” are more like SIMD lanes than like the threads you see elsewhere in programming.
+
+Above that is the “thread group” level. The size of a thread group is specified during shader compilation. In DX11, a thread group can contain anywhere between 1 and 1024 threads, and the thread group size is specified not as a single number but as a 3-tuple giving thread x, y, and z coordinates. This numbering scheme is mostly for the convenience of shader code that addresses 2D or 3D resources.
+
+Thread IDs – which can be passed in in various forms, depending on what the shader prefers – are the only input to Compute Shaders that’s not the same for all threads.
+
+==== Thread Groups
+There’s one important bit missing that makes thread groups very special indeed: Thread Group Shared Memory (TGSM). On DX11 level hardware, compute shaders have access to 32k of TGSM, which is basically a scratchpad for communication between threads in the same group.
+
+In hardware all threads (well, Warps really) within a thread group get executed by the same shader unit. The shader unit then simply has at least 32k (usually a bit more) of local memory. And because all grouped threads share the same shader unit (and hence the same set of ALUs etc.), there’s no need to include complicated arbitration or synchronization mechanisms for shared memory access: only one Warp can access memory in any given cycle, because only one Warp gets to issue instructions in any cycle!
+
+The above invariant guarantees that there’s only one set of accesses to TGSM per cycle even when we don’t add any interlocks to prevent concurrent access. This does not guarantee that memory accesses happen in any particular order from the perspective of the shader program, however, since Warps can be scheduled more or less randomly; it all depends on who is runnable at certain points in time. Because the whole process is pipelined, it might take some cycles for writes to TGSM to become “visible” to reads; this happens when the actual read and write operations to TGSM occur in different pipeline stages (or different phases of the same stage). So we still need some kind of synchronization mechanism. Enter barriers.
+
+[[barriers]]There’s different types of barriers:
+
+1. _Group Synchronization_. A Group Synchronization Barrier forces all threads inside the current group to reach the barrier before any of them may consume past it. Once a Warp reaches such a barrier, it will be flagged as non-runnable, same as if it was waiting for a memory or texture access to complete. Once the last Warp reaches the barrier, the remaining Warps will be reactivated. This all happens at the Warp scheduling level; it adds additional scheduling constraints, which may cause stalls, but there’s no need for atomic memory transactions or anything like that; other than lost utilization at the micro level, this is a reasonably cheap operation.
+2. _Group Memory Barriers_. Since all threads within a group run on the same shader unit, this basically amounts to a pipeline flush, to ensure that all pending shared memory operations are completed. There’s no need to synchronize with resources external to the current shader unit, which means it’s again reasonably cheap.
+3. _Device Memory Barriers_. This blocks all threads within a group until all memory accesses have completed – either direct or indirect (e.g. via texture samples). As explained earlier in this series, memory accesses and texture samples on GPUs have long latencies – think more than 600, and often above 1000 cycles – so this kind of barrier will really hurt.
+
+==== Unordered Access Views
+Where do we put our output data? The answer has the unwieldy name “unordered access views”. An UAV seems somewhat similar to render targets in Pixel Shaders (and UAVs can in fact be used in addition to render targets in Pixel Shaders), but there’s some very important semantic differences:
+
+* Most importantly, as the same suggests, access to UAVs is “unordered”, in the sense that the API does not guarantee accesses to become visible in any particular order. When rendering primitives, quads are guaranteed to be Z-tested, blended and written back in API order, or at least produce the same results as if they were – which takes substantial effort. UAVs make no such effort – UAV accesses happen immediately as they’re encountered in the shader, which may be very different from API order. They’re not completely unordered, though; while there’s no guaranteed order of operations within an API call, the API and driver will still collaborate to make sure that perceived sequential ordering is preserved across API calls. Thus, if you have a complex Compute Shader (or Pixel Shader) writing to an UAV immediately followed by a second (simpler) CS that reads from the same underlying resource, the second CS will see the finished results, never some partially-written output.
+* UAVs support random access. A Pixel Shader can only write to one location per render target – its corresponding pixel. The same Pixel Shader can write to arbitrary locations in whatever UAVs it has bound.
+* UAVs support atomic operations. In the classic Pixel Pipeline, there’s no need; we guarantee there’s never any collisions anyway. But with the free-form execution provided by UAVs, different threads might be trying to access a piece of memory at the same time, and we need synchronization mechanisms to deal with this.
+
+==== Atomics
+In current CPUs, most of the magic for shared memory processing is handled by the memory hierarchy (i.e. caches). To write to a piece of memory, the active core must first assert exclusive ownership of the corresponding cache line. This is accomplished using what’s called a “cache coherency protocol”, usually http://en.wikipedia.org/wiki/MESI_protocol[MESI] and descendants.
+
+In this type of model, atomic operations are performed using the regular Core ALUs and load/store units, and most of the “interesting” work happens in the caches. The advantage is that atomic operations are (more or less) regular memory accesses, albeit with some extra requirements. There’s a couple of problems, though: most importantly, the standard implementation of cache coherency, “snooping”, requires that all agents in the protocol talk to each other, which has serious scalability issues. Another issue is that all locks and memory transactions really happen at the cache line level; if two unrelated but frequently-updated variables share the same cache line, it can end up “ping-ponging” between multiple cores, causing tons of coherency transactions (and associated slowdown). This problem is called “false sharing”.
+
+Current GPUs avoid this problem by structuring their memory hierarchy differently. Instead of handling atomic operations inside the shader units, there’s dedicated atomic units that directly talk to a shared lowest-level cache hierarchy. There’s only one such cache, so the issue of coherency doesn’t come up; either the cache line is present in the cache and it’s current or the copy in memory is current. Atomic operations consist of first bringing the respective memory location into the cache, then performing the required read-modify-write operation directly on the cache contents using a dedicated integer ALU on the atomic units. While an atomic unit is busy on a memory location, all other accesses to that location will stall. Since there’s multiple atomic units, it’s necessary to make sure they never try to access the same memory location at the same time.
+
+If a shader unit wants to perform an atomic operation to a given memory address, it first needs to determine which atomic unit is responsible, wait until it is ready to accept new commands, and then submit the operation. The atomic unit might only be processing one command at a time, or it might have a small FIFO of outstanding requests.
+
+==== Structured buffers and append/consume buffers
+Structured buffers are more of a hint to the driver-internal shader compiler than anything else; they give the driver some hint as to how they’re going to be used – namely, they consist of elements with a fixed stride that are likely going to be accessed together – but they still compile down to regular memory accesses in the end. The structured buffer part may bias the driver’s decision of their position and layout in memory, but it does not add any fundamentally new functionality to the model.
+
+Append/consume buffers are similar; they could be implemented using the existing atomic instructions. In fact, they kind of are, except the append/consume pointers aren’t at an explicit location in the resource, they’re side-band data outside the resource that are accessed using special atomic instructions.
+
+===== Wrap-up.
