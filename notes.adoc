@@ -281,7 +281,7 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 === Graphics
 
 * https://www.scratchapixel.com/[Scratchapixel - Learn Computer Graphics From Scratch!]
-* http://www.cs.uu.nl/docs/vakken/magr/2017-2018/index.html[Advanced Graphics] Course 2017/18 from Universiteit Utrecht
+* http://www.cs.uu.nl/docs/vakken/magr/2019-2020/index.html[Advanced Graphics] Course 2019/20 from Universiteit Utrecht
 
 ==== Mobile GPUs architecture
 The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Purnomo is a must-have.
@@ -365,6 +365,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * https://www.ea.com/frostbite/news/precomputed-global-illumination-in-frostbite[Precomputed Global Illumination in Frostbite] by Yuriy O'Donnell at GDC 2018
 * https://www.ea.com/frostbite/news/real-time-raytracing-for-interactive-global-illumination-workflows-in-frostbite[Real-time Raytracing for Interactive Global Illumination Workflows in Frostbite] by Sébastien Hillaire at GDC 2018
 * http://jcgt.org/published/0002/02/04/[The Visibility Buffer: A Cache-Friendly Approach to Deferred Shading] by Christopher A. Burns and Warren A. Hunt (Intel)
+* https://bgolus.medium.com/anti-aliased-alpha-test-the-esoteric-alpha-to-coverage-8b177335ae4f[Anti-aliased Alpha Test: The Esoteric Alpha To Coverage] by Ben Golus
 
 ===== Physically Based Rendering
 * https://blog.selfshadow.com/publications/s2012-shading-course/[SIGGRAPH 2012 Course: Practical Physically Based Shading in Film and Game Production]
@@ -387,6 +388,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges
 * http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges
 * https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html[DOOM Eternal - Graphics Study] by Simon Coenen
+* http://c0de517e.blogspot.com/2020/12/hallucinations-re-rendering-of.html[Hallucinations re: the rendering of Cyberpunk 2077] by Angelo Pesce
 
 ===== Older resources
 * http://www.punkuser.net/vsm/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen

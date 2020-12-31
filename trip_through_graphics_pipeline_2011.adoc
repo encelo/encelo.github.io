@@ -41,7 +41,7 @@ The API runtime keeps track of the current state your app has set, validates par
 
 ==== The user-mode graphics driver (or UMD)
 * It’s running in the same context and address space as your app (and the API runtime) and has no elevated privileges whatsoever. It implements a lower-level API (the DDI) that is called by D3D.
-* Some of the API state may actually end up being compiled into the shader.
+* Some of the API states may actually end up being compiled into the shader.
 * A lot of the creation/compilation work is deferred by the driver and only executed when it’s actually necessary. If you want to make sure something is actually created (as opposed to just having memory reserved), you need to issue a dummy draw call that uses it to “warm it up”.
 * It suballocates some larger memory blocks it gets from the KMD; actually mapping and unmapping pages is a kernel-mode privilege and can’t be done by the UMD.
 * It can do things like swizzling textures and schedule transfers between system memory and (mapped) video memory and the like. It can also write command buffers.
@@ -95,7 +95,7 @@ https://fgiesen.wordpress.com/2011/07/02/a-trip-through-the-graphics-pipeline-20
 
 ==== At long last, the command processor!
 * We only have a single command processor that needs to chew through our command buffer in order (since this command buffer contains things such as state changes and rendering commands that need to be executed in the right sequence). So we do the next best thing: Add a large enough buffer and prefetch far enough ahead to avoid hiccups.
-* Then there’s commands that change state. GPU is a massively parallel computer, and you can’t just change a global variable in a parallel system and hope that everything works out OK
+* Then there are commands that change state. GPU is a massively parallel computer, and you can’t just change a global variable in a parallel system and hope that everything works out OK
 ** Whenever you change a state, you require that all pending work that might refer to that state be finished (i.e. basically a partial pipeline flush).
 ** You can make hardware units completely stateless. Just pass the state change command through up to the stage that cares about it;
 ** Say you have enough registers (“slots”) to store two versions of every state, and some active job references slot 0. You can safely modify slot 1 without stopping that job, or otherwise interfering with it at all. Now you don’t need to send the whole state around through the pipeline – only a single bit per command that selects whether to use slot 0 or 1.
@@ -197,7 +197,7 @@ Texture samplers have a seriously long pipeline; a texture sampling operation ta
 Everyone seems to be using a two-level texture cache these days.
 [[mip_mapping]]Most texture sampling is done in Pixel Shaders with mip-mapping enabled, and the mip level for sampling is specifically chosen to make the screen pixel:texel ratio roughly 1:1 – that’s the whole point. But this means that, unless you happen to hit the exact same location in a texture again and again, each texture sampling operation will miss about 1 texel on average – the actual measured value with bilinear filtering is around 1.25 misses/request.
 
-Aany texture cache whatsoever is a massive win (since it drops you down from about 4 memory accesses per bilinear sample down to 1.25). But unlike with a CPU or shared memory for shader cores, there’s very little gain in going from say 4k of cache to 16k; we’re streaming larger texture data through the cache no matter what.
+_Any_ texture cache whatsoever is a massive win (since it drops you down from about 4 memory accesses per bilinear sample down to 1.25). But unlike with a CPU or shared memory for shader cores, there’s very little gain in going from say 4k of cache to 16k; we’re streaming larger texture data through the cache no matter what.
 
 Because of the 1.25 misses/sample average, texture sampler pipelines need to be long enough to sustain a full read from memory per sample without stalling. Texture sampler pipes are long enough to not stall for a memory read even though it takes 400-800 cycles.
 
