@@ -1,17 +1,34 @@
 :nofooter:
 == Angelo Theodorou
 
+[stripes=odd]
 |===
 |*Blog:* https://encelo.github.io|*LinkedIn:* http://www.linkedin.com/in/encelo
 |===
 
 === Work Experience
 
-==== March 2019 - Present, Self Employed (Granada)
-* Working full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine
-* Developing https://encelo.itch.io/spookyghost[SpookyGhost], a procedural animation tool for sprites made with the nCine
+==== January 2021 - To Date, The Multiplayer Guys (Remote from Granada)
+[stripes=odd]
+|===
+|*Role:* Senior Rendering Engineer
+|*Description:* I'm working on the rendering side of awesome AAA games.
+|*Technologies:* C++, Direct3D, Vulkan, HLSL, GLSL
+|*Tools:* Visual Studio, Perforce, RenderDoc
+|*Website:* https://themultiplayerguys.com/
+|===
+
+==== March 2019 - December 2020, Self Employed (Granada)
+[stripes=even]
+|===
+a|*Description:*
+
+* Worked full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine
+* Developed https://encelo.itch.io/spookyghost[SpookyGhost], a procedural animation tool for sprites made with the nCine
+|===
 
 ==== March 2017 - February 2019, Frostbite (Stockholm)
+[stripes=odd]
 |===
 |*Role:* Rendering Engineer
 a|*Description:* I have worked in the Image Quality rendering team of the Frostbite engine. Some of my tasks have been:
@@ -26,6 +43,7 @@ a|*Description:* I have worked in the Image Quality rendering team of the Frostb
 |===
 
 ==== June 2015 - February 2017, NaturalMotion Ltd. (Oxford)
+[stripes=odd]
 |===
 |*Role:* Android Technology Programmer
 a|*Description:* I have worked in the Core Game Tech team on the in-house Echo engine used for games like _Dawn of Titans_ and _Clumsy Ninja_. Some of my tasks have been:
@@ -41,6 +59,7 @@ I have also worked with the CSR2 team to migrate their building process from Ant
 |===
 
 ==== December 2012 - June 2015, ARM Ltd. (Cambridge)
+[stripes=odd]
 |===
 |*Role:* Senior Software Engineer
 a|*Description:* I have worked in the Middleware Graphics team in Mali Ecosystem for the Media Processing Group (MPG) to help game companies achieve the best on Mali GPUs. +
@@ -55,24 +74,13 @@ My role has been a combination of graphics and game programming, technical suppo
 |===
 
 ==== Jun 2010 - November 2012, SpinVector (Benevento)
+[stripes=odd]
 |===
 |*Role:* Programmer
-a|*Description:* I have worked as a game programmer and a multi-platform GUI programmer.
-
-* For the game _From Cheese_ (https://www.mobygames.com/game/from-cheese[MobyGames]) I have worked as an Android programmer (UI and SPen support) and as an additional Unity programmer.
-* For the game _AXL: Full Boost_ (https://www.mobygames.com/game/axl-full-boost[MobyGames]) I have worked on the iPhone user interface.
-* For _Bang!: The Official Videogame_ (http://www.mobygames.com/game/bang[MobyGames]) I have worked on the native GUI for multiple platforms and on additional gameplay programming.
+|*Description:* I have worked as a game programmer and a multi-platform GUI programmer on three released titles:
+https://www.mobygames.com/game/from-cheese[_From Cheese_], https://www.mobygames.com/game/axl-full-boost[_AXL: Full Boost_], and http://www.mobygames.com/game/bang[_Bang!: The Official Videogame_].
 |*Technologies:* C++, Qt4, Objective C, UiKit, Java, Android API
 |*Tools:* Visual Studio, Xcode, Qt Creator, qmake, Eclipse, Subversion, Unity
-|===
-
-=== Personal Projects
-
-[cols="16,84"]
-|===
-|2011 - to date|*nCine*: http://ncine.github.io, a cross-platform 2D game engine
-|*Technologies:*|C++, GFLW, SDL2, Lua, ImGui
-|*Tools:*|git, CMake, Cppcheck, Doxygen, Valgrind, Google Test, Google Benchmark, RenderDoc, Apitrace
 |===
 
 === Education

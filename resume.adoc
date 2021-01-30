@@ -1,17 +1,35 @@
 :nofooter:
 == Angelo Theodorou
 
+[stripes=odd]
 |===
 |*Blog:* https://encelo.github.io|*LinkedIn:* http://www.linkedin.com/in/encelo
 |===
 
 === Work Experience
 
-==== March 2019 - Present, Self Employed (Granada)
-* Working full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine
-* Developing https://encelo.itch.io/spookyghost[SpookyGhost], a procedural animation tool for sprites made with the nCine
+==== January 2021 - To Date, The Multiplayer Guys (Remote from Granada)
+[stripes=odd]
+|===
+|*Role:* Senior Rendering Engineer
+a|*Description:* Working on the rendering side of awesome AAA games
+
+|*Technologies:* C++, Direct3D, Vulkan, HLSL, GLSL
+|*Tools:* Visual Studio, Perforce, RenderDoc
+|*Website:* https://themultiplayerguys.com/
+|===
+
+==== March 2019 - December 2020, Self Employed (Granada)
+[stripes=even]
+|===
+a|*Description:*
+
+* Worked full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine
+* Developed https://encelo.itch.io/spookyghost[SpookyGhost], a procedural animation tool for sprites made with the nCine
+|===
 
 ==== March 2017 - February 2019, Frostbite (Stockholm)
+[stripes=odd]
 |===
 |*Role:* Rendering Engineer
 a|*Description:* I have worked in the Image Quality rendering team of the Frostbite engine. Some of my tasks have been:
@@ -28,6 +46,7 @@ a|*Description:* I have worked in the Image Quality rendering team of the Frostb
 |===
 
 ==== June 2015 - February 2017, NaturalMotion Ltd. (Oxford)
+[stripes=odd]
 |===
 |*Role:* Android Technology Programmer
 a|*Description:* I have worked in the Core Game Tech team on the in-house Echo engine used for games like _Dawn of Titans_ and _Clumsy Ninja_. Some of my tasks have been:
@@ -44,6 +63,7 @@ I have also worked with the CSR2 team to migrate their building process from Ant
 |===
 
 ==== December 2012 - June 2015, ARM Ltd. (Cambridge)
+[stripes=odd]
 |===
 |*Role:* Senior Software Engineer
 a|*Description:* I have worked in the Middleware Graphics team in Mali Ecosystem for the Media Processing Group (MPG) to help game companies achieve the best on Mali GPUs. +
@@ -59,6 +79,7 @@ My role has been a combination of graphics and game programming, technical suppo
 |===
 
 ==== Jun 2010 - November 2012, SpinVector (Benevento)
+[stripes=odd]
 |===
 |*Role:* Programmer
 a|*Description:* I have worked as a game programmer and a multi-platform GUI programmer.
@@ -72,6 +93,7 @@ a|*Description:* I have worked as a game programmer and a multi-platform GUI pro
 |===
 
 ==== Nov 2008 - Jun 2009, Raylight (Napoli)
+[stripes=odd]
 |===
 |*Role:* Intern programmer
 |*Description:* During my pre-graduation internship I have worked as a programmer for Raylight, an Italian multi-platform videogame software house.
@@ -83,9 +105,9 @@ I have conducted a research to simulate in real-time graphics effects like bloom
 
 === Personal Projects
 
-[cols="16,84"]
+[stripes=odd,cols="16,84"]
 |===
-|2011 - to date|*nCine*: http://ncine.github.io, a cross-platform 2D game engine
+|2011 - To Date|*nCine*: http://ncine.github.io, a cross-platform 2D game engine
 |2010|*Pacstats*: http://pacstats.googlecode.com, statistical charts generator for Arch Linux pacman activity
 |2005 - 2010|*OpenGL demos*: http://encelo.netsons.org/programming/opengl, experiments about SSAO, parallax mapping, DoF, deferred shading, HDR, toon shading, water rendering and stencil shadows
 |2006 - 2007|*GL O.B.S.*: http://globs.sourceforge.net, GL Open Benchmark Suite
