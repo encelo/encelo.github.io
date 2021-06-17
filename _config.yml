@@ -48,6 +48,7 @@ social-network-links:
   twitter: encelo
   patreon: encelo
   youtube: channel/UCpSq3HhW55r8pCY7vqXEsoA
+  itchio: encelo
 #  medium: yourname
 #  reddit: yourname
   linkedin: encelo
@@ -92,6 +93,9 @@ feed_show_excerpt: true
 # Whether or not to show a list of tags below each post preview in the feed page
 feed_show_tags: true
 
+# Add a search button to the navbar
+post_search: true
+
 # The keywords to associate with your website, for SEO purposes
 keywords: "programming,gamedev,game engine,c++,game development,linux"
 
@@ -135,6 +139,9 @@ site-css:
 
 # Fill in your Google Analytics ID to track your website using Google Analytics
 google_analytics: "UA-494292-4"
+
+# Fill in your Cloudflare Analytics beacon token to track your website using Cloudflare Analytics
+#cloudflare_analytics: ""
 
 # Google Tag Manager ID
 #gtm: ""
