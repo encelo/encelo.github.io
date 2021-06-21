@@ -389,6 +389,10 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges
 * https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html[DOOM Eternal - Graphics Study] by Simon Coenen
 * http://c0de517e.blogspot.com/2020/12/hallucinations-re-rendering-of.html[Hallucinations re: the rendering of Cyberpunk 2077] by Angelo Pesce
+* http://www.elopezr.com/castlevania-lords-of-shadow-2-graphics-study/[The Rendering of Castlevania Lords of Shadow 2] by Emilio López
+* http://www.elopezr.com/the-rendering-of-middle-earth-shadow-of-mordor/[The Rendering of Middle Earth: Shadow of Mordor] by Emilio López
+* http://www.elopezr.com/the-rendering-of-rise-of-the-tomb-raider/[The Rendering of Rise of the Tomb Raider] by Emilio López
+* http://www.elopezr.com/the-rendering-of-jurassic-world-evolution/[The Rendering of Jurassic World: Evolution] by Emilio López
 
 ===== Older resources
 * http://www.punkuser.net/vsm/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen
