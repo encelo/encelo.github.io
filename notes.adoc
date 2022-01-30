@@ -339,6 +339,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://bps11.idav.ucdavis.edu/talks/05-schedulingGraphicsPipeline-BPS2011-ragankelley.pdf[Scheduling the Graphics Pipeline (PDF)] by Jonathan Ragan-Kelley (SIGGRAPH 2011)
 * https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf[Triangles Are Precious - Let's Treat Them With Care (PDF)] by Dominik Baumeister (AMD)
 * https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/[A trip through the Graphics Pipeline 2011: Index] by Fabian "ryg" Giesen
+* https://vksegfault.github.io/posts/gentle-intro-gpu-inner-workings/[Gentle introduction to GPUs inner workings] by Adrian Jurczak
 
 ===== Nvidia GeForce
 * https://www.academia.edu/28633432/NVIDIA_Tesla_A_Unified_Graphics_and_Computing_Architecture[NVIDIA Tesla: A Unified Graphics and Computing Architecture] from IEEE Micro, March-April 2008
@@ -393,6 +394,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.elopezr.com/the-rendering-of-middle-earth-shadow-of-mordor/[The Rendering of Middle Earth: Shadow of Mordor] by Emilio López
 * http://www.elopezr.com/the-rendering-of-rise-of-the-tomb-raider/[The Rendering of Rise of the Tomb Raider] by Emilio López
 * http://www.elopezr.com/the-rendering-of-jurassic-world-evolution/[The Rendering of Jurassic World: Evolution] by Emilio López
+* http://www.elopezr.com/the-rendering-of-mafia-definitive-edition/[The Rendering of Mafia: Definitive Edition] by Emilio López
 
 ===== Older resources
 * http://www.punkuser.net/vsm/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen
@@ -439,6 +441,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-2-scalarize-all-the-lights/[Intro to GPU Scalarization: Part 2 - Scalarize All the Lights] by Francesco Cifariello Ciardi
 * http://www.joshbarczak.com/blog/?p=667[Why Geometry Shaders Are Slow (Unless you’re Intel)] by Joshua Barczak
 * https://gpuopen.com/learn/optimizing-gpu-occupancy-resource-usage-large-thread-groups/[Optimizing GPU occupancy and resource usage with large thread groups] by Sebastian Aaltonen
+* https://www.elopezr.com/temporal-aa-and-the-quest-for-the-holy-trail/[Temporal AA and the Quest for the Holy Trail] by Emilio López
 
 === Data Oriented Design
 * http://harmful.cat-v.org/software/OO_programming/_pdf/Pitfalls_of_Object_Oriented_Programming_GCAP_09.pdf[Pitfalls of Object Oriented Programming (PDF)] by Tony Albrecht (SCEE)
@@ -447,7 +450,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.slideshare.net/naughty_dog/multiprocessor-game-loops-lessons-from-uncharted-2-among-thieves[Multiprocessor Game Loops] by Jason Gregory (Naughty Dog)
 * http://twvideo01.ubm-us.net/o1/vault/gdc2015/presentations/Gyrling_Christian_Parallelizing_The_Naughty.pdf[Parallelizing the Naughty Dog Engine Using Fibers (PDF)] (http://www.gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine[GDC Vault video]) by Christian Gyrling (Naughty Dog)
 * http://lukasz.dk/mirror/research-scea/research/pdfs/GDC2003_Memory_Optimization_18Mar03.pdf[Memory Optimization (PDF)] by Christer Ericson (Sony Santa Monica)
-* http://www.dice.se/wp-content/uploads/2014/12/Introduction_to_Data-Oriented_Design.pdf[Introduction to Data Oriented Design (PDF)] by Daniel Collin (DICE)
+* https://www.slideshare.net/DICEStudio/introduction-to-data-oriented-design[Introduction to Data Oriented Design] by Daniel Collin (DICE)
 * http://gameprogrammingpatterns.com/data-locality.html[Data Locality] (cache miss, branch misprediction, pipeline flush) from http://gameprogrammingpatterns.com[Game Programming Patterns] by Robert Nystrom
 * http://media.steampowered.com/apps/valve/2015/Migdalskiy_Sergiy_Physics_Optimization_Strategies.pdf[Performance - Physics Optimization Strategies (PDF)] by Sergiy Migdalskiy (Valve)
 * http://cellperformance.beyond3d.com/articles/2009/08/roundup-recent-sketches-on-concurrency-data-design-and-performance.html[Roundup: Recent sketches on concurrency, data design and performance] by Mike Acton (Insomniac Games)
