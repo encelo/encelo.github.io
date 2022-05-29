@@ -281,7 +281,7 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 === Graphics
 
 * https://www.scratchapixel.com/[Scratchapixel - Learn Computer Graphics From Scratch!]
-* http://www.cs.uu.nl/docs/vakken/magr/2019-2020/index.html[Advanced Graphics] Course 2019/20 from Universiteit Utrecht
+* https://www.cs.uu.nl/docs/vakken/magr/2021-2022/index.html[Advanced Graphics] Course 2021/22 from Universiteit Utrecht
 
 ==== Mobile GPUs architecture
 The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Purnomo is a must-have.
@@ -395,6 +395,9 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.elopezr.com/the-rendering-of-rise-of-the-tomb-raider/[The Rendering of Rise of the Tomb Raider] by Emilio López
 * http://www.elopezr.com/the-rendering-of-jurassic-world-evolution/[The Rendering of Jurassic World: Evolution] by Emilio López
 * http://www.elopezr.com/the-rendering-of-mafia-definitive-edition/[The Rendering of Mafia: Definitive Edition] by Emilio López
+* http://www.mamoniem.com/behind-the-pretty-frames-god-of-war/[Behind the Pretty Frames: God of War] by Muhammad A. Moniem
+* http://www.mamoniem.com/behind-the-pretty-frames-elden-ring/[Behind the Pretty Frames: Elden Ring] by Muhammad A. Moniem
+* http://mamoniem.com/behind-the-pretty-frames-resident-evil/[Behind the Pretty Frames: Resident Evil] by Muhammad A. Moniem
 
 ===== Older resources
 * http://www.punkuser.net/vsm/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen
