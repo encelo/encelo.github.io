@@ -336,7 +336,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 
 ==== Desktop GPUs architecture
 * https://courses.cs.washington.edu/courses/cse558/11wi/lectures/05_gpuArchShaderCores_BPS_2011.pdf[From Shader Code to a Teraflop: How GPU Shader Cores Work (PDF)] by Kayvon Fatahalian (SIGGRAPH 2010)
-* http://bps11.idav.ucdavis.edu/talks/05-schedulingGraphicsPipeline-BPS2011-ragankelley.pdf[Scheduling the Graphics Pipeline (PDF)] by Jonathan Ragan-Kelley (SIGGRAPH 2011)
+* https://courses.cs.washington.edu/courses/cse558/11wi/lectures/08-GPU-architecture-II_BPS-2011.pdf[Scheduling the Graphics Pipeline (PDF)] by Jonathan Ragan-Kelley (SIGGRAPH 2011)
 * https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf[Triangles Are Precious - Let's Treat Them With Care (PDF)] by Dominik Baumeister (AMD)
 * https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/[A trip through the Graphics Pipeline 2011: Index] by Fabian "ryg" Giesen
 * https://vksegfault.github.io/posts/gentle-intro-gpu-inner-workings/[Gentle introduction to GPUs inner workings] by Adrian Jurczak
@@ -360,7 +360,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 
 ==== Graphics techniques
 * http://advances.realtimerendering.com/[Advances in Real-Time Rendering in 3D Graphics and Games]
-* https://newq.net/publications/more/s2015-many-lights-course[Real-Time Many-Light Management and Shadows with Clustered Shading] a SIGGRAPH 2015 Course
+* http://newq.net/publications/more/s2015-many-lights-course[Real-Time Many-Light Management and Shadows with Clustered Shading] a SIGGRAPH 2015 Course
 * http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf[Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)] by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo
 * https://therealmjp.github.io/posts/sss-intro/[An Introduction To Real-Time Subsurface Scattering] by Matt Pettineo
 * https://www.ea.com/frostbite/news/precomputed-global-illumination-in-frostbite[Precomputed Global Illumination in Frostbite] by Yuriy O'Donnell at GDC 2018
