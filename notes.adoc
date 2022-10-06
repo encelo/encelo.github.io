@@ -205,6 +205,7 @@ The book "_Effective Modern C++_" by Scott Meyers is a must-have.
 * https://en.wikipedia.org/wiki/Builder_pattern[Builder pattern]
 * Meyer's singleton
 * https://en.wikipedia.org/wiki/Object_pool_pattern[Object pool], https://en.wikipedia.org/wiki/Thread_pool[Thread pool], https://en.wikipedia.org/wiki/Flyweight_pattern[Flyweight pattern]
+* https://davekilian.com/cpp-type-erasure.html[C++ 'Type Erasure' Explained] by Dave Kilian
 
 === Math and geometry
 ==== Books
