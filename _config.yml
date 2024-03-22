@@ -60,8 +60,8 @@ social-network-links:
   github: encelo
   twitter: encelo
   patreon: encelo
-  youtube: channel/UCpSq3HhW55r8pCY7vqXEsoA
-  itchio: encelo
+  youtube: "@nCine"
+#  whatsapp: +12345678901
 #  medium: yourname
 #  reddit: yourname
   linkedin: encelo
@@ -84,6 +84,7 @@ social-network-links:
 #  kaggle: yourname
 #  hackerrank: yourname
 #  gitlab: yourname
+  itchio: encelo
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
@@ -103,6 +104,9 @@ share-links-active:
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
 url-pretty: "encelo.github.io"
+
+# Add the website title to the title of every page
+title-on-all-pages: true
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
