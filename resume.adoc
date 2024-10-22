@@ -12,10 +12,9 @@
 [stripes=odd]
 |===
 |*Role:* Senior Rendering Engineer
-a|*Description:* Working on the rendering side of awesome AAA games
-
-|*Technologies:* C++, Direct3D, Vulkan, HLSL, GLSL
-|*Tools:* Visual Studio, Perforce, RenderDoc
+a|*Description:* Worked on Bethesda's Starfield as a Senior Rendering Engineer. 👨‍🚀🪐
+|*Technologies:* C++, Direct3D 12, Vulkan, HLSL, GLSL
+|*Tools:* Visual Studio, Perforce, RenderDoc, PIX, Nsight Graphics
 |*Website:* https://themultiplayergroup.com/
 |===
 

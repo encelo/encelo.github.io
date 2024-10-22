@@ -67,9 +67,7 @@ It means it is not possible anymore to pass a `nullptr` as a target in the [HTML
 ### Minor Changes
 
 * As it is sometimes useful, it is now possible to multiply a vector by a matrix with the matrix on the right side of the multiplication.
-
 * C-style strings can now correctly be used as hashmap keys. Previously the key comparison code was comparing memory pointers instead of characters, making this type of strings useless with hashmap containers.
-
 * If you compile the engine statically you will have access to a couple of classes that save textures as PNG or WebP images.
 
 It is all for now. See you for the next update! :wink:
