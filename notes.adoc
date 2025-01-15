@@ -402,12 +402,13 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.elopezr.com/the-rendering-of-rise-of-the-tomb-raider/[The Rendering of Rise of the Tomb Raider] by Emilio López
 * http://www.elopezr.com/the-rendering-of-jurassic-world-evolution/[The Rendering of Jurassic World: Evolution] by Emilio López
 * http://www.elopezr.com/the-rendering-of-mafia-definitive-edition/[The Rendering of Mafia: Definitive Edition] by Emilio López
-* http://www.mamoniem.com/behind-the-pretty-frames-god-of-war/[Behind the Pretty Frames: God of War] by Muhammad A. Moniem
-* http://www.mamoniem.com/behind-the-pretty-frames-elden-ring/[Behind the Pretty Frames: Elden Ring] by Muhammad A. Moniem
-* http://mamoniem.com/behind-the-pretty-frames-resident-evil/[Behind the Pretty Frames: Resident Evil] by Muhammad A. Moniem
-* https://mamoniem.com/behind-the-pretty-frames-diablo-iv/[Behind the Pretty Frames: Diablo IV] by Muhammad A. Moniem
+* https://www.mamoniem.com/behind-the-pretty-frames-god-of-war/[Behind the Pretty Frames: God of War] by Muhammad A. Moniem
+* https://www.mamoniem.com/behind-the-pretty-frames-elden-ring/[Behind the Pretty Frames: Elden Ring] by Muhammad A. Moniem
+* https://www.mamoniem.com/behind-the-pretty-frames-resident-evil/[Behind the Pretty Frames: Resident Evil] by Muhammad A. Moniem
+* https://www.mamoniem.com/behind-the-pretty-frames-diablo-iv/[Behind the Pretty Frames: Diablo IV] by Muhammad A. Moniem
 * https://acko.net/blog/teardown-frame-teardown/[Teardown Frame Teardown: Rendering analysis] by Steven "Acko"
 * https://www.froyok.fr/blog/2024-01-breakdown-syndicate/[Breakdown: Syndicate (2012) - The greasy bloom finally demystified] by Léna "Froyok" Piquet
+* https://www.mamoniem.com/behind-the-pretty-frames-detroit-become-human/[Behind the Pretty Frames: Detroit Become Human] by Muhammad A. Moniem
 
 ===== Older resources
 * http://www.punkuser.net/vsm/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen
