@@ -8,7 +8,15 @@
 
 === Work Experience
 
-==== January 2021 - To Date, The Multiplayer Group (Remote from Granada)
+==== April 2024 - To Date, Self Employed (Granada)
+[stripes=even]
+|===
+a|*Description:*
+
+* Working full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine, and other projects
+|===
+
+==== January 2021 - March 2024, The Multiplayer Group (Remote from Granada)
 [stripes=odd]
 |===
 |*Role:* Senior Rendering Engineer

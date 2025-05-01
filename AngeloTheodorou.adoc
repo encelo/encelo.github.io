@@ -8,7 +8,15 @@
 
 === Work Experience
 
-==== January 2021 - To Date, The Multiplayer Group (Remote from Granada)
+==== April 2024 - To Date, Self Employed (Granada)
+[stripes=even]
+|===
+a|
+
+* Working full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine
+|===
+
+==== January 2021 - March 2024, The Multiplayer Group (Remote from Granada)
 [stripes=odd]
 |===
 |*Role:* Senior Rendering Engineer
@@ -21,7 +29,7 @@ a|*Description:* Worked on Bethesda's Starfield as a Senior Rendering Engineer.
 ==== March 2019 - December 2020, Self Employed (Granada)
 [stripes=even]
 |===
-a|*Description:*
+a|
 
 * Worked full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine
 * Developed https://encelo.itch.io/spookyghost[SpookyGhost], a procedural animation tool for sprites made with nCine and ImGui

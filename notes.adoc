@@ -483,3 +483,22 @@ Best practices for Arm GPUs (PDF)] by Pete Harris (ARM)
 * https://gist.github.com/ocornut/cb980ea183e848685a36[Memory, Cache, CPU optimization resources] by Omar Cornut
 * http://aras-p.info/texts/files/2018Academy%20-%20ECS-DoD.pdf[Entity Component Systems & Data Oriented Design (PDF)] by Aras Pranckevičius (Unity Technologies)
 * http://nfrechette.github.io/2015/05/05/caches_everywhere/[Caches everywhere] by Nicholas Frechette
+
+=== Artificial Intelligence
+==== Books
+* "_Deep Learning: A Visual Approach_" by Andrew Glassner
+* "_Deep Learning_" by Ian Goodfellow, Yoshua Bengio, and Aaron Courville
+
+==== Resources
+* http://neuralnetworksanddeeplearning.com/[Neural Networks and Deep Learning] book by Michael Nielsen (Dec 2019)
+* https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/[What Is ChatGPT Doing … and Why Does It Work?] by Sthephen Wolfram
+* https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi[Neural Networks] YouTube playlist by 3Blue1Brown
+
+==== Wikipedia
+* https://en.wikipedia.org/wiki/Activation_function[Activation function], https://en.wikipedia.org/wiki/Sigmoid_function[Sigmoid function], https://en.wikipedia.org/wiki/Artificial_neuron[Artificial neuron]
+* https://en.wikipedia.org/wiki/Neural_network_(machine_learning)[Neural network], https://en.wikipedia.org/wiki/Feedforward_neural_network[FNN], https://en.wikipedia.org/wiki/Recurrent_neural_network[RNN], https://en.wikipedia.org/wiki/Convolutional_neural_network[CNN]
+* https://en.wikipedia.org/wiki/Chain_rule[Chain rule], https://en.wikipedia.org/wiki/Loss_function[Loss function], https://en.wikipedia.org/wiki/Loss_functions_for_classification[Loss functions for classification]
+* https://en.wikipedia.org/wiki/Gradient_descent[Gradient descent], https://en.wikipedia.org/wiki/Stochastic_gradient_descent[Stochastic gradient descent], https://en.wikipedia.org/wiki/Vanishing_gradient_problem[Vanishing gradient problem]
+* https://en.wikipedia.org/wiki/Backpropagation[Backpropagation]
+* https://en.wikipedia.org/wiki/Attention_(machine_learning)[Attention], https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)[Transformer], https://en.wikipedia.org/wiki/Attention_Is_All_You_Need[Attention Is All You Need]
+
