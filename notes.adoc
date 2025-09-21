@@ -409,6 +409,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * https://acko.net/blog/teardown-frame-teardown/[Teardown Frame Teardown: Rendering analysis] by Steven "Acko"
 * https://www.froyok.fr/blog/2024-01-breakdown-syndicate/[Breakdown: Syndicate (2012) - The greasy bloom finally demystified] by Léna "Froyok" Piquet
 * https://www.mamoniem.com/behind-the-pretty-frames-detroit-become-human/[Behind the Pretty Frames: Detroit Become Human] by Muhammad A. Moniem
+* https://blog.thomaspoulet.fr/posts/anno-1800-frame-analysis/[Anno 1800: Frame Analysis] by Thomas Poulet
 
 ===== Older resources
 * http://www.punkuser.net/vsm/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen
