@@ -1,0 +1,49 @@
+theme = "blowfish"
+baseURL = "https://encelo.github.io/"
+enableRobotsTXT = true
+summaryLength = 20
+languageCode = "en"
+languageName = "English"
+title = "encelo.github.io"
+enableEmoji = true
+googleAnalytics = "G-VBK0P4N20B"
+
+[pagination]
+  pagerSize = 20
+
+[permalinks]
+  #posts = ':filename/'
+  posts = '/:year-:month-:day-:slug/'
+  attic = '/:slug/'
+
+[imaging]
+  anchor = 'Center'
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  author = "authors"
+  series = "series"
+
+[tableOfContents]
+  startLevel = 2
+  endLevel = 4
+
+[security.exec]
+  allow = ["^asciidoctor$"]
+
+[sitemap]
+  changefreq = 'daily'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
+# To have /feed.xml like with Jekyll
+[outputFormats.Feed]
+  mediaType = "application/rss+xml"
+  baseName = "feed"
+  isPlainText = true
+  rel = "alternate"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON", "Feed"]
+  section = ["HTML", "RSS"]
