@@ -1,0 +1,95 @@
+:nofooter:
+== Angelo Theodorou
+
+[stripes=odd]
+|===
+|*Blog:* https://encelo.github.io|*LinkedIn:* http://www.linkedin.com/in/encelo
+|===
+
+=== Work Experience
+
+==== April 2024 - To Date, Self Employed (Granada)
+[stripes=even]
+|===
+a|
+
+* Working full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine
+|===
+
+==== January 2021 - March 2024, The Multiplayer Group (Remote from Granada)
+[stripes=odd]
+|===
+|*Role:* Senior Rendering Engineer
+a|*Description:* Worked on Bethesda's Starfield as a Senior Rendering Engineer.
+|*Technologies:* C++, Direct3D 12, Vulkan, HLSL, GLSL
+|*Tools:* Visual Studio, Perforce, RenderDoc, PIX, Nsight Graphics
+|*Website:* https://themultiplayergroup.com/
+|===
+
+==== March 2019 - December 2020, Self Employed (Granada)
+[stripes=even]
+|===
+a|
+
+* Worked full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine
+* Developed https://encelo.itch.io/spookyghost[SpookyGhost], a procedural animation tool for sprites made with nCine and ImGui
+|===
+
+==== March 2017 - February 2019, Frostbite (Stockholm)
+[stripes=odd]
+|===
+|*Role:* Rendering Engineer
+a|*Description:* I have worked in the Image Quality rendering team of the Frostbite engine. Some of my tasks have been:
+
+* Help with the DirectX 12 RTX integration in the editor
+* Add a way to capture a sequence of screenshots to test temporal effects stabilization
+* Transition textured and frustum lights from deferred/stencil to tiled lighting
+* Add support for newer versions of Visual Studio in the custom Enlighten build system
+* Initial analysis of the integration effort to merge back Bioware's Anthem Enlighten changes
+|*Technologies:* C++, Direct3D, HLSL
+|*Tools:* Visual Studio, Perforce, RenderDoc
+|===
+
+==== June 2015 - February 2017, NaturalMotion Ltd. (Oxford)
+[stripes=odd]
+|===
+|*Role:* Android Technology Programmer
+a|*Description:* I have worked in the Core Game Tech team on the in-house Echo engine used for games like _Dawn of Titans_ and _Clumsy Ninja_. Some of my tasks have been:
+
+* Initial porting of the engine from OpenGL to Vulkan
+* Rewrite the API for atomic operations on all supported platforms
+* Refactor the ARM NEON intrinsics code for vector and matrix operations with unit tests
+* Help with the transition from Android Lollipop to Marshmallow
+
+I have also worked with the CSR2 team to migrate their building process from Ant to Gradle.
+|*Technologies:* C++, Java, OpenGL ES, GLSL, Vulkan, Android API
+|*Tools:* Visual Studio, Subversion, git
+|===
+
+==== December 2012 - June 2015, ARM Ltd. (Cambridge)
+[stripes=odd]
+|===
+|*Role:* Senior Software Engineer
+a|*Description:* I have worked in the Middleware Graphics team in Mali Ecosystem for the Media Processing Group (MPG) to help game companies achieve the best on Mali GPUs. +
+My role has been a combination of graphics and game programming, technical support to game middleware companies, presentations at events worldwide and real-time applications profiling and optimization:
+
+* I have worked on Unreal Engine 4 to help porting it to ARM 64-bit
+* I have written the codebase for a Unity demo revealed at Unite 2014
+* I have presented sponsored sessions at GDC, Unite and Gamelab Barcelona
+* I have assisted companies like Frostbite, Epic Games and Unity with the Mali tools
+|*Technologies:* C++, C#, Python, OpenGL ES, GLSL
+|*Tools:* Visual Studio, Qt Creator, CMake, git, Unity
+|===
+
+==== Jun 2010 - November 2012, SpinVector (Benevento)
+[stripes=odd]
+|===
+|*Role:* Programmer
+|*Description:* I have worked as a game programmer and a multi-platform GUI programmer on three released titles:
+https://www.mobygames.com/game/from-cheese[_From Cheese_], https://www.mobygames.com/game/axl-full-boost[_AXL: Full Boost_], and http://www.mobygames.com/game/bang[_Bang!: The Official Videogame_].
+|*Technologies:* C++, Qt4, Objective C, UiKit, Java, Android API
+|*Tools:* Visual Studio, Xcode, Qt Creator, qmake, Eclipse, Subversion, Unity
+|===
+
+=== Education
+* Bachelor's Degree in Computer Science at the "Federico II" University of Naples with final mark 110/110 cum laude (highest mark with honours)

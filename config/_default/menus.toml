@@ -1,0 +1,53 @@
+[[main]]
+  name = "About Me"
+  pageRef = "about"
+  weight = 10
+
+[[main]]
+  name = "Posts"
+  pageRef = "posts"
+  weight = 15
+
+[[main]]
+  name = "Pages"
+  identifier = "pages"
+  weight = 20
+
+[[main]]
+  name = "nCine"
+  url = "https://ncine.github.io/"
+  weight = 25
+
+[[main]]
+  parent = "pages"
+  name = "Resume"
+  url = "/resume.html"
+  weight = 10
+
+[[main]]
+  parent = "pages"
+  name = "Resume (PDF)"
+  url = "/AngeloTheodorou.pdf"
+  weight = 15
+
+[[main]]
+  parent = "pages"
+  name = "Study Notes"
+  url = "/notes.html"
+  weight = 20
+
+[[main]]
+  parent = "pages"
+  name = "GPU Trip 2011"
+  url = "/trip_through_graphics_pipeline_2011.html"
+  weight = 25
+
+[[footer]]
+  name = "Support"
+  pageRef = "support"
+  weight = 10
+
+[[footer]]
+  name = "Credits"
+  pageRef = "credits"
+  weight = 15
