@@ -1,0 +1,505 @@
+:nofooter:
+:toc: left
+:toclevels: 3
+== My study notes
+I hope you will find my notes useful in case you intend to study more about engine and graphics programming.
+
+=== C++
+* ISOCPP https://isocpp.org/faq[C++ Super-FAQ]
+* ISOCPP http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines[C++ Core Guidelines]
+* Marshall Cline's FAQ (OLD)
+** Mirror of 2006 version: http://www.dietmar-kuehl.de/mirror/c++-faq/
+** Mirror of 2003 version: https://www.cs.rit.edu/~mjh/docs/c++-faq/
+
+==== C++ Super-FAQ
+Questions in round brackets are the ones I find more important or difficult to grasp at first.
+The numbers are a reference inside the 29/07/2011 Marshall Cline's C++ FAQ.
+
+* https://isocpp.org/wiki/faq/classes-and-objects[*Classes and Inheritance: Classes and Objects*]
+** https://isocpp.org/wiki/faq/classes-and-objects#directly-access-private-in-other-instances[7.7] - Can a method directly access the `non-public` members of another instance of its class?
+* https://isocpp.org/wiki/faq/references[*General Topics: References*]
+** https://isocpp.org/wiki/faq/references#returning-refs[8.3] - What happens if you return a reference?
+** https://isocpp.org/wiki/faq/references#method-chaining[8.4] - What does `object.method1().method2()` mean?
+** https://isocpp.org/wiki/faq/references#refs-vs-ptrs[8.6] - When should I use references, and when should I use pointers?
+* https://isocpp.org/wiki/faq/inline-functions[*Beyond Classes: Inline functions*]
+** https://isocpp.org/wiki/faq/inline-functions#overview-inline-fns[9.1] - What's the deal with `inline` functions?
+** https://isocpp.org/wiki/faq/inline-functions#inline-vs-macros[9.5] - Why should I use `inline` functions instead of plain old `#define` macros?
+** https://isocpp.org/wiki/faq/inline-functions#inline-nonmember-fns[9.6] - How do you tell the compiler to make a non-member function `inline`?
+** https://isocpp.org/wiki/faq/inline-functions#inline-member-fns[9.7] - How do you tell the compiler to make a member function `inline`?
+** https://isocpp.org/wiki/faq/inline-functions#inline-member-fns-more[9.8] - Is there another way to tell the compiler to make a member function `inline`?
+** https://isocpp.org/wiki/faq/inline-functions#where-to-put-inline-keyword[9.9] - With `inline` member functions that are defined outside the class, is it best to put the `inline` keyword next to the declaration within the class body, next to the definition outside the class body, or both?
+* https://isocpp.org/wiki/faq/ctors[*Classes and Inheritance: Constructors*]
+** https://isocpp.org/wiki/faq/ctors#init-methods[10.3] - Can one constructor of a class call another constructor of the same class to initialize the `this` object?
+** https://isocpp.org/wiki/faq/ctors#default-ctor[10.4] - Is the default constructor for `Fred` always `Fred::Fred()`?
+** https://isocpp.org/wiki/faq/ctors#arrays-call-default-ctor[(_10.5_)] - Which constructor gets called when I create an array of `Fred` objects?
+** https://isocpp.org/wiki/faq/ctors#init-lists[10.6] - Should my constructors use "initialization lists" or "assignment"?
+** https://isocpp.org/wiki/faq/ctors#named-ctor-idiom[10.8] - What is the "Named Constructor Idiom"?
+** https://isocpp.org/wiki/faq/ctors#return-by-value-optimization[(_10.9_)] - Does return-by-value mean extra copies and extra overhead?
+** https://isocpp.org/wiki/faq/ctors#return-local-var-by-value-optimization[10.10] - What about returning a local variable by value? Does the local exist as a separate object, or does it get optimized away?
+** https://isocpp.org/wiki/faq/ctors#static-init-order[(_10.14_)] - What's the "``static`` initialization order 'fiasco' (problem)"?
+** https://isocpp.org/wiki/faq/ctors#named-parameter-idiom[10.20] - What is the "Named Parameter Idiom"?
+** https://isocpp.org/wiki/faq/ctors#explicit-ctors[(_10.22_)] - What is the purpose of the `explicit` keyword?
+* https://isocpp.org/wiki/faq/dtors[*Classes and Inheritance: Destructors*]
+** https://isocpp.org/wiki/faq/dtors#artificial-block-to-control-lifetimes[11.7] - Okay, okay, already; I won't explicitly call the destructor of a local; but how do I handle the situation from the previous FAQ?
+** https://isocpp.org/wiki/faq/dtors#placement-new[11.10] - What is "placement ``new``" and why would I use it?
+** https://isocpp.org/wiki/faq/dtors#memory-pools[11.14] - Is there a way to force `new` to allocate memory from a specific memory area?
+* https://isocpp.org/wiki/faq/assignment-operators[*Classes and Inheritance: Assignment Operators*]
+** https://isocpp.org/wiki/faq/assignment-operators#self-assignment-how[12.3] - Okay, okay, already; I'll handle self-assignment. How do I do it?
+** https://isocpp.org/wiki/faq/assignment-operators#assignment-op-in-derived-class[12.4] - I'm creating a derived class; should my assignment operator call my base class's assignment operator?
+* https://isocpp.org/wiki/faq/operator-overloading[*Classes and Inheritance: Operator Overloading*]
+** https://isocpp.org/wiki/faq/operator-overloading#op-ov-rules[13.9] - What are some guidelines / "rules of thumb" for overloading operators?
+** https://isocpp.org/wiki/faq/operator-overloading#matrix-subscript-op[13.10] - How do I create a subscript `operator` for a `Matrix` class?
+** https://isocpp.org/wiki/faq/operator-overloading#increment-pre-post-overloading[13.14] - How can I overload the prefix and postfix forms of operators {plus}{plus} and --?
+** https://isocpp.org/wiki/faq/operator-overloading#increment-pre-post-speed[13.15] - Which is more efficient: `i{plus}{plus}` or `{plus}{plus}i`?
+* https://isocpp.org/wiki/faq/friends[*Classes and Inheritance: Friends*]
+** https://isocpp.org/wiki/faq/friends#pros-cons-friend-fns[14.3] - What are some advantages/disadvantages of using `friend` functions?
+** https://isocpp.org/wiki/faq/friends#member-vs-friend-fns[14.5] - Should my class declare a member function or a `friend` function?
+* https://isocpp.org/wiki/faq/freestore-mgmt[*General Topics: Memory Management*]
+** https://isocpp.org/wiki/faq/freestore-mgmt#new-vs-malloc[16.4] - Why should I use `new` instead of trustworthy old `malloc()`?
+** https://isocpp.org/wiki/faq/freestore-mgmt#delete-handles-null[16.8] - Do I need to check for null before `delete p`?
+** https://isocpp.org/wiki/faq/freestore-mgmt#new-doesnt-leak-if-ctor-throws[16.10] - In `p = new Fred()`, does the `Fred` memory "leak" if the Fred constructor throws an exception?
+** https://isocpp.org/wiki/faq/freestore-mgmt#static-create-methods[16.21] - How can I force objects of my class to always be created via `new` rather than as local, namespace-scope, global, or `static`?
+* https://isocpp.org/wiki/faq/exceptions[*Beyond Classes: Exceptions and Error Handling*]
+** https://isocpp.org/wiki/faq/exceptions#exceptions-avoid-spreading-out-error-logic[17.2] - I'm still not convinced: a 4-line code snippet shows that return-codes aren't any worse than exceptions; why should I therefore use exceptions on an application that is orders of magnitude larger?
+** https://isocpp.org/wiki/faq/exceptions#exceptions-avoid-two-return-types[17.3] - How do exceptions simplify my function return type and parameter types?
+** https://isocpp.org/wiki/faq/exceptions#exceptions-separate-good-and-bad-path[17.4] - What does it mean that exceptions separate the "good path" (or "happy path") from the "bad path"?
+** https://isocpp.org/wiki/faq/exceptions#ctors-can-throw[17.8] - How can I handle a constructor that fails?
+** https://isocpp.org/wiki/faq/exceptions#dtors-shouldnt-throw[17.9] - How can I handle a destructor that fails?
+** https://isocpp.org/wiki/faq/exceptions#selfcleaning-members[17.10] - How should I handle resources if my constructors may throw exceptions?
+* https://isocpp.org/wiki/faq/const-correctness[*General Topics: Const Correctness*]
+** https://isocpp.org/wiki/faq/const-correctness#const-ptr-vs-ptr-const[18.5] - What's the difference between "```const X* p```", "```X* const p```" and "```const X* const p```"?
+** https://isocpp.org/wiki/faq/const-correctness#const-ref-nonsense[18.7] - Does "```C& const x```" make any sense?
+** https://isocpp.org/wiki/faq/const-correctness#const-member-fns[18.10] - What is a "``const`` member function"?
+** https://isocpp.org/wiki/faq/const-correctness#const-overloading[18.12] - What's the deal with "``const``-overloading"?
+** https://isocpp.org/wiki/faq/const-correctness#mutable-data-members[(_18.13_)] - What do I do if I want a `const` member function to make an "invisible" change to a data member?
+** https://isocpp.org/wiki/faq/const-correctness#aliasing-and-const[18.15] - Why does the compiler allow me to change an `int` after I've pointed at it with a `const int*`?
+* https://isocpp.org/wiki/faq/virtual-functions[*Classes and Inheritance: Inheritance — `virtual` functions*]
+** https://isocpp.org/wiki/faq/virtual-functions#dyn-binding[20.3] - What's the difference between how `virtual` and non-`virtual` member functions are called?
+** https://isocpp.org/wiki/faq/virtual-functions#dyn-binding2[20.4] - What happens in the hardware when I call a virtual function? How many layers of indirection are there? How much overhead is there?
+** https://isocpp.org/wiki/faq/virtual-functions#fully-qualified-calls-to-base[20.5] - How can a member function in my derived class call the same function from its base class?
+** https://isocpp.org/wiki/faq/virtual-functions#inversion[20.6] - I have a heterogeneous list of objects, and my code needs to do class-specific things to the objects. Seems like this ought to use dynamic binding but can't figure it out. What should I do?
+** https://isocpp.org/wiki/faq/virtual-functions#virtual-dtors[(_20.7_)] - When should my destructor be `virtual`?
+** https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors[20.8] - What is a "``virtual`` constructor"?
+* https://isocpp.org/wiki/faq/proper-inheritance[*Classes and Inheritance: Inheritance — Proper Inheritance and Substitutability*]
+** https://isocpp.org/wiki/faq/proper-inheritance#array-derived-vs-base[(_21.4_)] - Is an array of `Derived` a kind-of array of `Base`?
+** https://isocpp.org/wiki/faq/proper-inheritance#circle-ellipse[21.6] - Is a `Circle` a kind-of an `Ellipse`?
+** https://isocpp.org/wiki/faq/proper-inheritance#circle-ellipse-nonintuitive[21.8] - But I have a Ph.D. in Mathematics, and I'm _sure_ a Circle is a kind of an Ellipse! Does this mean Marshall Cline is stupid? Or that C{plus}{plus} is stupid? Or that OO is stupid?
+** https://isocpp.org/wiki/faq/proper-inheritance#sortedlist-kindof-list[21.12] - If `SortedList` has exactly the same public interface as `List`, is `SortedList` a kind-of `List`?
+* https://isocpp.org/wiki/faq/abcs[*Section 22: Inheritance — Abstract Base Classes (ABCs)*]
+** https://isocpp.org/wiki/faq/abcs#pure-virtual-fns[22.4] - What is a "pure virtual" member function?
+** https://isocpp.org/wiki/faq/abcs#copy-of-abc-via-clone[22.5] - How do you define a copy constructor or assignment `operator` for a class that contains a pointer to a (abstract) base class?
+* https://isocpp.org/wiki/faq/strange-inheritance[*Classes and Inheritance: Inheritance — what your mother never told you*]
+** https://isocpp.org/wiki/faq/strange-inheritance#calling-virtuals-from-base[23.1] - Is it okay for a non-`virtual` function of the base class to call a `virtual` function?
+** https://isocpp.org/wiki/faq/strange-inheritance#protected-virtuals[23.3] - Should I use protected virtuals instead of public virtuals?
+** https://isocpp.org/wiki/faq/strange-inheritance#private-virtuals[23.4] - When should someone use private virtuals?
+** https://isocpp.org/wiki/faq/strange-inheritance#calling-virtuals-from-ctors[23.5] - When my base class's constructor calls a `virtual` function on its `this` object, why doesn't my derived class's override of that `virtual` function get invoked?
+** https://isocpp.org/wiki/faq/strange-inheritance#hiding-rule[(_23.9_)] - What's the meaning of, `Warning: Derived::f(char) hides Base::f(double)`?
+* https://isocpp.org/wiki/faq/private-inheritance[*Classes and Inheritance: Inheritance — `private` and `protected` inheritance*]
+** https://isocpp.org/wiki/faq/private-inheritance#priv-inherit-like-compos[24.2] - How are "``private`` inheritance" and "composition" similar?
+** https://isocpp.org/wiki/faq/private-inheritance#priv-inherit-vs-compos[24.3] - Which should I prefer: composition or private inheritance?
+** https://isocpp.org/wiki/faq/private-inheritance#prot-vs-priv-inherit[24.5] - How is `protected` inheritance related to `private` inheritance?
+** https://isocpp.org/wiki/faq/private-inheritance#access-rules-with-priv-inherit[24.6] - What are the access rules with `private` and `protected` inheritance?
+* https://isocpp.org/wiki/faq/multiple-inheritance[*Classes and Inheritance: Inheritance — Multiple and Virtual Inheritance*]
+** https://isocpp.org/wiki/faq/multiple-inheritance#mi-disciplines[25.4] - What are some disciplines for using multiple inheritance?
+** https://isocpp.org/wiki/faq/multiple-inheritance#mi-example[25.5] - Can you provide an example that demonstrates the above guidelines?
+** https://isocpp.org/wiki/faq/multiple-inheritance#virtual-inheritance-where[(_25.9_)] - Where in a hierarchy should I use virtual inheritance?
+** https://isocpp.org/wiki/faq/multiple-inheritance#mi-delegate-to-sister[25.10] - What does it mean to "delegate to a sister class" via virtual inheritance?
+* https://isocpp.org/wiki/faq/intrinsic-types[*General Topics: Built-in / Intrinsic / Primitive Data Types*]
+** https://isocpp.org/wiki/faq/intrinsic-types#is-power-of-2[26.12] - How can I tell if an integer is a power of two without looping?
+** https://isocpp.org/wiki/faq/intrinsic-types#return-from-functions[26.13] - What should be returned from a function?
+* https://isocpp.org/wiki/faq/coding-standards[*Overview Topics: Coding Standards*]
+** https://isocpp.org/wiki/faq/coding-standards#lint-guidelines[27.10] - Are there any lint-like guidelines for C{plus}{plus}?
+* https://isocpp.org/wiki/faq/newbie[*Overview Topics: Newbie Questions & Answers*]
+** https://isocpp.org/wiki/faq/newbie#choosing-int-size[29.5] - What are the criteria for choosing between `short` / `int` / `long` data types?
+** https://isocpp.org/wiki/faq/newbie#const-vs-define[29.7] - Why would I use a `const` variable / `const` identifier as opposed to `#define`?
+** https://isocpp.org/wiki/faq/newbie#floating-point-arith[29.17] - Why doesn't my floating-point comparison work?
+** https://isocpp.org/wiki/faq/newbie#floating-point-arith2[29.18] - Why is `cos(x) != cos(y)` even though `x == y`? (Or sine or tangent or log or just about any other floating point computation)
+** https://isocpp.org/wiki/faq/newbie#enumeration-is-its-own-type[(_29.19_)] - What is the type of an enumeration such as `enum Color`? Is it of type `int`?
+** https://isocpp.org/wiki/faq/newbie#enumeration-type-ops[29.20] - If an enumeration type is distinct from any other type, what good is it? What can you do with it?
+* https://isocpp.org/wiki/faq/templates[*Beyond Classes: Templates*]
+** https://isocpp.org/wiki/faq/templates#class-templates[35.2] - What's the syntax / semantics for a "class template"?
+** https://isocpp.org/wiki/faq/templates#fn-templates[35.3] - What's the syntax / semantics for a "function template"?
+** https://isocpp.org/wiki/faq/templates#fn-templates-explicit-calls[35.4] - How do I explicitly select which version of a function template should get called?
+** https://isocpp.org/wiki/faq/templates#template-specialization[(_35.7_)] - My template function does something special when the template type `T` is `int` or `std::string`; how do I write my template so it uses the special code when `T` is one of those specific types?
+** https://isocpp.org/wiki/faq/templates#template-specialization-piecemeal[35.9] - But most of the code in my template function is the same; is there some way to get the benefits of template specialization without duplicating all that source code?
+** https://isocpp.org/wiki/faq/templates#templates-vs-overloading[35.11] - So templates are overloading, right?
+** https://isocpp.org/wiki/faq/templates#template-friends[35.16] - Why do I get linker errors when I use template friends?
+** https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-types[35.18] - Why am I getting errors when my template-derived-class uses a nested type it inherits from its template-base-class?
+** https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-members[35.19] - Why am I getting errors when my template-derived-class uses a member it inherits from its template-base-class?
+** https://isocpp.org/wiki/faq/templates#template-proxies[35.22] - Follow-up to previous: can I pass in the underlying structure and the element-type separately?
+
+==== Topics
+A list of concepts, ideas, idioms, patterns and keywords to understand and remember.
+The numbers in round brackets are a reference inside the 29/07/2011 Marshall Cline's C++ FAQ.
+
+* Method chaining (https://isocpp.org/wiki/faq/references#method-chaining[8.4])/ Named Parameter Idiom (https://isocpp.org/wiki/faq/ctors#named-parameter-idiom[10.20])
+* https://en.cppreference.com/w/cpp/language/converting_constructor[Converting constructor] and https://en.cppreference.com/w/cpp/language/cast_operator[conversion operator]
+* Operator overloading (https://isocpp.org/wiki/faq/operator-overloading[Section 13])
+* `explicit` constructor (https://isocpp.org/wiki/faq/ctors#explicit-ctors[10.22])
+* Qualifiers: `const` (https://isocpp.org/wiki/faq/newbie#const-vs-define[29.7]) / `mutable` (https://isocpp.org/wiki/faq/const-correctness#mutable-data-members[18.13]) / https://en.cppreference.com/w/cpp/language/cv[`volatile`] / https://en.cppreference.com/w/c/language/restrict[`restrict`]
+* v-table mechanism https://isocpp.org/wiki/faq/virtual-functions#dyn-binding2[(20.4)]
+* Pure virtual member functions (https://isocpp.org/wiki/faq/abcs#pure-virtual-fns[22.4]) (can have an https://stackoverflow.com/questions/2089083/pure-virtual-function-with-implementation[implementation]), abstract base classes (https://isocpp.org/wiki/faq/abcs[Section 22])
+* Covariant Return Types and "virtual constructor" (https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors[20.8], https://isocpp.org/wiki/faq/abcs#copy-of-abc-via-clone[22.5], https://www.lwithers.me.uk/articles/covariant.html[HOWTO: Covariant Return Types in C++])
+* Object slicing (https://isocpp.org/wiki/faq/proper-inheritance#array-derived-vs-base[21.4], https://isocpp.org/wiki/faq/value-vs-ref-semantics#pass-by-value[31.8], https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors[20.8])
+* Template Method pattern and private virtuals (https://isocpp.org/wiki/faq/strange-inheritance#private-virtuals[23.4]) (http://www.gotw.ca/publications/mill18.htm[Virtuality] by Herb Sutter)
+* Private inheritance (https://isocpp.org/wiki/faq/private-inheritance#priv-inherit-like-compos[24.2], https://isocpp.org/wiki/faq/private-inheritance#priv-inherit-vs-compos[24.3]) (http://www.gotw.ca/publications/mill06.htm[Uses and Abuses of Inheritance, Part 1] by Herb Sutter)
+* Static initialization order "fiasco" (https://isocpp.org/wiki/faq/ctors#static-init-order[10.14])
+* Meyer's singleton (https://isocpp.org/wiki/faq/ctors#construct-on-first-use-v2[10.16])
+* https://en.wikipedia.org/wiki/One_Definition_Rule[One Definition Rule] (ODR)
+* https://en.wikipedia.org/wiki/Common_subexpression_elimination[Common Subexpression Elimination] (CSE)
+* Different kind of casts: C style, https://en.cppreference.com/w/cpp/language/static_cast[`static_cast`], https://en.cppreference.com/w/cpp/language/dynamic_cast[`dynamic_cast`], https://en.cppreference.com/w/cpp/language/const_cast[`const_cast`] and https://en.cppreference.com/w/cpp/language/reinterpret_cast[`reinterpret_cast`]
+* https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization[Resource Acquisition Is Initialization] (RAII)
+* https://en.wikipedia.org/wiki/Run-time_type_information[Run-Time Type Information] (RTTI)
+* https://en.wikipedia.org/wiki/SOLID[SOLID] principles
+
+==== More topics
+A second list of concepts to keep in mind, only a bit harder this time.
+As before, the numbers in round brackets are a reference inside the 29/07/2011 Marshall Cline's C++ FAQ.
+
+For optimizations have also a look at https://www.agner.org/optimize/optimizing_cpp.pdf[Optimizing software in C{plus}{plus}] and at the other free https://www.agner.org/optimize/[optimization] books by Agner Fog.
+Another free C++ book is http://www.icce.rug.nl/documents/cplusplus/[The C{plus}{plus} Annotations].
+
+* Placement new (https://isocpp.org/wiki/faq/dtors#placement-new[11.10])
+* https://isocpp.org/wiki/faq/pointers-to-members[Pointers to Member Function]
+* Diamond problem (https://isocpp.org/wiki/faq/multiple-inheritance#mi-diamond[25.8], https://isocpp.org/wiki/faq/multiple-inheritance#virtual-inheritance-where[25.9]) and multiple inheritance (https://isocpp.org/wiki/faq/multiple-inheritance[Section 25])
+* Hiding rule (https://isocpp.org/wiki/faq/strange-inheritance#hiding-rule[23.9], https://isocpp.org/wiki/faq/strange-inheritance#protected-virtuals[23.3]), https://stackoverflow.com/questions/4837399/c-rationale-behind-hiding-rule[C++: rationale behind hiding rule]
+* Templates (https://isocpp.org/wiki/faq/templates[Section 35])
+* https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)[Rule of Three] / five / zero, https://en.wikipedia.org/wiki/Special_member_functions[special member functions]
+* Return value optimization (NRVO, RVO) (https://isocpp.org/wiki/faq/ctors#return-by-value-optimization[10.9]) / Copy elision (https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/[C++ Cargo Cults, RVO and Copy Elision], http://www.icce.rug.nl/documents/cplusplus/cplusplus09.html#l201[9.8] of C{plus}{plus} Annotations)
+* Copy-and-swap idiom (http://stackoverflow.com/a/3279550[Why do we need the copy-and-swap idiom?], https://stackoverflow.com/questions/5695548/public-friend-swap-member-function[public friend swap member function
+])
+* http://en.cppreference.com/w/cpp/language/adl[Argument-dependant lookup] or http://www.icce.rug.nl/documents/cplusplus/cplusplus04.html#l75[Koenig lookup] (4.1.2.2 of C++ Annotations)
+* Substitution Failure Is Not An Error (SFINAE) (https://isocpp.org/wiki/faq/templates#templates-vs-overloading[35.11], http://www.icce.rug.nl/documents/cplusplus/cplusplus21.html#l552[21.15] of C++ Annotations)
+* non-dependent types and members (https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-types[35.18], https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-members[35.19], https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-silent-bug[35.20])
+* Proxy template (https://isocpp.org/wiki/faq/templates#template-proxies[35.22]), in C{plus}{plus}11 you would employ the Type alias declaration with `using`
+* Type traits, concepts, tag dispatching (http://www.boost.org/community/generic_programming.html[Generic Programming Techniques])
+* https://en.wikipedia.org/wiki/Most_vexing_parse[Most vexing parse]
+* http://blog.llvm.org/2009/12/dreaded-two-phase-name-lookup.html[Two-phase name lookup]
+* https://en.wikipedia.org/wiki/Maximal_munch[Maximal munch]
+* https://en.wikipedia.org/wiki/Sequence_point[Sequence point]
+* https://en.wikipedia.org/wiki/Optimizing_compiler[Optimizing compiler] (https://en.wikipedia.org/wiki/Tail_call[Tail call], https://en.wikipedia.org/wiki/Constant_folding[Constant folding], https://en.wikipedia.org/wiki/Dead_code_elimination[Dead code elimination], ...)
+* https://en.cppreference.com/w/cpp/language/ebo[Empty base optimization], http://tinf2.vub.ac.be/~dvermeir/c{plus}{plus}/emptyopt.html[The "Empty Member" C++ Optimization]
+
+==== C++11
+The book "_Effective Modern C++_" by Scott Meyers is a must-have.
+Chapters and items are references to this book.
+
+* https://isocpp.org/wiki/faq/cpp11-language-classes#delegating-ctor[Delegating constructors] (supersede https://isocpp.org/wiki/faq/ctors#init-methods[10.3], http://www.icce.rug.nl/documents/cplusplus/cplusplus07.html#l147[7.4.1] of C++ Annotations)
+* Rvalues (http://thbecker.net/articles/rvalue_references/section_01.html[C++ Rvalue References Explained] by Thomas Becker, http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l38[3.3.2] and http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l39[3.3.3] of C{plus}{plus} Annotations)
+* Auto keyword (Chapter 2, https://isocpp.org/wiki/faq/cpp11-language#auto[`auto`] in Super-FAQ, http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l44[3.3.7] of C++ Annotations) and type deduction (Chapter 1)
+* https://stackoverflow.com/questions/3106110/what-is-move-semantics[Move semantics] (http://www.icce.rug.nl/documents/cplusplus/cplusplus09.html#l192[9.7] of C++ Annotations), Rule of Five
+* Reference collapsing (Item 28)
+* Reference qualifiers
+* Forwarding AKA universal references (https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers[Universal References in C++11] by Scott Meyers)
+* Perfect forwarding (http://www.icce.rug.nl/documents/cplusplus/cplusplus22.html#l582[22.5.2] of C++ Annotations)
+* Enum classes (Item 10, https://isocpp.org/wiki/faq/cpp11-language-types#enum-class[`enum class`] in Super-FAQ, http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l40[3.3.4] of C++ Annotations)
+* Range-based for loops and issues with `auto` and copying objects around (https://isocpp.org/wiki/faq/cpp11-language#range-for[Range-`for` statement] in Super-FAQ, http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l47[3.3.9] of C++ Annotations)
+* List initialization, initializer lists (https://isocpp.org/wiki/faq/cpp11-language#init-list[Initializer lists] in Super-FAQ, http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l41[3.3.5] of C++ Annotations)
+* Lambdas (Chapter 6, https://isocpp.org/wiki/faq/cpp11-language#lambda[Lambdas] in Super-FAQ, http://www.icce.rug.nl/documents/cplusplus/cplusplus11.html#l254[11.11] of C++ Annotations)
+** https://www.bfilipek.com/2019/02/lambdas-story-part1.html[Lambdas: From C++11 to C++20, Part 1] by Bartłomiej Filipek
+** https://www.bfilipek.com/2019/03/lambdas-story-part2.html[Lambdas: From C++11 to C++20, Part 2] by Bartłomiej Filipek
+** https://www.bfilipek.com/2016/11/iife-for-complex-initialization.html[IIFE for Complex Initialization] by Bartłomiej Filipek
+
+==== Design patterns and OOP
+* https://en.wikipedia.org/wiki/Single_responsibility_principle[Single responsibility principle]
+* https://en.wikipedia.org/wiki/Cohesion_(computer_science)[Cohesion] / https://en.wikipedia.org/wiki/Coupling_(computer_programming)[Coupling]
+* https://en.wikipedia.org/wiki/Factory_method_pattern[Factory method] / https://en.wikipedia.org/wiki/Abstract_factory_pattern[Abstract factory pattern]
+* https://en.wikipedia.org/wiki/Builder_pattern[Builder pattern]
+* Meyer's singleton
+* https://en.wikipedia.org/wiki/Object_pool_pattern[Object pool], https://en.wikipedia.org/wiki/Thread_pool[Thread pool], https://en.wikipedia.org/wiki/Flyweight_pattern[Flyweight pattern]
+* https://davekilian.com/cpp-type-erasure.html[C++ 'Type Erasure' Explained] by Dave Kilian
+
+=== Math and geometry
+==== Books
+Read about the same math concepts on more than one book.
+Some books are targeted to game developers, like:
+
+* "_Essential Mathematics for Games and Interactive Applications_" by James M. Van Verth and Lars M. Bishop
+* "_3D Math Primer for Graphics and Game Development_" by Fletcher Dunn and Ian Parberry
+* "_Mathematics for 3D Game Programming and Computer Graphics_" by Eric Lengyel and John Flynt
+
+==== Topics
+* Trigonometry
+* Vectors and matrices
+* Rendering pipeline
+* OpenGL transformations and matrices:
+** http://www.songho.ca/opengl/gl_transform.html[OpenGL Transformation]
+** http://www.songho.ca/opengl/gl_projectionmatrix.html[OpenGL Projection Matrix]
+** https://www.scratchapixel.com/lessons/3d-basic-rendering/computing-pixel-coordinates-of-3d-point[Computing the Pixel Coordinates of a 3D Point]
+** http://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrix-introduction[The Perspective and Orthographic Projection Matrix]
+** https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/transforming-normals[Transforming Normals]
+** https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/projection-stage[The Projection Stage]
+** http://www.terathon.com/gdc07_lengyel.pdf[Projection Matrix Tricks by Eric Lengyel (PDF)]
+** http://stackoverflow.com/questions/76134/how-do-i-reverse-project-2d-points-into-3d/33976739#33976739[How do I reverse-project 2D points into 3D?]
+
+=== Algorithms and more
+* Sorting and data structures (lists, arrays, hash tables)
+** About hash tables: linear probing, quadratic probing, http://preshing.com/20160314/leapfrog-probing/[leapfrog probing], double hashing, cuckoo hashing, hopscotch hashing
+* Floating point (29.17 and https://randomascii.wordpress.com/[Random ASCII blog])
+** https://randomascii.wordpress.com/2012/01/11/tricks-with-the-floating-point-format/[Tricks With the Floating-Point Format] (representation)
+** https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/[Comparing Floating Point Numbers, 2012 Edition] (ULP comparison)
+** https://randomascii.wordpress.com/2012/05/20/thats-not-normalthe-performance-of-odd-floats/[That’s Not Normal–the Performance of Odd Floats] (hole around zero, denormals)
+* https://download-mirror.savannah.gnu.org/releases/pgubook/ProgrammingGroundUp-1-0-booksize.pdf["Programming from the Ground Up" (PDF)] by Jonathan Bartlett
+** https://en.wikipedia.org/wiki/Call_stack[Call stack], relocating code, dynamic libraries, https://en.wikipedia.org/wiki/Data_segment[data] / https://en.wikipedia.org/wiki/.bss[bss] / https://en.wikipedia.org/wiki/Code_segment[text] segments
+* https://en.wikipedia.org/wiki/Virtual_memory[Virtual memory], https://en.wikipedia.org/wiki/Paging[paging], https://en.wikipedia.org/wiki/Translation_lookaside_buffer[TLB], https://en.wikipedia.org/wiki/Memory_management_unit[MMU], https://en.wikipedia.org/wiki/Mmap[mmap]
+* http://davidad.github.io/blog/2014/02/19/relocatable-vs-position-independent-code-or/[Relocatable vs. Position-Independent Code]
+* http://gafferongames.com/game-physics/fix-your-timestep/[Fix Your Timestep! by Glenn Fiedler]
+* https://www.gamedev.net/articles/programming/general-and-gameplay-programming/c-custom-memory-allocation-r3010/[C++: Custom memory allocation]
+* https://en.wikipedia.org/wiki/Quadtree[Quadtree], https://en.wikipedia.org/wiki/Octree[Octree] and https://en.wikipedia.org/wiki/Binary_space_partitioning[Binary Space Partitioning (BSP)]
+
+=== CPU
+Important links from Wikipedia about the architecture of a CPU.
+One of the book you could read to learn more on the subject is "_Computer Architecture: A Quantitative Approach_" by David A. Patterson.
+
+* https://en.wikipedia.org/wiki/Von_Neumann_architecture[Von Neumann architecture], https://en.wikipedia.org/wiki/Harvard_architecture[Harvard architecture]
+* https://en.wikipedia.org/wiki/Instruction_pipelining[Instruction pipelining], https://en.wikipedia.org/wiki/Classic_RISC_pipeline[Classic RISC pipeline] -> (fetch, decode, execute, memory access, writeback), https://en.wikipedia.org/wiki/Branch_predication[Branch predication]
+* https://en.wikipedia.org/wiki/Instruction-level_parallelism[Instruction-level parallelism], https://en.wikipedia.org/wiki/Out-of-order_execution[Out-of-order execution], https://en.wikipedia.org/wiki/Register_renaming[Register renaming], https://en.wikipedia.org/wiki/Register_allocation#Spilling[Register spilling], https://en.wikipedia.org/wiki/Superscalar_processor[Superscalar processor], https://en.wikipedia.org/wiki/Very_long_instruction_word[VLIW (Very Long Instruction Word)], https://en.wikipedia.org/wiki/Barrel_processor[Barrell processor]
+* https://en.wikipedia.org/wiki/Cycles_per_instruction[Cycles per instruction], https://en.wikipedia.org/wiki/Instructions_per_cycle[Instructions per cycle (IPC)]
+* https://en.wikipedia.org/wiki/Branch_predictor[Branch predictor], https://en.wikipedia.org/wiki/Branch_target_predictor[Branch target predictor]
+* https://en.wikipedia.org/wiki/Hazard_%28computer_architecture%29[Hazard (computer architecture)] -> (RAW, WAR, WAW data hazards, pipeline bubbling, register forwarding)
+* https://en.wikipedia.org/wiki/Speculative_execution[Speculative execution], https://en.wikipedia.org/wiki/Instruction_prefetch[Instruction prefetch], https://en.wikipedia.org/wiki/Prefetch_input_queue[Prefetch input queue]
+* https://en.wikipedia.org/wiki/CPU_cache[CPU cache], https://en.wikipedia.org/wiki/Cache_replacement_policies[Cache replacement policies], https://en.wikipedia.org/wiki/Translation_lookaside_buffer[Translation Lookaside Buffer (TLB)], https://en.wikipedia.org/wiki/Scratchpad_memory[Scratchpad memory]
+* https://en.wikipedia.org/wiki/Cache_coherence[Cache coherence] (https://en.wikipedia.org/wiki/MESI_protocol[MESI protocol], https://en.wikipedia.org/wiki/MOESI_protocol[MOESI protocol]), https://en.wikipedia.org/wiki/Bus_snooping[Bus snooping], https://en.wikipedia.org/wiki/Write_combining[Write combining]
+* https://en.wikipedia.org/wiki/Clock_gating[Clock gating]
+* https://en.wikipedia.org/wiki/Multiply%E2%80%93accumulate_operation[Multiply–accumulate operation] -> (Fused multiply–add)
+* https://en.wikipedia.org/wiki/Symmetric_multiprocessing[Symmetric multiprocessing], https://en.wikipedia.org/wiki/Simultaneous_multithreading[Simultaneous multithreading]
+
+==== Multi-threading
+One of the book on the topic is "_The Art of Multiprocessor Programming_" by Maurice Herlihy and Nir Shavit
+
+* Critical section, mutex, semaphore, https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem[Producer-consumer problem], https://en.wikipedia.org/wiki/Dining_philosophers_problem[Dining philosophers problem], https://en.wikipedia.org/wiki/Priority_inversion[Priority inversion], race condition
+* Atomics and lock-free programming (http://preshing.com/[Preshing on Programming]), https://preshing.com/20120710/memory-barriers-are-like-source-control-operations/[memory barriers], https://preshing.com/20120930/weak-vs-strong-memory-models/[memory models], http://preshing.com/20120226/roll-your-own-lightweight-mutex/[Benaphore], https://en.wikipedia.org/wiki/Compare-and-swap[Compare-and-swap], https://en.wikipedia.org/wiki/ABA_problem[ABA problem], https://en.wikipedia.org/wiki/Load-link/store-conditional[Load-link/store-conditional], http://preshing.com/20120913/acquire-and-release-semantics/[acquire and release semantics] (Load-Acquire/Store-Release in the ARM Reference Manual)
+* Cache coherency, https://en.wikipedia.org/wiki/MOESI_protocol[MOESI protocol], https://en.wikipedia.org/wiki/MESIF_protocol[MESIF protocol], https://en.wikipedia.org/wiki/False_sharing[false sharing], https://en.wikipedia.org/wiki/Branch_misprediction[branch misprediction], https://en.wikipedia.org/wiki/Scratchpad_memory[scratchpad memory]
+* https://www.quora.com/CPUs-How-is-branch-prediction-implemented-in-microprocessors[CPUs: How is branch prediction implemented in microprocessors?]
+* Single Producer / Multiple Consumer
+* Lock-free queues
+* https://en.wikipedia.org/wiki/Hazard_pointer[Hazard pointer]
+* Aligning AoS to cache line size to avoid false sharing
+* https://fgiesen.wordpress.com/2016/08/07/why-do-cpus-have-multiple-cache-levels/[Why do CPUs have multiple cache levels?]
+
+==== More topics
+* http://assemblyrequired.crashworks.org/load-hit-stores-and-the-\__restrict-keyword/[Load-Hit-Stores and the `__restrict` keyword] by Elan Ruskin
+* http://www.gamasutra.com/view/feature/132084/sponsored_feature_common_.php[Sponsored Feature: Common Performance Issues in Game Programming] by Becky Heineman
+
+=== Graphics
+
+* https://www.scratchapixel.com/[Scratchapixel - Learn Computer Graphics From Scratch!]
+* https://www.cs.uu.nl/docs/vakken/magr/2021-2022/index.html[Advanced Graphics] Course 2021/22 from Universiteit Utrecht
+
+==== Mobile GPUs architecture
+The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Purnomo is a must-have.
+
+* http://www.seas.upenn.edu/~pcozzi/OpenGLInsights/OpenGLInsights-TileBasedArchitectures.pdf[Performance Tuning for Tile-Based Architectures (PDF)], from chapter 23 of the "OpenGL Insights" book
+* http://malideveloper.arm.com/downloads/ARM_Game_Developer_Days/PDFs/4-compute_shaders.pdf[Get the most out of the new OpenGL ES 3.1 API (PDF)] by ARM
+* https://github.com/ARM-software/opengl-es-sdk-for-android[OpenGL ES SDK for Android by ARM]
+* https://github.com/ARM-software/vulkan-sdk[Vulkan SDK for Android by ARM]
+* https://developer.samsung.com/galaxy-gamedev/resources/articles/gpu-framebuffer.html[GPU Framebuffer Memory: Understanding Tiling] by Samsung
+* https://community.arm.com/arm-community-blogs/b/graphics-gaming-and-vr-blog/posts/moving-mobile-graphics[Moving Mobile Graphics] SIGGRAPH Courses
+
+===== ARM Mali
+* http://malideveloper.arm.com/documentation/developer-guides/mali-gpu-application-optimization-guide/[Mali GPU Application Optimization Guide]
+* The Mali GPU: An Abstract Machine
+** https://www.community.arm.com/graphics/b/blog/posts/the-mali-gpu-an-abstract-machine-part-1---frame-pipelining[Part 1 - Frame Pipelining]
+** https://www.community.arm.com/graphics/b/blog/posts/the-mali-gpu-an-abstract-machine-part-2---tile-based-rendering[Part 2 - Tile-based Rendering]
+** https://www.community.arm.com/graphics/b/blog/posts/the-mali-gpu-an-abstract-machine-part-3---the-midgard-shader-core[Part 3 - The Midgard Shader Core]
+** https://www.community.arm.com/graphics/b/blog/posts/the-mali-gpu-an-abstract-machine-part-4---the-bifrost-shader-core[Part 4 - The Bifrost Shader Core]
+* https://www.community.arm.com/graphics/b/blog/posts/killing-pixels---a-new-optimization-for-shading-on-arm-mali-gpus[Killing Pixels - A New Optimization for Shading on ARM Mali GPUs] (Forward Pixel Kill)
+* https://www.community.arm.com/graphics/b/blog/posts/how-low-can-you-go-building-low-power-low-bandwidth-arm-mali-gpus[How low can you go? Building low-power, low-bandwidth ARM Mali GPUs] (Transaction elimination)
+* Mali Performance
+** https://www.community.arm.com/graphics/b/blog/posts/mali-performance-1-checking-the-pipeline[1: Checking the Pipeline]
+** https://www.community.arm.com/graphics/b/blog/posts/mali-performance-2-how-to-correctly-handle-framebuffers[2: How to Correctly Handle Framebuffers]
+** https://www.community.arm.com/graphics/b/blog/posts/mali-performance-3-is-egl_5f00_buffer_5f00_preserved-a-good-thing[3: Is `EGL_BUFFER_PRESERVED` a good thing?]
+** https://www.community.arm.com/graphics/b/blog/posts/mali-performance-4-principles-of-high-performance-rendering[4: Principles of High Performance Rendering]
+** https://www.community.arm.com/graphics/b/blog/posts/mali-performance-5-an-application-s-performance-responsibilities[5: An Application's Performance Responsibilities]
+* Benchmarking floating-point precision in mobile GPUs
+** https://community.arm.com/graphics/b/blog/posts/benchmarking-floating-point-precision-in-mobile-gpus[Part I]
+** https://community.arm.com/graphics/b/blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-ii[Part II]
+** https://community.arm.com/graphics/b/blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-iii[Part III]
+* https://www.community.arm.com/graphics/b/blog/posts/pixel-local-storage-on-arm-mali-gpus[Pixel Local Storage on ARM(R) Mali(TM) GPUs]
+* https://community.arm.com/cfs-file/__key/telligent-evolution-components-attachments/01-2066-00-00-00-00-55-34/siggraph14_2D00_Bjorge_2D00_TLS_2D00_presentation.pdf[Efficient Rendering with Tile Local Storage (PDF)] (SIGGRAPH 2014)
+* http://www.anandtech.com/show/8234/arms-mali-midgard-architecture-explored[ARM's Mali Midgard Architecture Explored]
+* http://www.anandtech.com/show/10375/arm-unveils-bifrost-and-mali-g71[ARM Unveils Next Generation Bifrost GPU Architexture & Mali-G71: The New High-End Mali]
+* https://developer.arm.com/documentation/101897/0301[ARM GPU Best Practices Developer Guide]
+
+===== Imagination PowerVR
+* https://www.imgtec.com/blog/a-look-at-the-powervr-graphics-architecture-tile-based-rendering/[A look at the PowerVR graphics architecture: Tile-based rendering]
+* https://www.imgtec.com/blog/the-dr-in-tbdr-deferred-rendering-in-rogue/[A look at the PowerVR graphics architecture: Deferred rendering]
+* https://community.imgtec.com/?do-download=50703[PowerVR Hardware Architecture Overview for Developers (PDF)]
+* https://community.imgtec.com/?do-download=50702[PowerVR Series5 Architecture Guide for Developers (PDF)]
+* https://community.imgtec.com/?do-download=50691[PowerVR Series6 Compiler Instruction Set Reference (PDF)]
+* https://community.imgtec.com/?do-download=50705[PowerVR Performance Recommendations (PDF)]
+* https://community.imgtec.com/?do-download=50751[PowerVR Performance Recommendations The Golden Rules (PDF)]
+
+===== Qualcomm Adreno
+* https://developer.qualcomm.com/download/adrenosdk/adreno-opengl-es-developer-guide.pdf[Adreno OpenGL ES Developer Guide (PDF)]
+* https://developer.qualcomm.com/sites/default/files/docs/adreno-gpu/snapdragon-game-toolkit/gdg/gpu/best_practices.html[Qualcomm Adreno GPU Best Practices]
+
+===== Nvidia Tegra
+* https://developer.nvidia.com/embedded/tegra-2-reference[Tegra 2 Reference]
+* https://developer.nvidia.com/embedded/tegra-3-reference[Tegra 3 Reference]
+* https://developer.nvidia.com/embedded/tegra-4-reference[Tegra 4 Reference]
+* https://developer.nvidia.com/embedded/tegra-k1-reference[Tegra K1 Reference]
+* http://developer.download.nvidia.com/assets/mobile/files/tegra_gles2_development.pdf[OpenGL ES 2.0 Development for the Tegra Platform (PDF)]
+
+==== Desktop GPUs architecture
+* https://courses.cs.washington.edu/courses/cse558/11wi/lectures/05_gpuArchShaderCores_BPS_2011.pdf[From Shader Code to a Teraflop: How GPU Shader Cores Work (PDF)] by Kayvon Fatahalian (SIGGRAPH 2010)
+* https://courses.cs.washington.edu/courses/cse558/11wi/lectures/08-GPU-architecture-II_BPS-2011.pdf[Scheduling the Graphics Pipeline (PDF)] by Jonathan Ragan-Kelley (SIGGRAPH 2011)
+* https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf[Triangles Are Precious - Let's Treat Them With Care (PDF)] by Dominik Baumeister (AMD)
+* https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/[A trip through the Graphics Pipeline 2011: Index] by Fabian "ryg" Giesen
+* https://vksegfault.github.io/posts/gentle-intro-gpu-inner-workings/[Gentle introduction to GPUs inner workings] by Adrian Jurczak
+
+===== Nvidia GeForce
+* https://www.academia.edu/28633432/NVIDIA_Tesla_A_Unified_Graphics_and_Computing_Architecture[NVIDIA Tesla: A Unified Graphics and Computing Architecture] from IEEE Micro, March-April 2008
+* https://fabiensanglard.net/cuda/[A History of Nvidia Stream Multiprocessor] by Fabien Sanglard
+* https://fabiensanglard.net/cuda/fermi-the_first_complete_gpu_architecture.pdf[Fermi: The First Complete GPU Computing Architecture] by Peter N. Glaskowsky
+* https://fabiensanglard.net/cuda/Fermi_Compute_Architecture_Whitepaper.pdf[Fermi (GF100) whitepaper]
+* https://fabiensanglard.net/cuda/nvidia-gtx-680.pdf[Kepler (GK104) whitepaper]
+* https://fabiensanglard.net/cuda/GeForce-GTX-750-Ti-Whitepaper.pdf[Maxwell Gen1 (GM107) whitepaper]
+* https://fabiensanglard.net/cuda/GeForce_GTX_980_Whitepaper.pdf[Maxwell Gen2 (GM200) whitepaper]
+* https://fabiensanglard.net/cuda/GeForce_GTX_1080_Whitepaper.pdf[Pascal (GP102) whitepaper]
+* https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf[Volta (V100) whitepaper]
+* https://fabiensanglard.net/cuda/Turing-Architecture-Whitepaper.pdf[Turing (TU102) whitepaper]
+
+===== AMD Radeon
+* https://gpuopen.com/discovering-rdna/[Discovering the structure of RDNA]
+* https://gpuopen.com/compute-product/amd-rdna-1-0-instruction-set-architecture/[AMD RDNA 1.0 Instruction Set Architecture]
+* http://gpuopen.com/compute-product/amd-gcn3-isa-architecture-manual/[AMD GCN3 ISA Architecture Manual]
+
+==== Graphics techniques
+* http://advances.realtimerendering.com/[Advances in Real-Time Rendering in 3D Graphics and Games]
+* http://newq.net/publications/more/s2015-many-lights-course[Real-Time Many-Light Management and Shadows with Clustered Shading] a SIGGRAPH 2015 Course
+* http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf[Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)] by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo
+* https://therealmjp.github.io/posts/sss-intro/[An Introduction To Real-Time Subsurface Scattering] by Matt Pettineo
+* https://www.ea.com/frostbite/news/precomputed-global-illumination-in-frostbite[Precomputed Global Illumination in Frostbite] by Yuriy O'Donnell at GDC 2018
+* https://www.ea.com/frostbite/news/real-time-raytracing-for-interactive-global-illumination-workflows-in-frostbite[Real-time Raytracing for Interactive Global Illumination Workflows in Frostbite] by Sébastien Hillaire at GDC 2018
+* http://jcgt.org/published/0002/02/04/[The Visibility Buffer: A Cache-Friendly Approach to Deferred Shading] by Christopher A. Burns and Warren A. Hunt (Intel)
+* https://bgolus.medium.com/anti-aliased-alpha-test-the-esoteric-alpha-to-coverage-8b177335ae4f[Anti-aliased Alpha Test: The Esoteric Alpha To Coverage] by Ben Golus
+
+===== Physically Based Rendering
+* https://blog.selfshadow.com/publications/s2012-shading-course/[SIGGRAPH 2012 Course: Practical Physically Based Shading in Film and Game Production]
+* https://blog.selfshadow.com/publications/s2013-shading-course/[SIGGRAPH 2013 Course: Physically Based Shading in Theory and Practice]
+* http://blog.selfshadow.com/publications/s2016-shading-course/[SIGGRAPH 2016 Course: Physically Based Shading in Theory and Practice]
+* https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf[Moving Frostbite to Physically Based Rendering 3.0]
+* https://google.github.io/filament/Filament.html[Physically Based Rendering in Filament]
+* https://graphics.pixar.com/library/PhysicallyBasedLighting/[Physically Based Lighting at Pixar]
+* https://eheitzresearch.wordpress.com/415-2/[Real-Time Polygonal-Light Shading with Linearly Transformed Cosines]
+* Learn OpenGL: PBR https://learnopengl.com/PBR/Theory[Theory], https://learnopengl.com/PBR/Lighting[Lighting], https://learnopengl.com/PBR/IBL/Diffuse-irradiance[Diffuse irradiance], https://learnopengl.com/PBR/IBL/Specular-IBL[Specular IBL]
+* http://lousodrome.net/blog/light/2020/01/04/physically-based-rendering-references-at-the-end-of-2019/[Physically based shading references, at the end of 2019]
+* http://www.reedbeta.com/blog/hows-the-ndf-really-defined/[How Is The NDF Really Defined?]
+* The PBR Guide by Allegorithmic: https://academy.substance3d.com/courses/the-pbr-guide-part-1[Part 1], https://academy.substance3d.com/courses/the-pbr-guide-part-2[Part 2]
+* https://www.jordanstevenstechart.com/physically-based-rendering[Physically Based Rendering Algorithms: A Comprehensive Study In Unity3D]
+
+===== Graphics Studies of Games
+* http://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/[Deus Ex: Human Revolution - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2015/06/23/supreme-commander-graphics-study/[Supreme Commander - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/[GTA V - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges
+* https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html[DOOM Eternal - Graphics Study] by Simon Coenen
+* http://c0de517e.blogspot.com/2020/12/hallucinations-re-rendering-of.html[Hallucinations re: the rendering of Cyberpunk 2077] by Angelo Pesce
+* http://www.elopezr.com/castlevania-lords-of-shadow-2-graphics-study/[The Rendering of Castlevania Lords of Shadow 2] by Emilio López
+* http://www.elopezr.com/the-rendering-of-middle-earth-shadow-of-mordor/[The Rendering of Middle Earth: Shadow of Mordor] by Emilio López
+* http://www.elopezr.com/the-rendering-of-rise-of-the-tomb-raider/[The Rendering of Rise of the Tomb Raider] by Emilio López
+* http://www.elopezr.com/the-rendering-of-jurassic-world-evolution/[The Rendering of Jurassic World: Evolution] by Emilio López
+* http://www.elopezr.com/the-rendering-of-mafia-definitive-edition/[The Rendering of Mafia: Definitive Edition] by Emilio López
+* https://www.mamoniem.com/behind-the-pretty-frames-god-of-war/[Behind the Pretty Frames: God of War] by Muhammad A. Moniem
+* https://www.mamoniem.com/behind-the-pretty-frames-elden-ring/[Behind the Pretty Frames: Elden Ring] by Muhammad A. Moniem
+* https://www.mamoniem.com/behind-the-pretty-frames-resident-evil/[Behind the Pretty Frames: Resident Evil] by Muhammad A. Moniem
+* https://www.mamoniem.com/behind-the-pretty-frames-diablo-iv/[Behind the Pretty Frames: Diablo IV] by Muhammad A. Moniem
+* https://acko.net/blog/teardown-frame-teardown/[Teardown Frame Teardown: Rendering analysis] by Steven "Acko"
+* https://www.froyok.fr/blog/2024-01-breakdown-syndicate/[Breakdown: Syndicate (2012) - The greasy bloom finally demystified] by Léna "Froyok" Piquet
+* https://www.mamoniem.com/behind-the-pretty-frames-detroit-become-human/[Behind the Pretty Frames: Detroit Become Human] by Muhammad A. Moniem
+* https://blog.thomaspoulet.fr/posts/anno-1800-frame-analysis/[Anno 1800: Frame Analysis] by Thomas Poulet
+
+===== Older resources
+* http://www.punkuser.net/vsm/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen
+* http://www.cescg.org/CESCG-2006/papers/TUBudapest-Premecz-Matyas.pdf[Iterative Parallax Mapping with Slope Information (PDF)] by Mátyás Premecz
+* https://www.gamedev.net/resources/_/technical/graphics-programming-and-theory/a-simple-and-practical-approach-to-ssao-r2753[A Simple and Practical Approach to SSAO] by José María Méndez
+* http://amd-dev.wpengine.netdna-cdn.com/wordpress/media/2012/10/Scheuermann_DepthOfField.pdf[Advanced Depth of Field (PDF)] by Thorsten Scheuermann
+* http://realtimecollisiondetection.net/blog/?p=86[Order your graphics draw calls around!] from the Real-Time Collision Detection blog
+
+==== Vulkan
+* https://renderdoc.org/vulkan-in-30-minutes.html[Vulkan in 30 minutes] by Baldur Karlsson
+* https://vulkan-tutorial.com/[Vulkan Tutorial]
+* https://github.com/KhronosGroup/Vulkan-Samples[Vulkan Samples] on GitHub
+* http://gpuopen.com/vulkan-renderpasses/[Vulkan Renderpasses] on GPUOpen
+* http://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/[Yet another blog explaining Vulkan synchronization] by Hans-Kristian Arntzen
+* https://zeux.io/2020/02/27/writing-an-efficient-vulkan-renderer/[Writing an efficient Vulkan renderer] by Arseny Kapoulkine
+* https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_getting_started_on_mobile_and_best_practices_for_arm_gpus.pdf[Getting started on mobile and
+Best practices for Arm GPUs (PDF)] by Pete Harris (ARM)
+* https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_battle_tested_optimisations_for_mobile_v2.pdf[Battle-tested Optimisations for Mobile (PDF)] by Ralph Potter (Samsung)
+* https://developer.samsung.com/sdp/blog/en-us/2019/08/05/reboot-recap-seriously-explicit-lessons-in-vulkan[Some Seriously Explicit Lessons in Vulkan (Video)] by Croteam and Samsung at Reboot 2019
+
+==== More topics
+* https://www.opengl.org/pipeline/article/vol003_6/[GLSL: Center or Centroid? (Or When Shaders Attack!)] by Bill Licea-Kane (AMD)
+* https://www.cs.cornell.edu/courses/cs4620/2008fa/lectures/texture-filtering.pdf[Texture filtering (PDF)] (Mipmap selection with derivatives) by Steve Marschner
+* https://computergraphics.stackexchange.com/a/5560[How are mipmap levels computed in Metal?] replied by Nathan Reed
+* http://www.3dkingdoms.com/weekly/weekly.php?a=2[Reflecting a Vector] (Vector reflection with vector projection and dot product)
+* https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process[Gram-Schmidt orthogonalization] with vector projection and dot product
+* http://s09.idav.ucdavis.edu/talks/05-JP_id_Tech_5_Challenges.pdf[id Tech 5 Challanges - From Texture Virtualization to Massive Parallelization (PDF)] by J.M.P. van Wavewer (id Software) (virtual texturing, sparse resources, parallel job system)
+* http://www.slideshare.net/CassEveritt/approaching-zero-driver-overhead[Approaching Zero Driver Overhead in OpenGL (PDF)] http://gdcvault.com/play/1020791/[(GDC Vault video)], persistent mapping
+* http://media.steampowered.com/apps/steamdevdays/slides/beyondporting.pdf[Beyond Porting (PDF)] https://www.youtube.com/watch?v=-bCeNzgiJ8I[(Steam Dev Days video)] by Cass Everitt and John McDonald (NVIDIA) (persistent mapping, texture arrays, sparse and bindless textures)
+* http://kayru.org/articles/deferred-stencil/[Rendering deferred lights using Stencil culling algorithm] by Yuriy O'Donnell
+* https://developer.nvidia.com/content/depth-precision-visualized[Depth Precision Visualized] by Nathan Reed (NVIDIA)
+* https://gamedev.stackexchange.com/questions/130888/what-are-screen-space-derivatives-and-when-would-i-use-them/130933#130933[What are screen space derivatives and when would I use them?]
+* https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_HelperInvocation.xhtml[gl_HelperInvocation] - OpenGL 4 Reference Pages
+* https://developer.nvidia.com/content/life-triangle-nvidias-logical-pipeline[Life of a triangle - NVIDIA's logical pipeline] by Christoph Kubisch
+* 1 - https://mynameismjp.wordpress.com/2012/10/15/signal-processing-primer/[Signal Processing Primer] by Matt Pettineo
+* 2 - https://mynameismjp.wordpress.com/2012/10/21/applying-sampling-theory-to-real-time-graphics/[Applying Sampling Theory To Real-Time Graphics] by Matt Pettineo
+* 3 - https://mynameismjp.wordpress.com/2012/10/24/msaa-overview/[A Quick Overview of MSAA] by Matt Pettineo
+* 4 - https://mynameismjp.wordpress.com/2012/10/28/msaa-resolve-filters/[Experimenting With Reconstruction Filters for MSAA Resolve] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/03/06/breaking-down-barriers-part-1-whats-a-barrier/[Breaking Down Barriers - Part 1: What's a Barrier?] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/04/01/breaking-down-barriers-part-2-synchronizing-gpu-threads/[Breaking Down Barriers - Part 2: Synchronizing GPU Threads] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/06/17/breaking-down-barriers-part-3-multiple-command-processors/[Breaking Down Barriers - Part 3: Multiple Command Processors] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/07/03/breaking-down-barriers-part-4-gpu-preemption/[Breaking Down Barriers - Part 4: GPU Preemption] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/09/08/breaking-down-barriers-part-5-back-to-the-real-world/[Breaking Down Barriers - Part 5: Back to the Real World] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/12/09/breaking-down-barriers-part-6-experimenting-with-overlap-and-preemption/[Breaking Down Barriers - Part 6: Experimenting with Overlap and Preemption] by Matt Pettineo
+* https://anteru.net/blog/2018/intro-to-compute-shaders/index.html[Introduction to compute shaders] by Matthäus G. Chajdas
+* https://anteru.net/blog/2018/more-compute-shaders/index.html[More compute shaders] by Matthäus G. Chajdas
+* https://anteru.net/blog/2018/even-more-compute-shaders/index.html[Even more compute shaders] by Matthäus G. Chajdas
+* https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92[The Elusive Frame Timing] by Alen Ladavac
+* https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-1/[Intro to GPU Scalarization: Part 1] by Francesco Cifariello Ciardi
+* https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-2-scalarize-all-the-lights/[Intro to GPU Scalarization: Part 2 - Scalarize All the Lights] by Francesco Cifariello Ciardi
+* http://www.joshbarczak.com/blog/?p=667[Why Geometry Shaders Are Slow (Unless you’re Intel)] by Joshua Barczak
+* https://gpuopen.com/learn/optimizing-gpu-occupancy-resource-usage-large-thread-groups/[Optimizing GPU occupancy and resource usage with large thread groups] by Sebastian Aaltonen
+* https://www.elopezr.com/temporal-aa-and-the-quest-for-the-holy-trail/[Temporal AA and the Quest for the Holy Trail] by Emilio López
+
+=== Data Oriented Design
+* http://harmful.cat-v.org/software/OO_programming/_pdf/Pitfalls_of_Object_Oriented_Programming_GCAP_09.pdf[Pitfalls of Object Oriented Programming (PDF)] by Tony Albrecht (SCEE)
+* https://macton.smugmug.com/Other/2008-07-15-by-Eye-Fi/n-xmKDH/i-BrHWXdJ[Typical C++ Bullshit] by Mike Acton (Insomniac Games)
+* https://www.slideshare.net/DICEStudio/culling-the-battlefield-data-oriented-design-in-practice[Culling the Battlefield] by Daniel Collin (Frostbite)
+* http://www.slideshare.net/naughty_dog/multiprocessor-game-loops-lessons-from-uncharted-2-among-thieves[Multiprocessor Game Loops] by Jason Gregory (Naughty Dog)
+* http://twvideo01.ubm-us.net/o1/vault/gdc2015/presentations/Gyrling_Christian_Parallelizing_The_Naughty.pdf[Parallelizing the Naughty Dog Engine Using Fibers (PDF)] (http://www.gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine[GDC Vault video]) by Christian Gyrling (Naughty Dog)
+* http://lukasz.dk/mirror/research-scea/research/pdfs/GDC2003_Memory_Optimization_18Mar03.pdf[Memory Optimization (PDF)] by Christer Ericson (Sony Santa Monica)
+* https://www.slideshare.net/DICEStudio/introduction-to-data-oriented-design[Introduction to Data Oriented Design] by Daniel Collin (DICE)
+* http://gameprogrammingpatterns.com/data-locality.html[Data Locality] (cache miss, branch misprediction, pipeline flush) from http://gameprogrammingpatterns.com[Game Programming Patterns] by Robert Nystrom
+* http://media.steampowered.com/apps/valve/2015/Migdalskiy_Sergiy_Physics_Optimization_Strategies.pdf[Performance - Physics Optimization Strategies (PDF)] by Sergiy Migdalskiy (Valve)
+* http://cellperformance.beyond3d.com/articles/2009/08/roundup-recent-sketches-on-concurrency-data-design-and-performance.html[Roundup: Recent sketches on concurrency, data design and performance] by Mike Acton (Insomniac Games)
+* https://fgiesen.wordpress.com/2013/02/17/optimizing-sw-occlusion-culling-index/[Optimizing Software Occlusion Culling - Index] by Fabian "ryg" Giesen
+* https://docs.google.com/presentation/d/17Bzle0w6jz-1ndabrvC5MXUIQ5jme0M8xBF71oz-0Js/present?slide=id.i0[Practical Examples in Data Oriented Design] by Niklas Frykholm (BitSquid)
+* https://gamedevelopment.tutsplus.com/articles/what-is-data-oriented-game-engine-design--cms-21052[What is Data-Oriented Game Engine Design?] by David Davidović
+* http://gamesfromwithin.com/data-oriented-design[Data-Oriented Design (Or Why You Might Be Shooting Yourself in The Foot With OOP)] by Noel Llopis
+* http://www.dataorienteddesign.com/dodbook/[Data-Oriented Design] book by Richard Fabian
+* http://www.bounceapp.com/116414[Mike Acton's review] of `OgreNode.cpp`
+* https://gist.github.com/ocornut/cb980ea183e848685a36[Memory, Cache, CPU optimization resources] by Omar Cornut
+* http://aras-p.info/texts/files/2018Academy%20-%20ECS-DoD.pdf[Entity Component Systems & Data Oriented Design (PDF)] by Aras Pranckevičius (Unity Technologies)
+* http://nfrechette.github.io/2015/05/05/caches_everywhere/[Caches everywhere] by Nicholas Frechette
+
+=== Artificial Intelligence
+==== Books
+* "_Deep Learning: A Visual Approach_" by Andrew Glassner
+* "_Deep Learning_" by Ian Goodfellow, Yoshua Bengio, and Aaron Courville
+
+==== Resources
+* http://neuralnetworksanddeeplearning.com/[Neural Networks and Deep Learning] book by Michael Nielsen (Dec 2019)
+* https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/[What Is ChatGPT Doing … and Why Does It Work?] by Sthephen Wolfram
+* https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi[Neural Networks] YouTube playlist by 3Blue1Brown
+
+==== Wikipedia
+* https://en.wikipedia.org/wiki/Activation_function[Activation function], https://en.wikipedia.org/wiki/Sigmoid_function[Sigmoid function], https://en.wikipedia.org/wiki/Artificial_neuron[Artificial neuron]
+* https://en.wikipedia.org/wiki/Neural_network_(machine_learning)[Neural network], https://en.wikipedia.org/wiki/Feedforward_neural_network[FNN], https://en.wikipedia.org/wiki/Recurrent_neural_network[RNN], https://en.wikipedia.org/wiki/Convolutional_neural_network[CNN]
+* https://en.wikipedia.org/wiki/Chain_rule[Chain rule], https://en.wikipedia.org/wiki/Loss_function[Loss function], https://en.wikipedia.org/wiki/Loss_functions_for_classification[Loss functions for classification]
+* https://en.wikipedia.org/wiki/Gradient_descent[Gradient descent], https://en.wikipedia.org/wiki/Stochastic_gradient_descent[Stochastic gradient descent], https://en.wikipedia.org/wiki/Vanishing_gradient_problem[Vanishing gradient problem]
+* https://en.wikipedia.org/wiki/Backpropagation[Backpropagation]
+* https://en.wikipedia.org/wiki/Attention_(machine_learning)[Attention], https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)[Transformer], https://en.wikipedia.org/wiki/Attention_Is_All_You_Need[Attention Is All You Need]
+
