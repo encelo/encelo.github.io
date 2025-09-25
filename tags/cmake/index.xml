@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CMake on encelo.github.io</title><link>https://encelo.github.io/tags/cmake/</link><description>Recent content in CMake on encelo.github.io</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 03 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://encelo.github.io/tags/cmake/index.xml" rel="self" type="application/rss+xml"/><item><title>nCine Dev Update 10</title><link>https://encelo.github.io/2019-07-03-ncine-dev-update-10/</link><pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-07-03-ncine-dev-update-10/</guid><description>&lt;p&gt;I&amp;rsquo;m sure many of you have heard it already: the nCine source code has been released on &lt;a
+href="https://github.com/nCine"
+target="_blank"
+&gt;GitHub&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;This means that lately most of the time was dedicated to publication related tasks, for example updates to the site like the addition of a &amp;ldquo;&lt;a
+href="https://ncine.github.io/why/"
+target="_blank"
+&gt;why nCine?&lt;/a&gt;&amp;rdquo; page and a &lt;a
+href="https://ncine.github.io/gallery/"
+target="_blank"
+&gt;gallery&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>nCine Dev Update 8</title><link>https://encelo.github.io/2019-04-01-ncine-dev-update-8/</link><pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-04-01-ncine-dev-update-8/</guid><description>&lt;p&gt;I have spent some very intense weeks this March to completely overhaul and refactor my CMake scripts. We are talking about more than two thousand lines of code! &amp;#x1f631;&lt;/p&gt;</description></item></channel></rss>

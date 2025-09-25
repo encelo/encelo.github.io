@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>My study notes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_my_study_notes">My study notes</a>
+<ul class="sectlevel2">
+<li><a href="#_c">C++</a>
+<ul class="sectlevel3">
+<li><a href="#_c_super_faq">C++ Super-FAQ</a></li>
+<li><a href="#_topics">Topics</a></li>
+<li><a href="#_more_topics">More topics</a></li>
+<li><a href="#_c11">C++11</a></li>
+<li><a href="#_design_patterns_and_oop">Design patterns and OOP</a></li>
+</ul>
+</li>
+<li><a href="#_math_and_geometry">Math and geometry</a>
+<ul class="sectlevel3">
+<li><a href="#_books">Books</a></li>
+<li><a href="#_topics_2">Topics</a></li>
+</ul>
+</li>
+<li><a href="#_algorithms_and_more">Algorithms and more</a></li>
+<li><a href="#_cpu">CPU</a>
+<ul class="sectlevel3">
+<li><a href="#_multi_threading">Multi-threading</a></li>
+<li><a href="#_more_topics_2">More topics</a></li>
+</ul>
+</li>
+<li><a href="#_graphics">Graphics</a>
+<ul class="sectlevel3">
+<li><a href="#_mobile_gpus_architecture">Mobile GPUs architecture</a></li>
+<li><a href="#_desktop_gpus_architecture">Desktop GPUs architecture</a></li>
+<li><a href="#_graphics_techniques">Graphics techniques</a></li>
+<li><a href="#_vulkan">Vulkan</a></li>
+<li><a href="#_more_topics_3">More topics</a></li>
+</ul>
+</li>
+<li><a href="#_data_oriented_design">Data Oriented Design</a></li>
+<li><a href="#_artificial_intelligence">Artificial Intelligence</a>
+<ul class="sectlevel3">
+<li><a href="#_books_2">Books</a></li>
+<li><a href="#_resources">Resources</a></li>
+<li><a href="#_wikipedia">Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_my_study_notes">My study notes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I hope you will find my notes useful in case you intend to study more about engine and graphics programming.</p>
+</div>
+<div class="sect2">
+<h3 id="_c">C++</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>ISOCPP <a href="https://isocpp.org/faq">C++ Super-FAQ</a></p>
+</li>
+<li>
+<p>ISOCPP <a href="http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">C++ Core Guidelines</a></p>
+</li>
+<li>
+<p>Marshall Cline&#8217;s FAQ (OLD)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Mirror of 2006 version: <a href="http://www.dietmar-kuehl.de/mirror/c++-faq/" class="bare">http://www.dietmar-kuehl.de/mirror/c++-faq/</a></p>
+</li>
+<li>
+<p>Mirror of 2003 version: <a href="https://www.cs.rit.edu/~mjh/docs/c++-faq/" class="bare">https://www.cs.rit.edu/~mjh/docs/c++-faq/</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_c_super_faq">C++ Super-FAQ</h4>
+<div class="paragraph">
+<p>Questions in round brackets are the ones I find more important or difficult to grasp at first.
+The numbers are a reference inside the 29/07/2011 Marshall Cline&#8217;s C++ FAQ.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/classes-and-objects"><strong>Classes and Inheritance: Classes and Objects</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/classes-and-objects#directly-access-private-in-other-instances">7.7</a> - Can a method directly access the <code>non-public</code> members of another instance of its class?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/references"><strong>General Topics: References</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/references#returning-refs">8.3</a> - What happens if you return a reference?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/references#method-chaining">8.4</a> - What does <code>object.method1().method2()</code> mean?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/references#refs-vs-ptrs">8.6</a> - When should I use references, and when should I use pointers?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/inline-functions"><strong>Beyond Classes: Inline functions</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/inline-functions#overview-inline-fns">9.1</a> - What&#8217;s the deal with <code>inline</code> functions?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/inline-functions#inline-vs-macros">9.5</a> - Why should I use <code>inline</code> functions instead of plain old <code>#define</code> macros?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/inline-functions#inline-nonmember-fns">9.6</a> - How do you tell the compiler to make a non-member function <code>inline</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/inline-functions#inline-member-fns">9.7</a> - How do you tell the compiler to make a member function <code>inline</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/inline-functions#inline-member-fns-more">9.8</a> - Is there another way to tell the compiler to make a member function <code>inline</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/inline-functions#where-to-put-inline-keyword">9.9</a> - With <code>inline</code> member functions that are defined outside the class, is it best to put the <code>inline</code> keyword next to the declaration within the class body, next to the definition outside the class body, or both?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors"><strong>Classes and Inheritance: Constructors</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors#init-methods">10.3</a> - Can one constructor of a class call another constructor of the same class to initialize the <code>this</code> object?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors#default-ctor">10.4</a> - Is the default constructor for <code>Fred</code> always <code>Fred::Fred()</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors#arrays-call-default-ctor">(<em>10.5</em>)</a> - Which constructor gets called when I create an array of <code>Fred</code> objects?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors#init-lists">10.6</a> - Should my constructors use "initialization lists" or "assignment"?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors#named-ctor-idiom">10.8</a> - What is the "Named Constructor Idiom"?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors#return-by-value-optimization">(<em>10.9</em>)</a> - Does return-by-value mean extra copies and extra overhead?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors#return-local-var-by-value-optimization">10.10</a> - What about returning a local variable by value? Does the local exist as a separate object, or does it get optimized away?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors#static-init-order">(<em>10.14</em>)</a> - What&#8217;s the "<code>static</code> initialization order 'fiasco' (problem)"?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors#named-parameter-idiom">10.20</a> - What is the "Named Parameter Idiom"?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/ctors#explicit-ctors">(<em>10.22</em>)</a> - What is the purpose of the <code>explicit</code> keyword?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/dtors"><strong>Classes and Inheritance: Destructors</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/dtors#artificial-block-to-control-lifetimes">11.7</a> - Okay, okay, already; I won&#8217;t explicitly call the destructor of a local; but how do I handle the situation from the previous FAQ?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/dtors#placement-new">11.10</a> - What is "placement <code>new</code>" and why would I use it?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/dtors#memory-pools">11.14</a> - Is there a way to force <code>new</code> to allocate memory from a specific memory area?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/assignment-operators"><strong>Classes and Inheritance: Assignment Operators</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/assignment-operators#self-assignment-how">12.3</a> - Okay, okay, already; I&#8217;ll handle self-assignment. How do I do it?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/assignment-operators#assignment-op-in-derived-class">12.4</a> - I&#8217;m creating a derived class; should my assignment operator call my base class&#8217;s assignment operator?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/operator-overloading"><strong>Classes and Inheritance: Operator Overloading</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/operator-overloading#op-ov-rules">13.9</a> - What are some guidelines / "rules of thumb" for overloading operators?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/operator-overloading#matrix-subscript-op">13.10</a> - How do I create a subscript <code>operator</code> for a <code>Matrix</code> class?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/operator-overloading#increment-pre-post-overloading">13.14</a> - How can I overload the prefix and postfix forms of operators &#43;&#43; and --?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/operator-overloading#increment-pre-post-speed">13.15</a> - Which is more efficient: <code>i&#43;&#43;</code> or <code>&#43;&#43;i</code>?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/friends"><strong>Classes and Inheritance: Friends</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/friends#pros-cons-friend-fns">14.3</a> - What are some advantages/disadvantages of using <code>friend</code> functions?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/friends#member-vs-friend-fns">14.5</a> - Should my class declare a member function or a <code>friend</code> function?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/freestore-mgmt"><strong>General Topics: Memory Management</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/freestore-mgmt#new-vs-malloc">16.4</a> - Why should I use <code>new</code> instead of trustworthy old <code>malloc()</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/freestore-mgmt#delete-handles-null">16.8</a> - Do I need to check for null before <code>delete p</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/freestore-mgmt#new-doesnt-leak-if-ctor-throws">16.10</a> - In <code>p = new Fred()</code>, does the <code>Fred</code> memory "leak" if the Fred constructor throws an exception?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/freestore-mgmt#static-create-methods">16.21</a> - How can I force objects of my class to always be created via <code>new</code> rather than as local, namespace-scope, global, or <code>static</code>?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/exceptions"><strong>Beyond Classes: Exceptions and Error Handling</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/exceptions#exceptions-avoid-spreading-out-error-logic">17.2</a> - I&#8217;m still not convinced: a 4-line code snippet shows that return-codes aren&#8217;t any worse than exceptions; why should I therefore use exceptions on an application that is orders of magnitude larger?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/exceptions#exceptions-avoid-two-return-types">17.3</a> - How do exceptions simplify my function return type and parameter types?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/exceptions#exceptions-separate-good-and-bad-path">17.4</a> - What does it mean that exceptions separate the "good path" (or "happy path") from the "bad path"?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/exceptions#ctors-can-throw">17.8</a> - How can I handle a constructor that fails?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/exceptions#dtors-shouldnt-throw">17.9</a> - How can I handle a destructor that fails?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/exceptions#selfcleaning-members">17.10</a> - How should I handle resources if my constructors may throw exceptions?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/const-correctness"><strong>General Topics: Const Correctness</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/const-correctness#const-ptr-vs-ptr-const">18.5</a> - What&#8217;s the difference between &#8220;<code>const X* p</code>&#8221;, &#8220;<code>X* const p</code>&#8221; and &#8220;<code>const X* const p</code>&#8221;?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/const-correctness#const-ref-nonsense">18.7</a> - Does &#8220;<code>C&amp; const x</code>&#8221; make any sense?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/const-correctness#const-member-fns">18.10</a> - What is a "<code>const</code> member function"?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/const-correctness#const-overloading">18.12</a> - What&#8217;s the deal with "<code>const</code>-overloading"?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/const-correctness#mutable-data-members">(<em>18.13</em>)</a> - What do I do if I want a <code>const</code> member function to make an "invisible" change to a data member?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/const-correctness#aliasing-and-const">18.15</a> - Why does the compiler allow me to change an <code>int</code> after I&#8217;ve pointed at it with a <code>const int*</code>?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/virtual-functions"><strong>Classes and Inheritance: Inheritance — <code>virtual</code> functions</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/virtual-functions#dyn-binding">20.3</a> - What&#8217;s the difference between how <code>virtual</code> and non-<code>virtual</code> member functions are called?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/virtual-functions#dyn-binding2">20.4</a> - What happens in the hardware when I call a virtual function? How many layers of indirection are there? How much overhead is there?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/virtual-functions#fully-qualified-calls-to-base">20.5</a> - How can a member function in my derived class call the same function from its base class?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/virtual-functions#inversion">20.6</a> - I have a heterogeneous list of objects, and my code needs to do class-specific things to the objects. Seems like this ought to use dynamic binding but can&#8217;t figure it out. What should I do?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/virtual-functions#virtual-dtors">(<em>20.7</em>)</a> - When should my destructor be <code>virtual</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors">20.8</a> - What is a "<code>virtual</code> constructor"?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/proper-inheritance"><strong>Classes and Inheritance: Inheritance — Proper Inheritance and Substitutability</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/proper-inheritance#array-derived-vs-base">(<em>21.4</em>)</a> - Is an array of <code>Derived</code> a kind-of array of <code>Base</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/proper-inheritance#circle-ellipse">21.6</a> - Is a <code>Circle</code> a kind-of an <code>Ellipse</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/proper-inheritance#circle-ellipse-nonintuitive">21.8</a> - But I have a Ph.D. in Mathematics, and I&#8217;m <em>sure</em> a Circle is a kind of an Ellipse! Does this mean Marshall Cline is stupid? Or that C&#43;&#43; is stupid? Or that OO is stupid?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/proper-inheritance#sortedlist-kindof-list">21.12</a> - If <code>SortedList</code> has exactly the same public interface as <code>List</code>, is <code>SortedList</code> a kind-of <code>List</code>?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/abcs"><strong>Section 22: Inheritance — Abstract Base Classes (ABCs)</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/abcs#pure-virtual-fns">22.4</a> - What is a "pure virtual" member function?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/abcs#copy-of-abc-via-clone">22.5</a> - How do you define a copy constructor or assignment <code>operator</code> for a class that contains a pointer to a (abstract) base class?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/strange-inheritance"><strong>Classes and Inheritance: Inheritance — what your mother never told you</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/strange-inheritance#calling-virtuals-from-base">23.1</a> - Is it okay for a non-<code>virtual</code> function of the base class to call a <code>virtual</code> function?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/strange-inheritance#protected-virtuals">23.3</a> - Should I use protected virtuals instead of public virtuals?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/strange-inheritance#private-virtuals">23.4</a> - When should someone use private virtuals?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/strange-inheritance#calling-virtuals-from-ctors">23.5</a> - When my base class&#8217;s constructor calls a <code>virtual</code> function on its <code>this</code> object, why doesn&#8217;t my derived class&#8217;s override of that <code>virtual</code> function get invoked?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/strange-inheritance#hiding-rule">(<em>23.9</em>)</a> - What&#8217;s the meaning of, <code>Warning: Derived::f(char) hides Base::f(double)</code>?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/private-inheritance"><strong>Classes and Inheritance: Inheritance — <code>private</code> and <code>protected</code> inheritance</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/private-inheritance#priv-inherit-like-compos">24.2</a> - How are "<code>private</code> inheritance" and "composition" similar?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/private-inheritance#priv-inherit-vs-compos">24.3</a> - Which should I prefer: composition or private inheritance?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/private-inheritance#prot-vs-priv-inherit">24.5</a> - How is <code>protected</code> inheritance related to <code>private</code> inheritance?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/private-inheritance#access-rules-with-priv-inherit">24.6</a> - What are the access rules with <code>private</code> and <code>protected</code> inheritance?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/multiple-inheritance"><strong>Classes and Inheritance: Inheritance — Multiple and Virtual Inheritance</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/multiple-inheritance#mi-disciplines">25.4</a> - What are some disciplines for using multiple inheritance?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/multiple-inheritance#mi-example">25.5</a> - Can you provide an example that demonstrates the above guidelines?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/multiple-inheritance#virtual-inheritance-where">(<em>25.9</em>)</a> - Where in a hierarchy should I use virtual inheritance?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/multiple-inheritance#mi-delegate-to-sister">25.10</a> - What does it mean to "delegate to a sister class" via virtual inheritance?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/intrinsic-types"><strong>General Topics: Built-in / Intrinsic / Primitive Data Types</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/intrinsic-types#is-power-of-2">26.12</a> - How can I tell if an integer is a power of two without looping?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/intrinsic-types#return-from-functions">26.13</a> - What should be returned from a function?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/coding-standards"><strong>Overview Topics: Coding Standards</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/coding-standards#lint-guidelines">27.10</a> - Are there any lint-like guidelines for C&#43;&#43;?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/newbie"><strong>Overview Topics: Newbie Questions &amp; Answers</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/newbie#choosing-int-size">29.5</a> - What are the criteria for choosing between <code>short</code> / <code>int</code> / <code>long</code> data types?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/newbie#const-vs-define">29.7</a> - Why would I use a <code>const</code> variable / <code>const</code> identifier as opposed to <code>#define</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/newbie#floating-point-arith">29.17</a> - Why doesn&#8217;t my floating-point comparison work?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/newbie#floating-point-arith2">29.18</a> - Why is <code>cos(x) != cos(y)</code> even though <code>x == y</code>? (Or sine or tangent or log or just about any other floating point computation)</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/newbie#enumeration-is-its-own-type">(<em>29.19</em>)</a> - What is the type of an enumeration such as <code>enum Color</code>? Is it of type <code>int</code>?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/newbie#enumeration-type-ops">29.20</a> - If an enumeration type is distinct from any other type, what good is it? What can you do with it?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates"><strong>Beyond Classes: Templates</strong></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates#class-templates">35.2</a> - What&#8217;s the syntax / semantics for a "class template"?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates#fn-templates">35.3</a> - What&#8217;s the syntax / semantics for a "function template"?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates#fn-templates-explicit-calls">35.4</a> - How do I explicitly select which version of a function template should get called?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates#template-specialization">(<em>35.7</em>)</a> - My template function does something special when the template type <code>T</code> is <code>int</code> or <code>std::string</code>; how do I write my template so it uses the special code when <code>T</code> is one of those specific types?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates#template-specialization-piecemeal">35.9</a> - But most of the code in my template function is the same; is there some way to get the benefits of template specialization without duplicating all that source code?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates#templates-vs-overloading">35.11</a> - So templates are overloading, right?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates#template-friends">35.16</a> - Why do I get linker errors when I use template friends?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-types">35.18</a> - Why am I getting errors when my template-derived-class uses a nested type it inherits from its template-base-class?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-members">35.19</a> - Why am I getting errors when my template-derived-class uses a member it inherits from its template-base-class?</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/templates#template-proxies">35.22</a> - Follow-up to previous: can I pass in the underlying structure and the element-type separately?</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_topics">Topics</h4>
+<div class="paragraph">
+<p>A list of concepts, ideas, idioms, patterns and keywords to understand and remember.
+The numbers in round brackets are a reference inside the 29/07/2011 Marshall Cline&#8217;s C++ FAQ.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Method chaining (<a href="https://isocpp.org/wiki/faq/references#method-chaining">8.4</a>)/ Named Parameter Idiom (<a href="https://isocpp.org/wiki/faq/ctors#named-parameter-idiom">10.20</a>)</p>
+</li>
+<li>
+<p><a href="https://en.cppreference.com/w/cpp/language/converting_constructor">Converting constructor</a> and <a href="https://en.cppreference.com/w/cpp/language/cast_operator">conversion operator</a></p>
+</li>
+<li>
+<p>Operator overloading (<a href="https://isocpp.org/wiki/faq/operator-overloading">Section 13</a>)</p>
+</li>
+<li>
+<p><code>explicit</code> constructor (<a href="https://isocpp.org/wiki/faq/ctors#explicit-ctors">10.22</a>)</p>
+</li>
+<li>
+<p>Qualifiers: <code>const</code> (<a href="https://isocpp.org/wiki/faq/newbie#const-vs-define">29.7</a>) / <code>mutable</code> (<a href="https://isocpp.org/wiki/faq/const-correctness#mutable-data-members">18.13</a>) / <a href="https://en.cppreference.com/w/cpp/language/cv"><code>volatile</code></a> / <a href="https://en.cppreference.com/w/c/language/restrict"><code>restrict</code></a></p>
+</li>
+<li>
+<p>v-table mechanism <a href="https://isocpp.org/wiki/faq/virtual-functions#dyn-binding2">(20.4)</a></p>
+</li>
+<li>
+<p>Pure virtual member functions (<a href="https://isocpp.org/wiki/faq/abcs#pure-virtual-fns">22.4</a>) (can have an <a href="https://stackoverflow.com/questions/2089083/pure-virtual-function-with-implementation">implementation</a>), abstract base classes (<a href="https://isocpp.org/wiki/faq/abcs">Section 22</a>)</p>
+</li>
+<li>
+<p>Covariant Return Types and "virtual constructor" (<a href="https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors">20.8</a>, <a href="https://isocpp.org/wiki/faq/abcs#copy-of-abc-via-clone">22.5</a>, <a href="https://www.lwithers.me.uk/articles/covariant.html">HOWTO: Covariant Return Types in C++</a>)</p>
+</li>
+<li>
+<p>Object slicing (<a href="https://isocpp.org/wiki/faq/proper-inheritance#array-derived-vs-base">21.4</a>, <a href="https://isocpp.org/wiki/faq/value-vs-ref-semantics#pass-by-value">31.8</a>, <a href="https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors">20.8</a>)</p>
+</li>
+<li>
+<p>Template Method pattern and private virtuals (<a href="https://isocpp.org/wiki/faq/strange-inheritance#private-virtuals">23.4</a>) (<a href="http://www.gotw.ca/publications/mill18.htm">Virtuality</a> by Herb Sutter)</p>
+</li>
+<li>
+<p>Private inheritance (<a href="https://isocpp.org/wiki/faq/private-inheritance#priv-inherit-like-compos">24.2</a>, <a href="https://isocpp.org/wiki/faq/private-inheritance#priv-inherit-vs-compos">24.3</a>) (<a href="http://www.gotw.ca/publications/mill06.htm">Uses and Abuses of Inheritance, Part 1</a> by Herb Sutter)</p>
+</li>
+<li>
+<p>Static initialization order "fiasco" (<a href="https://isocpp.org/wiki/faq/ctors#static-init-order">10.14</a>)</p>
+</li>
+<li>
+<p>Meyer&#8217;s singleton (<a href="https://isocpp.org/wiki/faq/ctors#construct-on-first-use-v2">10.16</a>)</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/One_Definition_Rule">One Definition Rule</a> (ODR)</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Common_subexpression_elimination">Common Subexpression Elimination</a> (CSE)</p>
+</li>
+<li>
+<p>Different kind of casts: C style, <a href="https://en.cppreference.com/w/cpp/language/static_cast"><code>static_cast</code></a>, <a href="https://en.cppreference.com/w/cpp/language/dynamic_cast"><code>dynamic_cast</code></a>, <a href="https://en.cppreference.com/w/cpp/language/const_cast"><code>const_cast</code></a> and <a href="https://en.cppreference.com/w/cpp/language/reinterpret_cast"><code>reinterpret_cast</code></a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization">Resource Acquisition Is Initialization</a> (RAII)</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Run-time_type_information">Run-Time Type Information</a> (RTTI)</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/SOLID">SOLID</a> principles</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_more_topics">More topics</h4>
+<div class="paragraph">
+<p>A second list of concepts to keep in mind, only a bit harder this time.
+As before, the numbers in round brackets are a reference inside the 29/07/2011 Marshall Cline&#8217;s C++ FAQ.</p>
+</div>
+<div class="paragraph">
+<p>For optimizations have also a look at <a href="https://www.agner.org/optimize/optimizing_cpp.pdf">Optimizing software in C&#43;&#43;</a> and at the other free <a href="https://www.agner.org/optimize/">optimization</a> books by Agner Fog.
+Another free C++ book is <a href="http://www.icce.rug.nl/documents/cplusplus/">The C&#43;&#43; Annotations</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Placement new (<a href="https://isocpp.org/wiki/faq/dtors#placement-new">11.10</a>)</p>
+</li>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/pointers-to-members">Pointers to Member Function</a></p>
+</li>
+<li>
+<p>Diamond problem (<a href="https://isocpp.org/wiki/faq/multiple-inheritance#mi-diamond">25.8</a>, <a href="https://isocpp.org/wiki/faq/multiple-inheritance#virtual-inheritance-where">25.9</a>) and multiple inheritance (<a href="https://isocpp.org/wiki/faq/multiple-inheritance">Section 25</a>)</p>
+</li>
+<li>
+<p>Hiding rule (<a href="https://isocpp.org/wiki/faq/strange-inheritance#hiding-rule">23.9</a>, <a href="https://isocpp.org/wiki/faq/strange-inheritance#protected-virtuals">23.3</a>), <a href="https://stackoverflow.com/questions/4837399/c-rationale-behind-hiding-rule">C++: rationale behind hiding rule</a></p>
+</li>
+<li>
+<p>Templates (<a href="https://isocpp.org/wiki/faq/templates">Section 35</a>)</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of Three</a> / five / zero, <a href="https://en.wikipedia.org/wiki/Special_member_functions">special member functions</a></p>
+</li>
+<li>
+<p>Return value optimization (NRVO, RVO) (<a href="https://isocpp.org/wiki/faq/ctors#return-by-value-optimization">10.9</a>) / Copy elision (<a href="https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/">C++ Cargo Cults, RVO and Copy Elision</a>, <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus09.html#l201">9.8</a> of C&#43;&#43; Annotations)</p>
+</li>
+<li>
+<p>Copy-and-swap idiom (<a href="http://stackoverflow.com/a/3279550">Why do we need the copy-and-swap idiom?</a>, <a href="https://stackoverflow.com/questions/5695548/public-friend-swap-member-function">public friend swap member function
+</a>)</p>
+</li>
+<li>
+<p><a href="http://en.cppreference.com/w/cpp/language/adl">Argument-dependant lookup</a> or <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus04.html#l75">Koenig lookup</a> (4.1.2.2 of C++ Annotations)</p>
+</li>
+<li>
+<p>Substitution Failure Is Not An Error (SFINAE) (<a href="https://isocpp.org/wiki/faq/templates#templates-vs-overloading">35.11</a>, <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus21.html#l552">21.15</a> of C++ Annotations)</p>
+</li>
+<li>
+<p>non-dependent types and members (<a href="https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-types">35.18</a>, <a href="https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-members">35.19</a>, <a href="https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-silent-bug">35.20</a>)</p>
+</li>
+<li>
+<p>Proxy template (<a href="https://isocpp.org/wiki/faq/templates#template-proxies">35.22</a>), in C&#43;&#43;11 you would employ the Type alias declaration with <code>using</code></p>
+</li>
+<li>
+<p>Type traits, concepts, tag dispatching (<a href="http://www.boost.org/community/generic_programming.html">Generic Programming Techniques</a>)</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Most_vexing_parse">Most vexing parse</a></p>
+</li>
+<li>
+<p><a href="http://blog.llvm.org/2009/12/dreaded-two-phase-name-lookup.html">Two-phase name lookup</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Maximal_munch">Maximal munch</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Sequence_point">Sequence point</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Optimizing_compiler">Optimizing compiler</a> (<a href="https://en.wikipedia.org/wiki/Tail_call">Tail call</a>, <a href="https://en.wikipedia.org/wiki/Constant_folding">Constant folding</a>, <a href="https://en.wikipedia.org/wiki/Dead_code_elimination">Dead code elimination</a>, &#8230;&#8203;)</p>
+</li>
+<li>
+<p><a href="https://en.cppreference.com/w/cpp/language/ebo">Empty base optimization</a>, <a href="http://tinf2.vub.ac.be/~dvermeir/c&#43;&#43;/emptyopt.html">The "Empty Member" C++ Optimization</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_c11">C++11</h4>
+<div class="paragraph">
+<p>The book "<em>Effective Modern C++</em>" by Scott Meyers is a must-have.
+Chapters and items are references to this book.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://isocpp.org/wiki/faq/cpp11-language-classes#delegating-ctor">Delegating constructors</a> (supersede <a href="https://isocpp.org/wiki/faq/ctors#init-methods">10.3</a>, <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus07.html#l147">7.4.1</a> of C++ Annotations)</p>
+</li>
+<li>
+<p>Rvalues (<a href="http://thbecker.net/articles/rvalue_references/section_01.html">C++ Rvalue References Explained</a> by Thomas Becker, <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l38">3.3.2</a> and <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l39">3.3.3</a> of C&#43;&#43; Annotations)</p>
+</li>
+<li>
+<p>Auto keyword (Chapter 2, <a href="https://isocpp.org/wiki/faq/cpp11-language#auto"><code>auto</code></a> in Super-FAQ, <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l44">3.3.7</a> of C++ Annotations) and type deduction (Chapter 1)</p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/3106110/what-is-move-semantics">Move semantics</a> (<a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus09.html#l192">9.7</a> of C++ Annotations), Rule of Five</p>
+</li>
+<li>
+<p>Reference collapsing (Item 28)</p>
+</li>
+<li>
+<p>Reference qualifiers</p>
+</li>
+<li>
+<p>Forwarding AKA universal references (<a href="https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers">Universal References in C++11</a> by Scott Meyers)</p>
+</li>
+<li>
+<p>Perfect forwarding (<a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus22.html#l582">22.5.2</a> of C++ Annotations)</p>
+</li>
+<li>
+<p>Enum classes (Item 10, <a href="https://isocpp.org/wiki/faq/cpp11-language-types#enum-class"><code>enum class</code></a> in Super-FAQ, <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l40">3.3.4</a> of C++ Annotations)</p>
+</li>
+<li>
+<p>Range-based for loops and issues with <code>auto</code> and copying objects around (<a href="https://isocpp.org/wiki/faq/cpp11-language#range-for">Range-<code>for</code> statement</a> in Super-FAQ, <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l47">3.3.9</a> of C++ Annotations)</p>
+</li>
+<li>
+<p>List initialization, initializer lists (<a href="https://isocpp.org/wiki/faq/cpp11-language#init-list">Initializer lists</a> in Super-FAQ, <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l41">3.3.5</a> of C++ Annotations)</p>
+</li>
+<li>
+<p>Lambdas (Chapter 6, <a href="https://isocpp.org/wiki/faq/cpp11-language#lambda">Lambdas</a> in Super-FAQ, <a href="http://www.icce.rug.nl/documents/cplusplus/cplusplus11.html#l254">11.11</a> of C++ Annotations)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.bfilipek.com/2019/02/lambdas-story-part1.html">Lambdas: From C11 to C20, Part 1</a> by Bartłomiej Filipek</p>
+</li>
+<li>
+<p><a href="https://www.bfilipek.com/2019/03/lambdas-story-part2.html">Lambdas: From C11 to C20, Part 2</a> by Bartłomiej Filipek</p>
+</li>
+<li>
+<p><a href="https://www.bfilipek.com/2016/11/iife-for-complex-initialization.html">IIFE for Complex Initialization</a> by Bartłomiej Filipek</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_design_patterns_and_oop">Design patterns and OOP</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">Single responsibility principle</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Cohesion_(computer_science)">Cohesion</a> / <a href="https://en.wikipedia.org/wiki/Coupling_(computer_programming)">Coupling</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Factory_method_pattern">Factory method</a> / <a href="https://en.wikipedia.org/wiki/Abstract_factory_pattern">Abstract factory pattern</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Builder_pattern">Builder pattern</a></p>
+</li>
+<li>
+<p>Meyer&#8217;s singleton</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Object_pool_pattern">Object pool</a>, <a href="https://en.wikipedia.org/wiki/Thread_pool">Thread pool</a>, <a href="https://en.wikipedia.org/wiki/Flyweight_pattern">Flyweight pattern</a></p>
+</li>
+<li>
+<p><a href="https://davekilian.com/cpp-type-erasure.html">C++ 'Type Erasure' Explained</a> by Dave Kilian</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_math_and_geometry">Math and geometry</h3>
+<div class="sect3">
+<h4 id="_books">Books</h4>
+<div class="paragraph">
+<p>Read about the same math concepts on more than one book.
+Some books are targeted to game developers, like:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"<em>Essential Mathematics for Games and Interactive Applications</em>" by James M. Van Verth and Lars M. Bishop</p>
+</li>
+<li>
+<p>"<em>3D Math Primer for Graphics and Game Development</em>" by Fletcher Dunn and Ian Parberry</p>
+</li>
+<li>
+<p>"<em>Mathematics for 3D Game Programming and Computer Graphics</em>" by Eric Lengyel and John Flynt</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_topics_2">Topics</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Trigonometry</p>
+</li>
+<li>
+<p>Vectors and matrices</p>
+</li>
+<li>
+<p>Rendering pipeline</p>
+</li>
+<li>
+<p>OpenGL transformations and matrices:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.songho.ca/opengl/gl_transform.html">OpenGL Transformation</a></p>
+</li>
+<li>
+<p><a href="http://www.songho.ca/opengl/gl_projectionmatrix.html">OpenGL Projection Matrix</a></p>
+</li>
+<li>
+<p><a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/computing-pixel-coordinates-of-3d-point">Computing the Pixel Coordinates of a 3D Point</a></p>
+</li>
+<li>
+<p><a href="http://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrix-introduction">The Perspective and Orthographic Projection Matrix</a></p>
+</li>
+<li>
+<p><a href="https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/transforming-normals">Transforming Normals</a></p>
+</li>
+<li>
+<p><a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/projection-stage">The Projection Stage</a></p>
+</li>
+<li>
+<p><a href="http://www.terathon.com/gdc07_lengyel.pdf">Projection Matrix Tricks by Eric Lengyel (PDF)</a></p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/76134/how-do-i-reverse-project-2d-points-into-3d/33976739#33976739">How do I reverse-project 2D points into 3D?</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_algorithms_and_more">Algorithms and more</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Sorting and data structures (lists, arrays, hash tables)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>About hash tables: linear probing, quadratic probing, <a href="http://preshing.com/20160314/leapfrog-probing/">leapfrog probing</a>, double hashing, cuckoo hashing, hopscotch hashing</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Floating point (29.17 and <a href="https://randomascii.wordpress.com/">Random ASCII blog</a>)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://randomascii.wordpress.com/2012/01/11/tricks-with-the-floating-point-format/">Tricks With the Floating-Point Format</a> (representation)</p>
+</li>
+<li>
+<p><a href="https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/">Comparing Floating Point Numbers, 2012 Edition</a> (ULP comparison)</p>
+</li>
+<li>
+<p><a href="https://randomascii.wordpress.com/2012/05/20/thats-not-normalthe-performance-of-odd-floats/">That’s Not Normal–the Performance of Odd Floats</a> (hole around zero, denormals)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://download-mirror.savannah.gnu.org/releases/pgubook/ProgrammingGroundUp-1-0-booksize.pdf">"Programming from the Ground Up" (PDF)</a> by Jonathan Bartlett</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Call_stack">Call stack</a>, relocating code, dynamic libraries, <a href="https://en.wikipedia.org/wiki/Data_segment">data</a> / <a href="https://en.wikipedia.org/wiki/.bss">bss</a> / <a href="https://en.wikipedia.org/wiki/Code_segment">text</a> segments</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Virtual_memory">Virtual memory</a>, <a href="https://en.wikipedia.org/wiki/Paging">paging</a>, <a href="https://en.wikipedia.org/wiki/Translation_lookaside_buffer">TLB</a>, <a href="https://en.wikipedia.org/wiki/Memory_management_unit">MMU</a>, <a href="https://en.wikipedia.org/wiki/Mmap">mmap</a></p>
+</li>
+<li>
+<p><a href="http://davidad.github.io/blog/2014/02/19/relocatable-vs-position-independent-code-or/">Relocatable vs. Position-Independent Code</a></p>
+</li>
+<li>
+<p><a href="http://gafferongames.com/game-physics/fix-your-timestep/">Fix Your Timestep! by Glenn Fiedler</a></p>
+</li>
+<li>
+<p><a href="https://www.gamedev.net/articles/programming/general-and-gameplay-programming/c-custom-memory-allocation-r3010/">C++: Custom memory allocation</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Quadtree">Quadtree</a>, <a href="https://en.wikipedia.org/wiki/Octree">Octree</a> and <a href="https://en.wikipedia.org/wiki/Binary_space_partitioning">Binary Space Partitioning (BSP)</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cpu">CPU</h3>
+<div class="paragraph">
+<p>Important links from Wikipedia about the architecture of a CPU.
+One of the book you could read to learn more on the subject is "<em>Computer Architecture: A Quantitative Approach</em>" by David A. Patterson.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture">Von Neumann architecture</a>, <a href="https://en.wikipedia.org/wiki/Harvard_architecture">Harvard architecture</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Instruction_pipelining">Instruction pipelining</a>, <a href="https://en.wikipedia.org/wiki/Classic_RISC_pipeline">Classic RISC pipeline</a> &#8594; (fetch, decode, execute, memory access, writeback), <a href="https://en.wikipedia.org/wiki/Branch_predication">Branch predication</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Instruction-level_parallelism">Instruction-level parallelism</a>, <a href="https://en.wikipedia.org/wiki/Out-of-order_execution">Out-of-order execution</a>, <a href="https://en.wikipedia.org/wiki/Register_renaming">Register renaming</a>, <a href="https://en.wikipedia.org/wiki/Register_allocation#Spilling">Register spilling</a>, <a href="https://en.wikipedia.org/wiki/Superscalar_processor">Superscalar processor</a>, <a href="https://en.wikipedia.org/wiki/Very_long_instruction_word">VLIW (Very Long Instruction Word)</a>, <a href="https://en.wikipedia.org/wiki/Barrel_processor">Barrell processor</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Cycles_per_instruction">Cycles per instruction</a>, <a href="https://en.wikipedia.org/wiki/Instructions_per_cycle">Instructions per cycle (IPC)</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Branch_predictor">Branch predictor</a>, <a href="https://en.wikipedia.org/wiki/Branch_target_predictor">Branch target predictor</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Hazard_%28computer_architecture%29">Hazard (computer architecture)</a> &#8594; (RAW, WAR, WAW data hazards, pipeline bubbling, register forwarding)</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Speculative_execution">Speculative execution</a>, <a href="https://en.wikipedia.org/wiki/Instruction_prefetch">Instruction prefetch</a>, <a href="https://en.wikipedia.org/wiki/Prefetch_input_queue">Prefetch input queue</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/CPU_cache">CPU cache</a>, <a href="https://en.wikipedia.org/wiki/Cache_replacement_policies">Cache replacement policies</a>, <a href="https://en.wikipedia.org/wiki/Translation_lookaside_buffer">Translation Lookaside Buffer (TLB)</a>, <a href="https://en.wikipedia.org/wiki/Scratchpad_memory">Scratchpad memory</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Cache_coherence">Cache coherence</a> (<a href="https://en.wikipedia.org/wiki/MESI_protocol">MESI protocol</a>, <a href="https://en.wikipedia.org/wiki/MOESI_protocol">MOESI protocol</a>), <a href="https://en.wikipedia.org/wiki/Bus_snooping">Bus snooping</a>, <a href="https://en.wikipedia.org/wiki/Write_combining">Write combining</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Clock_gating">Clock gating</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Multiply%E2%80%93accumulate_operation">Multiply–accumulate operation</a> &#8594; (Fused multiply–add)</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Symmetric_multiprocessing">Symmetric multiprocessing</a>, <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">Simultaneous multithreading</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_multi_threading">Multi-threading</h4>
+<div class="paragraph">
+<p>One of the book on the topic is "<em>The Art of Multiprocessor Programming</em>" by Maurice Herlihy and Nir Shavit</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Critical section, mutex, semaphore, <a href="https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem">Producer-consumer problem</a>, <a href="https://en.wikipedia.org/wiki/Dining_philosophers_problem">Dining philosophers problem</a>, <a href="https://en.wikipedia.org/wiki/Priority_inversion">Priority inversion</a>, race condition</p>
+</li>
+<li>
+<p>Atomics and lock-free programming (<a href="http://preshing.com/">Preshing on Programming</a>), <a href="https://preshing.com/20120710/memory-barriers-are-like-source-control-operations/">memory barriers</a>, <a href="https://preshing.com/20120930/weak-vs-strong-memory-models/">memory models</a>, <a href="http://preshing.com/20120226/roll-your-own-lightweight-mutex/">Benaphore</a>, <a href="https://en.wikipedia.org/wiki/Compare-and-swap">Compare-and-swap</a>, <a href="https://en.wikipedia.org/wiki/ABA_problem">ABA problem</a>, <a href="https://en.wikipedia.org/wiki/Load-link/store-conditional">Load-link/store-conditional</a>, <a href="http://preshing.com/20120913/acquire-and-release-semantics/">acquire and release semantics</a> (Load-Acquire/Store-Release in the ARM Reference Manual)</p>
+</li>
+<li>
+<p>Cache coherency, <a href="https://en.wikipedia.org/wiki/MOESI_protocol">MOESI protocol</a>, <a href="https://en.wikipedia.org/wiki/MESIF_protocol">MESIF protocol</a>, <a href="https://en.wikipedia.org/wiki/False_sharing">false sharing</a>, <a href="https://en.wikipedia.org/wiki/Branch_misprediction">branch misprediction</a>, <a href="https://en.wikipedia.org/wiki/Scratchpad_memory">scratchpad memory</a></p>
+</li>
+<li>
+<p><a href="https://www.quora.com/CPUs-How-is-branch-prediction-implemented-in-microprocessors">CPUs: How is branch prediction implemented in microprocessors?</a></p>
+</li>
+<li>
+<p>Single Producer / Multiple Consumer</p>
+</li>
+<li>
+<p>Lock-free queues</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Hazard_pointer">Hazard pointer</a></p>
+</li>
+<li>
+<p>Aligning AoS to cache line size to avoid false sharing</p>
+</li>
+<li>
+<p><a href="https://fgiesen.wordpress.com/2016/08/07/why-do-cpus-have-multiple-cache-levels/">Why do CPUs have multiple cache levels?</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_more_topics_2">More topics</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://assemblyrequired.crashworks.org/load-hit-stores-and-the-__restrict-keyword/">Load-Hit-Stores and the <code>__restrict</code> keyword</a> by Elan Ruskin</p>
+</li>
+<li>
+<p><a href="http://www.gamasutra.com/view/feature/132084/sponsored_feature_common_.php">Sponsored Feature: Common Performance Issues in Game Programming</a> by Becky Heineman</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_graphics">Graphics</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.scratchapixel.com/">Scratchapixel - Learn Computer Graphics From Scratch!</a></p>
+</li>
+<li>
+<p><a href="https://www.cs.uu.nl/docs/vakken/magr/2021-2022/index.html">Advanced Graphics</a> Course 2021/22 from Universiteit Utrecht</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_mobile_gpus_architecture">Mobile GPUs architecture</h4>
+<div class="paragraph">
+<p>The book "<em>OpenGL ES 3.0 Programming Guide</em>" by Dan Ginsburg and Budirijanto Purnomo is a must-have.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.seas.upenn.edu/~pcozzi/OpenGLInsights/OpenGLInsights-TileBasedArchitectures.pdf">Performance Tuning for Tile-Based Architectures (PDF)</a>, from chapter 23 of the "OpenGL Insights" book</p>
+</li>
+<li>
+<p><a href="http://malideveloper.arm.com/downloads/ARM_Game_Developer_Days/PDFs/4-compute_shaders.pdf">Get the most out of the new OpenGL ES 3.1 API (PDF)</a> by ARM</p>
+</li>
+<li>
+<p><a href="https://github.com/ARM-software/opengl-es-sdk-for-android">OpenGL ES SDK for Android by ARM</a></p>
+</li>
+<li>
+<p><a href="https://github.com/ARM-software/vulkan-sdk">Vulkan SDK for Android by ARM</a></p>
+</li>
+<li>
+<p><a href="https://developer.samsung.com/galaxy-gamedev/resources/articles/gpu-framebuffer.html">GPU Framebuffer Memory: Understanding Tiling</a> by Samsung</p>
+</li>
+<li>
+<p><a href="https://community.arm.com/arm-community-blogs/b/graphics-gaming-and-vr-blog/posts/moving-mobile-graphics">Moving Mobile Graphics</a> SIGGRAPH Courses</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="_arm_mali">ARM Mali</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://malideveloper.arm.com/documentation/developer-guides/mali-gpu-application-optimization-guide/">Mali GPU Application Optimization Guide</a></p>
+</li>
+<li>
+<p>The Mali GPU: An Abstract Machine</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/the-mali-gpu-an-abstract-machine-part-1---frame-pipelining">Part 1 - Frame Pipelining</a></p>
+</li>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/the-mali-gpu-an-abstract-machine-part-2---tile-based-rendering">Part 2 - Tile-based Rendering</a></p>
+</li>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/the-mali-gpu-an-abstract-machine-part-3---the-midgard-shader-core">Part 3 - The Midgard Shader Core</a></p>
+</li>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/the-mali-gpu-an-abstract-machine-part-4---the-bifrost-shader-core">Part 4 - The Bifrost Shader Core</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/killing-pixels---a-new-optimization-for-shading-on-arm-mali-gpus">Killing Pixels - A New Optimization for Shading on ARM Mali GPUs</a> (Forward Pixel Kill)</p>
+</li>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/how-low-can-you-go-building-low-power-low-bandwidth-arm-mali-gpus">How low can you go? Building low-power, low-bandwidth ARM Mali GPUs</a> (Transaction elimination)</p>
+</li>
+<li>
+<p>Mali Performance</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/mali-performance-1-checking-the-pipeline">1: Checking the Pipeline</a></p>
+</li>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/mali-performance-2-how-to-correctly-handle-framebuffers">2: How to Correctly Handle Framebuffers</a></p>
+</li>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/mali-performance-3-is-egl_5f00_buffer_5f00_preserved-a-good-thing">3: Is <code>EGL_BUFFER_PRESERVED</code> a good thing?</a></p>
+</li>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/mali-performance-4-principles-of-high-performance-rendering">4: Principles of High Performance Rendering</a></p>
+</li>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/mali-performance-5-an-application-s-performance-responsibilities">5: An Application&#8217;s Performance Responsibilities</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Benchmarking floating-point precision in mobile GPUs</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://community.arm.com/graphics/b/blog/posts/benchmarking-floating-point-precision-in-mobile-gpus">Part I</a></p>
+</li>
+<li>
+<p><a href="https://community.arm.com/graphics/b/blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-ii">Part II</a></p>
+</li>
+<li>
+<p><a href="https://community.arm.com/graphics/b/blog/posts/benchmarking-floating-point-precision-in-mobile-gpus---part-iii">Part III</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://www.community.arm.com/graphics/b/blog/posts/pixel-local-storage-on-arm-mali-gpus">Pixel Local Storage on ARM&#174; Mali&#8482; GPUs</a></p>
+</li>
+<li>
+<p><a href="https://community.arm.com/cfs-file/__key/telligent-evolution-components-attachments/01-2066-00-00-00-00-55-34/siggraph14_2D00_Bjorge_2D00_TLS_2D00_presentation.pdf">Efficient Rendering with Tile Local Storage (PDF)</a> (SIGGRAPH 2014)</p>
+</li>
+<li>
+<p><a href="http://www.anandtech.com/show/8234/arms-mali-midgard-architecture-explored">ARM&#8217;s Mali Midgard Architecture Explored</a></p>
+</li>
+<li>
+<p><a href="http://www.anandtech.com/show/10375/arm-unveils-bifrost-and-mali-g71">ARM Unveils Next Generation Bifrost GPU Architexture &amp; Mali-G71: The New High-End Mali</a></p>
+</li>
+<li>
+<p><a href="https://developer.arm.com/documentation/101897/0301">ARM GPU Best Practices Developer Guide</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_imagination_powervr">Imagination PowerVR</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.imgtec.com/blog/a-look-at-the-powervr-graphics-architecture-tile-based-rendering/">A look at the PowerVR graphics architecture: Tile-based rendering</a></p>
+</li>
+<li>
+<p><a href="https://www.imgtec.com/blog/the-dr-in-tbdr-deferred-rendering-in-rogue/">A look at the PowerVR graphics architecture: Deferred rendering</a></p>
+</li>
+<li>
+<p><a href="https://community.imgtec.com/?do-download=50703">PowerVR Hardware Architecture Overview for Developers (PDF)</a></p>
+</li>
+<li>
+<p><a href="https://community.imgtec.com/?do-download=50702">PowerVR Series5 Architecture Guide for Developers (PDF)</a></p>
+</li>
+<li>
+<p><a href="https://community.imgtec.com/?do-download=50691">PowerVR Series6 Compiler Instruction Set Reference (PDF)</a></p>
+</li>
+<li>
+<p><a href="https://community.imgtec.com/?do-download=50705">PowerVR Performance Recommendations (PDF)</a></p>
+</li>
+<li>
+<p><a href="https://community.imgtec.com/?do-download=50751">PowerVR Performance Recommendations The Golden Rules (PDF)</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_qualcomm_adreno">Qualcomm Adreno</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.qualcomm.com/download/adrenosdk/adreno-opengl-es-developer-guide.pdf">Adreno OpenGL ES Developer Guide (PDF)</a></p>
+</li>
+<li>
+<p><a href="https://developer.qualcomm.com/sites/default/files/docs/adreno-gpu/snapdragon-game-toolkit/gdg/gpu/best_practices.html">Qualcomm Adreno GPU Best Practices</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_nvidia_tegra">Nvidia Tegra</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.nvidia.com/embedded/tegra-2-reference">Tegra 2 Reference</a></p>
+</li>
+<li>
+<p><a href="https://developer.nvidia.com/embedded/tegra-3-reference">Tegra 3 Reference</a></p>
+</li>
+<li>
+<p><a href="https://developer.nvidia.com/embedded/tegra-4-reference">Tegra 4 Reference</a></p>
+</li>
+<li>
+<p><a href="https://developer.nvidia.com/embedded/tegra-k1-reference">Tegra K1 Reference</a></p>
+</li>
+<li>
+<p><a href="http://developer.download.nvidia.com/assets/mobile/files/tegra_gles2_development.pdf">OpenGL ES 2.0 Development for the Tegra Platform (PDF)</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_desktop_gpus_architecture">Desktop GPUs architecture</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://courses.cs.washington.edu/courses/cse558/11wi/lectures/05_gpuArchShaderCores_BPS_2011.pdf">From Shader Code to a Teraflop: How GPU Shader Cores Work (PDF)</a> by Kayvon Fatahalian (SIGGRAPH 2010)</p>
+</li>
+<li>
+<p><a href="https://courses.cs.washington.edu/courses/cse558/11wi/lectures/08-GPU-architecture-II_BPS-2011.pdf">Scheduling the Graphics Pipeline (PDF)</a> by Jonathan Ragan-Kelley (SIGGRAPH 2011)</p>
+</li>
+<li>
+<p><a href="https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf">Triangles Are Precious - Let&#8217;s Treat Them With Care (PDF)</a> by Dominik Baumeister (AMD)</p>
+</li>
+<li>
+<p><a href="https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/">A trip through the Graphics Pipeline 2011: Index</a> by Fabian "ryg" Giesen</p>
+</li>
+<li>
+<p><a href="https://vksegfault.github.io/posts/gentle-intro-gpu-inner-workings/">Gentle introduction to GPUs inner workings</a> by Adrian Jurczak</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="_nvidia_geforce">Nvidia GeForce</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.academia.edu/28633432/NVIDIA_Tesla_A_Unified_Graphics_and_Computing_Architecture">NVIDIA Tesla: A Unified Graphics and Computing Architecture</a> from IEEE Micro, March-April 2008</p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/">A History of Nvidia Stream Multiprocessor</a> by Fabien Sanglard</p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/fermi-the_first_complete_gpu_architecture.pdf">Fermi: The First Complete GPU Computing Architecture</a> by Peter N. Glaskowsky</p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/Fermi_Compute_Architecture_Whitepaper.pdf">Fermi (GF100) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/nvidia-gtx-680.pdf">Kepler (GK104) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/GeForce-GTX-750-Ti-Whitepaper.pdf">Maxwell Gen1 (GM107) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/GeForce_GTX_980_Whitepaper.pdf">Maxwell Gen2 (GM200) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/GeForce_GTX_1080_Whitepaper.pdf">Pascal (GP102) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf">Volta (V100) whitepaper</a></p>
+</li>
+<li>
+<p><a href="https://fabiensanglard.net/cuda/Turing-Architecture-Whitepaper.pdf">Turing (TU102) whitepaper</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_amd_radeon">AMD Radeon</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gpuopen.com/discovering-rdna/">Discovering the structure of RDNA</a></p>
+</li>
+<li>
+<p><a href="https://gpuopen.com/compute-product/amd-rdna-1-0-instruction-set-architecture/">AMD RDNA 1.0 Instruction Set Architecture</a></p>
+</li>
+<li>
+<p><a href="http://gpuopen.com/compute-product/amd-gcn3-isa-architecture-manual/">AMD GCN3 ISA Architecture Manual</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_graphics_techniques">Graphics techniques</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://advances.realtimerendering.com/">Advances in Real-Time Rendering in 3D Graphics and Games</a></p>
+</li>
+<li>
+<p><a href="http://newq.net/publications/more/s2015-many-lights-course">Real-Time Many-Light Management and Shadows with Clustered Shading</a> a SIGGRAPH 2015 Course</p>
+</li>
+<li>
+<p><a href="http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf">Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)</a> by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo</p>
+</li>
+<li>
+<p><a href="https://therealmjp.github.io/posts/sss-intro/">An Introduction To Real-Time Subsurface Scattering</a> by Matt Pettineo</p>
+</li>
+<li>
+<p><a href="https://www.ea.com/frostbite/news/precomputed-global-illumination-in-frostbite">Precomputed Global Illumination in Frostbite</a> by Yuriy O&#8217;Donnell at GDC 2018</p>
+</li>
+<li>
+<p><a href="https://www.ea.com/frostbite/news/real-time-raytracing-for-interactive-global-illumination-workflows-in-frostbite">Real-time Raytracing for Interactive Global Illumination Workflows in Frostbite</a> by Sébastien Hillaire at GDC 2018</p>
+</li>
+<li>
+<p><a href="http://jcgt.org/published/0002/02/04/">The Visibility Buffer: A Cache-Friendly Approach to Deferred Shading</a> by Christopher A. Burns and Warren A. Hunt (Intel)</p>
+</li>
+<li>
+<p><a href="https://bgolus.medium.com/anti-aliased-alpha-test-the-esoteric-alpha-to-coverage-8b177335ae4f">Anti-aliased Alpha Test: The Esoteric Alpha To Coverage</a> by Ben Golus</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="_physically_based_rendering">Physically Based Rendering</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://blog.selfshadow.com/publications/s2012-shading-course/">SIGGRAPH 2012 Course: Practical Physically Based Shading in Film and Game Production</a></p>
+</li>
+<li>
+<p><a href="https://blog.selfshadow.com/publications/s2013-shading-course/">SIGGRAPH 2013 Course: Physically Based Shading in Theory and Practice</a></p>
+</li>
+<li>
+<p><a href="http://blog.selfshadow.com/publications/s2016-shading-course/">SIGGRAPH 2016 Course: Physically Based Shading in Theory and Practice</a></p>
+</li>
+<li>
+<p><a href="https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf">Moving Frostbite to Physically Based Rendering 3.0</a></p>
+</li>
+<li>
+<p><a href="https://google.github.io/filament/Filament.html">Physically Based Rendering in Filament</a></p>
+</li>
+<li>
+<p><a href="https://graphics.pixar.com/library/PhysicallyBasedLighting/">Physically Based Lighting at Pixar</a></p>
+</li>
+<li>
+<p><a href="https://eheitzresearch.wordpress.com/415-2/">Real-Time Polygonal-Light Shading with Linearly Transformed Cosines</a></p>
+</li>
+<li>
+<p>Learn OpenGL: PBR <a href="https://learnopengl.com/PBR/Theory">Theory</a>, <a href="https://learnopengl.com/PBR/Lighting">Lighting</a>, <a href="https://learnopengl.com/PBR/IBL/Diffuse-irradiance">Diffuse irradiance</a>, <a href="https://learnopengl.com/PBR/IBL/Specular-IBL">Specular IBL</a></p>
+</li>
+<li>
+<p><a href="http://lousodrome.net/blog/light/2020/01/04/physically-based-rendering-references-at-the-end-of-2019/">Physically based shading references, at the end of 2019</a></p>
+</li>
+<li>
+<p><a href="http://www.reedbeta.com/blog/hows-the-ndf-really-defined/">How Is The NDF Really Defined?</a></p>
+</li>
+<li>
+<p>The PBR Guide by Allegorithmic: <a href="https://academy.substance3d.com/courses/the-pbr-guide-part-1">Part 1</a>, <a href="https://academy.substance3d.com/courses/the-pbr-guide-part-2">Part 2</a></p>
+</li>
+<li>
+<p><a href="https://www.jordanstevenstechart.com/physically-based-rendering">Physically Based Rendering Algorithms: A Comprehensive Study In Unity3D</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_graphics_studies_of_games">Graphics Studies of Games</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/">Deus Ex: Human Revolution - Graphics Study</a> by Adrian Courreges</p>
+</li>
+<li>
+<p><a href="http://www.adriancourreges.com/blog/2015/06/23/supreme-commander-graphics-study/">Supreme Commander - Graphics Study</a> by Adrian Courreges</p>
+</li>
+<li>
+<p><a href="http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/">GTA V - Graphics Study</a> by Adrian Courreges</p>
+</li>
+<li>
+<p><a href="http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/">DOOM (2016) - Graphics Study</a> by Adrian Courreges</p>
+</li>
+<li>
+<p><a href="http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/">Metal Gear Solid V - Graphics Study</a> by Adrian Courreges</p>
+</li>
+<li>
+<p><a href="https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html">DOOM Eternal - Graphics Study</a> by Simon Coenen</p>
+</li>
+<li>
+<p><a href="http://c0de517e.blogspot.com/2020/12/hallucinations-re-rendering-of.html">Hallucinations re: the rendering of Cyberpunk 2077</a> by Angelo Pesce</p>
+</li>
+<li>
+<p><a href="http://www.elopezr.com/castlevania-lords-of-shadow-2-graphics-study/">The Rendering of Castlevania Lords of Shadow 2</a> by Emilio López</p>
+</li>
+<li>
+<p><a href="http://www.elopezr.com/the-rendering-of-middle-earth-shadow-of-mordor/">The Rendering of Middle Earth: Shadow of Mordor</a> by Emilio López</p>
+</li>
+<li>
+<p><a href="http://www.elopezr.com/the-rendering-of-rise-of-the-tomb-raider/">The Rendering of Rise of the Tomb Raider</a> by Emilio López</p>
+</li>
+<li>
+<p><a href="http://www.elopezr.com/the-rendering-of-jurassic-world-evolution/">The Rendering of Jurassic World: Evolution</a> by Emilio López</p>
+</li>
+<li>
+<p><a href="http://www.elopezr.com/the-rendering-of-mafia-definitive-edition/">The Rendering of Mafia: Definitive Edition</a> by Emilio López</p>
+</li>
+<li>
+<p><a href="https://www.mamoniem.com/behind-the-pretty-frames-god-of-war/">Behind the Pretty Frames: God of War</a> by Muhammad A. Moniem</p>
+</li>
+<li>
+<p><a href="https://www.mamoniem.com/behind-the-pretty-frames-elden-ring/">Behind the Pretty Frames: Elden Ring</a> by Muhammad A. Moniem</p>
+</li>
+<li>
+<p><a href="https://www.mamoniem.com/behind-the-pretty-frames-resident-evil/">Behind the Pretty Frames: Resident Evil</a> by Muhammad A. Moniem</p>
+</li>
+<li>
+<p><a href="https://www.mamoniem.com/behind-the-pretty-frames-diablo-iv/">Behind the Pretty Frames: Diablo IV</a> by Muhammad A. Moniem</p>
+</li>
+<li>
+<p><a href="https://acko.net/blog/teardown-frame-teardown/">Teardown Frame Teardown: Rendering analysis</a> by Steven "Acko"</p>
+</li>
+<li>
+<p><a href="https://www.froyok.fr/blog/2024-01-breakdown-syndicate/">Breakdown: Syndicate (2012) - The greasy bloom finally demystified</a> by Léna "Froyok" Piquet</p>
+</li>
+<li>
+<p><a href="https://www.mamoniem.com/behind-the-pretty-frames-detroit-become-human/">Behind the Pretty Frames: Detroit Become Human</a> by Muhammad A. Moniem</p>
+</li>
+<li>
+<p><a href="https://blog.thomaspoulet.fr/posts/anno-1800-frame-analysis/">Anno 1800: Frame Analysis</a> by Thomas Poulet</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_older_resources">Older resources</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.punkuser.net/vsm/vsm_paper.pdf">Variance Shadow Maps (PDF)</a> by William Donnelly and Andrew Lauritzen</p>
+</li>
+<li>
+<p><a href="http://www.cescg.org/CESCG-2006/papers/TUBudapest-Premecz-Matyas.pdf">Iterative Parallax Mapping with Slope Information (PDF)</a> by Mátyás Premecz</p>
+</li>
+<li>
+<p><a href="https://www.gamedev.net/resources/_/technical/graphics-programming-and-theory/a-simple-and-practical-approach-to-ssao-r2753">A Simple and Practical Approach to SSAO</a> by José María Méndez</p>
+</li>
+<li>
+<p><a href="http://amd-dev.wpengine.netdna-cdn.com/wordpress/media/2012/10/Scheuermann_DepthOfField.pdf">Advanced Depth of Field (PDF)</a> by Thorsten Scheuermann</p>
+</li>
+<li>
+<p><a href="http://realtimecollisiondetection.net/blog/?p=86">Order your graphics draw calls around!</a> from the Real-Time Collision Detection blog</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_vulkan">Vulkan</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://renderdoc.org/vulkan-in-30-minutes.html">Vulkan in 30 minutes</a> by Baldur Karlsson</p>
+</li>
+<li>
+<p><a href="https://vulkan-tutorial.com/">Vulkan Tutorial</a></p>
+</li>
+<li>
+<p><a href="https://github.com/KhronosGroup/Vulkan-Samples">Vulkan Samples</a> on GitHub</p>
+</li>
+<li>
+<p><a href="http://gpuopen.com/vulkan-renderpasses/">Vulkan Renderpasses</a> on GPUOpen</p>
+</li>
+<li>
+<p><a href="http://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/">Yet another blog explaining Vulkan synchronization</a> by Hans-Kristian Arntzen</p>
+</li>
+<li>
+<p><a href="https://zeux.io/2020/02/27/writing-an-efficient-vulkan-renderer/">Writing an efficient Vulkan renderer</a> by Arseny Kapoulkine</p>
+</li>
+<li>
+<p><a href="https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_getting_started_on_mobile_and_best_practices_for_arm_gpus.pdf">Getting started on mobile and
+Best practices for Arm GPUs (PDF)</a> by Pete Harris (ARM)</p>
+</li>
+<li>
+<p><a href="https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_battle_tested_optimisations_for_mobile_v2.pdf">Battle-tested Optimisations for Mobile (PDF)</a> by Ralph Potter (Samsung)</p>
+</li>
+<li>
+<p><a href="https://developer.samsung.com/sdp/blog/en-us/2019/08/05/reboot-recap-seriously-explicit-lessons-in-vulkan">Some Seriously Explicit Lessons in Vulkan (Video)</a> by Croteam and Samsung at Reboot 2019</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_more_topics_3">More topics</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.opengl.org/pipeline/article/vol003_6/">GLSL: Center or Centroid? (Or When Shaders Attack!)</a> by Bill Licea-Kane (AMD)</p>
+</li>
+<li>
+<p><a href="https://www.cs.cornell.edu/courses/cs4620/2008fa/lectures/texture-filtering.pdf">Texture filtering (PDF)</a> (Mipmap selection with derivatives) by Steve Marschner</p>
+</li>
+<li>
+<p><a href="https://computergraphics.stackexchange.com/a/5560">How are mipmap levels computed in Metal?</a> replied by Nathan Reed</p>
+</li>
+<li>
+<p><a href="http://www.3dkingdoms.com/weekly/weekly.php?a=2">Reflecting a Vector</a> (Vector reflection with vector projection and dot product)</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process">Gram-Schmidt orthogonalization</a> with vector projection and dot product</p>
+</li>
+<li>
+<p><a href="http://s09.idav.ucdavis.edu/talks/05-JP_id_Tech_5_Challenges.pdf">id Tech 5 Challanges - From Texture Virtualization to Massive Parallelization (PDF)</a> by J.M.P. van Wavewer (id Software) (virtual texturing, sparse resources, parallel job system)</p>
+</li>
+<li>
+<p><a href="http://www.slideshare.net/CassEveritt/approaching-zero-driver-overhead">Approaching Zero Driver Overhead in OpenGL (PDF)</a> <a href="http://gdcvault.com/play/1020791/">(GDC Vault video)</a>, persistent mapping</p>
+</li>
+<li>
+<p><a href="http://media.steampowered.com/apps/steamdevdays/slides/beyondporting.pdf">Beyond Porting (PDF)</a> <a href="https://www.youtube.com/watch?v=-bCeNzgiJ8I">(Steam Dev Days video)</a> by Cass Everitt and John McDonald (NVIDIA) (persistent mapping, texture arrays, sparse and bindless textures)</p>
+</li>
+<li>
+<p><a href="http://kayru.org/articles/deferred-stencil/">Rendering deferred lights using Stencil culling algorithm</a> by Yuriy O&#8217;Donnell</p>
+</li>
+<li>
+<p><a href="https://developer.nvidia.com/content/depth-precision-visualized">Depth Precision Visualized</a> by Nathan Reed (NVIDIA)</p>
+</li>
+<li>
+<p><a href="https://gamedev.stackexchange.com/questions/130888/what-are-screen-space-derivatives-and-when-would-i-use-them/130933#130933">What are screen space derivatives and when would I use them?</a></p>
+</li>
+<li>
+<p><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_HelperInvocation.xhtml">gl_HelperInvocation</a> - OpenGL 4 Reference Pages</p>
+</li>
+<li>
+<p><a href="https://developer.nvidia.com/content/life-triangle-nvidias-logical-pipeline">Life of a triangle - NVIDIA&#8217;s logical pipeline</a> by Christoph Kubisch</p>
+</li>
+<li>
+<p>1 - <a href="https://mynameismjp.wordpress.com/2012/10/15/signal-processing-primer/">Signal Processing Primer</a> by Matt Pettineo</p>
+</li>
+<li>
+<p>2 - <a href="https://mynameismjp.wordpress.com/2012/10/21/applying-sampling-theory-to-real-time-graphics/">Applying Sampling Theory To Real-Time Graphics</a> by Matt Pettineo</p>
+</li>
+<li>
+<p>3 - <a href="https://mynameismjp.wordpress.com/2012/10/24/msaa-overview/">A Quick Overview of MSAA</a> by Matt Pettineo</p>
+</li>
+<li>
+<p>4 - <a href="https://mynameismjp.wordpress.com/2012/10/28/msaa-resolve-filters/">Experimenting With Reconstruction Filters for MSAA Resolve</a> by Matt Pettineo</p>
+</li>
+<li>
+<p><a href="https://mynameismjp.wordpress.com/2018/03/06/breaking-down-barriers-part-1-whats-a-barrier/">Breaking Down Barriers - Part 1: What&#8217;s a Barrier?</a> by Matt Pettineo</p>
+</li>
+<li>
+<p><a href="https://mynameismjp.wordpress.com/2018/04/01/breaking-down-barriers-part-2-synchronizing-gpu-threads/">Breaking Down Barriers - Part 2: Synchronizing GPU Threads</a> by Matt Pettineo</p>
+</li>
+<li>
+<p><a href="https://mynameismjp.wordpress.com/2018/06/17/breaking-down-barriers-part-3-multiple-command-processors/">Breaking Down Barriers - Part 3: Multiple Command Processors</a> by Matt Pettineo</p>
+</li>
+<li>
+<p><a href="https://mynameismjp.wordpress.com/2018/07/03/breaking-down-barriers-part-4-gpu-preemption/">Breaking Down Barriers - Part 4: GPU Preemption</a> by Matt Pettineo</p>
+</li>
+<li>
+<p><a href="https://mynameismjp.wordpress.com/2018/09/08/breaking-down-barriers-part-5-back-to-the-real-world/">Breaking Down Barriers - Part 5: Back to the Real World</a> by Matt Pettineo</p>
+</li>
+<li>
+<p><a href="https://mynameismjp.wordpress.com/2018/12/09/breaking-down-barriers-part-6-experimenting-with-overlap-and-preemption/">Breaking Down Barriers - Part 6: Experimenting with Overlap and Preemption</a> by Matt Pettineo</p>
+</li>
+<li>
+<p><a href="https://anteru.net/blog/2018/intro-to-compute-shaders/index.html">Introduction to compute shaders</a> by Matthäus G. Chajdas</p>
+</li>
+<li>
+<p><a href="https://anteru.net/blog/2018/more-compute-shaders/index.html">More compute shaders</a> by Matthäus G. Chajdas</p>
+</li>
+<li>
+<p><a href="https://anteru.net/blog/2018/even-more-compute-shaders/index.html">Even more compute shaders</a> by Matthäus G. Chajdas</p>
+</li>
+<li>
+<p><a href="https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92">The Elusive Frame Timing</a> by Alen Ladavac</p>
+</li>
+<li>
+<p><a href="https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-1/">Intro to GPU Scalarization: Part 1</a> by Francesco Cifariello Ciardi</p>
+</li>
+<li>
+<p><a href="https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-2-scalarize-all-the-lights/">Intro to GPU Scalarization: Part 2 - Scalarize All the Lights</a> by Francesco Cifariello Ciardi</p>
+</li>
+<li>
+<p><a href="http://www.joshbarczak.com/blog/?p=667">Why Geometry Shaders Are Slow (Unless you’re Intel)</a> by Joshua Barczak</p>
+</li>
+<li>
+<p><a href="https://gpuopen.com/learn/optimizing-gpu-occupancy-resource-usage-large-thread-groups/">Optimizing GPU occupancy and resource usage with large thread groups</a> by Sebastian Aaltonen</p>
+</li>
+<li>
+<p><a href="https://www.elopezr.com/temporal-aa-and-the-quest-for-the-holy-trail/">Temporal AA and the Quest for the Holy Trail</a> by Emilio López</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_oriented_design">Data Oriented Design</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://harmful.cat-v.org/software/OO_programming/_pdf/Pitfalls_of_Object_Oriented_Programming_GCAP_09.pdf">Pitfalls of Object Oriented Programming (PDF)</a> by Tony Albrecht (SCEE)</p>
+</li>
+<li>
+<p><a href="https://macton.smugmug.com/Other/2008-07-15-by-Eye-Fi/n-xmKDH/i-BrHWXdJ">Typical C++ Bullshit</a> by Mike Acton (Insomniac Games)</p>
+</li>
+<li>
+<p><a href="https://www.slideshare.net/DICEStudio/culling-the-battlefield-data-oriented-design-in-practice">Culling the Battlefield</a> by Daniel Collin (Frostbite)</p>
+</li>
+<li>
+<p><a href="http://www.slideshare.net/naughty_dog/multiprocessor-game-loops-lessons-from-uncharted-2-among-thieves">Multiprocessor Game Loops</a> by Jason Gregory (Naughty Dog)</p>
+</li>
+<li>
+<p><a href="http://twvideo01.ubm-us.net/o1/vault/gdc2015/presentations/Gyrling_Christian_Parallelizing_The_Naughty.pdf">Parallelizing the Naughty Dog Engine Using Fibers (PDF)</a> (<a href="http://www.gdcvault.com/play/1022186/Parallelizing-the-Naughty-Dog-Engine">GDC Vault video</a>) by Christian Gyrling (Naughty Dog)</p>
+</li>
+<li>
+<p><a href="http://lukasz.dk/mirror/research-scea/research/pdfs/GDC2003_Memory_Optimization_18Mar03.pdf">Memory Optimization (PDF)</a> by Christer Ericson (Sony Santa Monica)</p>
+</li>
+<li>
+<p><a href="https://www.slideshare.net/DICEStudio/introduction-to-data-oriented-design">Introduction to Data Oriented Design</a> by Daniel Collin (DICE)</p>
+</li>
+<li>
+<p><a href="http://gameprogrammingpatterns.com/data-locality.html">Data Locality</a> (cache miss, branch misprediction, pipeline flush) from <a href="http://gameprogrammingpatterns.com">Game Programming Patterns</a> by Robert Nystrom</p>
+</li>
+<li>
+<p><a href="http://media.steampowered.com/apps/valve/2015/Migdalskiy_Sergiy_Physics_Optimization_Strategies.pdf">Performance - Physics Optimization Strategies (PDF)</a> by Sergiy Migdalskiy (Valve)</p>
+</li>
+<li>
+<p><a href="http://cellperformance.beyond3d.com/articles/2009/08/roundup-recent-sketches-on-concurrency-data-design-and-performance.html">Roundup: Recent sketches on concurrency, data design and performance</a> by Mike Acton (Insomniac Games)</p>
+</li>
+<li>
+<p><a href="https://fgiesen.wordpress.com/2013/02/17/optimizing-sw-occlusion-culling-index/">Optimizing Software Occlusion Culling - Index</a> by Fabian "ryg" Giesen</p>
+</li>
+<li>
+<p><a href="https://docs.google.com/presentation/d/17Bzle0w6jz-1ndabrvC5MXUIQ5jme0M8xBF71oz-0Js/present?slide=id.i0">Practical Examples in Data Oriented Design</a> by Niklas Frykholm (BitSquid)</p>
+</li>
+<li>
+<p><a href="https://gamedevelopment.tutsplus.com/articles/what-is-data-oriented-game-engine-design&#8212;&#8203;cms-21052">What is Data-Oriented Game Engine Design?</a> by David Davidović</p>
+</li>
+<li>
+<p><a href="http://gamesfromwithin.com/data-oriented-design">Data-Oriented Design (Or Why You Might Be Shooting Yourself in The Foot With OOP)</a> by Noel Llopis</p>
+</li>
+<li>
+<p><a href="http://www.dataorienteddesign.com/dodbook/">Data-Oriented Design</a> book by Richard Fabian</p>
+</li>
+<li>
+<p><a href="http://www.bounceapp.com/116414">Mike Acton&#8217;s review</a> of <code>OgreNode.cpp</code></p>
+</li>
+<li>
+<p><a href="https://gist.github.com/ocornut/cb980ea183e848685a36">Memory, Cache, CPU optimization resources</a> by Omar Cornut</p>
+</li>
+<li>
+<p><a href="http://aras-p.info/texts/files/2018Academy%20-%20ECS-DoD.pdf">Entity Component Systems &amp; Data Oriented Design (PDF)</a> by Aras Pranckevičius (Unity Technologies)</p>
+</li>
+<li>
+<p><a href="http://nfrechette.github.io/2015/05/05/caches_everywhere/">Caches everywhere</a> by Nicholas Frechette</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_artificial_intelligence">Artificial Intelligence</h3>
+<div class="sect3">
+<h4 id="_books_2">Books</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>"<em>Deep Learning: A Visual Approach</em>" by Andrew Glassner</p>
+</li>
+<li>
+<p>"<em>Deep Learning</em>" by Ian Goodfellow, Yoshua Bengio, and Aaron Courville</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_resources">Resources</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning</a> book by Michael Nielsen (Dec 2019)</p>
+</li>
+<li>
+<p><a href="https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/">What Is ChatGPT Doing … and Why Does It Work?</a> by Sthephen Wolfram</p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=aircAruvnKk&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">Neural Networks</a> YouTube playlist by 3Blue1Brown</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wikipedia">Wikipedia</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Activation_function">Activation function</a>, <a href="https://en.wikipedia.org/wiki/Sigmoid_function">Sigmoid function</a>, <a href="https://en.wikipedia.org/wiki/Artificial_neuron">Artificial neuron</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Neural_network_(machine_learning)">Neural network</a>, <a href="https://en.wikipedia.org/wiki/Feedforward_neural_network">FNN</a>, <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network">RNN</a>, <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">CNN</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Chain_rule">Chain rule</a>, <a href="https://en.wikipedia.org/wiki/Loss_function">Loss function</a>, <a href="https://en.wikipedia.org/wiki/Loss_functions_for_classification">Loss functions for classification</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Gradient_descent">Gradient descent</a>, <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">Stochastic gradient descent</a>, <a href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">Vanishing gradient problem</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Backpropagation">Backpropagation</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Attention_(machine_learning)">Attention</a>, <a href="https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)">Transformer</a>, <a href="https://en.wikipedia.org/wiki/Attention_Is_All_You_Need">Attention Is All You Need</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

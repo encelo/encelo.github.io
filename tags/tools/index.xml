@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tools on encelo.github.io</title><link>https://encelo.github.io/tags/tools/</link><description>Recent content in Tools on encelo.github.io</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 21 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://encelo.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml"/><item><title>nCine Dev Update 22</title><link>https://encelo.github.io/2025-09-21-ncine-dev-update-22/</link><pubDate>Sun, 21 Sep 2025 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2025-09-21-ncine-dev-update-22/</guid><description>&lt;p&gt;Welcome back to another development update for the nCine, covering what has been accomplished in the first part of this year.&lt;/p&gt;</description></item><item><title>nCine Dev Update 16</title><link>https://encelo.github.io/2020-11-28-ncine-dev-update-16/</link><pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2020-11-28-ncine-dev-update-16/</guid><description>&lt;p&gt;If you follow the project on &lt;a
+href="https://github.com/nCine"
+target="_blank"
+&gt;GitHub&lt;/a&gt; you might have noticed a big development slowdown during the summer. I blame it on a combination of excessive heat and fatigue that led to a general lack of motivation and perseverance. &amp;#x2600;&amp;#xfe0f;&lt;/p&gt;</description></item><item><title>nCine Dev Update 12</title><link>https://encelo.github.io/2019-09-21-ncine-dev-update-12/</link><pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-09-21-ncine-dev-update-12/</guid><description>&lt;p&gt;The last two months of work on the nCine were mostly dedicated to the quality of life improvements for users.&lt;/p&gt;</description></item><item><title>nCine Dev Update 11</title><link>https://encelo.github.io/2019-07-16-ncine-dev-update-11/</link><pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-07-16-ncine-dev-update-11/</guid><description>&lt;p&gt;Exciting news for this development update: a new supported platform! &amp;#x1f37e;&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Emscripten
+&lt;div id="emscripten" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;I remember playing with the idea of porting the nCine to &lt;a
+href="https://emscripten.org/"
+target="_blank"
+&gt;Emscripten&lt;/a&gt; years ago.
+After all I had every requirement in place: I used OpenGL ES for Android, GLFW and SDL2 as input backends, OpenAL and Vorbis for audio, libpng for images and already supported a POSIX API.&lt;/p&gt;</description></item><item><title>nCine Dev Update 9</title><link>https://encelo.github.io/2019-05-14-ncine-dev-update-9/</link><pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-05-14-ncine-dev-update-9/</guid><description>&lt;p&gt;It has been a month and a half of small but useful updates for the nCine.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;LibPNG
+&lt;div id="libpng" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;The PNG image loader has been modified to support more color types, by copying some code from the libpng &lt;a
+href="https://sourceforge.net/p/libpng/code/ci/master/tree/example.c"
+target="_blank"
+&gt;example&lt;/a&gt;. It means that any nCine game is now able to properly load PNG images with palette or with gray-alpha channels and to expand or strip bit depths that are different than the standard 8 bits.&lt;/p&gt;</description></item><item><title>nCine Dev Update 6</title><link>https://encelo.github.io/2018-12-16-ncine-dev-update-6/</link><pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-12-16-ncine-dev-update-6/</guid><description>&lt;p&gt;After all the work carried out during the last months and culminated in the previous update, I took some time to experiment with some different things.
+I wanted to leave the rendering side for a bit and take a look at how to optimize other parts of the engine.&lt;/p&gt;</description></item><item><title>nCine Dev Update 5</title><link>https://encelo.github.io/2018-09-29-ncine-dev-update-5/</link><pubDate>Sat, 29 Sep 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-09-29-ncine-dev-update-5/</guid><description>&lt;p&gt;During those months two very important features appeared in the nCine.&lt;/p&gt;
+&lt;p&gt;The first one is the integration of &lt;a
+href="https://www.lua.org/"
+target="_blank"
+&gt;Lua&lt;/a&gt; for scripting, a language which is very easy to integrate and runs very fast.
+With Lua the user can quickly prototype ideas or actually write the entire game with just scripts, in a way similar to other engines.&lt;/p&gt;</description></item><item><title>nCine Dev Update 4</title><link>https://encelo.github.io/2018-08-06-ncine-dev-update-4/</link><pubDate>Mon, 06 Aug 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-08-06-ncine-dev-update-4/</guid><description>&lt;p&gt;Plenty of work has been done during these few last months as I decided once again to update the engine renderer.
+This time it went from using OpenGL 2 and OpenGL ES 2 to 3.3 and 3.0 respectively.&lt;/p&gt;</description></item></channel></rss>

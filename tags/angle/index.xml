@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ANGLE on encelo.github.io</title><link>https://encelo.github.io/tags/angle/</link><description>Recent content in ANGLE on encelo.github.io</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 23 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://encelo.github.io/tags/angle/index.xml" rel="self" type="application/rss+xml"/><item><title>nCine Dev Update 14</title><link>https://encelo.github.io/2020-03-23-ncine-dev-update-14/</link><pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2020-03-23-ncine-dev-update-14/</guid><description>&lt;p&gt;Welcome to another nCine development update! As usual, there are a lot of new things to cover.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;ANGLE
+&lt;div id="angle" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;To extend the support to more devices and platforms I have ported the nCine to &lt;a
+href="http://angleproject.org"
+target="_blank"
+&gt;ANGLE&lt;/a&gt;.
+It was an easy task as I just needed to tell GLFW and SDL2 to use EGL and open an OpenGL ES 3.0 context on Windows.&lt;/p&gt;</description></item></channel></rss>

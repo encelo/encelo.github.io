@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GLFW on encelo.github.io</title><link>https://encelo.github.io/tags/glfw/</link><description>Recent content in GLFW on encelo.github.io</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 16 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://encelo.github.io/tags/glfw/index.xml" rel="self" type="application/rss+xml"/><item><title>nCine Dev Update 11</title><link>https://encelo.github.io/2019-07-16-ncine-dev-update-11/</link><pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-07-16-ncine-dev-update-11/</guid><description>&lt;p&gt;Exciting news for this development update: a new supported platform! &amp;#x1f37e;&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Emscripten
+&lt;div id="emscripten" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;I remember playing with the idea of porting the nCine to &lt;a
+href="https://emscripten.org/"
+target="_blank"
+&gt;Emscripten&lt;/a&gt; years ago.
+After all I had every requirement in place: I used OpenGL ES for Android, GLFW and SDL2 as input backends, OpenAL and Vorbis for audio, libpng for images and already supported a POSIX API.&lt;/p&gt;</description></item><item><title>nCine Dev Update 2</title><link>https://encelo.github.io/2017-10-22-ncine-dev-update-2/</link><pubDate>Sun, 22 Oct 2017 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2017-10-22-ncine-dev-update-2/</guid><description>&lt;p&gt;During those three months I have been working on two big features.&lt;/p&gt;
+&lt;p&gt;The first one has been the support of SDL2 GameController &lt;a
+href="https://wiki.libsdl.org/SDL_GameControllerAddMapping"
+target="_blank"
+&gt;mapping&lt;/a&gt; format.
+Initially my plan was to build a layer on top of my joystick input functions and leave the mapping code outside, as helper functions in a file distributed along the source of my tests and only linked by them.
+Later on I decided to refactor everything and bring the code inside the engine, in an effort to make it easier for an application to transparently use it.&lt;/p&gt;</description></item></channel></rss>

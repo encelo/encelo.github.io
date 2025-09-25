@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Emscripten on encelo.github.io</title><link>https://encelo.github.io/tags/emscripten/</link><description>Recent content in Emscripten on encelo.github.io</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 23 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://encelo.github.io/tags/emscripten/index.xml" rel="self" type="application/rss+xml"/><item><title>nCine Dev Update 14</title><link>https://encelo.github.io/2020-03-23-ncine-dev-update-14/</link><pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2020-03-23-ncine-dev-update-14/</guid><description>&lt;p&gt;Welcome to another nCine development update! As usual, there are a lot of new things to cover.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;ANGLE
+&lt;div id="angle" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;To extend the support to more devices and platforms I have ported the nCine to &lt;a
+href="http://angleproject.org"
+target="_blank"
+&gt;ANGLE&lt;/a&gt;.
+It was an easy task as I just needed to tell GLFW and SDL2 to use EGL and open an OpenGL ES 3.0 context on Windows.&lt;/p&gt;</description></item><item><title>nCine Dev Update 13</title><link>https://encelo.github.io/2019-12-24-ncine-dev-update-13/</link><pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-12-24-ncine-dev-update-13/</guid><description>&lt;p&gt;A lot of work has been put into the project as usual during those last months of the year.&lt;/p&gt;
+&lt;p&gt;Plenty of new and important features have been added to the engine, many of them are related to extending the capabilities of sprite rendering.&lt;/p&gt;</description></item><item><title>nCine Dev Update 11</title><link>https://encelo.github.io/2019-07-16-ncine-dev-update-11/</link><pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-07-16-ncine-dev-update-11/</guid><description>&lt;p&gt;Exciting news for this development update: a new supported platform! &amp;#x1f37e;&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Emscripten
+&lt;div id="emscripten" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;I remember playing with the idea of porting the nCine to &lt;a
+href="https://emscripten.org/"
+target="_blank"
+&gt;Emscripten&lt;/a&gt; years ago.
+After all I had every requirement in place: I used OpenGL ES for Android, GLFW and SDL2 as input backends, OpenAL and Vorbis for audio, libpng for images and already supported a POSIX API.&lt;/p&gt;</description></item></channel></rss>

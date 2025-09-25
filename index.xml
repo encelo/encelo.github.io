@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>encelo.github.io</title><link>https://encelo.github.io/</link><description>Recent content on encelo.github.io</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 01 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://encelo.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>A New Site</title><link>https://encelo.github.io/2025-09-25-a-new-site/</link><pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2025-09-25-a-new-site/</guid><description>&lt;p&gt;After eight years of serving me well, I decided to retire my old &lt;a
+href="https://jekyllrb.com/"
+target="_blank"
+&gt;Jekyll&lt;/a&gt;-based site, which used the &lt;a
+href="https://beautifuljekyll.com/"
+target="_blank"
+&gt;Beautiful Jekyll&lt;/a&gt; theme, a popular Jekyll template created by &lt;a
+href="https://attalitech.com/"
+target="_blank"
+&gt;Dean Attali&lt;/a&gt;. All content has now been migrated to &lt;a
+href="https://gohugo.io/"
+target="_blank"
+&gt;Hugo&lt;/a&gt;, powered by the &lt;a
+href="https://blowfish.page/"
+target="_blank"
+&gt;Blowfish&lt;/a&gt; theme by &lt;a
+href="https://n9o.xyz/"
+target="_blank"
+&gt;Nuno Coração&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>nCine Compilation Benchmark 3</title><link>https://encelo.github.io/2025-09-22-ncine-compilation-benchmark-3/</link><pubDate>Mon, 22 Sep 2025 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2025-09-22-ncine-compilation-benchmark-3/</guid><description>&lt;p&gt;Compilation speed directly affects iteration time when developing an engine. Since nCine continues to grow, I thought it would be interesting to measure how long a full build takes today compared to 2018, when I wrote the &lt;a
+href="https://encelo.github.io/2018-03-04-ncine-compilation-benchmark"&gt;first article&lt;/a&gt;, and 2022, when I wrote the &lt;a
+href="https://encelo.github.io/2022-10-06-ncine-compilation-benchmark-2"&gt;second one&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>nCine Dev Update 22</title><link>https://encelo.github.io/2025-09-21-ncine-dev-update-22/</link><pubDate>Sun, 21 Sep 2025 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2025-09-21-ncine-dev-update-22/</guid><description>&lt;p&gt;Welcome back to another development update for the nCine, covering what has been accomplished in the first part of this year.&lt;/p&gt;</description></item><item><title>nCine Dev Update 21</title><link>https://encelo.github.io/2025-01-14-ncine-dev-update-21/</link><pubDate>Tue, 14 Jan 2025 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2025-01-14-ncine-dev-update-21/</guid><description>&lt;p&gt;In this article, we’ll go over the progress of the nCine throughout 2024.&lt;/p&gt;
+&lt;h2 class="relative group"&gt;OpenAL EFX
+&lt;div id="openal-efx" class="anchor"&gt;&lt;/div&gt;
+&lt;/h2&gt;
+&lt;p&gt;The biggest change this year has been support for the OpenAL EFX extension. You can now apply effects to any audio player, like reverb, echo, flanger, and more, and use low and high-pass filters.&lt;/p&gt;</description></item><item><title>nCine Dev Update 20</title><link>https://encelo.github.io/2023-12-12-ncine-dev-update-20/</link><pubDate>Tue, 12 Dec 2023 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2023-12-12-ncine-dev-update-20/</guid><description>&lt;p&gt;Lately, the development rate of the nCine slowed down a bit. I think it is normal for a project that spans so many years, and developed by a single person, to see some oscillations.
+This is why this article covers such a long period, a period in which there have been maybe a few new features, but important ones.&lt;/p&gt;</description></item><item><title>nCine Compilation Benchmark 2</title><link>https://encelo.github.io/2022-10-06-ncine-compilation-benchmark-2/</link><pubDate>Thu, 06 Oct 2022 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2022-10-06-ncine-compilation-benchmark-2/</guid><description>&lt;p&gt;I just got a new laptop, an Asus ROG Zephyrus G15 GA503RM (2022), and of course, I&amp;rsquo;m timing the nCine compilation to see how much time it will make me save. &amp;#x1f609;
+Should you be interested in the first compilation benchmark article, it is available &lt;a
+href="https://encelo.github.io/2018-03-04-ncine-compilation-benchmark"&gt;here&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>nCine Dev Update 19</title><link>https://encelo.github.io/2022-09-07-ncine-dev-update-19/</link><pubDate>Wed, 07 Sep 2022 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2022-09-07-ncine-dev-update-19/</guid><description>&lt;p&gt;Yet another update coming after a very long time since the previous, apologies for that. Well, at least it comes packed with a lot of enhancements from the last months. &amp;#x1f4aa;&lt;/p&gt;</description></item><item><title>nCine Dev Update 18</title><link>https://encelo.github.io/2022-01-30-ncine-dev-update-18/</link><pubDate>Sun, 30 Jan 2022 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2022-01-30-ncine-dev-update-18/</guid><description>&lt;p&gt;After a very long time without an update, here comes a new one. It is filled with all the work done in the last six months. &amp;#x1f4aa;&lt;/p&gt;</description></item><item><title>nCine Dev Update 17</title><link>https://encelo.github.io/2021-06-28-ncine-dev-update-17/</link><pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2021-06-28-ncine-dev-update-17/</guid><description>&lt;p&gt;Quite some time has passed since the previous development update but I&amp;rsquo;m here again to talk about the latest nCine progress.
+By the way, in case you missed the latest &lt;a
+href="https://encelo.github.io/2021-06-21-ten-years-ncine/"&gt;article&lt;/a&gt;, the project has recently reached its tenth anniversary. &amp;#x1f609;&lt;/p&gt;</description></item><item><title>Ten years of nCine</title><link>https://encelo.github.io/2021-06-21-ten-years-of-ncine/</link><pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2021-06-21-ten-years-of-ncine/</guid><description>&lt;p&gt;A bit more than ten years have passed since that &lt;a
+href="https://github.com/nCine/nCine/commit/6bf318de68ed5c453eaacd867c8e83c853f64edc"
+target="_blank"
+&gt;first commit&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The presence of a &lt;code&gt;.hgignore&lt;/code&gt; file reveals that I was using Mercurial at the time, an easier transition to DCVS for someone like me used to Subversion.&lt;/p&gt;</description></item><item><title>nCine Dev Update 16</title><link>https://encelo.github.io/2020-11-28-ncine-dev-update-16/</link><pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2020-11-28-ncine-dev-update-16/</guid><description>&lt;p&gt;If you follow the project on &lt;a
+href="https://github.com/nCine"
+target="_blank"
+&gt;GitHub&lt;/a&gt; you might have noticed a big development slowdown during the summer. I blame it on a combination of excessive heat and fatigue that led to a general lack of motivation and perseverance. &amp;#x2600;&amp;#xfe0f;&lt;/p&gt;</description></item><item><title>nCine Dev Update 15</title><link>https://encelo.github.io/2020-07-14-ncine-dev-update-15/</link><pubDate>Tue, 14 Jul 2020 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2020-07-14-ncine-dev-update-15/</guid><description>&lt;p&gt;I have spent nearly two months on a big task this spring: custom memory allocators.
+They can be useful in different scenarios to alleviate the performance cost of allocating and deallocating memory.&lt;/p&gt;</description></item><item><title>nCine Intel Mesa 20 Driver Benchmark</title><link>https://encelo.github.io/2020-03-30-ncine-intel-mesa-20-driver-benchmark/</link><pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2020-03-30-ncine-intel-mesa-20-driver-benchmark/</guid><description>&lt;p&gt;Today I upgraded my Arch Linux workstation with pacman as I usually do every day and a little surprise was waiting for me.
+After a long time in &lt;code&gt;[testing]&lt;/code&gt;, &lt;a
+href="https://www.archlinux.org/packages/extra/x86_64/mesa/"
+target="_blank"
+&gt;Mesa 20&lt;/a&gt; came out of the &lt;code&gt;[extra]&lt;/code&gt; repository, ready to be installed.&lt;/p&gt;</description></item><item><title>nCine Dev Update 14</title><link>https://encelo.github.io/2020-03-23-ncine-dev-update-14/</link><pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2020-03-23-ncine-dev-update-14/</guid><description>&lt;p&gt;Welcome to another nCine development update! As usual, there are a lot of new things to cover.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;ANGLE
+&lt;div id="angle" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;To extend the support to more devices and platforms I have ported the nCine to &lt;a
+href="http://angleproject.org"
+target="_blank"
+&gt;ANGLE&lt;/a&gt;.
+It was an easy task as I just needed to tell GLFW and SDL2 to use EGL and open an OpenGL ES 3.0 context on Windows.&lt;/p&gt;</description></item><item><title>nCine Dev Update 13</title><link>https://encelo.github.io/2019-12-24-ncine-dev-update-13/</link><pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-12-24-ncine-dev-update-13/</guid><description>&lt;p&gt;A lot of work has been put into the project as usual during those last months of the year.&lt;/p&gt;
+&lt;p&gt;Plenty of new and important features have been added to the engine, many of them are related to extending the capabilities of sprite rendering.&lt;/p&gt;</description></item><item><title>nCine Dev Update 12</title><link>https://encelo.github.io/2019-09-21-ncine-dev-update-12/</link><pubDate>Sat, 21 Sep 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-09-21-ncine-dev-update-12/</guid><description>&lt;p&gt;The last two months of work on the nCine were mostly dedicated to the quality of life improvements for users.&lt;/p&gt;</description></item><item><title>nCine Dev Update 11</title><link>https://encelo.github.io/2019-07-16-ncine-dev-update-11/</link><pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-07-16-ncine-dev-update-11/</guid><description>&lt;p&gt;Exciting news for this development update: a new supported platform! &amp;#x1f37e;&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Emscripten
+&lt;div id="emscripten" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;I remember playing with the idea of porting the nCine to &lt;a
+href="https://emscripten.org/"
+target="_blank"
+&gt;Emscripten&lt;/a&gt; years ago.
+After all I had every requirement in place: I used OpenGL ES for Android, GLFW and SDL2 as input backends, OpenAL and Vorbis for audio, libpng for images and already supported a POSIX API.&lt;/p&gt;</description></item><item><title>nCine Dev Update 10</title><link>https://encelo.github.io/2019-07-03-ncine-dev-update-10/</link><pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-07-03-ncine-dev-update-10/</guid><description>&lt;p&gt;I&amp;rsquo;m sure many of you have heard it already: the nCine source code has been released on &lt;a
+href="https://github.com/nCine"
+target="_blank"
+&gt;GitHub&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;This means that lately most of the time was dedicated to publication related tasks, for example updates to the site like the addition of a &amp;ldquo;&lt;a
+href="https://ncine.github.io/why/"
+target="_blank"
+&gt;why nCine?&lt;/a&gt;&amp;rdquo; page and a &lt;a
+href="https://ncine.github.io/gallery/"
+target="_blank"
+&gt;gallery&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>nCine Dev Update 9</title><link>https://encelo.github.io/2019-05-14-ncine-dev-update-9/</link><pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-05-14-ncine-dev-update-9/</guid><description>&lt;p&gt;It has been a month and a half of small but useful updates for the nCine.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;LibPNG
+&lt;div id="libpng" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;The PNG image loader has been modified to support more color types, by copying some code from the libpng &lt;a
+href="https://sourceforge.net/p/libpng/code/ci/master/tree/example.c"
+target="_blank"
+&gt;example&lt;/a&gt;. It means that any nCine game is now able to properly load PNG images with palette or with gray-alpha channels and to expand or strip bit depths that are different than the standard 8 bits.&lt;/p&gt;</description></item><item><title>nCine Dev Update 8</title><link>https://encelo.github.io/2019-04-01-ncine-dev-update-8/</link><pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-04-01-ncine-dev-update-8/</guid><description>&lt;p&gt;I have spent some very intense weeks this March to completely overhaul and refactor my CMake scripts. We are talking about more than two thousand lines of code! &amp;#x1f631;&lt;/p&gt;</description></item><item><title>nCine Dev Update 7</title><link>https://encelo.github.io/2019-01-08-ncine-dev-update-7/</link><pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-01-08-ncine-dev-update-7/</guid><description>&lt;p&gt;Just a few weeks after the last update here I&amp;rsquo;m again to write the next one in which I&amp;rsquo;m going to show you the performance of my new hash table implementation.&lt;/p&gt;</description></item><item><title>nCine Dev Update 6</title><link>https://encelo.github.io/2018-12-16-ncine-dev-update-6/</link><pubDate>Sun, 16 Dec 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-12-16-ncine-dev-update-6/</guid><description>&lt;p&gt;After all the work carried out during the last months and culminated in the previous update, I took some time to experiment with some different things.
+I wanted to leave the rendering side for a bit and take a look at how to optimize other parts of the engine.&lt;/p&gt;</description></item><item><title>nCine Dev Update 5</title><link>https://encelo.github.io/2018-09-29-ncine-dev-update-5/</link><pubDate>Sat, 29 Sep 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-09-29-ncine-dev-update-5/</guid><description>&lt;p&gt;During those months two very important features appeared in the nCine.&lt;/p&gt;
+&lt;p&gt;The first one is the integration of &lt;a
+href="https://www.lua.org/"
+target="_blank"
+&gt;Lua&lt;/a&gt; for scripting, a language which is very easy to integrate and runs very fast.
+With Lua the user can quickly prototype ideas or actually write the entire game with just scripts, in a way similar to other engines.&lt;/p&gt;</description></item><item><title>nCine Dev Update 4</title><link>https://encelo.github.io/2018-08-06-ncine-dev-update-4/</link><pubDate>Mon, 06 Aug 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-08-06-ncine-dev-update-4/</guid><description>&lt;p&gt;Plenty of work has been done during these few last months as I decided once again to update the engine renderer.
+This time it went from using OpenGL 2 and OpenGL ES 2 to 3.3 and 3.0 respectively.&lt;/p&gt;</description></item><item><title>nCine Compilation Benchmark</title><link>https://encelo.github.io/2018-03-04-ncine-compilation-benchmark/</link><pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-03-04-ncine-compilation-benchmark/</guid><description>&lt;p&gt;Are you curious about the time I spend to compile the nCine? &amp;#x1f604;
+In this post I&amp;rsquo;m going to show how much time is needed to compile the engine on different platforms.&lt;/p&gt;</description></item><item><title>nCine Dev Update 3</title><link>https://encelo.github.io/2018-02-10-ncine-dev-update-3/</link><pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-02-10-ncine-dev-update-3/</guid><description>&lt;p&gt;A lot of work has been carried out during the last three and a half months.&lt;/p&gt;
+&lt;p&gt;First of all I have added some macros to allow asserts in the code, think about checks like this:
+&lt;code&gt;ASSERT_MSG_X(index &amp;lt; size_, &amp;quot;Index %u is out of bounds (size: %u)&amp;quot;, index, size_);&lt;/code&gt;
+The macro also invokes a breakpoint if a debugger is connected, allowing to inspect the context around the failure.
+It was a long needed feature that I finally had the time to implement. &amp;#x1f604;&lt;/p&gt;</description></item><item><title>nCine Dev Update 2</title><link>https://encelo.github.io/2017-10-22-ncine-dev-update-2/</link><pubDate>Sun, 22 Oct 2017 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2017-10-22-ncine-dev-update-2/</guid><description>&lt;p&gt;During those three months I have been working on two big features.&lt;/p&gt;
+&lt;p&gt;The first one has been the support of SDL2 GameController &lt;a
+href="https://wiki.libsdl.org/SDL_GameControllerAddMapping"
+target="_blank"
+&gt;mapping&lt;/a&gt; format.
+Initially my plan was to build a layer on top of my joystick input functions and leave the mapping code outside, as helper functions in a file distributed along the source of my tests and only linked by them.
+Later on I decided to refactor everything and bring the code inside the engine, in an effort to make it easier for an application to transparently use it.&lt;/p&gt;</description></item><item><title>nCine Dev Update 1</title><link>https://encelo.github.io/2017-09-18-ncine-dev-update-1/</link><pubDate>Mon, 18 Sep 2017 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2017-09-18-ncine-dev-update-1/</guid><description>&lt;p&gt;During June and July 2017 I have been working as usual, in my spare time, on the project. &amp;#x1f609;&lt;/p&gt;
+&lt;p&gt;The first big June addition has been the automatic &lt;em&gt;screen culling&lt;/em&gt; of sprites, a very important feature needed in order to support games extending on multiple screens. The culling works on sprites of any kind (regular ones, particles, text nodes) and regardless of their scaling or rotation parameters. If those sprites are completely outside of the screen they will just not be rendered, saving draw calls from being issued.&lt;/p&gt;</description></item><item><title>Get to know the nCine</title><link>https://encelo.github.io/2017-08-20-get-to-know-the-ncine/</link><pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2017-08-20-get-to-know-the-ncine/</guid><description>&lt;p&gt;I am writing this to present my latest and biggest project to date, the nCine.
+I was originally going to publish an article the day that I was going to release the source code but for various reasons you will have to wait a bit more. &amp;#x1f622;&lt;/p&gt;</description></item><item><title>About me</title><link>https://encelo.github.io/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/about/</guid><description>&lt;p&gt;I started my journey in computing on the &lt;strong&gt;Amiga&lt;/strong&gt;, first with a stock A500 in 1991, and later with a towered A1200 upgraded with a &lt;a
+href="http://amiga.resource.cx/exp/blizzardppc"
+target="_blank"
+&gt;BlizzardPPC&lt;/a&gt; and &lt;a
+href="http://amiga.resource.cx/exp/blizzardvision"
+target="_blank"
+&gt;BVision&lt;/a&gt;.
+Those years shaped my fascination with graphics, music, and the culture around making machines do more than anyone thought possible.&lt;/p&gt;</description></item><item><title>Credits</title><link>https://encelo.github.io/credits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/credits/</guid><description>&lt;p&gt;This site is built with &lt;a
+href="https://gohugo.io/"
+target="_blank"
+&gt;Hugo&lt;/a&gt; using the &lt;a
+href="https://blowfish.page/"
+target="_blank"
+&gt;Blowfish&lt;/a&gt; theme by &lt;a
+href="https://n9o.xyz/"
+target="_blank"
+&gt;Nuno Coração&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;a
+href="https://unsplash.com/photos/a-close-up-of-a-pink-heart-EaFX0kRvXT8"
+target="_blank"
+&gt;background image&lt;/a&gt; is by &lt;a
+href="https://unsplash.com/@philipsfuture"
+target="_blank"
+&gt;Philip Oroni&lt;/a&gt; on Unsplash.&lt;/p&gt;</description></item><item><title>Support</title><link>https://encelo.github.io/support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/support/</guid><description>&lt;p&gt;My work on &lt;strong&gt;open source projects&lt;/strong&gt; like nCine and SpookyGhost has always been a labor of love.
+I build and maintain these tools in my free time, and I share them so anyone can learn, create, or just enjoy tinkering with code and graphics.&lt;/p&gt;</description></item></channel></rss>
