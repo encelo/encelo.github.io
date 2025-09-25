@@ -1,0 +1,111 @@
+colorscheme = "blowfish"
+defaultAppearance = "dark"
+autoSwitchAppearance = true
+enableSearch = true
+enableCodeCopy = true
+defaultBackgroundImage = "philip-oroni-EaFX0kRvXT8-unsplash.jpg"
+defaultSocialImage = "author.png"
+smartTOC = true
+
+displayName = "EN"
+isoCode = "en"
+rtl = false
+dateFormat = "2 January 2006"
+logo = "logo.png"
+description = "Encelo's personal website"
+copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+
+[author]
+  name = "Angelo \"Encelo\" Theodorou"
+  image = "author.png"
+  headline = "Amiga and demoscene lover, Arch Linux and 3d graphics enthusiast, game industry programmer"
+  bio = "Engine and graphics programmer"
+  links = [
+    { rss = "/feed.xml" },
+    { github = "https://github.com/encelo" },
+    { twitter = "https://x.com/encelo" },
+    { patreon = "https://patreon.com/encelo" },
+    { youtube = "https://www.youtube.com/@nCine" },
+    { linkedin = "https://linkedin.com/in/encelo" },
+    { steam = "https://steamcommunity.com/id/encelo" },
+    { mastodon = "https://mastodon.gamedev.place/@encelo" },
+    { bluesky = "https://bsky.app/profile/encelo.github.io" },
+    { itch-io = "https://encelo.itch.io/" }
+  ]
+
+[header]
+  layout = "fixed"
+
+[footer]
+  showMenu = true
+  showCopyright = false
+  showThemeAttribution = false
+  showAppearanceSwitcher = true
+  showScrollToTop = true
+
+[homepage]
+  layout = "background"
+  showRecent = true
+  showRecentItems = 6
+  showMoreLink = false
+  showMoreLinkDest = "/posts"
+  cardView = true
+  layoutBackgroundBlur = true
+
+[article]
+  showDate = true
+  showViews = false
+  showLikes = false
+  showDateUpdated = false
+  showAuthor = false
+  showHero = true
+  heroStyle = "background"
+  layoutBackgroundBlur = true
+  showBreadcrumbs = false
+  showDraftLabel = true
+  showEdit = false
+  seriesOpened = false
+  showHeadingAnchors = false
+  showPagination = true
+  showReadingTime = true
+  showTableOfContents = true
+  showTaxonomies = true
+  showAuthorsBadges = false
+  showWordCount = false
+  showComments = true
+  sharingLinks = [ 'linkedin', 'twitter', 'bluesky', 'mastodon' ]
+
+
+[list]
+  showHero = true
+  heroStyle = "background"
+  showBreadcrumbs = false
+  layoutBackgroundBlur = true
+  layoutBackgroundHeaderSpace = true
+  showTableOfContents = false
+  showSummary = true
+  showViews = false
+  showLikes = false
+  showCards = false
+  groupByYear = true
+  cardView = true
+  constrainItemsWidth = true
+
+[sitemap]
+  excludedKinds = []
+
+[taxonomy]
+  showTermCount = true
+  showHero = true
+  heroStyle = "background"
+
+[term]
+  showHero = true
+  heroStyle = "background"
+
+[buymeacoffee]
+  identifier = "encelo"
+  globalWidget = true
+  #globalWidgetMessage = "Support my open-source work"
+  globalWidgetColor = "#009BAD"
+  globalWidgetPosition = "Right"
