@@ -163,7 +163,9 @@ href="https://github.com/encelo/WetPaper"
 target="_blank"
 &gt;Wet Paper&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Compared to the jam version, I added several features: a complete menu system, player statistics, TOML-based configuration, custom blur and refraction shaders, crossfading for music, a low-pass filter when pausing, and joystick vibration.&lt;/p&gt;
-&lt;lite-youtube videoid="jvhKzdlgR4Q" playlabel="jvhKzdlgR4Q" params=""&gt;&lt;/lite-youtube&gt;
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/jvhKzdlgR4Q?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="Wet Paper – Gameplay Demo (GGJ 2025 / nCine Game)"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
 &lt;p&gt;The jam also gave me a chance to improve nCine itself with new features and quality-of-life tweaks. For example, the engine now keeps track of the previous frame state for keyboard and joystick input, making it trivial to check exactly when a button was pressed or released.&lt;/p&gt;
 &lt;p&gt;I also made the vector classes return a zero vector when the length is too short (like many other engines), renamed &lt;code&gt;interval()&lt;/code&gt; to &lt;code&gt;frameTime()&lt;/code&gt; and &lt;code&gt;apptest_scene&lt;/code&gt; to &lt;code&gt;apptest_gui&lt;/code&gt; for clarity, and fixed broken alpha getters in the &lt;code&gt;SceneNode&lt;/code&gt; class. A color setter override that accepted a float parameter has been renamed, and a method was added to set a &lt;code&gt;TimeStamp&lt;/code&gt; to the current time without allocating a new object.&lt;/p&gt;
 &lt;p&gt;Working on custom shaders for Wet Paper also led me to fix viewport clearing logic and repair OpenGL debug groups, which hadn&amp;rsquo;t been working properly for viewports.&lt;/p&gt;
@@ -304,10 +306,10 @@ target="_blank"
 href="https://github.com/nCine/nCine-LuaCATS"
 target="_blank"
 &gt;LuaCATS&lt;/a&gt; definition files, but it was worth it.&lt;/p&gt;
-&lt;p&gt;As shown in this &lt;a
-href="https://www.youtube.com/watch?v=vyXqnrW5_5Y"
-target="_blank"
-&gt;YouTube video&lt;/a&gt;, using the Lua extension for Visual Studio Code now gives you autocomplete, type checking, and inline API documentation. This makes the nCine experience similar to using frameworks like LÖVE 2D or Solar2D. The LuaCATS work also made it easy to create a new &lt;a
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/vyXqnrW5_5Y?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="The new Lua development workflow with the nCine"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;As shown in the video, using the Lua extension for Visual Studio Code now gives you autocomplete, type checking, and inline API documentation. This makes the nCine experience similar to using frameworks like LÖVE 2D or Solar2D. The LuaCATS work also made it easy to create a new &lt;a
 href="https://ncine.github.io/docs/lua_master/"
 target="_blank"
 &gt;LDoc documentation&lt;/a&gt; that’s available online.&lt;/p&gt;
@@ -1288,7 +1290,9 @@ You can then use some included functions to print all entries or to query the li
 &lt;div id="apptest_allocators" class="anchor"&gt;&lt;/div&gt;
 &lt;/h4&gt;
 &lt;p&gt;Last but not least, a new application test has been added to show how allocators work: &lt;code&gt;apptest_allocators&lt;/code&gt;. It uses some custom ImGui drawing code to display a memory map similar to a disk partition editor.&lt;/p&gt;
-&lt;lite-youtube videoid="2kAoyVvgLyo" playlabel="2kAoyVvgLyo" params=""&gt;&lt;/lite-youtube&gt;
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/2kAoyVvgLyo?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="nCine Custom Memory Allocators Test"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
 &lt;h3 class="relative group"&gt;Minor changes
 &lt;div id="minor-changes" class="anchor"&gt;&lt;/div&gt;
 &lt;/h3&gt;
@@ -1497,7 +1501,9 @@ href="https://doc.qt.io/qt-5/qopenglwidget.html"
 target="_blank"
 &gt;QOpenGLWidget&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Using Qt5 for the interface does not mean you can&amp;rsquo;t continue to use ImGui and Nuklear too. You can even use all three together if you so want, as the updated &lt;code&gt;apptest_scene&lt;/code&gt; demonstrates. &amp;#x1f609;&lt;/p&gt;
-&lt;lite-youtube videoid="PpVLD3ShiCw" playlabel="PpVLD3ShiCw" params=""&gt;&lt;/lite-youtube&gt;
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/PpVLD3ShiCw?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="nCine as a custom Qt5 widget"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
 &lt;p&gt;If the &lt;a
 href="https://doc.qt.io/qt-5/qtgamepad-index.html"
 target="_blank"
@@ -2502,7 +2508,9 @@ target="_blank"
 The old on-screen HUD has been rewritten and plenty new statistical plots have been added, including a new section dedicated to Lua showing things
 like the amount of memory used or the number of operations per second.
 While integrating ImGui, the rendering system was enhanced in order to accomodate the &lt;em&gt;scissor test&lt;/em&gt; and more flexible options for indexed drawing and vertex formats.&lt;/p&gt;
-&lt;lite-youtube videoid="PQRnxeBpo-c" playlabel="PQRnxeBpo-c" params=""&gt;&lt;/lite-youtube&gt;
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/PQRnxeBpo-c?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="nCine debug overlay"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
 &lt;p&gt;I have also worked for a month on &lt;em&gt;ncParticleEditor&lt;/em&gt;, an editor for particle systems that use both new features: Lua for loading and saving and ImGui for the interface.
 As the editor is really just an nCine application, it can run with no problems on Windows, Linux, macOS and of course Android!
 The particle system was overhauled to support additional features like new particle affectors, a new particle random initializer structure and grayscale sprite rendering.&lt;/p&gt;
@@ -2517,7 +2525,9 @@ target="_blank"
 href="https://docs.microsoft.com/en-us/windows/desktop/debug/minidump-files"
 target="_blank"
 &gt;Minidump&lt;/a&gt; files.&lt;/p&gt;
-&lt;lite-youtube videoid="RLNI5NMCJ1E" playlabel="RLNI5NMCJ1E" params=""&gt;&lt;/lite-youtube&gt;
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/RLNI5NMCJ1E?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="ncParticleEditor"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
 &lt;p&gt;I hope you have enjoyed both the videos and the new features. &amp;#x1f609;&lt;/p&gt;</description></item><item><title>nCine Dev Update 4</title><link>https://encelo.github.io/2018-08-06-ncine-dev-update-4/</link><pubDate>Mon, 06 Aug 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-08-06-ncine-dev-update-4/</guid><description>&lt;p&gt;Plenty of work has been done during these few last months as I decided once again to update the engine renderer.
 This time it went from using OpenGL 2 and OpenGL ES 2 to 3.3 and 3.0 respectively.&lt;/p&gt;
 &lt;p&gt;I started by rewriting all the shaders to support the new &lt;code&gt;in&lt;/code&gt; and &lt;code&gt;out&lt;/code&gt; keywords in place of the old &lt;code&gt;attribute&lt;/code&gt; and &lt;code&gt;varying&lt;/code&gt; ones.
@@ -2988,7 +2998,9 @@ target="_blank"
 &lt;p&gt;This work has always been intended as a way for me to learn new things and develop my skills as an engine programmer, this is the reason why I have implemented many things from scratch instead of relying on external libraries.&lt;/p&gt;
 &lt;p&gt;For example I don’t use the STL but I have my own implementation of template based containers (list, array, hashmap, string, …), algorithms and iterators. It was a very good way to overcome the fear of templates and learn about type traits, concepts, tag dispatching or SFINAE. &amp;#x1f604;&lt;/p&gt;
 &lt;p&gt;The project also gave me the opportunity to learn low-level OS APIs such as monotonic timers, threads and their synchronization and affinity. All those primitives are handled differently by the Linux, Windows and Mach (OS X) kernels.&lt;/p&gt;
-&lt;lite-youtube videoid="fUNGf3C8SOM" playlabel="fUNGf3C8SOM" params=""&gt;&lt;/lite-youtube&gt;
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/fUNGf3C8SOM?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="nCine tests"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
 &lt;p&gt;There are still, of course, some external dependencies: for the rendering I am relying on OpenGL, capable of reaching all the OSes I’m targeting, while for the sound I have used &lt;a
 href="http://kcat.strangesoft.net/openal.html"
 target="_blank"
