@@ -116,5 +116,15 @@ target="_blank"
 &gt;background image&lt;/a&gt; is by &lt;a
 href="https://unsplash.com/@philipsfuture"
 target="_blank"
-&gt;Philip Oroni&lt;/a&gt; on Unsplash.&lt;/p&gt;</description></item><item><title>Support</title><link>https://encelo.github.io/support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/support/</guid><description>&lt;p&gt;My work on &lt;strong&gt;open source projects&lt;/strong&gt; like nCine and SpookyGhost has always been a labor of love.
+&gt;Philip Oroni&lt;/a&gt; on Unsplash.&lt;/p&gt;</description></item><item><title>GnuPG Public Key</title><link>https://encelo.github.io/gpg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/gpg/</guid><description>&lt;p&gt;This is my GnuPG public key, used to verify signed messages and software releases.&lt;/p&gt;
+&lt;p&gt;It’s the same key also published on &lt;a
+href="https://github.com/encelo.gpg"
+target="_blank"
+&gt;GitHub&lt;/a&gt;, &lt;a
+href="https://keys.openpgp.org/vks/v1/by-fingerprint/387CDEFE8A87AEB328978C80728985A18FEE4962"
+target="_blank"
+&gt;keys.openpgp.org&lt;/a&gt;, and &lt;a
+href="https://keyserver.ubuntu.com/pks/lookup?op=get&amp;amp;search=0x387cdefe8a87aeb328978c80728985a18fee4962"
+target="_blank"
+&gt;keyserver.ubuntu.com&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Support</title><link>https://encelo.github.io/support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/support/</guid><description>&lt;p&gt;My work on &lt;strong&gt;open source projects&lt;/strong&gt; like nCine and SpookyGhost has always been a labor of love.
 I build and maintain these tools in my free time, and I share them so anyone can learn, create, or just enjoy tinkering with code and graphics.&lt;/p&gt;</description></item></channel></rss>

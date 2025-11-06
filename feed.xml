@@ -135,11 +135,14 @@ The tests have been conducted by running the compilation process multiple times 
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Compilation Chart 2025" src="/images/compilation_chart_2025.png"&gt;
-&lt;figcaption&gt;Compilation Chart 2025&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Compilation Chart 2025"
+src="/images/compilation_chart_2025.png"
+&gt;&lt;figcaption&gt;Compilation Chart 2025&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Conclusions
 &lt;div id="conclusions" class="anchor"&gt;&lt;/div&gt;
@@ -176,11 +179,14 @@ target="_blank"
 &lt;h2 class="relative group"&gt;Presentation at /dev/games
 &lt;div id="presentation-at-devgames" class="anchor"&gt;&lt;/div&gt;
 &lt;/h2&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Presenting at /dev/games 2025" src="https://ncine.github.io/img/posts/DevGames2025.jpg"&gt;
-&lt;figcaption&gt;Presenting at /dev/games 2025&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Presenting at /dev/games 2025"
+src="https://ncine.github.io/img/posts/DevGames2025.jpg"
+&gt;&lt;figcaption&gt;Presenting at /dev/games 2025&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;On June 5th I was invited to Rome to present my 14-year journey with nCine at the &lt;a
 href="https://devgames.org/"
@@ -228,11 +234,14 @@ This wasn&amp;rsquo;t even compiling before. &amp;#x1f62e;&lt;/p&gt;
 &lt;h2 class="relative group"&gt;Multi-threaded job system
 &lt;div id="multi-threaded-job-system" class="anchor"&gt;&lt;/div&gt;
 &lt;/h2&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Tracy capture of apptest_jobsystem" src="/images/Tracy_apptest_jobsystem.png"&gt;
-&lt;figcaption&gt;Tracy capture of apptest_jobsystem&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Tracy capture of apptest_jobsystem"
+src="/images/Tracy_apptest_jobsystem.png"
+&gt;&lt;figcaption&gt;Tracy capture of apptest_jobsystem&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;The star of this update is the new job system. After months of iteration, it has finally stabilized in structure and API.&lt;/p&gt;
 &lt;p&gt;Jobs now use opaque &lt;code&gt;JobId&lt;/code&gt; handles that encode both a pool index and a generation number, which makes detecting stale IDs easy. I spent a long time experimenting with a fully lock-free job pool but couldn&amp;rsquo;t get correct behavior. The final design uses per-thread job caches and a global pool protected by a mutex.&lt;/p&gt;
@@ -246,11 +255,14 @@ target="_blank"
 &lt;h3 class="relative group"&gt;CPU topology
 &lt;div id="cpu-topology" class="anchor"&gt;&lt;/div&gt;
 &lt;/h3&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="CPU Topologies Diagram" src="/images/CPU_Topologies.png"&gt;
-&lt;figcaption&gt;CPU Topologies Diagram&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="CPU Topologies Diagram"
+src="/images/CPU_Topologies.png"
+&gt;&lt;figcaption&gt;CPU Topologies Diagram&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;I completely reworked how the thread pool is created and how affinity is set, making the system topology-aware.&lt;/p&gt;
 &lt;p&gt;The idea is to sort cores by speed, to leave the main thread unpinned, and to start pinning worker threads from the second fastest physical core.&lt;/p&gt;
@@ -314,11 +326,14 @@ href="https://ncine.github.io/docs/lua_master/"
 target="_blank"
 &gt;LDoc documentation&lt;/a&gt; that’s available online.&lt;/p&gt;
 &lt;p&gt;Reviewing the Lua API also allowed me to fix missing function exports, rename inconsistent methods, and write documentation that filled in missing Doxygen comments for the C++ API.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Lua Language Server" src="/images/Lua_Language_Server.png"&gt;
-&lt;figcaption&gt;Lua Language Server&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Lua Language Server"
+src="/images/Lua_Language_Server.png"
+&gt;&lt;figcaption&gt;Lua Language Server&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Improvements to &lt;code&gt;apptest_lua&lt;/code&gt;
 &lt;div id="improvements-to-apptest_lua" class="anchor"&gt;&lt;/div&gt;
@@ -497,17 +512,23 @@ href="/2018-03-04-ncine-compilation-benchmark"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Ninja multi-core chart" src="/images/Zephyrus_ninja_multi_chart.png"&gt;
-&lt;figcaption&gt;Ninja multi-core chart&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Ninja multi-core chart"
+src="/images/Zephyrus_ninja_multi_chart.png"
+&gt;&lt;figcaption&gt;Ninja multi-core chart&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Ninja single-core chart" src="/images/Zephyrus_ninja_single_chart.png"&gt;
-&lt;figcaption&gt;Ninja single-core chart&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Ninja single-core chart"
+src="/images/Zephyrus_ninja_single_chart.png"
+&gt;&lt;figcaption&gt;Ninja single-core chart&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Conclusions
 &lt;div id="conclusions" class="anchor"&gt;&lt;/div&gt;
@@ -531,11 +552,14 @@ In combination with viewports, it is now possible to create complex scenes, feat
 You will notice that some sprites are rendered with normal and specular mapping and that the light position can be moved in real-time! &amp;#x1f4a1;&lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s not all, with the ImGui interface or with the keyboard, you can enable a full screen gaussian blur post-processing or a bloom effect.
 The latter is achieved with a quite complex viewports setup, with off-screen rendering, down-sampling, blurring, up-sampling, and compositing.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="apptest_shaders" src="/images/apptest_shaders.png"&gt;
-&lt;figcaption&gt;apptest_shaders&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="apptest_shaders"
+src="/images/apptest_shaders.png"
+&gt;&lt;figcaption&gt;apptest_shaders&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;But the road to achieving all that was quite long and required many months. It all started by checking out a very old branch in which I was planning out how to approach the matter in question.&lt;/p&gt;
 &lt;h3 class="relative group"&gt;ShaderState class
@@ -646,11 +670,14 @@ It should make it easier to use nCine with Lua, in a fashion similar to LÖVE.&l
 &lt;/h3&gt;
 &lt;p&gt;I bought a nice Raspberry Pi 4 Model B with 8GB of RAM, an Argon ONE M.2 case, and a 240GB Kingston A400 SATA SSD.
 The main objective was to have SpookyGhost running on it. &amp;#x1f47b;&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Raspberry Pi 4B" src="/images/RaspberryPi4B.jpg"&gt;
-&lt;figcaption&gt;Raspberry Pi 4B&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Raspberry Pi 4B"
+src="/images/RaspberryPi4B.jpg"
+&gt;&lt;figcaption&gt;Raspberry Pi 4B&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;To achieve that I had to tinker a lot with the CMake scripts. Even if OpenGL ES was already supported to enable the Android port, I had to resolve additional issues that only came to the surface when having OpenGL ES on Linux.&lt;/p&gt;
 &lt;p&gt;I had to add a CMake script to find and check the compilation results of the atomic library on 32bit systems on ARM (Raspberry OS is a 32bit distribution), add a new &lt;code&gt;WITH_OPENGLES&lt;/code&gt; preprocessor definition, and check the CMake version before using &lt;code&gt;file(ARCHIVE_EXTRACT)&lt;/code&gt; (Raspberry OS comes with an older CMake version).&lt;/p&gt;
@@ -667,11 +694,14 @@ target="_blank"
 &lt;p&gt;The biggest achievement of this update is represented by the two months&amp;rsquo; work on viewports and cameras.&lt;/p&gt;
 &lt;p&gt;It is now possible to have multiple viewports, each one with its size, its render queue, an optional offscreen render target, an optional camera, and a particular order in the rendering chain.&lt;/p&gt;
 &lt;p&gt;The use cases are various. With the upcoming work on custom shaders you can use a viewport texture to perform full screen post-processing like blur (even with a separable filter, if you setup the viewports order chain accordingly), or you can have multiple viewports and cameras and implement a split screen!&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="apptest_viewports" src="/images/apptest_viewports.png"&gt;
-&lt;figcaption&gt;apptest_viewports&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="apptest_viewports"
+src="/images/apptest_viewports.png"
+&gt;&lt;figcaption&gt;apptest_viewports&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;When you use a camera instead of a common camera node you can potentially improve performance as the matrix multiplications to transform nodes would be performed in a shader and not on the CPU. This can be seen in action in &lt;code&gt;apptest_camera&lt;/code&gt; by pressing &lt;code&gt;V&lt;/code&gt; to switch the new viewport method on and off.&lt;/p&gt;
 &lt;p&gt;There is even a greater performance gain margin when you pause sprites animations by pressing &lt;code&gt;P&lt;/code&gt;. In this case, a new dirty flag system will completely skip node transformations, AABB calculations, culling rectangle intersections, and render command updates!&lt;/p&gt;
@@ -844,11 +874,14 @@ href="https://docs.microsoft.com/en-us/windows/console/attachconsole"
 target="_blank"
 &gt;AttachConsole&lt;/a&gt; API function.&lt;/p&gt;
 &lt;p&gt;As a plus, I have ported from &lt;code&gt;ncline&lt;/code&gt; the code to set the &lt;code&gt;ENABLE_VIRTUAL_TERMINAL_PROCESSING&lt;/code&gt; and have color output in the Windows command prompt. &amp;#x1f4aa;&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Colored Console Messages" src="/images/colored_console_messages.png"&gt;
-&lt;figcaption&gt;Colored Console Messages&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Colored Console Messages"
+src="/images/colored_console_messages.png"
+&gt;&lt;figcaption&gt;Colored Console Messages&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Fault-tolerant Lua scripts execution
 &lt;div id="fault-tolerant-lua-scripts-execution" class="anchor"&gt;&lt;/div&gt;
@@ -857,11 +890,14 @@ target="_blank"
 This is, of course, not acceptable. Users should be able to safely play with scripts, either in games or tools. For example, writing scripted animations in &lt;code&gt;SpookyGhost&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The main change was to replace each &lt;code&gt;lua_call()&lt;/code&gt; with &lt;code&gt;lua_pcall()&lt;/code&gt;. The latter works in protected mode and returns an error in case the script is malfunctioning.&lt;/p&gt;
 &lt;p&gt;The error message is optionally returned to the application with additional information extracted from a &lt;code&gt;lua_Debug&lt;/code&gt; structure. The user can use it to show where the error is in the script source.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="SpookyGhost Script Error" src="/images/SpookyGhost_script_error.png"&gt;
-&lt;figcaption&gt;SpookyGhost Script Error&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="SpookyGhost Script Error"
+src="/images/SpookyGhost_script_error.png"
+&gt;&lt;figcaption&gt;SpookyGhost Script Error&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;I have also removed all occurrences of &lt;code&gt;luaL_argerror()&lt;/code&gt; and replaced them with simple warning messages to avoid any exit caused by this kind of error.&lt;/p&gt;
 &lt;p&gt;To give the user even more flexibility I made it possible to load a script without running it immediately: loading a Lua &amp;ldquo;chunk&amp;rdquo; and calling it are now two separate actions.&lt;/p&gt;
@@ -883,11 +919,14 @@ For this reason, I have exposed to the user a new input event that should make i
 &lt;p&gt;I have added an &lt;code&gt;onQuitRequest()&lt;/code&gt; input event that makes it possible to override a quit request coming from the system.&lt;/p&gt;
 &lt;p&gt;Think about pressing the window close button or using the contextual menu from the taskbar to perform the same action.
 In those cases, the new event gets called and the user has a chance to save the game or to display a dialog window. The latter is what happens with SpookyGhost now.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="SpookyGhost Quit Confirmation" src="/images/SpookyGhost_quit_confirmation.png"&gt;
-&lt;figcaption&gt;SpookyGhost Quit Confirmation&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="SpookyGhost Quit Confirmation"
+src="/images/SpookyGhost_quit_confirmation.png"
+&gt;&lt;figcaption&gt;SpookyGhost Quit Confirmation&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h4 class="relative group"&gt;Post update callback
 &lt;div id="post-update-callback" class="anchor"&gt;&lt;/div&gt;
@@ -896,11 +935,14 @@ In those cases, the new event gets called and the user has a chance to save the 
 &lt;p&gt;It gives a new meaning to query methods like &lt;code&gt;SceneNode::absPosition()&lt;/code&gt; as it can now be called after all nodes have been transformed so you don&amp;rsquo;t get stale data from the last frame.
 I have also added a &lt;code&gt;SceneNode::setWorldMatrix()&lt;/code&gt; method to further modify the transformation before rendering.&lt;/p&gt;
 &lt;p&gt;This change, together with a fix that caused an additional frame delay when rendering ImGui or Nuklear in presence of a scenegraph, made the overlay in &lt;code&gt;ncTiledViewer&lt;/code&gt; perfectly synchronized with the movements of the underlying map.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="ncTiledViewer Imgui Overlay" src="/images/ncTiledViewer_ImGui_overlay.png"&gt;
-&lt;figcaption&gt;ncTiledViewer Imgui Overlay&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="ncTiledViewer Imgui Overlay"
+src="/images/ncTiledViewer_ImGui_overlay.png"
+&gt;&lt;figcaption&gt;ncTiledViewer Imgui Overlay&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Automatic capacity extension for strings
 &lt;div id="automatic-capacity-extension-for-strings" class="anchor"&gt;&lt;/div&gt;
@@ -942,11 +984,14 @@ target="_blank"
 &lt;p&gt;Some things were already there and stayed the same until now: like the Doxygen comments or the CMake building process (my first CMake real project after years of SCons).
 Many other things have changed instead, as can be expected from a project with such a long life span.&lt;/p&gt;
 &lt;p&gt;But what made me persevere for a decade on the same project?&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="nCine Logotype" src="/images/nCine_logotype.png"&gt;
-&lt;figcaption&gt;nCine logotype&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="nCine Logotype"
+src="/images/nCine_logotype.png"
+&gt;&lt;figcaption&gt;nCine logotype&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h2 class="relative group"&gt;The early years
 &lt;div id="the-early-years" class="anchor"&gt;&lt;/div&gt;
@@ -1118,11 +1163,14 @@ href="https://github.com/features/actions"
 target="_blank"
 &gt;Actions&lt;/a&gt; for some time and I think it has now all the features I needed so I spent some days converting the building scripts and testing the new &lt;em&gt;workflows&lt;/em&gt;, as they are now called.&lt;/p&gt;
 &lt;p&gt;The nice thing is the integration: the code and the C.I. are very close together, on the same page. Besides, the configuration is easier as I don&amp;rsquo;t have to visit a different site for setting the C.I. up.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="nCine page for GitHub Actions" src="/images/GitHub_Actions.png"&gt;
-&lt;figcaption&gt;nCine page for GitHub Actions&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="nCine page for GitHub Actions"
+src="/images/GitHub_Actions.png"
+&gt;&lt;figcaption&gt;nCine page for GitHub Actions&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;As I was taking advantage of an advanced feature of GitHub I thought I could honor an old note I wrote a long time ago: make use of its &lt;a
 href="https://github.com/features/project-management/"
@@ -1159,11 +1207,14 @@ target="_blank"
 href="https://www.compart.com/en/unicode/U&amp;#43;00e8"
 target="_blank"
 &gt;this&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="apptest_font rendering Unicode glyphs" src="/images/apptest_font_unicode.png"&gt;
-&lt;figcaption&gt;&lt;code&gt;apptest_font&lt;/code&gt; rendering Unicode glyphs&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="apptest_font rendering Unicode glyphs"
+src="/images/apptest_font_unicode.png"
+&gt;&lt;figcaption&gt;&lt;code&gt;apptest_font&lt;/code&gt; rendering Unicode glyphs&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Android soft keyboard
 &lt;div id="android-soft-keyboard" class="anchor"&gt;&lt;/div&gt;
@@ -1185,11 +1236,14 @@ target="_blank"
 href="https://github.com/wolfpld/tracy/releases/tag/v0.7.3"
 target="_blank"
 &gt;v0.7.3&lt;/a&gt; allocation macros! &amp;#x1f4aa;&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Multiple Memory Pools in Tracy v0.7.3" src="/images/Tracy073_memory_pools.png"&gt;
-&lt;figcaption&gt;Multiple Memory Pools in Tracy v0.7.3&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Multiple Memory Pools in Tracy v0.7.3"
+src="/images/Tracy073_memory_pools.png"
+&gt;&lt;figcaption&gt;Multiple Memory Pools in Tracy v0.7.3&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Minor changes
 &lt;div id="minor-changes" class="anchor"&gt;&lt;/div&gt;
@@ -1514,11 +1568,14 @@ target="_blank"
 &lt;p&gt;Another big addition is the new file system API. It allows an application to manipulate paths, query file and directory attributes, copy, rename or delete files, create directories and inspect their contents and so on.&lt;/p&gt;
 &lt;p&gt;It works on all supported platforms as it features both a POSIX and a Windows API implementation.&lt;/p&gt;
 &lt;p&gt;It comes with a unit test that should assure everything works as expected and with a new apptest. &lt;code&gt;apptest_filebowser&lt;/code&gt; displays a file selection window made with ImGui that makes it easy to browse the file system.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="apptest_filebrowser" src="/images/apptest_filebrowser.png"&gt;
-&lt;figcaption&gt;apptest_filebrowser&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="apptest_filebrowser"
+src="/images/apptest_filebrowser.png"
+&gt;&lt;figcaption&gt;apptest_filebrowser&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Emscripten
 &lt;div id="emscripten" class="anchor"&gt;&lt;/div&gt;
@@ -1544,11 +1601,14 @@ target="_blank"
 &lt;/ul&gt;
 &lt;p&gt;It is all for now. See you for the next update! &amp;#x1f609;&lt;/p&gt;</description></item><item><title>nCine Dev Update 13</title><link>https://encelo.github.io/2019-12-24-ncine-dev-update-13/</link><pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-12-24-ncine-dev-update-13/</guid><description>&lt;p&gt;A lot of work has been put into the project as usual during those last months of the year.&lt;/p&gt;
 &lt;p&gt;Plenty of new and important features have been added to the engine, many of them are related to extending the capabilities of sprite rendering.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="apptest_anchor" src="/images/apptest_anchor.png"&gt;
-&lt;figcaption&gt;apptest_anchor&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="apptest_anchor"
+src="/images/apptest_anchor.png"
+&gt;&lt;figcaption&gt;apptest_anchor&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;JugiMap
 &lt;div id="jugimap" class="anchor"&gt;&lt;/div&gt;
@@ -1618,11 +1678,14 @@ You can also test the Emscripten &lt;a
 href="https://ncine.github.io/ncjugimapapidemo/"
 target="_blank"
 &gt;web test&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="ncJugiMapAPIDemo" src="/images/ncJugiMapAPIDemo.png"&gt;
-&lt;figcaption&gt;ncJugiMapAPIDemo&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="ncJugiMapAPIDemo"
+src="/images/ncJugiMapAPIDemo.png"
+&gt;&lt;figcaption&gt;ncJugiMapAPIDemo&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Emscripten enhancements
 &lt;div id="emscripten-enhancements" class="anchor"&gt;&lt;/div&gt;
@@ -1657,11 +1720,14 @@ target="_blank"
 href="https://github.com/ocornut/imgui"
 target="_blank"
 &gt;Dear ImGui&lt;/a&gt; but skinnable. I have added this integration as I expect a game to use Nuklear and customize the graphics while a tool would use the superior flexibility of Dear ImGui.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Nuklear integration" src="/images/Nuklear_integration.png"&gt;
-&lt;figcaption&gt;Nuklear integration&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Nuklear integration"
+src="/images/Nuklear_integration.png"
+&gt;&lt;figcaption&gt;Nuklear integration&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Additional improvements
 &lt;div id="additional-improvements" class="anchor"&gt;&lt;/div&gt;
@@ -1722,11 +1788,14 @@ href="https://docs.microsoft.com/en-us/windows/win32/menurc/versioninfo-resource
 target="_blank"
 &gt;VERSIONINFO resource&lt;/a&gt; file.
 Thanks to it you can open the properties window of files like &lt;code&gt;ncine.dll&lt;/code&gt; or &lt;code&gt;ncpong.exe&lt;/code&gt; and retrieve product and version information.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="VERSIONINFO resource" src="/images/VERSIONINFO.png"&gt;
-&lt;figcaption&gt;VERSIONINFO resource&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="VERSIONINFO resource"
+src="/images/VERSIONINFO.png"
+&gt;&lt;figcaption&gt;VERSIONINFO resource&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Granular library dependencies
 &lt;div id="granular-library-dependencies" class="anchor"&gt;&lt;/div&gt;
@@ -1809,11 +1878,14 @@ The article explains a way to give browsers a chance to compile shaders asynchro
 &lt;p&gt;I followed the advices: compile and link shaders but defer any error checking or introspection to the first use.
 It didn&amp;rsquo;t fix the issue at all but made loading time faster on every platform. &amp;#x1f605;&lt;/p&gt;
 &lt;p&gt;Just have a look at the following traces and compare how much &lt;code&gt;initCommon()&lt;/code&gt; takes with immediate (&amp;quot;&lt;em&gt;This trace&lt;/em&gt;&amp;quot;) versus deferred (&amp;quot;&lt;em&gt;External trace&lt;/em&gt;&amp;quot;) queries.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Tracy_deferShaderQueries" src="/images/Tracy_deferShaderQueries.png"&gt;
-&lt;figcaption&gt;Tracy - deferShaderQueries&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Tracy_deferShaderQueries"
+src="/images/Tracy_deferShaderQueries.png"
+&gt;&lt;figcaption&gt;Tracy - deferShaderQueries&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;I then consulted a friend about ANGLE and he concluded that the long arrays I used for collecting batching instances information were the cause, and that the Direct3D HLSL compiler is well-known for having a hard time with them.
 After redeclaring those as single element arrays the compilation speed was reasonable again.&lt;/p&gt;
@@ -1868,11 +1940,14 @@ href="https://www.openal.org/documentation/OpenAL_Programmers_Guide.pdf"
 target="_blank"
 &gt;OpenAL Programmer&amp;rsquo;s Guide&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I have also added querying methods for buffers, streams and players that allowed for the creation of a new section in the ImGui debug overlay, one showing information about active audio players.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="ImGui debug overlay - AudioPlayers" src="/images/ImGui_AudioPlayers.png"&gt;
-&lt;figcaption&gt;ImGui debug overlay - AudioPlayers&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="ImGui debug overlay - AudioPlayers"
+src="/images/ImGui_AudioPlayers.png"
+&gt;&lt;figcaption&gt;ImGui debug overlay - AudioPlayers&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Monitor video modes
 &lt;div id="monitor-video-modes" class="anchor"&gt;&lt;/div&gt;
@@ -1880,11 +1955,14 @@ target="_blank"
 &lt;p&gt;Last but not least, there is now a way for games to query and change monitor video modes on PC.
 The implementation uses functions like &lt;code&gt;glfwGetVideoMode()&lt;/code&gt; and &lt;code&gt;glfwSetWindowMonitor()&lt;/code&gt; on GLFW and &lt;code&gt;SDL_GetDisplayMode()&lt;/code&gt; and &lt;code&gt;SDL_SetWindowDisplayMode()&lt;/code&gt; on SDL.&lt;/p&gt;
 &lt;p&gt;The ImGui debug overlay has been updated to take advantage of this new feature. The user can select a full screen video mode from a drop-down list of supported resolutions and refresh rates combinations.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="ImGui debug overlay - WindowSettings" src="/images/ImGui_WindowSettings.png"&gt;
-&lt;figcaption&gt;ImGui debug overlay - WindowSettings&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="ImGui debug overlay - WindowSettings"
+src="/images/ImGui_WindowSettings.png"
+&gt;&lt;figcaption&gt;ImGui debug overlay - WindowSettings&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s all for now and I hope you are excited about porting your nCine projects to the web. &amp;#x1f578;&amp;#xfe0f;&lt;/p&gt;</description></item><item><title>nCine Dev Update 10</title><link>https://encelo.github.io/2019-07-03-ncine-dev-update-10/</link><pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2019-07-03-ncine-dev-update-10/</guid><description>&lt;p&gt;I&amp;rsquo;m sure many of you have heard it already: the nCine source code has been released on &lt;a
 href="https://github.com/nCine"
@@ -2133,11 +2211,14 @@ target="_blank"
 href="https://renderdoc.org/docs/in_application_api.html#_CPPv226SetCaptureFilePathTemplatePKc"
 target="_blank"
 &gt;file path template&lt;/a&gt; for saving and more.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="RenderDoc in-application integration" src="/images/RenderDoc_integration.png"&gt;
-&lt;figcaption&gt;RenderDoc in-application integration&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="RenderDoc in-application integration"
+src="/images/RenderDoc_integration.png"
+&gt;&lt;figcaption&gt;RenderDoc in-application integration&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Buffer mapping
 &lt;div id="buffer-mapping" class="anchor"&gt;&lt;/div&gt;
@@ -2470,11 +2551,14 @@ target="_blank"
 &lt;p&gt;At the end the performances were too close to what the compiler alone could achieve with auto-vectorization and instead of pursuing more optimizations I put the task on hold.
 It was still a fun and learning experience and it allows me to show you my SIMD benchmark utility. &amp;#x1f604;&lt;/p&gt;
 &lt;p&gt;It is powered by ImGUI, it can load and save data from test runs using Lua and then compare them.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="apptest_simdbench" src="/images/apptest_simdbench.png"&gt;
-&lt;figcaption&gt;apptest_simdbench&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="apptest_simdbench"
+src="/images/apptest_simdbench.png"
+&gt;&lt;figcaption&gt;apptest_simdbench&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;After archiving the &lt;code&gt;simd&lt;/code&gt; branch on my repository I jumped on another big project: trying to come up with an ECS implementation for the nCine.
 It would flatten the hierarchy of game elements and allow for a faster and possibly multi-threaded approach at updating them.&lt;/p&gt;
@@ -2486,11 +2570,14 @@ target="_blank"
 &gt;Tracy&lt;/a&gt;, a very capable frame profiler that shows CPU and GPU zones, has Lua instrumentation, annotates allocations and locks and displays call stacks.
 Instrumentation of user code is easy, capturing data has a very low overhead and works locally or remotely on Linux, Windows, macOS and Android.&lt;/p&gt;
 &lt;p&gt;The profiler that collects and visualize the data has a super rich ImGui interface with line plots, histograms, colored sections and the ability to compare two captures side by side.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Tracy profiler" src="/images/Tracy.png"&gt;
-&lt;figcaption&gt;Tracy profiler&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Tracy profiler"
+src="/images/Tracy.png"
+&gt;&lt;figcaption&gt;Tracy profiler&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;With the integration in place I can now be sure that I will be able to assess any performance change related with big refactorings or optimizations. &amp;#x1f4aa;&lt;/p&gt;</description></item><item><title>nCine Dev Update 5</title><link>https://encelo.github.io/2018-09-29-ncine-dev-update-5/</link><pubDate>Sat, 29 Sep 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-09-29-ncine-dev-update-5/</guid><description>&lt;p&gt;During those months two very important features appeared in the nCine.&lt;/p&gt;
 &lt;p&gt;The first one is the integration of &lt;a
@@ -2560,11 +2647,14 @@ target="_blank"
 href="https://renderdoc.org/"
 target="_blank"
 &gt;RenderDoc&lt;/a&gt; that offer support for them.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="apitrace" src="/images/apitrace.png"&gt;
-&lt;figcaption&gt;apitrace&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="apitrace"
+src="/images/apitrace.png"
+&gt;&lt;figcaption&gt;apitrace&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;Handling vertex formats has been renewed as well and there is now a pool of &lt;a
 href="https://www.khronos.org/opengl/wiki/Vertex_Specification#Vertex_Array_Object"
@@ -2594,11 +2684,14 @@ On Android I have to simulate this drawing command variation by using an additio
 It allows to reduce the total number of draw calls issued by aggregating uniforms, vertices and indices from multiple commands into a single one. It can batch text nodes, regular sprites and custom mesh sprites.&lt;/p&gt;
 &lt;p&gt;For entities with external vertex data, like text nodes and custom meshes, it has to supply an additional vertex attribute to act as a mesh id, while for custom meshes it has to add artificial indices to sprites that do not use them if they are going to be batched together with sprites that have user supplied ones.&lt;/p&gt;
 &lt;p&gt;It&amp;rsquo;s degenerate vertices and patched indices all the way down. &amp;#x1f609;&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="RenderDoc" src="/images/RenderDoc.png"&gt;
-&lt;figcaption&gt;RenderDoc&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="RenderDoc"
+src="/images/RenderDoc.png"
+&gt;&lt;figcaption&gt;RenderDoc&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;Some of those new features have a runtime setting, like switching automatic batching on and off:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;/// True if batching is enabled
@@ -2621,11 +2714,14 @@ It allows to reduce the total number of draw calls issued by aggregating uniform
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;/// Enables OpenGL debug context
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;enableGlDebug&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;bool&lt;/span&gt; shouldEnable);
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;There is also a bunch of new rendering statistics that are aggregated per frame and displayed on screen, like the amount of video memory used by textures and buffer objects, or the number of VAO pool recycles.&lt;/p&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="apptest_sinescroller" src="/images/apptest_sinescroller.png"&gt;
-&lt;figcaption&gt;apptest_sinescroller&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="apptest_sinescroller"
+src="/images/apptest_sinescroller.png"
+&gt;&lt;figcaption&gt;apptest_sinescroller&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;Rendering should now be more efficient on all platforms, with fewer draw calls and more sprites on screen! &amp;#x1f4aa;&lt;/p&gt;</description></item><item><title>nCine Compilation Benchmark</title><link>https://encelo.github.io/2018-03-04-ncine-compilation-benchmark/</link><pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2018-03-04-ncine-compilation-benchmark/</guid><description>&lt;p&gt;Are you curious about the time I spend to compile the nCine? &amp;#x1f604;
 In this post I&amp;rsquo;m going to show how much time is needed to compile the engine on different platforms.&lt;/p&gt;
@@ -2749,11 +2845,14 @@ In the &lt;em&gt;Build&lt;/em&gt; phase CMake is invoked with the &lt;code&gt;--
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="MSVC chart" src="/images/MSVC_chart.png"&gt;
-&lt;figcaption&gt;MSVC chart&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="MSVC chart"
+src="/images/MSVC_chart.png"
+&gt;&lt;figcaption&gt;MSVC chart&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h4 class="relative group"&gt;MSYS2
 &lt;div id="msys2" class="anchor"&gt;&lt;/div&gt;
@@ -2800,11 +2899,14 @@ In the &lt;em&gt;Build&lt;/em&gt; phase CMake is invoked with the &lt;code&gt;--
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="MSYS2 chart" src="/images/MSYS2_chart.png"&gt;
-&lt;figcaption&gt;MSYS2 chart&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="MSYS2 chart"
+src="/images/MSYS2_chart.png"
+&gt;&lt;figcaption&gt;MSYS2 chart&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h4 class="relative group"&gt;Arch Linux
 &lt;div id="arch-linux" class="anchor"&gt;&lt;/div&gt;
@@ -2851,11 +2953,14 @@ In the &lt;em&gt;Build&lt;/em&gt; phase CMake is invoked with the &lt;code&gt;--
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="Arch Linux chart" src="/images/ArchLinux_chart.png"&gt;
-&lt;figcaption&gt;Arch Linux chart&lt;/figcaption&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Arch Linux chart"
+src="/images/ArchLinux_chart.png"
+&gt;&lt;figcaption&gt;Arch Linux chart&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/p&gt;
 &lt;h3 class="relative group"&gt;Conclusions
 &lt;div id="conclusions" class="anchor"&gt;&lt;/div&gt;
@@ -2958,11 +3063,14 @@ I was originally going to publish an article the day that I was going to release
 &lt;p&gt;&lt;a
 href="https://ncine.github.io"
 target="_blank"
-&gt;
-&lt;figure&gt;
-&lt;img class="my-0 rounded-md" loading="lazy" alt="The nCine banner" src="/images/nCine_banner.png"&gt;
-&lt;figcaption&gt;The nCine banner&lt;/figcaption&gt;
-&lt;/figure&gt;
+&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="The nCine banner"
+src="/images/nCine_banner.png"
+&gt;&lt;figcaption&gt;The nCine banner&lt;/figcaption&gt;&lt;/figure&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;nCine is a multi-platform 2D game engine that works both on PC (meaning Linux, Windows and OS X) and on Android. Yes, the name is a portmanteau of my nickname “Encelo” and the word “engine”. &amp;#x1f605;&lt;/p&gt;
 &lt;p&gt;I started working on it in June 2011, at the time I was using a Mercurial repository to keep track of changes but later on I converted it to a Git one. Some of the developing tools I use all the time are &lt;a
@@ -3093,7 +3201,41 @@ target="_blank"
 &lt;p&gt;This site is licensed under the &lt;a
 href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
 target="_blank"
-&gt;Creative Commons BY-NC-SA 4.0 International&lt;/a&gt; license.&lt;/p&gt;</description></item><item><title>Support</title><link>https://encelo.github.io/support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/support/</guid><description>&lt;p&gt;My work on &lt;strong&gt;open source projects&lt;/strong&gt; like nCine and SpookyGhost has always been a labor of love.
+&gt;Creative Commons BY-NC-SA 4.0 International&lt;/a&gt; license.&lt;/p&gt;</description></item><item><title>GnuPG Public Key</title><link>https://encelo.github.io/gpg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/gpg/</guid><description>&lt;p&gt;This is my GnuPG public key, used to verify signed messages and software releases.&lt;/p&gt;
+&lt;p&gt;It’s the same key also published on &lt;a
+href="https://github.com/encelo.gpg"
+target="_blank"
+&gt;GitHub&lt;/a&gt;, &lt;a
+href="https://keys.openpgp.org/vks/v1/by-fingerprint/387CDEFE8A87AEB328978C80728985A18FEE4962"
+target="_blank"
+&gt;keys.openpgp.org&lt;/a&gt;, and &lt;a
+href="https://keyserver.ubuntu.com/pks/lookup?op=get&amp;amp;search=0x387cdefe8a87aeb328978c80728985a18fee4962"
+target="_blank"
+&gt;keyserver.ubuntu.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fingerprint&lt;/strong&gt;: &lt;code&gt;387C DEFE 8A87 AEB3 2897 8C80 7289 85A1 8FEE 4962&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;-----BEGIN PGP PUBLIC KEY BLOCK-----
+mDMEaQtgRxYJKwYBBAHaRw8BAQdAOsr/iHk21mVkazyC+buM5GsA5KyivEF3OQEQ
+/V11CrK0I0FuZ2VsbyBUaGVvZG9yb3UgPGVuY2Vsb0BnbWFpbC5jb20+iJAEExYK
+ADgWIQQ4fN7+ioeusyiXjIByiYWhj+5JYgUCaQtgRwIbAwULCQgHAgYVCgkICwIE
+FgIDAQIeAQIXgAAKCRByiYWhj+5JYvN8AQDmNlD2nmwFD9CGfh7/QEq0kb358azG
+/6I5nbVF/zEZ5wEA+/HCoaJg2eAyK0jS1LrPdVE+3U4Ixl2LeMla7QCyRwO4OARp
+C2BHEgorBgEEAZdVAQUBAQdAwpyzK7PaJzREnEQMbCpUIwbV3dIpvBEcquiJflA7
+Qg8DAQgHiHgEGBYKACAWIQQ4fN7+ioeusyiXjIByiYWhj+5JYgUCaQtgRwIbDAAK
+CRByiYWhj+5JYnaQAQCtBL/OOglVfsIYX9U7oerRitbbiuQg4p6Kw0fNPS3POwEA
+49aeyHjT11/4dlFV2wrMtaeh+imyOGyvBqd5p4bKdQ64MwRpC2r7FgkrBgEEAdpH
+DwEBB0Bs7RiybfBx2yEjYMPEpk98eWt/G6Ulh4Y9UUB3R/Na9IjvBBgWCgAgFiEE
+OHze/oqHrrMol4yAcomFoY/uSWIFAmkLavsCGwIAgQkQcomFoY/uSWJ2IAQZFgoA
+HRYhBCc/915Oia6QVMcBcb+ZWujTPolgBQJpC2r7AAoJEL+ZWujTPolgR3UBAIiu
+2+IRG4xmAEXAMTut+5ZcGhdCjeyRSYQvE0T0FiPvAQC14YDsgOoqv35tWbXEchlJ
+4kI2AFNgfFZKlXIra2YiCGztAQCALqegst0KwnY81JKdZ2o2LD6p7XUzzq64Wplm
+bRH/iwEAw8ESd9PPfSK2H/uJnkpakhRYmLU/FQl8mZ8fno04SAG4MwRpC9BBFgkr
+BgEEAdpHDwEBB0BdwJI1hsw2l1hwe+5lThHsDX6dBs5cw3IgrtmaZF/lTIh4BBgW
+CgAgFiEEOHze/oqHrrMol4yAcomFoY/uSWIFAmkL0EECGyAACgkQcomFoY/uSWJ5
+XgD/Ys9XJW6l3vM9VstjHxgdgt8ra/1YYIugd9NMv2X26qcBAPn4+EYfTagYc4xp
+ale7w5HwiNr4P3FwoxtrlB5geggE
+=KP+Z
+-----END PGP PUBLIC KEY BLOCK-----
+&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>Support</title><link>https://encelo.github.io/support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/support/</guid><description>&lt;p&gt;My work on &lt;strong&gt;open source projects&lt;/strong&gt; like nCine and SpookyGhost has always been a labor of love.
 I build and maintain these tools in my free time, and I share them so anyone can learn, create, or just enjoy tinkering with code and graphics.&lt;/p&gt;
 &lt;p&gt;If you&amp;rsquo;ve found value in my work, or simply want to help me keep developing and documenting these projects, you can support me through one of the platforms below.
 Every contribution, big or small, makes a real difference and helps me dedicate more time to open source.&lt;/p&gt;
