@@ -15,6 +15,7 @@
 
 [[main]]
   name = "nCine"
+  title = "An open-source cross-platform 2D game engine"
   url = "https://ncine.github.io/"
   weight = 25
 
@@ -43,11 +44,17 @@
   weight = 25
 
 [[footer]]
+  name = "Public Key"
+  title = "My GnuPG public key for verifying signed commits"
+  pageRef = "gpg"
+  weight = 10
+
+[[footer]]
   name = "Support"
   pageRef = "support"
-  weight = 10
+  weight = 15
 
 [[footer]]
   name = "Credits"
   pageRef = "credits"
-  weight = 15
+  weight = 20
