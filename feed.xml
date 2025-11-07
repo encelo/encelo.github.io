@@ -3201,8 +3201,11 @@ target="_blank"
 &lt;p&gt;This site is licensed under the &lt;a
 href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
 target="_blank"
-&gt;Creative Commons BY-NC-SA 4.0 International&lt;/a&gt; license.&lt;/p&gt;</description></item><item><title>GnuPG Public Key</title><link>https://encelo.github.io/gpg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/gpg/</guid><description>&lt;p&gt;This is my GnuPG public key, used to verify signed commits and releases.&lt;/p&gt;
+&gt;Creative Commons BY-NC-SA 4.0 International&lt;/a&gt; license.&lt;/p&gt;</description></item><item><title>GnuPG Public Key</title><link>https://encelo.github.io/gpg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/gpg/</guid><description>&lt;p&gt;This is my personal GnuPG public key, used to sign my Git commits.&lt;/p&gt;
 &lt;p&gt;The same key is also published on &lt;a
+href="https://ncine.github.io/gpg/"
+target="_blank"
+&gt;ncine.github.io&lt;/a&gt;, &lt;a
 href="https://github.com/encelo.gpg"
 target="_blank"
 &gt;GitHub&lt;/a&gt;, &lt;a

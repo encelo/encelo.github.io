@@ -116,8 +116,11 @@ target="_blank"
 &gt;background image&lt;/a&gt; is by &lt;a
 href="https://unsplash.com/@philipsfuture"
 target="_blank"
-&gt;Philip Oroni&lt;/a&gt; on Unsplash.&lt;/p&gt;</description></item><item><title>GnuPG Public Key</title><link>https://encelo.github.io/gpg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/gpg/</guid><description>&lt;p&gt;This is my GnuPG public key, used to verify signed commits and releases.&lt;/p&gt;
+&gt;Philip Oroni&lt;/a&gt; on Unsplash.&lt;/p&gt;</description></item><item><title>GnuPG Public Key</title><link>https://encelo.github.io/gpg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://encelo.github.io/gpg/</guid><description>&lt;p&gt;This is my personal GnuPG public key, used to sign my Git commits.&lt;/p&gt;
 &lt;p&gt;The same key is also published on &lt;a
+href="https://ncine.github.io/gpg/"
+target="_blank"
+&gt;ncine.github.io&lt;/a&gt;, &lt;a
 href="https://github.com/encelo.gpg"
 target="_blank"
 &gt;GitHub&lt;/a&gt;, &lt;a
