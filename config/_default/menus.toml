@@ -28,7 +28,7 @@
 [[main]]
   parent = "pages"
   name = "Resume (PDF)"
-  url = "/AngeloTheodorou.pdf"
+  url = "/angelo_theodorou.pdf"
   weight = 15
 
 [[main]]

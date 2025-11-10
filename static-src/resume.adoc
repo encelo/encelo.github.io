@@ -13,7 +13,7 @@
 |===
 a|*Description:*
 
-* Working full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine, and other projects
+* Working full-time on https://ncine.github.io/[nCine], a cross-platform 2D open source game engine
 |===
 
 ==== January 2021 - March 2024, The Multiplayer Group (Remote from Granada)
@@ -31,7 +31,7 @@ a|*Description:* Worked on Bethesda's Starfield as a Senior Rendering Engineer. 
 |===
 a|*Description:*
 
-* Worked full-time on https://ncine.github.io/[nCine], a 2D cross-platform and open source game engine
+* Worked full-time on https://ncine.github.io/[nCine], a cross-platform 2D open source game engine
 * Developed https://encelo.itch.io/spookyghost[SpookyGhost], a procedural animation tool for sprites made with nCine and ImGui
 |===
 
@@ -39,7 +39,7 @@ a|*Description:*
 [stripes=odd]
 |===
 |*Role:* Rendering Engineer
-a|*Description:* I have worked in the Image Quality rendering team of the Frostbite engine. Some of my tasks have been:
+a|*Description:* Worked in the Image Quality rendering team of the Frostbite engine. Some of my tasks have been:
 
 * Help with the DirectX 12 RTX integration in the editor
 * Add a way to capture a sequence of screenshots to test temporal effects stabilization
@@ -56,14 +56,14 @@ a|*Description:* I have worked in the Image Quality rendering team of the Frostb
 [stripes=odd]
 |===
 |*Role:* Android Technology Programmer
-a|*Description:* I have worked in the Core Game Tech team on the in-house Echo engine used for games like _Dawn of Titans_ and _Clumsy Ninja_. Some of my tasks have been:
+a|*Description:* Worked in the Core Game Tech team on the in-house Echo engine used for games like _Dawn of Titans_ and _Clumsy Ninja_. Some of my tasks have been:
 
 * Initial porting of the engine from OpenGL to Vulkan
 * Rewrite the API for atomic operations on all supported platforms
 * Refactor the ARM NEON intrinsics code for vector and matrix operations with unit tests
 * Help with the transition from Android Lollipop to Marshmallow
 
-I have also worked with the CSR2 team to migrate their building process from Ant to Gradle.
+I also worked with the CSR2 team to migrate their building process from Ant to Gradle.
 |*Technologies:* C++, Java, OpenGL ES, GLSL, Vulkan, Android API
 |*Tools:* Visual Studio, Subversion, git
 |*Website:* http://www.naturalmotion.com
@@ -73,13 +73,13 @@ I have also worked with the CSR2 team to migrate their building process from Ant
 [stripes=odd]
 |===
 |*Role:* Senior Software Engineer
-a|*Description:* I have worked in the Middleware Graphics team in Mali Ecosystem for the Media Processing Group (MPG) to help game companies achieve the best on Mali GPUs. +
+a|*Description:* Worked in the Middleware Graphics team in Mali Ecosystem for the Media Processing Group (MPG) to help game companies achieve the best on Mali GPUs. +
 My role has been a combination of graphics and game programming, technical support to game middleware companies, presentations at events worldwide and real-time applications profiling and optimization:
 
-* I have worked on Unreal Engine 4 to help porting it to ARM 64-bit
-* I have written the codebase for a Unity demo revealed at Unite 2014
-* I have presented sponsored sessions at GDC, Unite and Gamelab Barcelona
-* I have assisted companies like Frostbite, Epic Games, Unity and Gameloft with the ARM and Mali tools
+* Helped porting Unreal Engine 4 to ARM 64-bit
+* Wrote the codebase for a Unity demo revealed at Unite 2014
+* Presented sponsored sessions at GDC, Unite, and Gamelab Barcelona
+* Assisted companies like Frostbite, Epic Games, Unity, and Gameloft with the ARM and Mali tools
 |*Technologies:* C++, C♯, Python, OpenGL ES, GLSL
 |*Tools:* Visual Studio, Qt Creator, CMake, git, Unity
 |*Website:* http://www.arm.com
@@ -89,11 +89,11 @@ My role has been a combination of graphics and game programming, technical suppo
 [stripes=odd]
 |===
 |*Role:* Programmer
-a|*Description:* I have worked as a game programmer and a multi-platform GUI programmer.
+a|*Description:* Worked as a game programmer and a multi-platform GUI programmer.
 
-* For the game _From Cheese_ (https://www.mobygames.com/game/from-cheese[MobyGames]) I have worked as an Android programmer (UI and SPen support) and as an additional Unity programmer.
-* For the game _AXL: Full Boost_ (https://www.mobygames.com/game/axl-full-boost[MobyGames]) I have worked on the iPhone user interface.
-* For _Bang!: The Official Videogame_ (http://www.mobygames.com/game/bang[MobyGames]) I have worked on the native GUI for multiple platforms and on additional gameplay programming.
+* For the game _From Cheese_ (https://www.mobygames.com/game/from-cheese[MobyGames]), I worked as an Android programmer (UI and SPen support) and as an additional Unity programmer.
+* For the game _AXL: Full Boost_ (https://www.mobygames.com/game/axl-full-boost[MobyGames]), I worked on the iPhone user interface.
+* For _Bang!: The Official Videogame_ (http://www.mobygames.com/game/bang[MobyGames]), I worked on the native GUI for multiple platforms and on additional gameplay programming.
 |*Technologies:* C++, Qt4, Objective C, UiKit, Java, Android API
 |*Tools:* Visual Studio, Xcode, Qt Creator, qmake, Eclipse, Subversion, Unity
 |*Website:* http://www.spinvector.com
@@ -103,8 +103,8 @@ a|*Description:* I have worked as a game programmer and a multi-platform GUI pro
 [stripes=odd]
 |===
 |*Role:* Intern programmer
-|*Description:* During my pre-graduation internship I have worked as a programmer for Raylight, an Italian multi-platform videogame software house.
-I have conducted a research to simulate in real-time graphics effects like bloom and rim lighting on platforms without shaders.
+|*Description:* During my pre-graduation internship I worked as a programmer for Raylight, an Italian multi-platform videogame software house.
+I conducted a research to simulate in real-time graphics effects like bloom and rim lighting on platforms without programmable shaders.
 |*Technologies:* C++, OpenGL, GLSL, libSDL
 |*Tools:* Visual Studio, Subversion, Blender, LaTeX
 |*Website:* http://www.raylightgames.com
@@ -124,4 +124,4 @@ I have conducted a research to simulate in real-time graphics effects like bloom
 |===
 
 === Education
-* Bachelor's Degree in Computer Science at the "Federico II" University of Naples with final mark 110/110 cum laude (highest mark with honours)
+* Bachelor's Degree in Computer Science, University of Naples "Federico II", awarded 110/110 cum laude in 2009

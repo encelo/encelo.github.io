@@ -30,12 +30,12 @@ jobs:
           export PATH=$GEM_HOME/bin:$PATH
 
           cd static-src
-          asciidoctor-pdf AngeloTheodorou.adoc
+          asciidoctor-pdf angelo_theodorou.adoc
           asciidoctor notes.adoc
           asciidoctor resume.adoc
           asciidoctor trip_through_graphics_pipeline_2011.adoc
 
-          mv AngeloTheodorou.pdf ../static
+          mv angelo_theodorou.pdf ../static
           mv notes.html ../static
           mv resume.html ../static
           mv trip_through_graphics_pipeline_2011.html ../static
