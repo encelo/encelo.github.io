@@ -31,14 +31,16 @@ jobs:
 
           cd static-src
           asciidoctor-pdf angelo_theodorou.adoc
-          asciidoctor notes.adoc
           asciidoctor resume.adoc
+          asciidoctor notes.adoc
           asciidoctor trip_through_graphics_pipeline_2011.adoc
+          asciidoctor pbr_notes.adoc
 
           mv angelo_theodorou.pdf ../static
-          mv notes.html ../static
           mv resume.html ../static
+          mv notes.html ../static
           mv trip_through_graphics_pipeline_2011.html ../static
+          mv pbr_notes.html ../static
 
       - name: Build
         run: hugo --minify
