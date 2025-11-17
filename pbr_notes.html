@@ -1,0 +1,2936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.26">
+<meta name="keywords" content="rendering, real-time, pbr, brdf">
+<meta name="author" content="Angelo Theodorou">
+<title>PBR Notes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>PBR Notes</h1>
+<div class="details">
+<span id="author" class="author">Angelo Theodorou</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_physically_based_rendering_in_filament">Physically Based Rendering in Filament</a>
+<ul class="sectlevel1">
+<li><a href="#_4_material_system">4 Material system</a>
+<ul class="sectlevel2">
+<li><a href="#_4_1_standard_model">4.1 Standard model</a></li>
+<li><a href="#_4_2_dielectrics_and_conductors">4.2 Dielectrics and conductors</a></li>
+<li><a href="#_4_3_energy_conservation">4.3 Energy conservation</a></li>
+<li><a href="#_4_4_specular_brdf">4.4 Specular BRDF</a>
+<ul class="sectlevel3">
+<li><a href="#_4_4_1_normal_distribution_function_specular_d">4.4.1 Normal distribution function (specular D)</a></li>
+<li><a href="#_4_4_2_geometric_shadowing_specular_g">4.4.2 Geometric shadowing (specular G)</a></li>
+<li><a href="#_4_4_3_fresnel_specular_f">4.4.3 Fresnel (specular F)</a></li>
+</ul>
+</li>
+<li><a href="#_4_5_diffuse_brdf">4.5 Diffuse BRDF</a></li>
+<li><a href="#_4_6_standard_model_summary">4.6 Standard model summary</a></li>
+<li><a href="#_4_7_improving_the_brdfs">4.7 Improving the BRDFs</a>
+<ul class="sectlevel3">
+<li><a href="#_4_7_2_energy_loss_in_specular_reflectance">4.7.2 Energy loss in specular reflectance</a></li>
+</ul>
+</li>
+<li><a href="#_4_8_parameterization">4.8 Parameterization</a>
+<ul class="sectlevel3">
+<li><a href="#_4_8_1_standard_parameters">4.8.1 Standard parameters</a></li>
+<li><a href="#_4_8_3_remapping">4.8.3 Remapping</a></li>
+</ul>
+</li>
+<li><a href="#_4_9_clear_coat_model">4.9 Clear coat model</a>
+<ul class="sectlevel3">
+<li><a href="#_4_9_1_clear_coat_specular_brdf">4.9.1 Clear coat specular BRDF</a></li>
+<li><a href="#_4_9_3_clear_coat_parameterization">4.9.3 Clear coat parameterization</a></li>
+</ul>
+</li>
+<li><a href="#_4_10_anisotropic_model">4.10 Anisotropic model</a>
+<ul class="sectlevel3">
+<li><a href="#_4_10_1_anisotropic_specular_brdf">4.10.1 Anisotropic specular BRDF</a></li>
+<li><a href="#_4_10_2_anisotropic_parameterization">4.10.2 Anisotropic parameterization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_5_lighting">5 Lighting</a>
+<ul class="sectlevel2">
+<li><a href="#_5_1_units">5.1 Units</a></li>
+<li><a href="#_5_2_direct_lighting">5.2 Direct lighting</a>
+<ul class="sectlevel3">
+<li><a href="#_5_2_1_directional_lights">5.2.1 Directional lights</a></li>
+<li><a href="#_5_2_2_punctual_lights">5.2.2 Punctual lights</a></li>
+<li><a href="#_5_2_3_photometric_lights">5.2.3 Photometric lights</a></li>
+<li><a href="#_5_2_5_lights_parameterization">5.2.5 Lights parameterization</a></li>
+<li><a href="#_5_2_6_pre_exposed_lights">5.2.6 Pre-exposed lights</a></li>
+</ul>
+</li>
+<li><a href="#_5_3_image_based_lights">5.3 Image based lights</a>
+<ul class="sectlevel3">
+<li><a href="#_5_3_1_ibl_types">5.3.1 IBL Types</a></li>
+<li><a href="#_5_3_3_processing_light_probes">5.3.3 Processing light probes</a></li>
+<li><a href="#_5_3_4_distant_light_probes">5.3.4 Distant light probes</a></li>
+<li><a href="#_5_3_4_6_ibl_evaluation_implementation">5.3.4.6 IBL evaluation implementation</a></li>
+</ul>
+</li>
+<li><a href="#_5_3_6_anisotropy">5.3.6 Anisotropy</a></li>
+</ul>
+</li>
+<li><a href="#_5_5_transparency_and_translucency_lighting">5.5 Transparency and translucency lighting</a>
+<ul class="sectlevel2">
+<li><a href="#_5_5_1_transparency">5.5.1 Transparency</a></li>
+</ul>
+</li>
+<li><a href="#_5_6_occlusion">5.6 Occlusion</a>
+<ul class="sectlevel2">
+<li><a href="#_5_6_1_diffuse_occlusion">5.6.1 Diffuse occlusion</a></li>
+<li><a href="#_5_6_2_specular_occlusion">5.6.2 Specular occlusion</a>
+<ul class="sectlevel3">
+<li><a href="#_5_6_2_1_horizon_specular_occlusion">5.6.2.1 Horizon specular occlusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_5_7_normal_mapping">5.7 Normal mapping</a>
+<ul class="sectlevel2">
+<li><a href="#_5_7_1_reoriented_normal_mapping">5.7.1 Reoriented normal mapping</a></li>
+<li><a href="#_5_7_2_udn_blending">5.7.2 UDN blending</a></li>
+</ul>
+</li>
+<li><a href="#_8_imaging_pipeline">8 Imaging pipeline</a>
+<ul class="sectlevel2">
+<li><a href="#_8_1_physically_based_camera">8.1 Physically based camera</a>
+<ul class="sectlevel3">
+<li><a href="#_8_1_1_exposure_settings">8.1.1 Exposure settings</a></li>
+<li><a href="#_8_1_2_exposure_value">8.1.2 Exposure value</a></li>
+</ul>
+</li>
+<li><a href="#_8_1_3_exposure">8.1.3 Exposure</a></li>
+<li><a href="#_8_1_4_automatic_exposure">8.1.4 Automatic exposure</a></li>
+<li><a href="#_8_1_5_bloom">8.1.5 Bloom</a></li>
+</ul>
+</li>
+<li><a href="#_8_4_light_path">8.4 Light path</a>
+<ul class="sectlevel2">
+<li><a href="#_8_4_1_clustered_forward_rendering">8.4.1 Clustered Forward Rendering</a>
+<ul class="sectlevel3">
+<li><a href="#_8_4_2_1_gpu_light_assignment">8.4.2.1 GPU light assignment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_real_time_rendering_4th_ed_chapter_9">Real-Time Rendering (4th Ed.), Chapter 9</a>
+<ul class="sectlevel1">
+<li><a href="#_9_1_physics_of_light">9.1 Physics of Light</a>
+<ul class="sectlevel2">
+<li><a href="#_9_1_2_media">9.1.2 Media</a></li>
+<li><a href="#_9_1_3_surfaces">9.1.3 Surfaces</a></li>
+<li><a href="#_9_1_4_subsurface_scattering">9.1.4 Subsurface Scattering</a></li>
+</ul>
+</li>
+<li><a href="#_9_3_the_brdf">9.3 The BRDF</a></li>
+<li><a href="#_9_4_illumination">9.4 Illumination</a></li>
+<li><a href="#_9_5_fresnel_reflectance">9.5 Fresnel Reflectance</a>
+<ul class="sectlevel2">
+<li><a href="#_9_5_1_external_reflection">9.5.1 External Reflection</a></li>
+</ul>
+</li>
+<li><a href="#_9_6_microgeometry">9.6 Microgeometry</a></li>
+<li><a href="#_9_7_microfacet_theory">9.7 Microfacet Theory</a></li>
+<li><a href="#_9_8_brdf_models_for_surface_reflections">9.8 BRDF Models for Surface Reflections</a>
+<ul class="sectlevel2">
+<li><a href="#_9_8_1_normal_distribution_functions">9.8.1 Normal Distribution Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_physically_based_shading_models_in_film_and_game_production_hoffman_2010">Physically-Based Shading Models in Film and Game Production (Hoffman 2010)</a>
+<ul class="sectlevel1">
+<li><a href="#_fresnel_reflectance_term_f">Fresnel Reflectance Term (F)</a></li>
+<li><a href="#_normal_distribution_term_d">Normal Distribution Term (D)</a></li>
+<li><a href="#_shadowing_masking_term_g">Shadowing-Masking Term (G)</a></li>
+</ul>
+</li>
+<li><a href="#_directx_raytracing_tutorial_14_wyman_2014">DirectX Raytracing, Tutorial 14 (Wyman 2014)</a>
+<ul class="sectlevel1">
+<li><a href="#_ggx_normal_distribution_d">GGX normal distribution (D)</a></li>
+<li><a href="#_geometric_masking_g">Geometric masking (G)</a></li>
+<li><a href="#_fresnel_term_f">Fresnel term (F)</a></li>
+</ul>
+</li>
+<li><a href="#_real_shading_in_unreal_engine_4_karis_2013">Real Shading in Unreal Engine 4 (Karis 2013)</a>
+<ul class="sectlevel1">
+<li><a href="#_diffuse_brdf">Diffuse BRDF</a></li>
+<li><a href="#_microfacet_specular_brdf">Microfacet Specular BRDF</a>
+<ul class="sectlevel2">
+<li><a href="#_specular_d">Specular D</a></li>
+<li><a href="#_specular_g">Specular G</a></li>
+<li><a href="#_specular_f">Specular F</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_lighting_of_killzone_shadow_fall_drobot_2013">Lighting of Killzone: Shadow Fall (Drobot 2013)</a>
+<ul class="sectlevel1">
+<li><a href="#_physically_based_lighting">Physically Based Lighting</a>
+<ul class="sectlevel2">
+<li><a href="#_workflow">Workflow</a></li>
+<li><a href="#_brdf">BRDF</a></li>
+</ul>
+</li>
+<li><a href="#_physically_based_lights">Physically Based Lights</a></li>
+</ul>
+</li>
+<li><a href="#_real_time_area_lighting_a_journey_from_research_to_production_hill_heitz_2016">Real-Time Area Lighting: a Journey from Research to Production (Hill &amp; Heitz 2016)</a>
+<ul class="sectlevel1">
+<li><a href="#_theory">Theory</a></li>
+<li><a href="#_implementation">Implementation</a>
+<ul class="sectlevel2">
+<li><a href="#_4_compute_edge_integrals">4. Compute edge integrals</a></li>
+<li><a href="#_1_matrix_lookup">1. Matrix lookup</a></li>
+<li><a href="#_3_polygon_clipping">3. Polygon clipping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_glossary">Glossary</a></li>
+<li><a href="#_bibliography">Bibliography</a></li>
+<li><a href="#_additional_references">Additional References</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<h1 id="_physically_based_rendering_in_filament" class="sect0">Physically Based Rendering in Filament</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>From <a href="#Filament">[Filament]</a>, <a href="https://google.github.io/filament/Filament.html" class="bare">https://google.github.io/filament/Filament.html</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_material_system">4 Material system</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_4_1_standard_model">4.1 Standard model</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>BSDF</strong> (Bidirectional Scattering Distribution Function) is:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>BRDF</strong> (Bidirectional Reflectance Distribution Function)</p>
+</li>
+<li>
+<p><strong>BTDF</strong> (Bidirectional Transmittance Function)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A microfacet BRDF is heavily influenced by a roughness parameter which describes how smooth or how rough a surface is at a micro level (mirror vs blurry reflections).</p>
+</div>
+<div class="stemblock">
+<div class="title">Microfact model (t variable introduced to shorten the equation)</div>
+<div class="content">
+\[\begin{split}
+&amp;t = \frac{1}{|n \cdot v| |n \cdot l|} \\
+&amp;f_x(v, l) = t \int_\Omega D(m, \alpha) G(v, l, m) f_m(v, l, m) (v \cdot m)(l \cdot m)dm
+\end{split}\]
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>NDF</strong> (Normal Distribution Function) models the distribution of the microfacets.</p>
+</li>
+<li>
+<p><strong>G</strong> models the visibility (or occlusion or shadow-masking) of the microfacets.</p>
+</li>
+<li>
+<p>\(f_x\) is the microfacet BRDF (the x stands for the specular or diffuse component).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We approximate the full integration over the microfacets hemisphere.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_2_dielectrics_and_conductors">4.2 Dielectrics and conductors</h3>
+<div class="paragraph">
+<p>There is no subsurface scattering occurring with purely metallic materials, which means there is no diffuse component.
+Scattering happens in dielectrics, which means they have both specular and diffuse components.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_3_energy_conservation">4.3 Energy conservation</h3>
+<div class="paragraph">
+<p>The total amount of specular and diffuse reflectance energy is less than the total amount of incident energy</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_4_specular_brdf">4.4 Specular BRDF</h3>
+<div class="stemblock">
+<div class="title">Cook-Torrance BRDF</div>
+<div class="content">
+\[f_r(v, l) = \frac{D(h, \alpha) G(v, l, \alpha) F(v, h, f0)}{4(n \cdot v)(n \cdot l)}\]
+</div>
+</div>
+<div class="sect3">
+<h4 id="_4_4_1_normal_distribution_function_specular_d">4.4.1 Normal distribution function (specular D)</h4>
+<div class="paragraph">
+<p>The GGX distribution described in <a href="#Walter07">[Walter07]</a> has a long-tailed falloff and short peak in the highlights, and it is equivalent to the the Trowbridge-Reitz distribution.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[D_{GGX}(h, \alpha) = \frac{\alpha^2}{\pi((n \cdot h)^2 (\alpha^2 - 1) + 1)^2}\]
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of the specular D term in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float D_GGX(float NoH, float roughness) {
+    float a = NoH * roughness;
+    float k = roughness / (1.0 - NoH * NoH + a * a);
+    return k * k * (1.0 / PI);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_4_4_2_geometric_shadowing_specular_g">4.4.2 Geometric shadowing (specular G)</h4>
+<div class="paragraph">
+<p>Eric Heitz showed in <a href="#Heitz14">[Heitz14]</a> that the Smith geometric shadowing function is the correct and exact G term to use.</p>
+</div>
+<div class="paragraph">
+<p>The Smith formulation is the following:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[G(v, l, \alpha) = G_1(l, \alpha)G_1(v, \alpha)\]
+</div>
+</div>
+<div class="stemblock">
+<div class="content">
+\[G1(v, \alpha) = G_{GGX}(v, \alpha) = \frac{2(n \cdot v)}{(n \cdot v + \sqrt{\alpha^2 + (1 - \alpha^2)(n \cdot v)^2})}\]
+</div>
+</div>
+<div class="sect4">
+<h5 id="_visibility_term_specular_v">Visibility term (specular V)</h5>
+<div class="stemblock">
+<div class="content">
+\[V(v, l, \alpha) = \frac{0.5}{n \cdot l \sqrt{(n \cdot v)^2 (1 - \alpha^2) + \alpha^2} + n \cdot v \sqrt{(n \cdot l)^2 (1 - \alpha^2) + \alpha^2}}\]
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of the specular V term in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float V_SmithGGXCorrelated(float NoV, float NoL, float roughness) {
+    float a2 = roughness * roughness;
+    float GGXV = NoL * sqrt(NoV * NoV * (1.0 - a2) + a2);
+    float GGXL = NoV * sqrt(NoL * NoL * (1.0 - a2) + a2);
+    return 0.5 / (GGXV + GGXL);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There is an approximation that can be used after noticing that all the terms under the squar eroots are squares and all the terms are in the [0..1] range.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[V(v, l, \alpha) = \frac{0.5}{n \cdot l (n \cdot v (1 - \alpha) + \alpha) + n \cdot v (n \cdot l (1 - \alpha) + \alpha)}\]
+</div>
+</div>
+<div class="paragraph">
+<p>The approximation is mathematically wrong but saves two square root operations and is good enough for real-time mobile applications.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of the approximated specular V term in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float V_SmithGGXCorrelatedFast(float NoV, float NoL, float roughness) {
+    float a = roughness;
+    float GGXV = NoL * (NoV * (1.0 - a) + a);
+    float GGXL = NoV * (NoL * (1.0 - a) + a);
+    return 0.5 / (GGXV + GGXL);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_4_4_3_fresnel_specular_f">4.4.3 Fresnel (specular F)</h4>
+<div class="paragraph">
+<p>The amount of light the viewer sees reflected from a surface depends on the viewing angle.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[F_{Schlick}(v, h, f_0, f_{90}) = f_0 + (f_{90} - f_0)(1 - v \cdot h)^5\]
+</div>
+</div>
+<div class="paragraph">
+<p>The constant \(f_0\) represents the specular reflectance at normal incidence and is achromatic for dielectrics, and chromatic for metals. The actual value depends on the index of refraction of the interface.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of the specular F term in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">vec3 F_Schlick(float u, vec3 f0, float f90) {
+    return f0 + (vec3(f90) - f0) * pow(1.0 - u, 5.0);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>\(f_{90}\) can be approximated to 1.0.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_5_diffuse_brdf">4.5 Diffuse BRDF</h3>
+<div class="paragraph">
+<p>A simple Lambertian BRDF that assumes a uniform diffuse response over the hemisphere.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[f_d(v, l) = \frac{\sigma}{\pi}\]
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of the diffuse Lambertian BRDF in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float Fd_Lambert() {
+    return 1.0 / PI;
+}
+
+vec3 Fd = diffuseColor * Fd_Lambert();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The diffuse part would ideally be coherent with the specular term and take into account the surface roughness.
+Both the Disney diffuse BRDF <a href="#Burley12">[Burley12]</a> and Oren-Nayar model <a href="#Oren94">[Oren94]</a> take the roughness into account and create some retro-reflection at grazing angles.</p>
+</div>
+<div class="stemblock">
+<div class="title">Disney diffuse BRDF expressed in <a href="#Burley12">[Burley12]</a></div>
+<div class="content">
+\[f_d(v, l) = \frac{\sigma}{\pi} F_{Schlick}(n, l, 1, f_{90}) F_{Schlick}(n, v, 1, f_{90})\]
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of the diffuse Disney BRDF in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float F_Schlick(float u, float f0, float f90) {
+    return f0 + (f90 - f0) * pow(1.0 - u, 5.0);
+}
+
+float Fd_Burley(float NoV, float NoL, float LoH, float roughness) {
+    float f90 = 0.5 + 2.0 * roughness * LoH * LoH;
+    float lightScatter = F_Schlick(NoL, 1.0, f90);
+    float viewScatter = F_Schlick(NoV, 1.0, f90);
+    return lightScatter * viewScatter * (1.0 / PI);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_6_standard_model_summary">4.6 Standard model summary</h3>
+<div class="paragraph">
+<p><strong>Specular term</strong>: a Cook-Torrance specular microfacet model, with a GGX normal distribution function, a Smith-GGX height-correlated visibility function, and a Schlick Fresnel function.</p>
+</div>
+<div class="paragraph">
+<p><strong>Diffuse term</strong>: a Lambertian diffuse model.</p>
+</div>
+<div class="listingblock">
+<div class="title">Evaluation of the BRDF in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float D_GGX(float NoH, float a) {
+    float a2 = a * a;
+    float f = (NoH * a2 - NoH) * NoH + 1.0;
+    return a2 / (PI * f * f);
+}
+
+vec3 F_Schlick(float u, vec3 f0) {
+    return f0 + (vec3(1.0) - f0) * pow(1.0 - u, 5.0);
+}
+
+float V_SmithGGXCorrelated(float NoV, float NoL, float a) {
+    float a2 = a * a;
+    float GGXL = NoV * sqrt((-NoL * a2 + NoL) * NoL + a2);
+    float GGXV = NoL * sqrt((-NoV * a2 + NoV) * NoV + a2);
+    return 0.5 / (GGXV + GGXL);
+}
+
+float Fd_Lambert() {
+    return 1.0 / PI;
+}
+
+void BRDF(...) {
+    vec3 h = normalize(v + l);
+
+    float NoV = abs(dot(n, v)) + 1e-5;
+    float NoL = clamp(dot(n, l), 0.0, 1.0);
+    float NoH = clamp(dot(n, h), 0.0, 1.0);
+    float LoH = clamp(dot(l, h), 0.0, 1.0);
+
+    // perceptually linear roughness to roughness (see parameterization)
+    float roughness = perceptualRoughness * perceptualRoughness;
+
+    float D = D_GGX(NoH, a);
+    vec3  F = F_Schlick(LoH, f0);
+    float V = V_SmithGGXCorrelated(NoV, NoL, roughness);
+
+    // specular BRDF
+    vec3 Fr = (D * V) * F;
+
+    // diffuse BRDF
+    vec3 Fd = diffuseColor * Fd_Lambert();
+
+    // apply lighting...
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_7_improving_the_brdfs">4.7 Improving the BRDFs</h3>
+<div class="sect3">
+<h4 id="_4_7_2_energy_loss_in_specular_reflectance">4.7.2 Energy loss in specular reflectance</h4>
+<div class="paragraph">
+<p>The Cook-Torrance BRDF we presented earlier, attempts to model several events at the microfacet level but does so by accounting for a single bounce of light.
+This approximation can cause a loss of energy at high roughness.</p>
+</div>
+<div class="paragraph">
+<p>We can use a white furnace, a uniform lighting environment set to pure white, to validate the energy preservation property of a BRDF.
+When energy preservation is achieved, a purely reflective metallic surface (\(f_0 = 1\)) should be indistinguishable from the background, no matter the roughness of said surface.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[f_r(l, v) = f_{ss}(l, v) + f_0 \left( \frac{1}{r} - 1 \right) f_{ss}(l,v)\]
+</div>
+</div>
+<div class="stemblock">
+<div class="content">
+\[r = \int_\omega{D(l, v)V(l, v) \langle n \cdot l \rangle dl}\]
+</div>
+</div>
+<div class="paragraph">
+<p>We can implement specular energy compensation at a negligible cost if we store <strong>r</strong> in the DFG lookup table.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of the energy compensation specular lobe</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">vec3 energyCompensation = 1.0 + f0 * (1.0 / dfg.y - 1.0);
+// Scale the specular lobe to account for multiscattering
+Fr *= pixel.energyCompensation;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_8_parameterization">4.8 Parameterization</h3>
+<div class="sect3">
+<h4 id="_4_8_1_standard_parameters">4.8.1 Standard parameters</h4>
+<div class="paragraph">
+<p>BaseColor, Metallic, Roughness, Reflectance, Emissive, Ambient occlusion</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_4_8_3_remapping">4.8.3 Remapping</h4>
+<div class="sect4">
+<h5 id="_4_8_3_1_base_color_remapping">4.8.3.1 Base color remapping</h5>
+<div class="listingblock">
+<div class="title">Conversion of base color to diffuse in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">vec3 diffuseColor = (1.0 - metallic) * baseColor.rgb;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_4_8_3_2_reflectance_remapping">4.8.3.2 Reflectance remapping</h5>
+<div class="sect5">
+<h6 id="_dielectrics">Dielectrics</h6>
+<div class="paragraph">
+<p>We will use the remapping for dielectric surfaces described in <a href="#Lagarde14">[Lagarde14]</a>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[f_0 = 0.16 * reflectance^2\]
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_conductors">Conductors</h6>
+<div class="stemblock">
+<div class="content">
+\[f_0 = baseColor * metallic\]
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Computing f0 for dielectric and metallic materials in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">vec3 f0 = 0.16 * reflectance * reflectance * (1.0 - metallic) + baseColor * metallic;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_4_8_3_3_roughness_remapping_and_clamping">4.8.3.3 Roughness remapping and clamping</h5>
+<div class="stemblock">
+<div class="content">
+\[\alpha = perceptualRoughness^2\]
+</div>
+</div>
+<div class="paragraph">
+<p>This simple square remapping delivers visually pleasing and intuitive results while being cheap for real-time applications.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_9_clear_coat_model">4.9 Clear coat model</h3>
+<div class="paragraph">
+<p>A clear coat layer can be simulated as an extension of the standard material model by adding a second specular lobe, which implies evaluating a second specular BRDF.</p>
+</div>
+<div class="sect3">
+<h4 id="_4_9_1_clear_coat_specular_brdf">4.9.1 Clear coat specular BRDF</h4>
+<div class="paragraph">
+<p><a href="#Kelemen01">[Kelemen01]</a> describes a much simpler term that can replace our Smith-GGX visibility term:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[V(l, h) = \frac{1}{4(l \cdot h)^2}\]
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of the Kelemen visibility term in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float V_Kelemen(float LoH) {
+    return 0.25 / (LoH * LoH);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_4_9_3_clear_coat_parameterization">4.9.3 Clear coat parameterization</h4>
+<div class="paragraph">
+<p>ClearCoat, ClearCoatRoughness</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of the clear coat BRDF in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">void BRDF(...) {
+    // compute Fd and Fr from standard model
+
+    // remapping and linearization of clear coat roughness
+    clearCoatPerceptualRoughness = clamp(clearCoatPerceptualRoughness, 0.089, 1.0);
+    clearCoatRoughness = clearCoatPerceptualRoughness * clearCoatPerceptualRoughness;
+
+    // clear coat BRDF
+    float  Dc = D_GGX(clearCoatRoughness, NoH);
+    float  Vc = V_Kelemen(clearCoatRoughness, LoH);
+    float  Fc = F_Schlick(0.04, LoH) * clearCoat; // clear coat strength
+    float Frc = (Dc * Vc) * Fc;
+
+    // account for energy loss in the base layer
+    return color * ((Fd + Fr * (1.0 - Fc)) * (1.0 - Fc) + Frc);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_10_anisotropic_model">4.10 Anisotropic model</h3>
+<div class="paragraph">
+<p>The standard material model described previously can only describe isotropic surfaces, that is, surfaces whose properties are identical in all directions. Many real-world materials, such as brushed metal, can, however, only be replicated using an anisotropic model.</p>
+</div>
+<div class="sect3">
+<h4 id="_4_10_1_anisotropic_specular_brdf">4.10.1 Anisotropic specular BRDF</h4>
+<div class="stemblock">
+<div class="content">
+\[D_{aniso}(h, \alpha) = \frac{1}{\pi \alpha_t \alpha_b} \frac{1}{\left(\left(\frac{t \cdot h}{\alpha_t} \right)^2 + \left(\frac{b \cdot h}{\alpha_b} \right)^2 + (n \cdot h)^2 \right)^2}\]
+</div>
+</div>
+<div class="paragraph">
+<p>\(\alpha_b\) is the roughness along the bitagent direction, \(\alpha_t\) along the tangent one.</p>
+</div>
+<div class="paragraph">
+<p><a href="#Neubelt13">[Neubelt13]</a>, <a href="#Burley12">[Burley12]</a>, and <a href="#Kulla17">[Kulla17]</a> propose different ways to derive the parameters.</p>
+</div>
+<div class="paragraph">
+<p><a href="#Kulla17">[Kulla17]</a> relationship allows creation of sharp highlights:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\alpha_t = \alpha \times (1 + anisotropy)\]
+</div>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\alpha_b = \alpha \times (1 - anisotropy)\]
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of Burley&#8217;s anisotropic NDF in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float at = max(roughness * (1.0 + anisotropy), 0.001);
+float ab = max(roughness * (1.0 - anisotropy), 0.001);
+
+float D_GGX_Anisotropic(float NoH, const vec3 h,
+        const vec3 t, const vec3 b, float at, float ab) {
+    float ToH = dot(t, h);
+    float BoH = dot(b, h);
+    float a2 = at * ab;
+    highp vec3 v = vec3(ab * ToH, at * BoH, a2 * NoH);
+    highp float v2 = dot(v, v);
+    float w2 = a2 / v2;
+    return a2 * w2 * w2 * (1.0 / PI);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of the anisotropic visibility function in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float at = max(roughness * (1.0 + anisotropy), 0.001);
+float ab = max(roughness * (1.0 - anisotropy), 0.001);
+
+float V_SmithGGXCorrelated_Anisotropic(float at, float ab, float ToV, float BoV,
+        float ToL, float BoL, float NoV, float NoL) {
+    float lambdaV = NoL * length(vec3(at * ToV, ab * BoV, NoV));
+    float lambdaL = NoV * length(vec3(at * ToL, ab * BoL, NoL));
+    float v = 0.5 / (lambdaV + lambdaL);
+    return saturateMediump(v);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_4_10_2_anisotropic_parameterization">4.10.2 Anisotropic parameterization</h4>
+<div class="paragraph">
+<p>Anisotropy</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_5_lighting">5 Lighting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_5_1_units">5.1 Units</h3>
+<div class="paragraph">
+<p>Luminous power (lm) is equal to the radiant power (W) multiplied by the luminous efficacy (lm / W)</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\Phi = \Phi_e \eta\]
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_2_direct_lighting">5.2 Direct lighting</h3>
+<div class="paragraph">
+<p>The luminance L, or outgoing radiance, depends on the illuminance E and the BSDF f(v, l).</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[L_{out} = f(v, l)E\]
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_2_1_directional_lights">5.2.1 Directional lights</h4>
+<div class="paragraph">
+<p>They not truly exist in the physical world but can recreate far away light sources like the sun (incident light rays are parallel).</p>
+</div>
+<div class="paragraph">
+<p>This approximation is incorrect for the specular response. The Frostbite engine solves this problem by treating the “sun” directional light as a disc area light.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[L_{out} = f(v, l)E_\perp \langle n \cdot l \rangle\]
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of directional lights in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">vec3 l = normalize(-lightDirection);
+float NoL = clamp(dot(n, l), 0.0, 1.0);
+
+// lightIntensity is the illuminance
+// at perpendicular incidence in lux
+float illuminance = lightIntensity * NoL;
+vec3 luminance = BSDF(v, l) * illuminance;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_2_2_punctual_lights">5.2.2 Punctual lights</h4>
+<div class="paragraph">
+<p>Infinitesimally small and do not follow the inverse square low:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Point lights</p>
+</li>
+<li>
+<p>Spot lights</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To follow the inverse square law the distance term <strong>d</strong> is added:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[E = L_{in} \langle n \cdot l \rangle = \frac{I}{d^2} \langle n \cdot l \rangle\]
+</div>
+</div>
+<div class="sect4">
+<h5 id="_5_2_2_1_point_lights">5.2.2.1 Point lights</h5>
+<div class="paragraph">
+<p>They are defined only by a position in space.</p>
+</div>
+<div class="paragraph">
+<p>The luminous power is calculated by integrating the luminous intensity over the light&#8217;s solid angle.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[L_{out} = f(v, l) \frac{\Phi}{4 \pi d^2} \langle n \cdot l \rangle\]
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_5_2_2_2_spot_lights">5.2.2.2 Spot lights</h5>
+<div class="paragraph">
+<p>They are defined by a position in space, a direction vector and two cone angles.</p>
+</div>
+<div class="paragraph">
+<p>Changing the outer angle of the cone changes the illumination levels, therefore it makes sens to provide artists with a parameter to disable the coupling.</p>
+</div>
+<div class="paragraph">
+<p>The spot light evaluation function can be expressed with a light absorber or with a light reflector.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_5_2_2_3_attenuation_function">5.2.2.3 Attenuation function</h5>
+<div class="paragraph">
+<p>To avoid the division by 0 when objects intersect a light we can assume that punctual lights are small area lights.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[E = \frac{I}{max(d^2, 0.01^2)}\]
+</div>
+</div>
+<div class="paragraph">
+<p>We also limit the maximum distance at which a light can affect objects by introducing an influence radius. This helps both artists and performance.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[E = \frac{I}{max(d^2, 0.01^2)} \langle 1 - \frac{d^4}{r^4} \rangle^2\]
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of punctual lights in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float getSquareFalloffAttenuation(vec3 posToLight, float lightInvRadius) {
+    float distanceSquare = dot(posToLight, posToLight);
+    float factor = distanceSquare * lightInvRadius * lightInvRadius;
+    float smoothFactor = max(1.0 - factor * factor, 0.0);
+    return (smoothFactor * smoothFactor) / max(distanceSquare, 1e-4);
+}
+
+float getSpotAngleAttenuation(vec3 l, vec3 lightDir,
+        float innerAngle, float outerAngle) {
+    // the scale and offset computations can be done CPU-side
+    float cosOuter = cos(outerAngle);
+    float spotScale = 1.0 / max(cos(innerAngle) - cosOuter, 1e-4)
+    float spotOffset = -cosOuter * spotScale
+
+    float cd = dot(normalize(-lightDir), l);
+    float attenuation = clamp(cd * spotScale + spotOffset, 0.0, 1.0);
+    return attenuation * attenuation;
+}
+
+vec3 evaluatePunctualLight() {
+    vec3 l = normalize(posToLight);
+    float NoL = clamp(dot(n, l), 0.0, 1.0);
+    vec3 posToLight = lightPosition - worldPosition;
+
+    float attenuation;
+    attenuation  = getSquareFalloffAttenuation(posToLight, lightInvRadius);
+    attenuation *= getSpotAngleAttenuation(l, lightDir, innerAngle, outerAngle);
+
+    vec3 luminance = (BSDF(v, l) * lightIntensity * attenuation * NoL) * lightColor;
+    return luminance;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_2_3_photometric_lights">5.2.3 Photometric lights</h4>
+<div class="paragraph">
+<p>The can address the need to define the distribution of light within space. They use a IES profile to describe the intensity distribution.</p>
+</div>
+<div class="paragraph">
+<p>An IES profile stores luminous intensity for various angles on a sphere around the measured light source (the photometric web) and can be applied to any punctual light.</p>
+</div>
+<div class="paragraph">
+<p>The IES profile is converted to a 1D texture that represents the average luminous intensity for all horizontal angles at a specific vertical angle (since most lights are mostly symmetrical on the horizontal plane).</p>
+</div>
+<div class="paragraph">
+<p>The photometric attenuation factor is simply multiplied with the rest of the attenaution factors.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of attenuation from photometric profiles in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float getPhotometricAttenuation(vec3 posToLight, vec3 lightDir) {
+    float cosTheta = dot(-posToLight, lightDir);
+    float angle = acos(cosTheta) * (1.0 / PI);
+    return texture2DLodEXT(lightProfileMap, vec2(angle, 0.0), 0.0).r;
+}
+
+vec3 evaluatePunctualLight() {
+    vec3 l = normalize(posToLight);
+    float NoL = clamp(dot(n, l), 0.0, 1.0);
+    vec3 posToLight = lightPosition - worldPosition;
+
+    float attenuation;
+    attenuation  = getSquareFalloffAttenuation(posToLight, lightInvRadius);
+    attenuation *= getSpotAngleAttenuation(l, lightDirection, innerAngle, outerAngle);
+    attenuation *= getPhotometricAttenuation(l, lightDirection);
+
+    float luminance = (BSDF(v, l) * lightIntensity * attenuation * NoL) * lightColor;
+    return luminance;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_2_5_lights_parameterization">5.2.5 Lights parameterization</h4>
+<div class="paragraph">
+<p>Type, Direction, Color, Intensity, Falloff radius, Inner angle, Outer angle, Length, Radius, Photometric profile, Masked profile, Photometric multiplier</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_2_6_pre_exposed_lights">5.2.6 Pre-exposed lights</h4>
+<div class="paragraph">
+<p>Most of the lighting work uses half precision floats to greatly improve performance and power usage, particularly on mobile devices.</p>
+</div>
+<div class="paragraph">
+<p>Half precision floats are ill-suited for this kind of work as common illuminance and luminance values can exceed their range.
+The solution is to simply pre-expose the lights themselves instead of the result of the lighting pass.</p>
+</div>
+<div class="listingblock">
+<div class="title">Pre-exposing lights allows the entire shading pipeline to use half precision floats</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">// The inputs must be highp/single precision,
+// both for range (intensity) and precision (exposure)
+// The output is mediump/half precision
+float computePreExposedIntensity(highp float intensity, highp float exposure) {
+    return intensity * exposure;
+}
+
+Light getPointLight(uint index) {
+    Light light;
+    uint lightIndex = // fetch light index;
+
+    // the intensity must be highp/single precision
+    highp vec4 colorIntensity  = lightsUniforms.lights[lightIndex][1];
+
+    // pre-expose the light
+    light.colorIntensity.w = computePreExposedIntensity(
+            colorIntensity.w, frameUniforms.exposure);
+
+    return light;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_3_image_based_lights">5.3 Image based lights</h3>
+<div class="paragraph">
+<p>Images, in particular cubemaps, are a great way to encode an “environment light”. This is called Image Based Lighting (IBL) or sometimes Indirect Lighting.</p>
+</div>
+<div class="paragraph">
+<p>Typically, the environment image is acquired offline in the real world, or generated by the engine either offline or at run time; either way, local or distant probes are used.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[L_{out}(n, v, \Theta) = \int_\Omega{f(l, v, \Theta) L_\perp(l) \langle n \cdot l \rangle dl}\]
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_3_1_ibl_types">5.3.1 IBL Types</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Distant light probes</strong>, used to capture lighting information at “infinity”, where parallax can be ignored (sky, distant landscape).</p>
+</li>
+<li>
+<p><strong>Local light probes</strong>, used to capture a certain area of the world from a specific point of view. More accurate than distance probes and are particularly useful to add local reflections to materials.</p>
+</li>
+<li>
+<p><strong>Planar reflections</strong>, used to capture reflections by rendering the scene mirrored by a plane.</p>
+</li>
+<li>
+<p><strong>Screen space reflections</strong>, used to capture reflections based on the rendered scene by ray-marching in the depth buffer (expensive).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_3_3_processing_light_probes">5.3.3 Processing light probes</h4>
+<div class="paragraph">
+<p>The radiance of an IBL is computed by integrating over the surface&#8217;s hemisphere. This is done by pre-processing light probes to convert them into a format better suited for real-time interactions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Specular reflectance</strong>: pre-filtered importance sampling and split-sum approximation.</p>
+</li>
+<li>
+<p><strong>Diffuse reflectance</strong>: irradiance map and spherical harmonics.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_3_4_distant_light_probes">5.3.4 Distant light probes</h4>
+<div class="sect4">
+<h5 id="_5_3_4_1_diffuse_brdf_integration">5.3.4.1 Diffuse BRDF integration</h5>
+<div class="paragraph">
+<p>The irradiance can be approximated very closely by a decomposition into Spherical Harmonics and calculated at runtime cheaply.</p>
+</div>
+<div class="paragraph">
+<p>SH decomposition is similar in concept to a Fourier transform, it expresses the signal over an orthonormal base in the frequency domain.
+The properties that interests us most are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Very few coefficients are needed to encode \(\langle cos \Theta \rangle\)</p>
+</li>
+<li>
+<p>Convolutions by a kernel that has a circular symmetry are very inexpensive and become products in SH space</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In practice we pre-convolve \(L_\perp\) with \(\langle cos \Theta \rangle\) and pre-scale these coefficients by the basis scaling of \(k_l^m\) so that the reconstruction code is as simple as possible in the shader:</p>
+</div>
+<div class="listingblock">
+<div class="title">GLSL code to reconstruct the irradiance from the pre-scaled SH</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">vec3 irradianceSH(vec3 n) {
+    // uniform vec3 sphericalHarmonics[9]
+    // We can use only the first 2 bands for better performance
+    return
+          sphericalHarmonics[0]
+        + sphericalHarmonics[1] * (n.y)
+        + sphericalHarmonics[2] * (n.z)
+        + sphericalHarmonics[3] * (n.x)
+        + sphericalHarmonics[4] * (n.y * n.x)
+        + sphericalHarmonics[5] * (n.y * n.z)
+        + sphericalHarmonics[6] * (3.0 * n.z * n.z - 1.0)
+        + sphericalHarmonics[7] * (n.z * n.x)
+        + sphericalHarmonics[8] * (n.x * n.x - n.y * n.y);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_5_3_4_2_specular_brdf_integration">5.3.4.2 Specular BRDF integration</h5>
+<div class="paragraph">
+<p>The convolution of \(L_\perp\) by the environment is filtered using the BRDF as a kernel. Indeed at higher roughness, specular reflections look more blurry.</p>
+</div>
+<div class="sect5">
+<h6 id="_5_3_4_2_1_simplifying_the_brdf_integration">5.3.4.2.1 Simplifying the BRDF integration</h6>
+<div class="paragraph">
+<p>We use a simplified equation \(\hat{I}\) whereby we assume that <strong>v = n</strong>, that is the view direction <strong>v</strong> is always equal to the surface normal <strong>n</strong>.</p>
+</div>
+<div class="paragraph">
+<p>This assumption will break all view-dependant effects of the convolution, such as the increased blur in reflections closer to the viewer.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_5_3_4_2_2_discrete_domain">5.3.4.2.2 Discrete Domain</h6>
+<div class="stemblock">
+<div class="title">t variable introduced to shorten the equations</div>
+<div class="content">
+\[\begin{split}
+&amp;L_{out}(n, v, \alpha, f_0, f_{90}) \approx [f_0 DFG_1(n \cdot v, \alpha) + f_{90} DFG_2(n \cdot v, \alpha)] \times LD(n, \alpha) \\
+&amp;t = \frac{\langle v \cdot h \rangle}{\langle n \cdot h \rangle} \langle n \cdot l \rangle \\
+&amp;DFG_1(\alpha, \langle n \cdot v \rangle) = \frac{4}{N} \sum_i^N{(1 - F_C(\langle v \cdot h \rangle)) V(l_i, v, \alpha) t} \\
+&amp;DFG_2(\alpha, \langle n \cdot v \rangle) = \frac{4}{N} \sum_i^N{(F_C(\langle v \cdot h \rangle) V(l_i, v, \alpha) t} \\
+&amp;LD(n, \alpha) = \frac{\sum_i^N{V(l_i, n, \alpha) \langle n \cdot l \rangle L_\perp(l_i)}}{\sum_i^N{\langle n \cdot l \rangle}}
+\end{split}\]
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_5_3_4_3_the_dfg1_and_dfg2_term_visualized">5.3.4.3 The DFG1 and DFG2 term visualized</h5>
+<div class="paragraph">
+<p>Both <strong>DFG1</strong> and <strong>DFG2</strong> can either be pre-calculated in a regular 2D texture and sampled bilinearly, or computed at runtime using an analytic approximation of the surfaces.</p>
+</div>
+<div class="paragraph">
+<p>Such analytic approximation is described in <a href="#Karis14">[Karis14]</a>, itself based on <a href="#Lazarov13">[Lazarov13]</a>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_5_3_4_4_the_ld_term_visualized">5.3.4.4 The LD term visualized</h5>
+<div class="paragraph">
+<p><strong>LD</strong> is the convolution of the environment by a function that only depends on the \(\alpha\) parameter.
+It can conveniently be stored in a mip-mapped cubemap where increasing LODs receive the environment pre-filtered with increasing roughness.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_3_4_6_ibl_evaluation_implementation">5.3.4.6 IBL evaluation implementation</h4>
+<div class="listingblock">
+<div class="title">GLSL implementation of image based lighting evaluation</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">vec3 irradianceSH(vec3 n) {
+    // uniform vec3 sphericalHarmonics[9]
+    // We can use only the first 2 bands for better performance
+    return
+          sphericalHarmonics[0]
+        + sphericalHarmonics[1] * (n.y)
+        + sphericalHarmonics[2] * (n.z)
+        + sphericalHarmonics[3] * (n.x)
+        + sphericalHarmonics[4] * (n.y * n.x)
+        + sphericalHarmonics[5] * (n.y * n.z)
+        + sphericalHarmonics[6] * (3.0 * n.z * n.z - 1.0)
+        + sphericalHarmonics[7] * (n.z * n.x)
+        + sphericalHarmonics[8] * (n.x * n.x - n.y * n.y);
+}
+
+// NOTE: this is the DFG LUT implementation of the function above
+vec2 prefilteredDFG_LUT(float coord, float NoV) {
+    // coord = sqrt(roughness), which is the mapping used by the
+    // IBL prefiltering code when computing the mipmaps
+    return textureLod(dfgLut, vec2(NoV, coord), 0.0).rg;
+}
+
+vec3 evaluateSpecularIBL(vec3 r, float perceptualRoughness) {
+    // This assumes a 256x256 cubemap, with 9 mip levels
+    float lod = 8.0 * perceptualRoughness;
+    // decodeEnvironmentMap() either decodes RGBM or is a no-op if the
+    // cubemap is stored in a float texture
+    return decodeEnvironmentMap(textureCubeLodEXT(environmentMap, r, lod));
+}
+
+vec3 evaluateIBL(vec3 n, vec3 v, vec3 diffuseColor, vec3 f0, vec3 f90, float perceptualRoughness) {
+    float NoV = max(dot(n, v), 0.0);
+    vec3 r = reflect(-v, n);
+
+    // Specular indirect
+    vec3 indirectSpecular = evaluateSpecularIBL(r, perceptualRoughness);
+    vec2 env = prefilteredDFG_LUT(perceptualRoughness, NoV);
+    vec3 specularColor = f0 * env.x + f90 * env.y;
+
+    // Diffuse indirect
+    // We multiply by the Lambertian BRDF to compute radiance from irradiance
+    // With the Disney BRDF we would have to remove the Fresnel term that
+    // depends on NoL (it would be rolled into the SH). The Lambertian BRDF
+    // can be baked directly in the SH to save a multiplication here
+    vec3 indirectDiffuse = max(irradianceSH(n), 0.0) * Fd_Lambert();
+
+    // Indirect contribution
+    return diffuseColor * indirectDiffuse + indirectSpecular * specularColor;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_3_6_anisotropy">5.3.6 Anisotropy</h3>
+<div class="paragraph">
+<p><a href="#McAuley15">[McAuley15]</a> describes a technique called “bent reflection vector”, based on <a href="#Revie12">[Revie12]</a>.
+The bent reflection vector is a rough approximation of anisotropic lighting but the alternative is to use importance sampling.</p>
+</div>
+<div class="listingblock">
+<div class="title">GLSL implementation of the bent reflection vector</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">vec3 anisotropicDirection = anisotropy &gt;= 0.0 ? bitangent : tangent;
+vec3 anisotropicTangent = cross(anisotropicDirection, v);
+vec3 anisotropicNormal = cross(anisotropicTangent, anisotropicDirection);
+vec3 bentNormal = normalize(mix(n, anisotropicNormal, anisotropy));
+vec3 r = reflect(-v, bentNormal);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_5_5_transparency_and_translucency_lighting">5.5 Transparency and translucency lighting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_5_5_1_transparency">5.5.1 Transparency</h3>
+<div class="paragraph">
+<p>Given a desired \(\alpha_{opacity}\) and a diffuse color \(\sigma\), the effective opacity of a fragment is:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{split}
+&amp;color = \sigma * \alpha_{opacity} \\
+&amp;opacity = \alpha_{opacity}
+\end{split}\]
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of lit surface transparency in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">// baseColor has already been premultiplied
+vec4 shadeSurface(vec4 baseColor) {
+    float alpha = baseColor.a;
+
+    vec3 diffuseColor = evaluateDiffuseLighting();
+    vec3 specularColor = evaluateSpecularLighting();
+
+    return vec4(diffuseColor + specularColor, alpha);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_5_6_occlusion">5.6 Occlusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Micro-occlusion (used to handle creases, cracks and cavities) is currently ignored. Often it is exposed in engines under the form of a “cavity map”.</p>
+</div>
+<div class="paragraph">
+<p>In <a href="#Lagarde14">[Lagarde14]</a> the authors show that in frostbite diffuse micro-occlusion is pre-baked in diffuse maps and specular micro-occlusion is pre-baked in reflectance textures.</p>
+</div>
+<div class="paragraph">
+<p>In our system, micro-occlusion are baked in the base color map, medium scale ambient occlusion is pre-baked in ambient occlusion maps (a material parameter), and large scale ambient occlusion is computed with screen-space techniques such as SSAO or HBAO.</p>
+</div>
+<div class="sect2">
+<h3 id="_5_6_1_diffuse_occlusion">5.6.1 Diffuse occlusion</h3>
+<div class="paragraph">
+<p>Here \(L_a\) is an ambient illumination function (encoded in spherical harmonics) while <strong>V</strong> is a visibility function from 0 to 1.</p>
+</div>
+<div class="stemblock">
+<div class="title">Separating the visibility term from the illumination function</div>
+<div class="content">
+\[L(l, v) \approx \left( \pi \int_\Omega{f(l, v) L_a(l)dl} \right) \left( \frac{1}{\pi} \int_\Omega{V(l) \langle n \cdot \rangle dl} \right)\]
+</div>
+</div>
+<div class="paragraph">
+<p>This approximation is only exact when the distant light is constant and the BRDF is a Lambertian term. This approximation is reasonable with a distant light probe.</p>
+</div>
+<div class="paragraph">
+<p>In practice, baked ambient occlusion is stored as a grayscale texture which can often be at a lower resolution.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of baked diffuse ambient occlusion in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">// diffuse indirect
+vec3 indirectDiffuse = max(irradianceSH(n), 0.0) * Fd_Lambert();
+// ambient occlusion
+indirectDiffuse *= texture2D(aoMap, outUV).r;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_6_2_specular_occlusion">5.6.2 Specular occlusion</h3>
+<div class="paragraph">
+<p>Specular micro-occlusion can be derived from \(f_0\), itself derived from the diffuse color. The derivation is based on the knowledge that no real-world material has a reflectance lower than 2%.
+Values in the 0-2% range can therefore be treated as pre-baked specular occlusion used to smoothly extinguish the Fresnel term.</p>
+</div>
+<div class="listingblock">
+<div class="title">Pre-baked specular occlusion in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">float f90 = clamp(dot(f0, 50.0 * 0.33), 0.0, 1.0);
+// cheap luminance approximation
+float f90 = clamp(50.0 * f0.g, 0.0, 1.0);</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_5_6_2_1_horizon_specular_occlusion">5.6.2.1 Horizon specular occlusion</h4>
+<div class="paragraph">
+<p>When computing the specular IBL contribution for a surface that uses a normal map, it is possible to end up with a reflection vector pointing towards the surface.</p>
+</div>
+<div class="paragraph">
+<p><a href="#Russell15">[Russell15]</a> shows how to minimize light leaking by occluding light coming from behind the surface.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of horizon specular occlusion in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">// specular indirect
+vec3 indirectSpecular = evaluateSpecularIBL(r, perceptualRoughness);
+
+// horizon occlusion with falloff, should be computed for direct specular too
+float horizon = min(1.0 + dot(r, n), 1.0);
+indirectSpecular *= horizon * horizon;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_5_7_normal_mapping">5.7 Normal mapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Normal maps are usually used to replace high-poly meshes with low-poly ones (using a base map) or to add surface details (using a detail map).</p>
+</div>
+<div class="sect2">
+<h3 id="_5_7_1_reoriented_normal_mapping">5.7.1 Reoriented normal mapping</h3>
+<div class="paragraph">
+<p><a href="#Hill12">[Hill12]</a> shows a mathematically correct solution to combine two normal maps by rotating the basis of the detail map onto the normal from the base map.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of reoriented normal mapping in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">vec3 t = texture(baseMap,   uv).xyz * vec3( 2.0,  2.0, 2.0) + vec3(-1.0, -1.0,  0.0);
+vec3 u = texture(detailMap, uv).xyz * vec3(-2.0, -2.0, 2.0) + vec3( 1.0,  1.0, -1.0);
+vec3 r = normalize(t * dot(t, u) - u * t.z);
+return r;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_7_2_udn_blending">5.7.2 UDN blending</h3>
+<div class="paragraph">
+<p>it leads to a reduction in details over flat areas, but can be performed at runtime.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of UDN blending in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">vec3 t = texture(baseMap,   uv).xyz * 2.0 - 1.0;
+vec3 u = texture(detailMap, uv).xyz * 2.0 - 1.0;
+vec3 r = normalize(t.xy + u.xy, t.z);
+return r;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_8_imaging_pipeline">8 Imaging pipeline</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Scene luminance &#8594; Normalized luminace (HDR) &#8594; White balance &#8594; Color grading &#8594; Tone mapping &#8594; OETF &#8594; Pixel value (LDR)</p>
+</div>
+<div class="sect2">
+<h3 id="_8_1_physically_based_camera">8.1 Physically based camera</h3>
+<div class="sect3">
+<h4 id="_8_1_1_exposure_settings">8.1.1 Exposure settings</h4>
+<div class="paragraph">
+<p>The light reaching the camera is luminance <strong>L</strong> expressed in cd/m^2 and cover a large range of values.</p>
+</div>
+<div class="paragraph">
+<p>The range remapping is done by exposing the sensor for a certain time, manipulating 3 settings.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Aperture (N)</strong>
+Expressed in f-stops, it controls  how open or closed the camera system&#8217;s aperture is, and the depth of field.
+An f-stop indicates the ratio of the lens' focal length to the diameter of the entrance pupil.</p>
+</li>
+<li>
+<p><strong>Shutter speed (t)</strong>
+Expressed in seconds, it controls how long the aperture remains opened, and the motion blur.</p>
+</li>
+<li>
+<p><strong>Sensitivity (S)</strong>
+Expressed in ISO, it controls how the light reaching the sensor is quantized, and the amount of noise.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_8_1_2_exposure_value">8.1.2 Exposure value</h4>
+<div class="paragraph">
+<p>We summarize these 3 settings with an exposure value, noted <strong>EV</strong> and expressed in base-2 logarithmic scale.</p>
+</div>
+<div class="paragraph">
+<p>One positive stop (+1 EV) corresponds to a factor of two in luminance and one negative stop (−1 EV) corresponds to a factor of half in luminance.</p>
+</div>
+<div class="stemblock">
+<div class="title">Formal definition of EV</div>
+<div class="content">
+\[EV = \log_2 \left( \frac{N^2}{t} \right)\]
+</div>
+</div>
+<div class="paragraph">
+<p>The value is by convention defined for ISO 100, or \(EV_{100}\).</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\begin{split}
+&amp;EV_S = EV_{100} + \log_2 \left( \frac{S}{100} \right) \\
+&amp;EV_{100} = EV_S - \log_2 \left( \frac{S}{100} \right) = \log_2 \left( \frac{N^2}{t} \right) - \log_2 \left( \frac{S}{100} \right)
+\end{split}\]
+</div>
+</div>
+<div class="sect4">
+<h5 id="_8_1_2_1_exposure_value_and_luminance">8.1.2.1 Exposure value and luminance</h5>
+<div class="paragraph">
+<p>It is possible to define <strong>EV</strong> as a function of the scene luminance <strong>L</strong>, given a per-device calibration constant <strong>K</strong>.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[EV = \log_2 \left( \frac{L \times S}{K} \right)\]
+</div>
+</div>
+<div class="paragraph">
+<p>That constant <strong>K</strong> is the reflected-light meter constant, which varies between manufacturers.</p>
+</div>
+<div class="paragraph">
+<p>It would be possible to implement automatic exposure in our engine by first measuring the average luminance of a frame.
+An easy way to achieve this is to simply downsample a luminance buffer down to 1 pixel and read the remaining value.</p>
+</div>
+<div class="paragraph">
+<p>This technique is unfortunately rarely stable and can easily be affected by extreme values.
+Many games use a different approach which consists in using a luminance histogram to remove extreme values.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_8_1_3_exposure">8.1.3 Exposure</h3>
+<div class="paragraph">
+<p>To convert the scene luminance into normalized luminance, we must use the photometric exposure, or amount of scene luminance that reaches the camera sensor.
+It is expressed in lux seconds and noted <strong>H</strong>.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[H = \frac{q \cdot t}{N^2} L\]
+</div>
+</div>
+<div class="paragraph">
+<p>Where <strong>L</strong> is the luminance of the scene, <strong>t</strong> the shutter speed, <strong>N</strong> the aperture and <strong>q</strong> the lens and vignetting attenuation.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of exposure in GLSL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="glsl">// Computes the camera's EV100 from exposure settings
+// aperture in f-stops
+// shutterSpeed in seconds
+// sensitivity in ISO
+float exposureSettings(float aperture, float shutterSpeed, float sensitivity) {
+    return log2((aperture * aperture) / shutterSpeed * 100.0 / sensitivity);
+}
+
+// Computes the exposure normalization factor from
+// the camera's EV100
+float exposure(float ev100) {
+    return 1.0 / (pow(2.0, ev100) * 1.2);
+}
+
+float ev100 = exposureSettings(aperture, shutterSpeed, sensitivity);
+float exposure = exposure(ev100);
+
+vec4 color = evaluateLighting();
+color.rgb *= exposure;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_8_1_4_automatic_exposure">8.1.4 Automatic exposure</h3>
+<div class="paragraph">
+<p>Since we know how to compute the exposure value from a given luminance, we can transform our camera into a spot meter. To do so, we need to measure the scene&#8217;s luminance.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Luminance downsampling</strong>
+By downsampling the previous frame successively until obtaining a 1×1 log luminance buffer that can be read on the CPU (or using a compute shader). The result is the average log luminance of the scene. The first downsampling must extract the luminance of each pixel first. This technique can be unstable and its output should be smoothed over time.</p>
+</li>
+<li>
+<p><strong>Using a luminance histogram</strong>
+To find the average log luminance. This technique has an advantage over the previous one as it allows to ignore extreme values and offers more stable results.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_8_1_5_bloom">8.1.5 Bloom</h3>
+<div class="paragraph">
+<p>Because the EV scale is almost perceptually linear, the exposure value is also often used as a light unit. Using exposure compensation as a light unit should be avoided whenever possible but can be useful to force (or cancel) a bloom effect around emissive surfaces independently of the camera settings.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of emissive bloom in GLSL[source,glsl]</div>
+<div class="content">
+<pre>vec4 surfaceShading() {
+    vec4 color = evaluateLights();
+    // rgb = color, w = exposure compensation
+    vec4 emissive = getEmissive();
+    color.rgb += emissive.rgb * pow(2.0, ev100 + emissive.w - 3.0);
+    color.rgb *= exposure;
+    return color;
+}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_8_4_light_path">8.4 Light path</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Low bandwidth requirements and multiple dynamic lights per pixel.</p>
+</div>
+<div class="paragraph">
+<p>Support for MSAA, transparency, multi material models.</p>
+</div>
+<div class="paragraph">
+<p>In tiled rendering the idea is to split the screen in a grid of tiles and for each tile, find the list of lights that affect the pixels within that tile.</p>
+</div>
+<div class="sect2">
+<h3 id="_8_4_1_clustered_forward_rendering">8.4.1 Clustered Forward Rendering</h3>
+<div class="paragraph">
+<p>Clustered shading expands the idea of tiled rendering but adds a segmentation on the 3rd axis (in view space).</p>
+</div>
+<div class="paragraph">
+<p>We call each cluster a froxel as it makes it clear what they represent (a voxel in frustum space).</p>
+</div>
+<div class="paragraph">
+<p>Before rendering a frame, each light in the scene is assigned to any froxel it intersects with. The result of the lights assignment pass is a list of lights for each froxel.
+During the rendering pass, we can compute the ID of the froxel a fragment belongs to and therefore the list of lights that can affect that fragment.</p>
+</div>
+<div class="paragraph">
+<p>The depth slicing is not linear, but exponential. In a typical scene, there will be more pixels close to the near plane than to the far plane.
+An exponential grid of froxels will therefore improve the assignment of lights where it matters the most.</p>
+</div>
+<div class="paragraph">
+<p>A simple exponential distribution uses up half of the slices very close to the camera. Since dynamic world lights are either point lights (spheres) or spot lights (cones), such a fine resolution is completely unnecessary so close to the near plane. Our solution is to manually tweak the size of the first froxel depending on the scene and the near and far planes.</p>
+</div>
+<div class="sect3">
+<h4 id="_8_4_2_1_gpu_light_assignment">8.4.2.1 GPU light assignment</h4>
+<div class="paragraph">
+<p>The lights are stored in Shader Storage Buffer Objects (SSBO) and passed to a compute shader that assigns each light to the corresponding froxels.</p>
+</div>
+<div class="paragraph">
+<p>The frustum voxelization can be executed only once by a first compute shader (as long as the projection matrix does not change), and the lights assignment can be performed each frame by another compute shader.</p>
+</div>
+<div class="paragraph">
+<p>We simply invoke as many workgroups as we have froxels. Each workgroup will in turn be threaded and traverse all the lights to assign.</p>
+</div>
+<div class="paragraph">
+<p>Intersection tests imply simple sphere/frustum or cone/frustum tests.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_real_time_rendering_4th_ed_chapter_9" class="sect0">Real-Time Rendering (4th Ed.), Chapter 9</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>From <a href="#RealTimeRendering4">[RealTimeRendering4]</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_9_1_physics_of_light">9.1 Physics of Light</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Light is a transverse wave, a wave that oscillates the electric and magnetic fields perpendicularly to the direction of its propagation.</p>
+</div>
+<div class="paragraph">
+<p>The simplest possible light wave is <em>monochromatic</em> (it has a single wavelength \(\lambda\)) and <em>linearly polarized</em> (the electric and magnetic fields each oscillate along a single line).</p>
+</div>
+<div class="paragraph">
+<p>In rendering, we are concerned with the average energy flow over time (or irradiance, denoted with <strong>E</strong>), which is proportional to the squared wave amplitude.</p>
+</div>
+<div class="stemblock">
+<div class="title">Irradiance (E), amplitude (a)</div>
+<div class="content">
+\[E_1 = ka^2\]
+</div>
+</div>
+<div class="sect2">
+<h3 id="_9_1_2_media">9.1.2 Media</h3>
+<div class="paragraph">
+<p>The ratio of the phase velocities of the original and new waves is called <em>index of refraction</em> (IOR).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_9_1_3_surfaces">9.1.3 Surfaces</h3>
+<div class="paragraph">
+<p>The reflected and incident wave directions have the same angle \(\theta_i\) with the surface normal.
+The transmitted wave direction is bent (<em>refracted</em>) at an angle \(\theta_t\):</p>
+</div>
+<div class="stemblock">
+<div class="title">Snell&#8217;s law</div>
+<div class="content">
+\[sin(\theta_t) = \frac{n_1}{n_2} sin(\theta_i)\]
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_9_1_4_subsurface_scattering">9.1.4 Subsurface Scattering</h3>
+<div class="paragraph">
+<p>Refracted light continues to interact with the interior volume of the object</p>
+</div>
+<div class="paragraph">
+<p>If the entry-exit distances are small compared to the shading scale (size of a pixel or distance between shading samples) then SSS can be combined into a local shading model where outgoing light at a point depends only on incoming light at the same point.</p>
+</div>
+<div class="paragraph">
+<p>The <em>specular term</em> model surface reflection, and the <em>diffuse term</em> models <em>local subsurface scattering</em>.
+If the entry-exit distance are large then we need specialized rendering techniques for <em>global subsurface scattering</em>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_9_3_the_brdf">9.3 The BRDF</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We assume that there are no <em>participating media</em> present, so the radiance entering the camera is equal to the radiance leaving the closest object surface in the direction of the camera.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[L_i(c, -v) = L_o(p, v)\]
+</div>
+</div>
+<div class="paragraph">
+<p>Outgoing radiance equals the integral (over the unit hemisphere above the surface and centered on the surface normal) of incoming radiance times the BRDF times the dot product between <strong>n</strong> and <strong>l</strong>.</p>
+</div>
+<div class="stemblock">
+<div class="title">Reflectance equation</div>
+<div class="content">
+\[L_o(p, v) = \int_{I \in \Omega}{f(l, v) L_i(p, l) (n \cdot l) dl}\]
+</div>
+</div>
+<div class="stemblock">
+<div class="title">Helmholtz reciprocity</div>
+<div class="content">
+\[f(l, v) = f(v, l)\]
+</div>
+</div>
+<div class="paragraph">
+<p>The simplest possible BRDF is Lambertian, which has a constant value. The \(1 / \pi\) factor is caused by the fact that integrating a cosine factor over the hemisphere yields a value of \(\pi\).</p>
+</div>
+<div class="stemblock">
+<div class="title">Lambertian BRDF</div>
+<div class="content">
+\[f(l, v) = \frac{c_{diff}}{\pi} = \frac{\rho_{ss}}{\pi}\]
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_9_4_illumination">9.4 Illumination</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Global illulmination algorithms use the rendering equation (of which the reflectance equation is a special case) to calculate the incoming radiance \(L_i(l)\). In this chapter we focus on <em>local illumination</em> where the incoming radiance is given and does not need to be computed.</p>
+</div>
+<div class="stemblock">
+<div class="title">Reflectance equation for a directional light</div>
+<div class="content">
+\[L_o(v) = \pi f(l_c, v) c_{light} (n \cdot l_c)^+\]
+</div>
+</div>
+<div class="paragraph">
+<p>The \(\pi\) factor cancels out the \(1 / \pi\) factor that often appears in BRDFs.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_9_5_fresnel_reflectance">9.5 Fresnel Reflectance</h2>
+<div class="sectionbody">
+<div class="stemblock">
+<div class="content">
+\[r_i = 2 (n \cdot l)n - l\]
+</div>
+</div>
+<div class="sect2">
+<h3 id="_9_5_1_external_reflection">9.5.1 External Reflection</h3>
+<div class="stemblock">
+<div class="content">
+\[F(n, l) \approx F_0 + (1 - F_0)(1 - (n \cdot l)^+)^5\]
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_9_6_microgeometry">9.6 Microgeometry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since the orientations of individual microfacets are somewhat random, it makes sense to model them as a statistical distribution.</p>
+</div>
+<div class="paragraph">
+<p>For most surfaces, the distribution of the microscale surface normals is isotropic, meaning it is rotationally symmetrical, lacking any inherent directionality.
+Other sur-faces have microscale structure that is anisotropic.</p>
+</div>
+<div class="paragraph">
+<p>Shadowing refers to occlusion of the light source by microscale surface detail. Masking happens when some facets hide others from the camera.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_9_7_microfacet_theory">9.7 Microfacet Theory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <em>normal distribution function</em> (NDF) <strong>D(m)</strong> is the statistical distribution of microfacet surface normals over the microgeometry surface area.
+Integrating it over the entire sphere of microfacet normals gives the area of the microsurface patch, equal to 1 by convention.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\int_{m \in \Theta}{D(m) (n \cdot m) dm} = 1\]
+</div>
+</div>
+<div class="paragraph">
+<p>The integral is over the entire sphere (\(\Theta\)) and not hemisphere centered on <strong>n</strong> (\(\Omega\)).</p>
+</div>
+<div class="paragraph">
+<p>More generally, the projections of the microsurface and macrosurface onto the plane perpendicular to any view direction <strong>v</strong> are equal:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\int_{m \in \Theta}{D(m) (v \cdot m) dm} = v \cdot n\]
+</div>
+</div>
+<div class="paragraph">
+<p>Intuitively, the NDF is like a histogram of the microfacet normals. It has high values in directions where the microfacet normals are more likely to be pointing.</p>
+</div>
+<div class="paragraph">
+<p>The sum of the projected areas of the visible microfacets is equal to the projected area of the macrosurface.
+We can express this mathematically by defining the masking function <strong>G1(m, v)</strong>, which gives the fraction of microfacets with normal <strong>m</strong> that are visible along the view vector <strong>v</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The integral over the sphere then gives the area of the macrosurface projected onto the plane perpendicular to <strong>v</strong> (<strong>G1(m, v)D(m)</strong> is the <em>distribution of visible normals</em>):</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\int_{\in \Theta}{G_1(m, v) D(m) (v \cdot m)^+ dm} = v \cdot n\]
+</div>
+</div>
+<div class="paragraph">
+<p>Heitz shows that only the Torrance-Sparrow “V-cavity” and the Smith function are mathematically valid, but the Smith one is much closer to the behavior of random microsurfaces.</p>
+</div>
+<div class="stemblock">
+<div class="title">Smith function</div>
+<div class="content">
+\[G_1(m, v) = \frac{X^+ (m \cdot v)}{1 + \lambda(v)}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Where \(X^+(x)\) is the positive characteristic function (1 when <strong>x</strong> is positive, 0 when <strong>x</strong> is negative or zero).</p>
+</div>
+<div class="stemblock">
+<div class="title">Overall macrosurface BRDF (t variable introduced to shorten the equation)</div>
+<div class="content">
+\[\begin{split}
+&amp;t = \frac{(m \cdot l)^+}{|n \cdot l|} \frac{(m \cdot v)^+}{|n \cdot v|} \\
+&amp;f(l, v) = \int_{m \in \Omega}{f_{\mu}(l, v, m) G_2(l, v, m) D(m) t} dm
+\end{split}\]
+</div>
+</div>
+<div class="stemblock">
+<div class="title">Smith height-correlated masking-shadowing function</div>
+<div class="content">
+\[G_2(l, v, m) = \frac{X^+ (m \cdot v) X^+ (m \cdot l)}{1 + \lambda(v) + \lambda(l)}\]
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_9_8_brdf_models_for_surface_reflections">9.8 BRDF Models for Surface Reflections</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Only the microfacts which have their surface normal aligned with the half vector <strong>h</strong> (pointing halfway between <strong>l</strong> and <strong>v</strong> participate in the specular reflection of light.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[h = \frac{l + v}{ \|l + v\|}\]
+</div>
+</div>
+<div class="paragraph">
+<p>The reflection is equal to zero for all \(m \neq h\), and collapses the integral into the evaluation of the integrated function at \(m = h\).</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[f_{spec}(l, v) = \frac{F(h, l) G_2(l, v, h) D(h)}{4 |n \cdot l| |n \cdot v|}\]
+</div>
+</div>
+<div class="sect2">
+<h3 id="_9_8_1_normal_distribution_functions">9.8.1 Normal Distribution Functions</h3>
+<div class="paragraph">
+<p>The shape of the NDF determines the width and shape of the cone of reflected rays (the specular lobe) and specular highlights.</p>
+</div>
+<div class="paragraph">
+<p>The Beckmann NDF was the distribution used in the first microfact models. It is the NDF chosen for the Cook-Torrance BRDF.</p>
+</div>
+<div class="paragraph">
+<p>The Blinn-Phong NDF was widely used in the past but has been largely superseded. It is still used to save some computation (for example on mobile).</p>
+</div>
+<div class="paragraph">
+<p>The Trowbridge-Reitz distribution (or GGX) is the most often used distribution today.</p>
+</div>
+<div class="stemblock">
+<div class="title">GGX distribution</div>
+<div class="content">
+\[D(m) = \frac{X^+ (n \cdot m) \alpha_g^2 }{\pi (1 + (n \cdot m)^2 (\alpha_g^2 -1))^2}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Burley exposes the roughness control to users as \(\alpha_g = r^2\), where <strong>r</strong> is the user-interface roughness parameter value between 0 and 1.</p>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_physically_based_shading_models_in_film_and_game_production_hoffman_2010" class="sect0">Physically-Based Shading Models in Film and Game Production (Hoffman 2010)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>From <a href="#Gotanda-Hoffman-Martinez-Snow10">[Gotanda-Hoffman-Martinez-Snow10]</a> course notes.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[f_{\mu facet} (l, v) = \frac{F(l, h) G(l, v, h) D(h)}{4(n \cdot l)(n \cdot v)}\]
+</div>
+</div>
+<div class="paragraph">
+<p>The denominator is a correction factor which accounts for quantities being transformed between the local space of the microfacets and that of the overall macrosurface.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fresnel_reflectance_term_f">Fresnel Reflectance Term (F)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This term computes the fraction of light reflected (specular) versus refracted (diffuse).</p>
+</div>
+<div class="paragraph">
+<p>The term is restricted to lie between 0 and 1 and it is spectral (RGB-valued).</p>
+</div>
+<div class="stemblock">
+<div class="title">Schlick approximation</div>
+<div class="content">
+\[F_{Schlick} (C_{spec}, l, n) = c_{spec} + (1 - c_{spec})(1 - (l \cdot n))^5\]
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_normal_distribution_term_d">Normal Distribution Term (D)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In most surfaces, microfacet normals closer to the macroscopic surface normal tend to appear with higher frequency. The function determines the size, brightness, and shape of the specular highlight.</p>
+</div>
+<div class="paragraph">
+<p>The term is non-negative (can be arbitrarily large) and scalar valued.</p>
+</div>
+<div class="paragraph">
+<p>Several different normal distribution functions appear in the graphics literature, all are somewhat Gaussian-
+like, with some kind of “roughness” or variance parameter (anisotropic functions typically have two
+variance parameters).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_shadowing_masking_term_g">Shadowing-Masking Term (G)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Often called the <em>geometry term</em> in the BRDF literature.</p>
+</div>
+<div class="paragraph">
+<p>The function represents the probability that microfacets with a given normal <strong>m</strong> will be visible from both the light direction <strong>l</strong> and the view direction <strong>v</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Since it represents a probability, its values are scalars and are constrained to lie between 0 and 1.</p>
+</div>
+<div class="paragraph">
+<p>It either has no parameters, or uses roughness parameters from the D function.</p>
+</div>
+</div>
+</div>
+<h1 id="_directx_raytracing_tutorial_14_wyman_2014" class="sect0">DirectX Raytracing, Tutorial 14 (Wyman 2014)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>From <a href="#WymanDXR14">[WymanDXR14]</a>, at <a href="https://cwyman.org/code/dxrTutors/tutors/Tutor14/tutorial14.md.html" class="bare">https://cwyman.org/code/dxrTutors/tutors/Tutor14/tutorial14.md.html</a>.</p>
+</div>
+<div class="paragraph">
+<p>GGX BRDF from Cook and Torrance: <code>D * G * F / (4 * NdotL * NdotV)</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ggx_normal_distribution_d">GGX normal distribution (D)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Math taken from <a href="#Hoffman12">[Hoffman12]</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="hlsl">float ggxNormalDistribution( float NdotH, float roughness )
+{
+	float a2 = roughness * roughness;
+	float d = ((NdotH * a2 - NdotH) * NdotH + 1);
+	return a2 / (d * d * M_PI);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The division at the last line may cause a divide by zero, so you may wish to clamp.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_geometric_masking_g">Geometric masking (G)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Model from <a href="#Schlick94">[Schlick94]</a>, formulation from <a href="#Karis13">[Karis13]</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="hlsl">float schlickMaskingTerm(float NdotL, float NdotV, float roughness)
+{
+	// Karis notes they use alpha / 2 (or roughness^2 / 2)
+	float k = roughness*roughness / 2;
+
+	// Compute G(v) and G(l).  These equations directly from Schlick 1994
+	//     (Though note, Schlick's notation is cryptic and confusing.)
+	float g_v = NdotV / (NdotV*(1 - k) + k);
+	float g_l = NdotL / (NdotL*(1 - k) + k);
+	return g_v * g_l;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fresnel_term_f">Fresnel term (F)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using the <a href="https://en.wikipedia.org/wiki/Schlick%27s_approximation">Schlick&#8217;s approximation</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="hlsl">float3 schlickFresnel(float3 f0, float lDotH)
+{
+	return f0 + (float3(1.0f, 1.0f, 1.0f) - f0) * pow(1.0f - lDotH, 5.0f);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_real_shading_in_unreal_engine_4_karis_2013" class="sect0">Real Shading in Unreal Engine 4 (Karis 2013)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>From <a href="#Karis13">[Karis13]</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_diffuse_brdf">Diffuse BRDF</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using standard Lambertian diffuse, \(c_{diff}\) is the diffuse albedo of the material.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[f(l, v) = \frac{c_{diff}}{\pi}\]
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_microfacet_specular_brdf">Microfacet Specular BRDF</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>General Cook-Torrance microfacet specular shading model:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[f(l, v) = \frac{D(h) F(v, h) G(l, v, h)}{4(n \cdot l)(n \cdot v)}\]
+</div>
+</div>
+<div class="sect2">
+<h3 id="_specular_d">Specular D</h3>
+<div class="paragraph">
+<p>Using Disney&#8217;s GGX/Trowbridge-Reitz for the normal distribution function (NDF) instead of Blinn-Phong.</p>
+</div>
+<div class="paragraph">
+<p>Also using Disney&#8217;s reparameterization of \(\alpha = Roughness^2\).</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[D(h) = \frac{\alpha ^ 2}{\pi((n \cdot h)^2 (\alpha ^2 - 1) + 1)^2}\]
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_specular_g">Specular G</h3>
+<div class="paragraph">
+<p>Using the Schlick model from <a href="#Schlick94">[Schlick94]</a> for the specular geometric attenuation, but with \(k = \alpha / 2\) to better fith the Smith model for GGX from <a href="#Walter07">[Walter07]</a>.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[k = \frac{(Roughness + 1)^2}{8}\]
+</div>
+</div>
+<div class="stemblock">
+<div class="content">
+\[G_1(v) = \frac{n \cdot v}{(n \cdot v) (1 - k) + k}\]
+</div>
+</div>
+<div class="stemblock">
+<div class="content">
+\[G(l, v, h) = G_1(l) G_1(v)\]
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_specular_f">Specular F</h3>
+<div class="paragraph">
+<p>Using the typical Schlick&#8217;s approximation for the Fresnel, but with a <em>Spherical Gaussian</em> approximation from <a href="#Lagarde12">[Lagarde12]</a> to replace the power.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[F(v, h) = F_0 + (1 - F_0) 2^{(-5.55473 (v \cdot h) - 6.98316)(v \cdot h)}\]
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_lighting_of_killzone_shadow_fall_drobot_2013" class="sect0">Lighting of Killzone: Shadow Fall (Drobot 2013)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>From <a href="#Drobot13">[Drobot13]</a>, at <a href="http://www.guerrilla-games.com/presentations/Drobot_Lighting_of_Killzone_Shadow_Fall.pptx" class="bare">http://www.guerrilla-games.com/presentations/Drobot_Lighting_of_Killzone_Shadow_Fall.pptx</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_physically_based_lighting">Physically Based Lighting</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Irradiance: integrated light incoming from all directions (diffuse)</p>
+</li>
+<li>
+<p>Radiance: light incoming from one direction (specular reflection)</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_workflow">Workflow</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>3 main material parameters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Albedo (<em>RGB8</em>)</p>
+</li>
+<li>
+<p>Roughness (<em>R8</em>)</p>
+</li>
+<li>
+<p>Specular Reflectance (<em>RGB8</em>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_brdf">BRDF</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Based on Cook-Torrance</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Fresnel</p>
+</li>
+<li>
+<p>Smith Schlick visibility function</p>
+</li>
+<li>
+<p>Normalization based on specular reflectance</p>
+</li>
+<li>
+<p>Roughness as specular importance cone angle</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Approximate transulucency</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Density maps</p>
+</li>
+<li>
+<p>Translucency diffuision maps</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_physically_based_lights">Physically Based Lights</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Area lights with size, shape, and intensity</p>
+</li>
+<li>
+<p>Spherical, disc, rectangular, textured rectangular</p>
+</li>
+<li>
+<p>IES light profiles</p>
+</li>
+</ul>
+</div>
+<div class="stemblock">
+<div class="title">Irradiance integral</div>
+<div class="content">
+\[I(p, n) = \int_A{\frac{L cos(f_i) cos(f_o) dA}{d^2}}\]
+</div>
+</div>
+</div>
+</div>
+<h1 id="_real_time_area_lighting_a_journey_from_research_to_production_hill_heitz_2016" class="sect0">Real-Time Area Lighting: a Journey from Research to Production (Hill &amp; Heitz 2016)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>From <a href="#Hill-Heitz16">[Hill-Heitz16]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Doing area lighting in real-time with a wide range of materials (not just diffuse).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_theory">Theory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Lighting with polygon light sources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>BRDF</strong>: A spherical function that describes how the material scatters light at a particular shading point.</p>
+</li>
+<li>
+<p><strong>Spherical polygon</strong>: Incoming radiance from a polygon that&#8217;s arriving at the shading point.</p>
+</li>
+<li>
+<p><strong>Integration</strong>: The shading result, or outgoing radiance, is the integral of the BRDF over this spherical polygon.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We need to evaluate the BRDF from many directions and we can&#8217;t use Monte Carlo sampling (too slow or noisy for real-time).
+We&#8217;d like to fond a closed-form solution, an equation that will give us the right answer immediately without any sampling.</p>
+</div>
+<div class="paragraph">
+<p>Simple cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Sphere</strong>: solid angle.</p>
+</li>
+<li>
+<p><strong>Hemisphere</strong>: clipped solid angle</p>
+</li>
+<li>
+<p><strong>Clamped cosine</strong>: computing it gives the irradiance or form factor.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Linearly Transformed Cosines</strong>* (LTCs) provide a solution than accounts for varying roughness and anisotropy by applying a linear transform to a simple clamped cosine distribution.</p>
+</div>
+<div class="paragraph">
+<p>We can vary the roughtness applying a uniform x and y scale. We can create anisotropy by using different x and y scaling factors, or introduce “skewness” by changing the bottom-left element of out 3x3 transformation matrix.</p>
+</div>
+<div class="paragraph">
+<p>If we want to compute the integral of a GGX-based BRDF with a polygonal light source we first find a linear transform that best approximates this BRDF, for a given roughness and view angle.
+We pre-compute all roughnesses and view angles and store the resulting matrices in a texture.</p>
+</div>
+<div class="paragraph">
+<p>At runtime we take our BRDF-polygon configuration and apply the inverse transform to the vertices of the polygon, based on out LTC fitting for the view angle and roughness at the current shading point.
+This turns the configuration into an equivalent but simpler integration problem, we are transforming it back to “cosine space”.</p>
+</div>
+<div class="paragraph">
+<p>To calculate the area integral we just need to evaluate a series of line/edge integrals over the boundery of the spherical polygon.</p>
+</div>
+<div class="paragraph">
+<p>We are computing a spherical line integral, using the arc lenght in radians, the perpendicular vector and the local surface normal. We then repeat this process over all edges and sum the results up.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\frac{1}{2 \pi} \sum_{i=1}^n {acos(v_i \cdot v_j) \frac{v_i \times t_j}{\left\Vert  v_i \times v_j \right\Vert} \cdot n}\]
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="hlsl">float EdgeIntegral(float3 v1, float3 v2, float3 n)
+{
+    float theta = acos(dot(v1, v2));
+    float3 u = normalize(cross(v1, v2));
+    return theta*dot(u, n);
+}
+
+float PolyIntegral(float3 v[4], float3 n)
+{
+    float sum;
+    sum  = EdgeIntegral(v[0], v[1]);
+    sum += EdgeIntegral(v[1], v[2]);
+    sum += EdgeIntegral(v[2], v[3]);
+    sum += EdgeIntegral(v[3], v[0]);
+    return sum/(2.0*pi);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementation">Implementation</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Lookup <code>M^-1</code>, based on roughness and view angle</p>
+</li>
+<li>
+<p>Transform polygon by <code>M^-1</code></p>
+</li>
+<li>
+<p>Clip polygon to upper hemisphere</p>
+</li>
+<li>
+<p>Compute edge integrals</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_4_compute_edge_integrals">4. Compute edge integrals</h3>
+<div class="paragraph">
+<p>If you crank up the light intensity, artefacts start to appear.</p>
+</div>
+<div class="listingblock">
+<div class="title">Equivalent u vector calculation, but more numerically stable</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="hlsl">float EdgeIntegral(float3 v1, float3 v2, float3 n)
+{
+    float theta = acos(dot(v1, v2));
+    float3 u = cross(v1, v2)/sin(theta);
+    return theta*dot(u, n);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main issue for that is the <code>acos</code> implementation, which is not an intrinsic and it&#8217;s not precise enough.</p>
+</div>
+<div class="paragraph">
+<p>In order to obtain enough accuracy, this required a cubic rational fit of <code>theta/sin(theta)</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Final implementation of the edge integral function</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="hlsl">float EdgeIntegral(float3 v1, float3 v2, float3 n)
+{
+    float x = dot(v1, v2);
+    float y = abs(x);
+
+    float a = 5.42031 + (3.12829 + 0.0902326*y)*y;
+    float b = 3.45068 + (4.18814 +y)*y;
+    float theta_sintheta = a / b;
+
+    if (x &lt; 0.0)
+        theta_sintheta = pi*rsqrt(1.0 - x*x) - theta_sintheta;
+
+    float3 u = cross(v1, v2);
+
+    return theta_sintheta*dot(u, n);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_matrix_lookup">1. Matrix lookup</h3>
+<div class="paragraph">
+<p>Two RGBA matrices needed to store 6 values, the 5 matrix elements (\(m_{00}, m_{02}, m_{11}, m_{20}, m_{22}\)) and a component for the BRDF magnitude.</p>
+</div>
+<div class="paragraph">
+<p>Another workaround to reduce artefats is to parameterise the lookup table by <code>theta</code> and not <code>cos(theta)</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="hlsl">//vec2 uv = vec2(roughness, acos(dot(n, v)));
+vec2 uv = vec2(roughness, dot(n, v));</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_polygon_clipping">3. Polygon clipping</h3>
+<div class="paragraph">
+<p>Clipping is hard problem that might involve a lot of data shuffling, big switch/if-else cases or a variable number of edges. In all cases the code generates a large number of instructions or branches.</p>
+</div>
+<div class="paragraph">
+<p>If we don&#8217;t project the edge integral onto the plane (the last <code>dot</code> with the normal), we end up with a vector form.</p>
+</div>
+<div class="paragraph">
+<p>The length of this <strong>F</strong> irradiance vector is the form factor of the polygon in the direction of <strong>F</strong>. We can use this to approximate the polygon as if it had been clipped to the horizon by using a proxy sphere of the same form factor.</p>
+</div>
+<div class="paragraph">
+<p>At runtime we can lookup into a 2D texture that contains the clipped form factors for spheres of different angular extents and elevation angles, giving us an approximation of the clipped form factor of the polygon.</p>
+</div>
+<div class="paragraph">
+<p>It is more precise to divide through by the original form factor and store a multiplier in the texture instead.</p>
+</div>
+<div class="listingblock">
+<div class="title">PolygonVectorFormFactorToHorizonClippedSphereFormFactor()</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="hlsl">float SphereIntegral(float3 F)
+{
+    float l = length(F);
+    return max((l*l + F.z)/(l+1), 0);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_glossary">Glossary</h2>
+<div class="sectionbody">
+<div class="dlist glossary">
+<dl>
+<dt>BRDF</dt>
+<dd>
+<p>Bidirectional reflectance distribution function.</p>
+</dd>
+<dt>BSDF</dt>
+<dd>
+<p>Bidirectional scattering distribution function.</p>
+</dd>
+<dt>BTDF</dt>
+<dd>
+<p>Bidirectional transmittance distribution function.</p>
+</dd>
+<dt>D term</dt>
+<dd>
+<p>A normal distribution function (NDF).</p>
+</dd>
+<dt>F term</dt>
+<dd>
+<p>A Fresnel approximation function that dictates how much light is reflected at grazing angles.</p>
+</dd>
+<dt>G term</dt>
+<dd>
+<p>A geometric shadowing and masking function.</p>
+</dd>
+<dt>GGX</dt>
+<dd>
+<p>Trowbridge–Reitz microfacet distribution. Is a NDF (D).</p>
+</dd>
+<dt>HBAO</dt>
+<dd>
+<p>Horizon Based Ambient Occlusion.</p>
+</dd>
+<dt>IBL</dt>
+<dd>
+<p>Image Based Lighting.</p>
+</dd>
+<dt>LTC</dt>
+<dd>
+<p>Linearly Transformed Cosine.</p>
+</dd>
+<dt>NDF</dt>
+<dd>
+<p>Normal Distribution Function. Models the distribution of the microfacets.</p>
+</dd>
+<dt>OETF</dt>
+<dd>
+<p>Opto-Electronic Transfer Function</p>
+</dd>
+<dt>Roughness</dt>
+<dd>
+<p>A parameter which describes how smooth or how rough a surface is at a micro level.</p>
+</dd>
+<dt>SSAO</dt>
+<dd>
+<p>Screen-Space Ambient Occlusion.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bibliography">Bibliography</h2>
+<div class="sectionbody">
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a id="Burley12"></a>[Burley12] Brent Burley. 2012. Physically Based Shading at Disney. Physically Based Shading in Film and Game Production, ACM SIGGRAPH 2012 Courses.</p>
+</li>
+<li>
+<p><a id="Heitz14"></a>[Heitz14] Eric Heitz. 2014. Understanding the Masking-Shadowing Function in Microfacet-Based BRDFs. Journal of Computer Graphics Techniques, 3 (2).</p>
+</li>
+<li>
+<p><a id="Hill12"></a>[Hill12] Colin Barré-Brisebois and Stephen Hill. 2012. Blending in Detail. <a href="http://blog.selfshadow.com/publications/blending-in-detail/" class="bare">http://blog.selfshadow.com/publications/blending-in-detail/</a></p>
+</li>
+<li>
+<p><a id="Karis13"></a>[Karis13] Brian Karis. 2013. Real Shading in Unreal Engine 4. <a href="https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf" class="bare">https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf</a></p>
+</li>
+<li>
+<p><a id="Karis14"></a>[Karis14] Brian Karis. 2014. Physically Based Shading on Mobile. <a href="https://www.unrealengine.com/blog/physically-based-shading-on-mobile" class="bare">https://www.unrealengine.com/blog/physically-based-shading-on-mobile</a></p>
+</li>
+<li>
+<p><a id="Kelemen01"></a>[Kelemen01] Csaba Kelemen et al. 2001. A Microfacet Based Coupled Specular-Matte BRDF Model with Importance Sampling. Eurographics Short Presentations.</p>
+</li>
+<li>
+<p><a id="Kulla17"></a>[Kulla17] Christopher Kulla and Alejandro Conty. 2017. Revisiting Physically Based Shading at Imageworks. ACM SIGGRAPH 2017</p>
+</li>
+<li>
+<p><a id="Lagarde14"></a>[Lagarde14] Sébastien Lagarde and Charles de Rousiers. 2014. Moving Frostbite to PBR. Physically Based Shading in Theory and Practice, ACM SIGGRAPH 2014 Courses.</p>
+</li>
+<li>
+<p><a id="Lazarov13"></a>[Lazarov13] Dimitar Lazarov. 2013. Physically-Based Shading in Call of Duty: Black Ops. Physically Based Shading in Theory and Practice, ACM SIGGRAPH 2013 Courses.</p>
+</li>
+<li>
+<p><a id="McAuley15"></a>[McAuley15] Stephen McAuley. 2015. Rendering the World of Far Cry 4. GDC 2015.</p>
+</li>
+<li>
+<p><a id="McGuire10"></a>[McGuire10] Morgan McGuire. 2010. Ambient Occlusion Volumes. High Performance Graphics.</p>
+</li>
+<li>
+<p><a id="Neubelt13"></a>[Neubelt13] David Neubelt and Matt Pettineo. 2013. Crafting a Next-Gen Material Pipeline for The Order: 1886. Physically Based Shading in Theory and Practice, ACM SIGGRAPH 2013 Courses.</p>
+</li>
+<li>
+<p><a id="Oren94"></a>[Oren94] Michael Oren and Shree K. Nayar. 1994. Generalization of lambert&#8217;s reflectance model. SIGGRAPH, 239–246. ACM.</p>
+</li>
+<li>
+<p><a id="Revie12"></a>[Revie12] Donald Revie. 2012. Implementing Fur in Deferred Shading. GPU Pro 2, Chapter 2.</p>
+</li>
+<li>
+<p><a id="Russell15"></a>[Russell15] Jeff Russell. 2015. Horizon Occlusion for Normal Mapped Reflections. <a href="http://marmosetco.tumblr.com/post/81245981087" class="bare">http://marmosetco.tumblr.com/post/81245981087</a></p>
+</li>
+<li>
+<p><a id="Schlick94"></a>[Schlick94] Cristophe Schlick. 1994. An Inexpensive BRDF Model for Physically-based Rendering.</p>
+</li>
+<li>
+<p><a id="Walter07"></a>[Walter07] Walter, Bruce, Stephen R. Marschner, Hongsong Li, Kenneth E. Torrance, “Microfacet Models for Refraction through Rough Surfaces”, Eurographics Symposium on Rendering (2007), 195–206, June 2007. <a href="http://www.cs.cornell.edu/~srm/publications/EGSR07-btdf.html" class="bare">http://www.cs.cornell.edu/~srm/publications/EGSR07-btdf.html</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_references">Additional References</h2>
+<div class="sectionbody">
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a id="Drobot13"></a>[Drobot13] Michal Drobot. 2013. Lighting of Killzone: Shadow Fall, Digital Dragons 2013. <a href="http://www.guerrilla-games.com/presentations/Drobot_Lighting_of_Killzone_Shadow_Fall.pptx" class="bare">http://www.guerrilla-games.com/presentations/Drobot_Lighting_of_Killzone_Shadow_Fall.pptx</a></p>
+</li>
+<li>
+<p><a id="Filament"></a>[Filament] Physically Based Rendering in Filament. <a href="https://google.github.io/filament/Filament.html" class="bare">https://google.github.io/filament/Filament.html</a></p>
+</li>
+<li>
+<p><a id="Gotanda-Hoffman-Martinez-Snow10"></a>[Gotanda-Hoffman-Martinez-Snow10] Yoshiharu Gotanda, Naty Hoffman, Adam Martinez, and Ben Snow. 2010. Physically Based Shading Models for Film and Game Production, ACM SIGGRAPH 2010 Courses.</p>
+</li>
+<li>
+<p><a id="Hill-Heitz16"></a>[Hill-Heitz16] Stephen Hill &amp; Eric Heitz. 2016. Real-Time Area Lighting: a Journey from Research to Production. Advances in Real-Time Rendering in Games, ACM SIGGRPAH 2016 Courses.</p>
+</li>
+<li>
+<p><a id="Hoffman12"></a>[Hoffman12] Naty Hoffmann. 2012. Background: Physics and Math of Shading, ACM SIGGRAPH 2012 Courses.</p>
+</li>
+<li>
+<p><a id="Iwanicki-Pesce15"></a>[Iwanicki-Pesce15] Michał Iwanicki and Angelo Pesce. 2015. Approximate Models for Physically Based Rendering, ACM SIGGRAPH 2015 Courses.</p>
+</li>
+<li>
+<p><a id="Lagarde12"></a>[Lagarde12] Sébastien Lagarde, “Spherical Gaussian approximation for Blinn-Phong, Phong and Fresnel”, June 2012. <a href="http://seblagarde.wordpress.com/2012/06/03/spherical-gaussien-approximation-for-blinn-phong-phong-and-fresnel/" class="bare">http://seblagarde.wordpress.com/2012/06/03/spherical-gaussien-approximation-for-blinn-phong-phong-and-fresnel/</a></p>
+</li>
+<li>
+<p><a id="RealTimeRendering4"></a>[RealTimeRendering4] Tomas Akenine-Möller, Eric Haines, Naty Hoffman. 2018. Real-Time Rendering, 4th edition.</p>
+</li>
+<li>
+<p><a id="WymanDXR14"></a>[WymanDXR14] Chris Wyman. DirectX Raytracing code tutorials. Chapter 14.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
