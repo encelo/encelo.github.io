@@ -14,10 +14,15 @@
   weight = 20
 
 [[main]]
+  name = "Talks"
+  identifier = "talks"
+  weight = 25
+
+[[main]]
   name = "nCine"
   title = "An open-source cross-platform 2D game engine"
   url = "https://ncine.github.io/"
-  weight = 25
+  weight = 30
 
 [[main]]
   parent = "pages"
@@ -42,6 +47,33 @@
   name = "GPU Trip 2011"
   url = "/trip_through_graphics_pipeline_2011.html"
   weight = 25
+
+[[main]]
+  parent = "pages"
+  name = "PBR Notes"
+  url = "/pbr_notes.html"
+  weight = 30
+
+[[main]]
+  parent = "talks"
+  name = "The nCine Job System"
+  title = "The nCine Job System: A Little Primer on Concurrency and Parallelism in C++"
+  url = "https://encelo.github.io/nCine_JobSystem_Presentation/"
+  weight = 10
+
+[[main]]
+  parent = "talks"
+  name = "14 Years of Developing nCine"
+  title = "14 Years of Developing nCine: An Open-Source 2D Game Framework"
+  url = "https://encelo.github.io/nCine_14Years_Presentation/"
+  weight = 15
+
+[[main]]
+  parent = "talks"
+  name = "Custom Engines"
+  title = "nCine: a world with custom in-house engines is possible"
+  url = "https://encelo.github.io/CustomEnginesPresentation/"
+  weight = 20
 
 [[footer]]
   name = "Public Key"

@@ -1,0 +1,1658 @@
+:doctype: book
+:docyear: 2023
+:title: PBR Notes
+:author: Angelo Theodorou
+:nofooter:
+:toc: left
+:toclevels: 3
+:keywords: rendering, real-time, pbr, brdf
+:experimental:
+:stem: latexmath
+:source-highlighter: rouge
+
+= PBR Notes
+
+= Physically Based Rendering in Filament
+
+From <<Filament>>, https://google.github.io/filament/Filament.html.
+
+== 4 Material system
+
+=== 4.1 Standard model
+
+* **BSDF** (Bidirectional Scattering Distribution Function) is:
+** **BRDF** (Bidirectional Reflectance Distribution Function)
+** **BTDF** (Bidirectional Transmittance Function)
+
+A microfacet BRDF is heavily influenced by a roughness parameter which describes how smooth or how rough a surface is at a micro level (mirror vs blurry reflections).
+
+.Microfact model (t variable introduced to shorten the equation)
+[latexmath]
+++++
+\begin{split}
+&t = \frac{1}{|n \cdot v| |n \cdot l|} \\
+&f_x(v, l) = t \int_\Omega D(m, \alpha) G(v, l, m) f_m(v, l, m) (v \cdot m)(l \cdot m)dm
+\end{split}
+++++
+
+* **NDF** (Normal Distribution Function) models the distribution of the microfacets.
+* **G** models the visibility (or occlusion or shadow-masking) of the microfacets.
+* latexmath:[f_x] is the microfacet BRDF (the x stands for the specular or diffuse component).
+
+We approximate the full integration over the microfacets hemisphere.
+
+=== 4.2 Dielectrics and conductors
+
+There is no subsurface scattering occurring with purely metallic materials, which means there is no diffuse component.
+Scattering happens in dielectrics, which means they have both specular and diffuse components.
+  
+=== 4.3 Energy conservation
+
+The total amount of specular and diffuse reflectance energy is less than the total amount of incident energy
+
+=== 4.4 Specular BRDF
+
+.Cook-Torrance BRDF
+[latexmath]
+++++
+f_r(v, l) = \frac{D(h, \alpha) G(v, l, \alpha) F(v, h, f0)}{4(n \cdot v)(n \cdot l)}
+++++
+
+==== 4.4.1 Normal distribution function (specular D)
+
+The GGX distribution described in <<Walter07>> has a long-tailed falloff and short peak in the highlights, and it is equivalent to the the Trowbridge-Reitz distribution.
+
+[latexmath]
+++++
+D_{GGX}(h, \alpha) = \frac{\alpha^2}{\pi((n \cdot h)^2 (\alpha^2 - 1) + 1)^2}
+++++
+
+.Implementation of the specular D term in GLSL
+[source,glsl]
+----
+float D_GGX(float NoH, float roughness) {
+    float a = NoH * roughness;
+    float k = roughness / (1.0 - NoH * NoH + a * a);
+    return k * k * (1.0 / PI);
+}
+----
+
+==== 4.4.2 Geometric shadowing (specular G)
+
+Eric Heitz showed in <<Heitz14>> that the Smith geometric shadowing function is the correct and exact G term to use.
+
+The Smith formulation is the following:
+
+[latexmath]
+++++
+G(v, l, \alpha) = G_1(l, \alpha)G_1(v, \alpha)
+++++
+
+[latexmath]
+++++
+G1(v, \alpha) = G_{GGX}(v, \alpha) = \frac{2(n \cdot v)}{(n \cdot v + \sqrt{\alpha^2 + (1 - \alpha^2)(n \cdot v)^2})}
+++++
+
+===== Visibility term (specular V)
+
+[latexmath]
+++++
+V(v, l, \alpha) = \frac{0.5}{n \cdot l \sqrt{(n \cdot v)^2 (1 - \alpha^2) + \alpha^2} + n \cdot v \sqrt{(n \cdot l)^2 (1 - \alpha^2) + \alpha^2}}
+++++
+
+.Implementation of the specular V term in GLSL
+[source,glsl]
+----
+float V_SmithGGXCorrelated(float NoV, float NoL, float roughness) {
+    float a2 = roughness * roughness;
+    float GGXV = NoL * sqrt(NoV * NoV * (1.0 - a2) + a2);
+    float GGXL = NoV * sqrt(NoL * NoL * (1.0 - a2) + a2);
+    return 0.5 / (GGXV + GGXL);
+}
+----
+
+There is an approximation that can be used after noticing that all the terms under the squar eroots are squares and all the terms are in the [0..1] range.
+
+[latexmath]
+++++
+V(v, l, \alpha) = \frac{0.5}{n \cdot l (n \cdot v (1 - \alpha) + \alpha) + n \cdot v (n \cdot l (1 - \alpha) + \alpha)}
+++++
+
+The approximation is mathematically wrong but saves two square root operations and is good enough for real-time mobile applications.
+
+.Implementation of the approximated specular V term in GLSL
+[source,glsl]
+----
+float V_SmithGGXCorrelatedFast(float NoV, float NoL, float roughness) {
+    float a = roughness;
+    float GGXV = NoL * (NoV * (1.0 - a) + a);
+    float GGXL = NoV * (NoL * (1.0 - a) + a);
+    return 0.5 / (GGXV + GGXL);
+}
+----
+
+==== 4.4.3 Fresnel (specular F)
+
+The amount of light the viewer sees reflected from a surface depends on the viewing angle.
+
+[latexmath]
+++++
+F_{Schlick}(v, h, f_0, f_{90}) = f_0 + (f_{90} - f_0)(1 - v \cdot h)^5
+++++
+
+The constant latexmath:[f_0] represents the specular reflectance at normal incidence and is achromatic for dielectrics, and chromatic for metals. The actual value depends on the index of refraction of the interface.
+
+.Implementation of the specular F term in GLSL
+[source,glsl]
+----
+vec3 F_Schlick(float u, vec3 f0, float f90) {
+    return f0 + (vec3(f90) - f0) * pow(1.0 - u, 5.0);
+}
+----
+
+latexmath:[f_{90}] can be approximated to 1.0.
+
+=== 4.5 Diffuse BRDF
+
+A simple Lambertian BRDF that assumes a uniform diffuse response over the hemisphere.
+
+[latexmath]
+++++
+f_d(v, l) = \frac{\sigma}{\pi}
+++++
+
+.Implementation of the diffuse Lambertian BRDF in GLSL
+[source,glsl]
+----
+float Fd_Lambert() {
+    return 1.0 / PI;
+}
+
+vec3 Fd = diffuseColor * Fd_Lambert();
+----
+
+The diffuse part would ideally be coherent with the specular term and take into account the surface roughness.
+Both the Disney diffuse BRDF <<Burley12>> and Oren-Nayar model <<Oren94>> take the roughness into account and create some retro-reflection at grazing angles.
+
+.Disney diffuse BRDF expressed in <<Burley12>>
+[latexmath]
+++++
+f_d(v, l) = \frac{\sigma}{\pi} F_{Schlick}(n, l, 1, f_{90}) F_{Schlick}(n, v, 1, f_{90})
+++++
+
+.Implementation of the diffuse Disney BRDF in GLSL
+[source,glsl]
+----
+float F_Schlick(float u, float f0, float f90) {
+    return f0 + (f90 - f0) * pow(1.0 - u, 5.0);
+}
+
+float Fd_Burley(float NoV, float NoL, float LoH, float roughness) {
+    float f90 = 0.5 + 2.0 * roughness * LoH * LoH;
+    float lightScatter = F_Schlick(NoL, 1.0, f90);
+    float viewScatter = F_Schlick(NoV, 1.0, f90);
+    return lightScatter * viewScatter * (1.0 / PI);
+}
+----
+
+=== 4.6 Standard model summary
+**Specular term**: a Cook-Torrance specular microfacet model, with a GGX normal distribution function, a Smith-GGX height-correlated visibility function, and a Schlick Fresnel function.
+
+**Diffuse term**: a Lambertian diffuse model.
+
+.Evaluation of the BRDF in GLSL
+[source,glsl]
+----
+float D_GGX(float NoH, float a) {
+    float a2 = a * a;
+    float f = (NoH * a2 - NoH) * NoH + 1.0;
+    return a2 / (PI * f * f);
+}
+
+vec3 F_Schlick(float u, vec3 f0) {
+    return f0 + (vec3(1.0) - f0) * pow(1.0 - u, 5.0);
+}
+
+float V_SmithGGXCorrelated(float NoV, float NoL, float a) {
+    float a2 = a * a;
+    float GGXL = NoV * sqrt((-NoL * a2 + NoL) * NoL + a2);
+    float GGXV = NoL * sqrt((-NoV * a2 + NoV) * NoV + a2);
+    return 0.5 / (GGXV + GGXL);
+}
+
+float Fd_Lambert() {
+    return 1.0 / PI;
+}
+
+void BRDF(...) {
+    vec3 h = normalize(v + l);
+
+    float NoV = abs(dot(n, v)) + 1e-5;
+    float NoL = clamp(dot(n, l), 0.0, 1.0);
+    float NoH = clamp(dot(n, h), 0.0, 1.0);
+    float LoH = clamp(dot(l, h), 0.0, 1.0);
+
+    // perceptually linear roughness to roughness (see parameterization)
+    float roughness = perceptualRoughness * perceptualRoughness;
+
+    float D = D_GGX(NoH, a);
+    vec3  F = F_Schlick(LoH, f0);
+    float V = V_SmithGGXCorrelated(NoV, NoL, roughness);
+
+    // specular BRDF
+    vec3 Fr = (D * V) * F;
+
+    // diffuse BRDF
+    vec3 Fd = diffuseColor * Fd_Lambert();
+
+    // apply lighting...
+}
+----
+
+=== 4.7 Improving the BRDFs
+
+==== 4.7.2 Energy loss in specular reflectance
+
+The Cook-Torrance BRDF we presented earlier, attempts to model several events at the microfacet level but does so by accounting for a single bounce of light.
+This approximation can cause a loss of energy at high roughness.
+
+We can use a white furnace, a uniform lighting environment set to pure white, to validate the energy preservation property of a BRDF.
+When energy preservation is achieved, a purely reflective metallic surface (latexmath:[f_0 = 1]) should be indistinguishable from the background, no matter the roughness of said surface.
+
+[latexmath]
+++++
+f_r(l, v) = f_{ss}(l, v) + f_0 \left( \frac{1}{r} - 1 \right) f_{ss}(l,v)
+++++
+
+[latexmath]
+++++
+r = \int_\omega{D(l, v)V(l, v) \langle n \cdot l \rangle dl}
+++++
+
+We can implement specular energy compensation at a negligible cost if we store **r** in the DFG lookup table.
+
+.Implementation of the energy compensation specular lobe
+[source,glsl]
+----
+vec3 energyCompensation = 1.0 + f0 * (1.0 / dfg.y - 1.0);
+// Scale the specular lobe to account for multiscattering
+Fr *= pixel.energyCompensation;
+----
+
+=== 4.8 Parameterization
+
+==== 4.8.1 Standard parameters
+BaseColor, Metallic, Roughness, Reflectance, Emissive, Ambient occlusion
+
+==== 4.8.3 Remapping
+
+===== 4.8.3.1 Base color remapping
+
+.Conversion of base color to diffuse in GLSL
+[source,glsl]
+----
+vec3 diffuseColor = (1.0 - metallic) * baseColor.rgb;
+----
+
+===== 4.8.3.2 Reflectance remapping
+
+====== Dielectrics
+
+We will use the remapping for dielectric surfaces described in <<Lagarde14>>:
+
+[latexmath]
+++++
+f_0 = 0.16 * reflectance^2
+++++
+
+====== Conductors
+
+[latexmath]
+++++
+f_0 = baseColor * metallic
+++++
+
+.Computing f0 for dielectric and metallic materials in GLSL
+[source,glsl]
+----
+vec3 f0 = 0.16 * reflectance * reflectance * (1.0 - metallic) + baseColor * metallic;
+----
+
+===== 4.8.3.3 Roughness remapping and clamping
+
+[latexmath]
+++++
+\alpha = perceptualRoughness^2
+++++
+
+This simple square remapping delivers visually pleasing and intuitive results while being cheap for real-time applications.
+
+=== 4.9 Clear coat model
+
+A clear coat layer can be simulated as an extension of the standard material model by adding a second specular lobe, which implies evaluating a second specular BRDF.
+
+==== 4.9.1 Clear coat specular BRDF
+
+<<Kelemen01>> describes a much simpler term that can replace our Smith-GGX visibility term:
+
+[latexmath]
+++++
+V(l, h) = \frac{1}{4(l \cdot h)^2}
+++++
+
+.Implementation of the Kelemen visibility term in GLSL
+[source,glsl]
+----
+float V_Kelemen(float LoH) {
+    return 0.25 / (LoH * LoH);
+}
+----
+
+==== 4.9.3 Clear coat parameterization
+
+ClearCoat, ClearCoatRoughness
+
+.Implementation of the clear coat BRDF in GLSL
+[source,glsl]
+----
+void BRDF(...) {
+    // compute Fd and Fr from standard model
+
+    // remapping and linearization of clear coat roughness
+    clearCoatPerceptualRoughness = clamp(clearCoatPerceptualRoughness, 0.089, 1.0);
+    clearCoatRoughness = clearCoatPerceptualRoughness * clearCoatPerceptualRoughness;
+
+    // clear coat BRDF
+    float  Dc = D_GGX(clearCoatRoughness, NoH);
+    float  Vc = V_Kelemen(clearCoatRoughness, LoH);
+    float  Fc = F_Schlick(0.04, LoH) * clearCoat; // clear coat strength
+    float Frc = (Dc * Vc) * Fc;
+
+    // account for energy loss in the base layer
+    return color * ((Fd + Fr * (1.0 - Fc)) * (1.0 - Fc) + Frc);
+}
+----
+
+=== 4.10 Anisotropic model
+
+The standard material model described previously can only describe isotropic surfaces, that is, surfaces whose properties are identical in all directions. Many real-world materials, such as brushed metal, can, however, only be replicated using an anisotropic model.
+
+==== 4.10.1 Anisotropic specular BRDF
+
+[latexmath]
+++++
+D_{aniso}(h, \alpha) = \frac{1}{\pi \alpha_t \alpha_b} \frac{1}{\left(\left(\frac{t \cdot h}{\alpha_t} \right)^2 + \left(\frac{b \cdot h}{\alpha_b} \right)^2 + (n \cdot h)^2 \right)^2}
+++++
+
+latexmath:[\alpha_b] is the roughness along the bitagent direction, latexmath:[\alpha_t] along the tangent one.
+
+<<Neubelt13>>, <<Burley12>>, and <<Kulla17>> propose different ways to derive the parameters.
+
+<<Kulla17>> relationship allows creation of sharp highlights:
+[latexmath]
+++++
+\alpha_t = \alpha \times (1 + anisotropy)
+++++
+
+[latexmath]
+++++
+\alpha_b = \alpha \times (1 - anisotropy)
+++++
+
+.Implementation of Burley's anisotropic NDF in GLSL
+[source,glsl]
+----
+float at = max(roughness * (1.0 + anisotropy), 0.001);
+float ab = max(roughness * (1.0 - anisotropy), 0.001);
+
+float D_GGX_Anisotropic(float NoH, const vec3 h,
+        const vec3 t, const vec3 b, float at, float ab) {
+    float ToH = dot(t, h);
+    float BoH = dot(b, h);
+    float a2 = at * ab;
+    highp vec3 v = vec3(ab * ToH, at * BoH, a2 * NoH);
+    highp float v2 = dot(v, v);
+    float w2 = a2 / v2;
+    return a2 * w2 * w2 * (1.0 / PI);
+}
+----
+
+.Implementation of the anisotropic visibility function in GLSL
+[source,glsl]
+----
+float at = max(roughness * (1.0 + anisotropy), 0.001);
+float ab = max(roughness * (1.0 - anisotropy), 0.001);
+
+float V_SmithGGXCorrelated_Anisotropic(float at, float ab, float ToV, float BoV,
+        float ToL, float BoL, float NoV, float NoL) {
+    float lambdaV = NoL * length(vec3(at * ToV, ab * BoV, NoV));
+    float lambdaL = NoV * length(vec3(at * ToL, ab * BoL, NoL));
+    float v = 0.5 / (lambdaV + lambdaL);
+    return saturateMediump(v);
+}
+----
+
+==== 4.10.2 Anisotropic parameterization
+
+Anisotropy
+
+== 5 Lighting
+
+=== 5.1 Units
+
+Luminous power (lm) is equal to the radiant power (W) multiplied by the luminous efficacy (lm / W)
+
+[latexmath]
+++++
+\Phi = \Phi_e \eta
+++++
+
+=== 5.2 Direct lighting
+
+The luminance L, or outgoing radiance, depends on the illuminance E and the BSDF f(v, l).
+
+[latexmath]
+++++
+L_{out} = f(v, l)E
+++++
+
+==== 5.2.1 Directional lights
+
+They not truly exist in the physical world but can recreate far away light sources like the sun (incident light rays are parallel).
+
+This approximation is incorrect for the specular response. The Frostbite engine solves this problem by treating the “sun” directional light as a disc area light.
+
+[latexmath]
+++++
+L_{out} = f(v, l)E_\perp \langle n \cdot l \rangle
+++++
+
+.Implementation of directional lights in GLSL
+[source,glsl]
+----
+vec3 l = normalize(-lightDirection);
+float NoL = clamp(dot(n, l), 0.0, 1.0);
+
+// lightIntensity is the illuminance
+// at perpendicular incidence in lux
+float illuminance = lightIntensity * NoL;
+vec3 luminance = BSDF(v, l) * illuminance;
+----
+
+==== 5.2.2 Punctual lights
+
+Infinitesimally small and do not follow the inverse square low:
+
+* Point lights
+* Spot lights
+
+To follow the inverse square law the distance term **d** is added:
+
+[latexmath]
+++++
+E = L_{in} \langle n \cdot l \rangle = \frac{I}{d^2} \langle n \cdot l \rangle
+++++
+
+===== 5.2.2.1 Point lights
+
+They are defined only by a position in space.
+
+The luminous power is calculated by integrating the luminous intensity over the light's solid angle.
+
+[latexmath]
+++++
+L_{out} = f(v, l) \frac{\Phi}{4 \pi d^2} \langle n \cdot l \rangle
+++++
+
+===== 5.2.2.2 Spot lights
+
+They are defined by a position in space, a direction vector and two cone angles.
+
+Changing the outer angle of the cone changes the illumination levels, therefore it makes sens to provide artists with a parameter to disable the coupling.
+
+The spot light evaluation function can be expressed with a light absorber or with a light reflector.
+
+===== 5.2.2.3 Attenuation function
+
+To avoid the division by 0 when objects intersect a light we can assume that punctual lights are small area lights.
+
+[latexmath]
+++++
+E = \frac{I}{max(d^2, 0.01^2)}
+++++
+
+We also limit the maximum distance at which a light can affect objects by introducing an influence radius. This helps both artists and performance.
+
+[latexmath]
+++++
+E = \frac{I}{max(d^2, 0.01^2)} \langle 1 - \frac{d^4}{r^4} \rangle^2
+++++
+
+.Implementation of punctual lights in GLSL
+[source,glsl]
+----
+float getSquareFalloffAttenuation(vec3 posToLight, float lightInvRadius) {
+    float distanceSquare = dot(posToLight, posToLight);
+    float factor = distanceSquare * lightInvRadius * lightInvRadius;
+    float smoothFactor = max(1.0 - factor * factor, 0.0);
+    return (smoothFactor * smoothFactor) / max(distanceSquare, 1e-4);
+}
+
+float getSpotAngleAttenuation(vec3 l, vec3 lightDir,
+        float innerAngle, float outerAngle) {
+    // the scale and offset computations can be done CPU-side
+    float cosOuter = cos(outerAngle);
+    float spotScale = 1.0 / max(cos(innerAngle) - cosOuter, 1e-4)
+    float spotOffset = -cosOuter * spotScale
+
+    float cd = dot(normalize(-lightDir), l);
+    float attenuation = clamp(cd * spotScale + spotOffset, 0.0, 1.0);
+    return attenuation * attenuation;
+}
+
+vec3 evaluatePunctualLight() {
+    vec3 l = normalize(posToLight);
+    float NoL = clamp(dot(n, l), 0.0, 1.0);
+    vec3 posToLight = lightPosition - worldPosition;
+
+    float attenuation;
+    attenuation  = getSquareFalloffAttenuation(posToLight, lightInvRadius);
+    attenuation *= getSpotAngleAttenuation(l, lightDir, innerAngle, outerAngle);
+
+    vec3 luminance = (BSDF(v, l) * lightIntensity * attenuation * NoL) * lightColor;
+    return luminance;
+}
+----
+
+==== 5.2.3 Photometric lights
+
+The can address the need to define the distribution of light within space. They use a IES profile to describe the intensity distribution.
+
+An IES profile stores luminous intensity for various angles on a sphere around the measured light source (the photometric web) and can be applied to any punctual light.
+
+The IES profile is converted to a 1D texture that represents the average luminous intensity for all horizontal angles at a specific vertical angle (since most lights are mostly symmetrical on the horizontal plane).
+
+The photometric attenuation factor is simply multiplied with the rest of the attenaution factors.
+
+.Implementation of attenuation from photometric profiles in GLSL
+[source,glsl]
+----
+float getPhotometricAttenuation(vec3 posToLight, vec3 lightDir) {
+    float cosTheta = dot(-posToLight, lightDir);
+    float angle = acos(cosTheta) * (1.0 / PI);
+    return texture2DLodEXT(lightProfileMap, vec2(angle, 0.0), 0.0).r;
+}
+
+vec3 evaluatePunctualLight() {
+    vec3 l = normalize(posToLight);
+    float NoL = clamp(dot(n, l), 0.0, 1.0);
+    vec3 posToLight = lightPosition - worldPosition;
+
+    float attenuation;
+    attenuation  = getSquareFalloffAttenuation(posToLight, lightInvRadius);
+    attenuation *= getSpotAngleAttenuation(l, lightDirection, innerAngle, outerAngle);
+    attenuation *= getPhotometricAttenuation(l, lightDirection);
+
+    float luminance = (BSDF(v, l) * lightIntensity * attenuation * NoL) * lightColor;
+    return luminance;
+}
+----
+
+==== 5.2.5 Lights parameterization
+
+Type, Direction, Color, Intensity, Falloff radius, Inner angle, Outer angle, Length, Radius, Photometric profile, Masked profile, Photometric multiplier
+
+==== 5.2.6 Pre-exposed lights
+
+Most of the lighting work uses half precision floats to greatly improve performance and power usage, particularly on mobile devices.
+
+Half precision floats are ill-suited for this kind of work as common illuminance and luminance values can exceed their range.
+The solution is to simply pre-expose the lights themselves instead of the result of the lighting pass.
+
+.Pre-exposing lights allows the entire shading pipeline to use half precision floats
+[source,glsl]
+----
+// The inputs must be highp/single precision,
+// both for range (intensity) and precision (exposure)
+// The output is mediump/half precision
+float computePreExposedIntensity(highp float intensity, highp float exposure) {
+    return intensity * exposure;
+}
+
+Light getPointLight(uint index) {
+    Light light;
+    uint lightIndex = // fetch light index;
+
+    // the intensity must be highp/single precision
+    highp vec4 colorIntensity  = lightsUniforms.lights[lightIndex][1];
+
+    // pre-expose the light
+    light.colorIntensity.w = computePreExposedIntensity(
+            colorIntensity.w, frameUniforms.exposure);
+
+    return light;
+}
+----
+
+=== 5.3 Image based lights
+
+Images, in particular cubemaps, are a great way to encode an “environment light”. This is called Image Based Lighting (IBL) or sometimes Indirect Lighting.
+
+Typically, the environment image is acquired offline in the real world, or generated by the engine either offline or at run time; either way, local or distant probes are used.
+
+[latexmath]
+++++
+L_{out}(n, v, \Theta) = \int_\Omega{f(l, v, \Theta) L_\perp(l) \langle n \cdot l \rangle dl}
+++++
+
+==== 5.3.1 IBL Types
+
+* **Distant light probes**, used to capture lighting information at “infinity”, where parallax can be ignored (sky, distant landscape).
+* **Local light probes**, used to capture a certain area of the world from a specific point of view. More accurate than distance probes and are particularly useful to add local reflections to materials.
+* **Planar reflections**, used to capture reflections by rendering the scene mirrored by a plane.
+* **Screen space reflections**, used to capture reflections based on the rendered scene by ray-marching in the depth buffer (expensive).
+
+==== 5.3.3 Processing light probes
+
+The radiance of an IBL is computed by integrating over the surface's hemisphere. This is done by pre-processing light probes to convert them into a format better suited for real-time interactions.
+
+* **Specular reflectance**: pre-filtered importance sampling and split-sum approximation.
+* **Diffuse reflectance**: irradiance map and spherical harmonics.
+
+==== 5.3.4 Distant light probes
+
+===== 5.3.4.1 Diffuse BRDF integration
+
+The irradiance can be approximated very closely by a decomposition into Spherical Harmonics and calculated at runtime cheaply.
+
+SH decomposition is similar in concept to a Fourier transform, it expresses the signal over an orthonormal base in the frequency domain.
+The properties that interests us most are:
+
+* Very few coefficients are needed to encode latexmath:[\langle cos \Theta \rangle]
+* Convolutions by a kernel that has a circular symmetry are very inexpensive and become products in SH space
+
+In practice we pre-convolve latexmath:[L_\perp] with latexmath:[\langle cos \Theta \rangle] and pre-scale these coefficients by the basis scaling of latexmath:[k_l^m] so that the reconstruction code is as simple as possible in the shader:
+
+.GLSL code to reconstruct the irradiance from the pre-scaled SH
+[source,glsl]
+----
+vec3 irradianceSH(vec3 n) {
+    // uniform vec3 sphericalHarmonics[9]
+    // We can use only the first 2 bands for better performance
+    return
+          sphericalHarmonics[0]
+        + sphericalHarmonics[1] * (n.y)
+        + sphericalHarmonics[2] * (n.z)
+        + sphericalHarmonics[3] * (n.x)
+        + sphericalHarmonics[4] * (n.y * n.x)
+        + sphericalHarmonics[5] * (n.y * n.z)
+        + sphericalHarmonics[6] * (3.0 * n.z * n.z - 1.0)
+        + sphericalHarmonics[7] * (n.z * n.x)
+        + sphericalHarmonics[8] * (n.x * n.x - n.y * n.y);
+}
+----
+
+===== 5.3.4.2 Specular BRDF integration
+
+The convolution of latexmath:[L_\perp] by the environment is filtered using the BRDF as a kernel. Indeed at higher roughness, specular reflections look more blurry.
+
+====== 5.3.4.2.1 Simplifying the BRDF integration
+
+We use a simplified equation latexmath:[\hat{I}] whereby we assume that **v = n**, that is the view direction **v** is always equal to the surface normal **n**.
+
+This assumption will break all view-dependant effects of the convolution, such as the increased blur in reflections closer to the viewer.
+
+====== 5.3.4.2.2 Discrete Domain
+
+.t variable introduced to shorten the equations
+[latexmath]
+++++
+\begin{split}
+&L_{out}(n, v, \alpha, f_0, f_{90}) \approx [f_0 DFG_1(n \cdot v, \alpha) + f_{90} DFG_2(n \cdot v, \alpha)] \times LD(n, \alpha) \\
+&t = \frac{\langle v \cdot h \rangle}{\langle n \cdot h \rangle} \langle n \cdot l \rangle \\
+&DFG_1(\alpha, \langle n \cdot v \rangle) = \frac{4}{N} \sum_i^N{(1 - F_C(\langle v \cdot h \rangle)) V(l_i, v, \alpha) t} \\
+&DFG_2(\alpha, \langle n \cdot v \rangle) = \frac{4}{N} \sum_i^N{(F_C(\langle v \cdot h \rangle) V(l_i, v, \alpha) t} \\
+&LD(n, \alpha) = \frac{\sum_i^N{V(l_i, n, \alpha) \langle n \cdot l \rangle L_\perp(l_i)}}{\sum_i^N{\langle n \cdot l \rangle}}
+\end{split}
+++++
+
+===== 5.3.4.3 The DFG1 and DFG2 term visualized
+
+Both **DFG1** and **DFG2** can either be pre-calculated in a regular 2D texture and sampled bilinearly, or computed at runtime using an analytic approximation of the surfaces.
+
+Such analytic approximation is described in <<Karis14>>, itself based on <<Lazarov13>>.
+
+===== 5.3.4.4 The LD term visualized
+
+**LD** is the convolution of the environment by a function that only depends on the latexmath:[\alpha] parameter.
+It can conveniently be stored in a mip-mapped cubemap where increasing LODs receive the environment pre-filtered with increasing roughness.
+
+==== 5.3.4.6 IBL evaluation implementation
+
+.GLSL implementation of image based lighting evaluation
+[source,glsl]
+----
+vec3 irradianceSH(vec3 n) {
+    // uniform vec3 sphericalHarmonics[9]
+    // We can use only the first 2 bands for better performance
+    return
+          sphericalHarmonics[0]
+        + sphericalHarmonics[1] * (n.y)
+        + sphericalHarmonics[2] * (n.z)
+        + sphericalHarmonics[3] * (n.x)
+        + sphericalHarmonics[4] * (n.y * n.x)
+        + sphericalHarmonics[5] * (n.y * n.z)
+        + sphericalHarmonics[6] * (3.0 * n.z * n.z - 1.0)
+        + sphericalHarmonics[7] * (n.z * n.x)
+        + sphericalHarmonics[8] * (n.x * n.x - n.y * n.y);
+}
+
+// NOTE: this is the DFG LUT implementation of the function above
+vec2 prefilteredDFG_LUT(float coord, float NoV) {
+    // coord = sqrt(roughness), which is the mapping used by the
+    // IBL prefiltering code when computing the mipmaps
+    return textureLod(dfgLut, vec2(NoV, coord), 0.0).rg;
+}
+
+vec3 evaluateSpecularIBL(vec3 r, float perceptualRoughness) {
+    // This assumes a 256x256 cubemap, with 9 mip levels
+    float lod = 8.0 * perceptualRoughness;
+    // decodeEnvironmentMap() either decodes RGBM or is a no-op if the
+    // cubemap is stored in a float texture
+    return decodeEnvironmentMap(textureCubeLodEXT(environmentMap, r, lod));
+}
+
+vec3 evaluateIBL(vec3 n, vec3 v, vec3 diffuseColor, vec3 f0, vec3 f90, float perceptualRoughness) {
+    float NoV = max(dot(n, v), 0.0);
+    vec3 r = reflect(-v, n);
+
+    // Specular indirect
+    vec3 indirectSpecular = evaluateSpecularIBL(r, perceptualRoughness);
+    vec2 env = prefilteredDFG_LUT(perceptualRoughness, NoV);
+    vec3 specularColor = f0 * env.x + f90 * env.y;
+
+    // Diffuse indirect
+    // We multiply by the Lambertian BRDF to compute radiance from irradiance
+    // With the Disney BRDF we would have to remove the Fresnel term that
+    // depends on NoL (it would be rolled into the SH). The Lambertian BRDF
+    // can be baked directly in the SH to save a multiplication here
+    vec3 indirectDiffuse = max(irradianceSH(n), 0.0) * Fd_Lambert();
+
+    // Indirect contribution
+    return diffuseColor * indirectDiffuse + indirectSpecular * specularColor;
+}
+----
+
+=== 5.3.6 Anisotropy
+
+<<McAuley15>> describes a technique called “bent reflection vector”, based on <<Revie12>>.
+The bent reflection vector is a rough approximation of anisotropic lighting but the alternative is to use importance sampling.
+
+.GLSL implementation of the bent reflection vector
+[source,glsl]
+----
+vec3 anisotropicDirection = anisotropy >= 0.0 ? bitangent : tangent;
+vec3 anisotropicTangent = cross(anisotropicDirection, v);
+vec3 anisotropicNormal = cross(anisotropicTangent, anisotropicDirection);
+vec3 bentNormal = normalize(mix(n, anisotropicNormal, anisotropy));
+vec3 r = reflect(-v, bentNormal);
+----
+
+== 5.5 Transparency and translucency lighting
+
+=== 5.5.1 Transparency
+
+Given a desired latexmath:[\alpha_{opacity}] and a diffuse color latexmath:[\sigma], the effective opacity of a fragment is:
+
+[latexmath]
+++++
+\begin{split}
+&color = \sigma * \alpha_{opacity} \\
+&opacity = \alpha_{opacity}
+\end{split}
+++++
+
+.Implementation of lit surface transparency in GLSL
+[source,glsl]
+----
+// baseColor has already been premultiplied
+vec4 shadeSurface(vec4 baseColor) {
+    float alpha = baseColor.a;
+
+    vec3 diffuseColor = evaluateDiffuseLighting();
+    vec3 specularColor = evaluateSpecularLighting();    
+
+    return vec4(diffuseColor + specularColor, alpha);
+}
+----
+
+== 5.6 Occlusion
+
+Micro-occlusion (used to handle creases, cracks and cavities) is currently ignored. Often it is exposed in engines under the form of a “cavity map”.
+
+In <<Lagarde14>> the authors show that in frostbite diffuse micro-occlusion is pre-baked in diffuse maps and specular micro-occlusion is pre-baked in reflectance textures.
+
+In our system, micro-occlusion are baked in the base color map, medium scale ambient occlusion is pre-baked in ambient occlusion maps (a material parameter), and large scale ambient occlusion is computed with screen-space techniques such as SSAO or HBAO.
+
+=== 5.6.1 Diffuse occlusion
+
+Here latexmath:[L_a] is an ambient illumination function (encoded in spherical harmonics) while **V** is a visibility function from 0 to 1.
+
+.Separating the visibility term from the illumination function
+[latexmath]
+++++
+L(l, v) \approx \left( \pi \int_\Omega{f(l, v) L_a(l)dl} \right) \left( \frac{1}{\pi} \int_\Omega{V(l) \langle n \cdot \rangle dl} \right)
+++++
+
+This approximation is only exact when the distant light is constant and the BRDF is a Lambertian term. This approximation is reasonable with a distant light probe.
+
+In practice, baked ambient occlusion is stored as a grayscale texture which can often be at a lower resolution.
+
+.Implementation of baked diffuse ambient occlusion in GLSL
+[source,glsl]
+----
+// diffuse indirect
+vec3 indirectDiffuse = max(irradianceSH(n), 0.0) * Fd_Lambert();
+// ambient occlusion
+indirectDiffuse *= texture2D(aoMap, outUV).r;
+----
+
+=== 5.6.2 Specular occlusion
+
+Specular micro-occlusion can be derived from latexmath:[f_0], itself derived from the diffuse color. The derivation is based on the knowledge that no real-world material has a reflectance lower than 2%.
+Values in the 0-2% range can therefore be treated as pre-baked specular occlusion used to smoothly extinguish the Fresnel term.
+
+.Pre-baked specular occlusion in GLSL
+[source,glsl]
+----
+float f90 = clamp(dot(f0, 50.0 * 0.33), 0.0, 1.0);
+// cheap luminance approximation
+float f90 = clamp(50.0 * f0.g, 0.0, 1.0);
+----
+
+==== 5.6.2.1 Horizon specular occlusion
+
+When computing the specular IBL contribution for a surface that uses a normal map, it is possible to end up with a reflection vector pointing towards the surface.
+
+<<Russell15>> shows how to minimize light leaking by occluding light coming from behind the surface.
+
+.Implementation of horizon specular occlusion in GLSL
+[source,glsl]
+----
+// specular indirect
+vec3 indirectSpecular = evaluateSpecularIBL(r, perceptualRoughness);
+
+// horizon occlusion with falloff, should be computed for direct specular too
+float horizon = min(1.0 + dot(r, n), 1.0);
+indirectSpecular *= horizon * horizon;
+----
+
+== 5.7 Normal mapping
+
+Normal maps are usually used to replace high-poly meshes with low-poly ones (using a base map) or to add surface details (using a detail map).
+
+=== 5.7.1 Reoriented normal mapping
+
+<<Hill12>> shows a mathematically correct solution to combine two normal maps by rotating the basis of the detail map onto the normal from the base map.
+
+.Implementation of reoriented normal mapping in GLSL
+[source,glsl]
+----
+vec3 t = texture(baseMap,   uv).xyz * vec3( 2.0,  2.0, 2.0) + vec3(-1.0, -1.0,  0.0);
+vec3 u = texture(detailMap, uv).xyz * vec3(-2.0, -2.0, 2.0) + vec3( 1.0,  1.0, -1.0);
+vec3 r = normalize(t * dot(t, u) - u * t.z);
+return r;
+----
+
+=== 5.7.2 UDN blending
+
+it leads to a reduction in details over flat areas, but can be performed at runtime.
+
+.Implementation of UDN blending in GLSL
+[source,glsl]
+----
+vec3 t = texture(baseMap,   uv).xyz * 2.0 - 1.0;
+vec3 u = texture(detailMap, uv).xyz * 2.0 - 1.0;
+vec3 r = normalize(t.xy + u.xy, t.z);
+return r;
+----
+
+== 8 Imaging pipeline
+
+Scene luminance -> Normalized luminace (HDR) -> White balance -> Color grading -> Tone mapping -> OETF -> Pixel value (LDR)
+
+=== 8.1 Physically based camera
+
+==== 8.1.1 Exposure settings
+
+The light reaching the camera is luminance **L** expressed in cd/m^2 and cover a large range of values.
+
+The range remapping is done by exposing the sensor for a certain time, manipulating 3 settings.
+
+* **Aperture (N)**
+Expressed in f-stops, it controls  how open or closed the camera system's aperture is, and the depth of field.
+An f-stop indicates the ratio of the lens' focal length to the diameter of the entrance pupil.
+
+* **Shutter speed (t)**
+Expressed in seconds, it controls how long the aperture remains opened, and the motion blur.
+
+* **Sensitivity (S)**
+Expressed in ISO, it controls how the light reaching the sensor is quantized, and the amount of noise.
+
+==== 8.1.2 Exposure value
+
+We summarize these 3 settings with an exposure value, noted **EV** and expressed in base-2 logarithmic scale.
+
+One positive stop (+1 EV) corresponds to a factor of two in luminance and one negative stop (−1 EV) corresponds to a factor of half in luminance.
+
+.Formal definition of EV
+[latexmath]
+++++
+EV = \log_2 \left( \frac{N^2}{t} \right)
+++++
+
+The value is by convention defined for ISO 100, or latexmath:[EV_{100}].
+
+[latexmath]
+++++
+\begin{split}
+&EV_S = EV_{100} + \log_2 \left( \frac{S}{100} \right) \\
+&EV_{100} = EV_S - \log_2 \left( \frac{S}{100} \right) = \log_2 \left( \frac{N^2}{t} \right) - \log_2 \left( \frac{S}{100} \right)
+\end{split}
+++++
+
+===== 8.1.2.1 Exposure value and luminance
+
+It is possible to define **EV** as a function of the scene luminance **L**, given a per-device calibration constant **K**.
+
+[latexmath]
+++++
+EV = \log_2 \left( \frac{L \times S}{K} \right)
+++++
+
+That constant **K** is the reflected-light meter constant, which varies between manufacturers.
+
+It would be possible to implement automatic exposure in our engine by first measuring the average luminance of a frame.
+An easy way to achieve this is to simply downsample a luminance buffer down to 1 pixel and read the remaining value. 
+
+This technique is unfortunately rarely stable and can easily be affected by extreme values.
+Many games use a different approach which consists in using a luminance histogram to remove extreme values.
+
+=== 8.1.3 Exposure
+
+To convert the scene luminance into normalized luminance, we must use the photometric exposure, or amount of scene luminance that reaches the camera sensor.
+It is expressed in lux seconds and noted **H**.
+
+[latexmath]
+++++
+H = \frac{q \cdot t}{N^2} L
+++++
+
+Where **L** is the luminance of the scene, **t** the shutter speed, **N** the aperture and **q** the lens and vignetting attenuation.
+
+.Implementation of exposure in GLSL
+[source,glsl]
+----
+// Computes the camera's EV100 from exposure settings
+// aperture in f-stops
+// shutterSpeed in seconds
+// sensitivity in ISO
+float exposureSettings(float aperture, float shutterSpeed, float sensitivity) {
+    return log2((aperture * aperture) / shutterSpeed * 100.0 / sensitivity);
+}
+
+// Computes the exposure normalization factor from
+// the camera's EV100
+float exposure(float ev100) {
+    return 1.0 / (pow(2.0, ev100) * 1.2);
+}
+
+float ev100 = exposureSettings(aperture, shutterSpeed, sensitivity);
+float exposure = exposure(ev100);
+
+vec4 color = evaluateLighting();
+color.rgb *= exposure;
+----
+
+=== 8.1.4 Automatic exposure
+
+Since we know how to compute the exposure value from a given luminance, we can transform our camera into a spot meter. To do so, we need to measure the scene's luminance.
+
+* **Luminance downsampling**
+By downsampling the previous frame successively until obtaining a 1×1 log luminance buffer that can be read on the CPU (or using a compute shader). The result is the average log luminance of the scene. The first downsampling must extract the luminance of each pixel first. This technique can be unstable and its output should be smoothed over time.
+
+* **Using a luminance histogram**
+To find the average log luminance. This technique has an advantage over the previous one as it allows to ignore extreme values and offers more stable results.
+
+=== 8.1.5 Bloom
+
+Because the EV scale is almost perceptually linear, the exposure value is also often used as a light unit. Using exposure compensation as a light unit should be avoided whenever possible but can be useful to force (or cancel) a bloom effect around emissive surfaces independently of the camera settings.
+
+.Implementation of emissive bloom in GLSL[source,glsl]
+----
+vec4 surfaceShading() {
+    vec4 color = evaluateLights();
+    // rgb = color, w = exposure compensation
+    vec4 emissive = getEmissive();
+    color.rgb += emissive.rgb * pow(2.0, ev100 + emissive.w - 3.0);
+    color.rgb *= exposure;
+    return color;
+}
+----
+
+== 8.4 Light path
+
+Low bandwidth requirements and multiple dynamic lights per pixel.
+
+Support for MSAA, transparency, multi material models.
+
+In tiled rendering the idea is to split the screen in a grid of tiles and for each tile, find the list of lights that affect the pixels within that tile.
+
+=== 8.4.1 Clustered Forward Rendering
+
+Clustered shading expands the idea of tiled rendering but adds a segmentation on the 3rd axis (in view space).
+
+We call each cluster a froxel as it makes it clear what they represent (a voxel in frustum space).
+
+Before rendering a frame, each light in the scene is assigned to any froxel it intersects with. The result of the lights assignment pass is a list of lights for each froxel.
+During the rendering pass, we can compute the ID of the froxel a fragment belongs to and therefore the list of lights that can affect that fragment.
+
+The depth slicing is not linear, but exponential. In a typical scene, there will be more pixels close to the near plane than to the far plane.
+An exponential grid of froxels will therefore improve the assignment of lights where it matters the most.
+
+A simple exponential distribution uses up half of the slices very close to the camera. Since dynamic world lights are either point lights (spheres) or spot lights (cones), such a fine resolution is completely unnecessary so close to the near plane. Our solution is to manually tweak the size of the first froxel depending on the scene and the near and far planes.
+
+==== 8.4.2.1 GPU light assignment
+
+The lights are stored in Shader Storage Buffer Objects (SSBO) and passed to a compute shader that assigns each light to the corresponding froxels.
+
+The frustum voxelization can be executed only once by a first compute shader (as long as the projection matrix does not change), and the lights assignment can be performed each frame by another compute shader.
+
+We simply invoke as many workgroups as we have froxels. Each workgroup will in turn be threaded and traverse all the lights to assign.
+
+Intersection tests imply simple sphere/frustum or cone/frustum tests.
+
+= Real-Time Rendering (4th Ed.), Chapter 9
+
+From <<RealTimeRendering4>>.
+
+== 9.1 Physics of Light
+
+Light is a transverse wave, a wave that oscillates the electric and magnetic fields perpendicularly to the direction of its propagation.
+
+The simplest possible light wave is _monochromatic_ (it has a single wavelength latexmath:[\lambda]) and _linearly polarized_ (the electric and magnetic fields each oscillate along a single line).
+
+In rendering, we are concerned with the average energy flow over time (or irradiance, denoted with **E**), which is proportional to the squared wave amplitude.
+
+.Irradiance (E), amplitude (a)
+[latexmath]
+++++
+E_1 = ka^2
+++++
+
+=== 9.1.2 Media
+
+The ratio of the phase velocities of the original and new waves is called _index of refraction_ (IOR).
+
+=== 9.1.3 Surfaces
+
+The reflected and incident wave directions have the same angle latexmath:[\theta_i] with the surface normal.
+The transmitted wave direction is bent (_refracted_) at an angle latexmath:[\theta_t]:
+
+.Snell's law
+[latexmath]
+++++
+sin(\theta_t) = \frac{n_1}{n_2} sin(\theta_i)
+++++
+
+=== 9.1.4 Subsurface Scattering
+
+Refracted light continues to interact with the interior volume of the object
+
+If the entry-exit distances are small compared to the shading scale (size of a pixel or distance between shading samples) then SSS can be combined into a local shading model where outgoing light at a point depends only on incoming light at the same point.
+
+The _specular term_ model surface reflection, and the _diffuse term_ models _local subsurface scattering_.
+If the entry-exit distance are large then we need specialized rendering techniques for _global subsurface scattering_.
+
+== 9.3 The BRDF
+
+We assume that there are no _participating media_ present, so the radiance entering the camera is equal to the radiance leaving the closest object surface in the direction of the camera.
+
+[latexmath]
+++++
+L_i(c, -v) = L_o(p, v)
+++++
+
+Outgoing radiance equals the integral (over the unit hemisphere above the surface and centered on the surface normal) of incoming radiance times the BRDF times the dot product between **n** and **l**.
+
+.Reflectance equation
+[latexmath]
+++++
+L_o(p, v) = \int_{I \in \Omega}{f(l, v) L_i(p, l) (n \cdot l) dl}
+++++
+
+.Helmholtz reciprocity
+[latexmath]
+++++
+f(l, v) = f(v, l)
+++++
+
+The simplest possible BRDF is Lambertian, which has a constant value. The latexmath:[1 / \pi] factor is caused by the fact that integrating a cosine factor over the hemisphere yields a value of latexmath:[\pi].
+
+.Lambertian BRDF
+[latexmath]
+++++
+f(l, v) = \frac{c_{diff}}{\pi} = \frac{\rho_{ss}}{\pi}
+++++
+
+== 9.4 Illumination
+
+Global illulmination algorithms use the rendering equation (of which the reflectance equation is a special case) to calculate the incoming radiance latexmath:[L_i(l)]. In this chapter we focus on _local illumination_ where the incoming radiance is given and does not need to be computed.
+
+.Reflectance equation for a directional light
+[latexmath]
+++++
+L_o(v) = \pi f(l_c, v) c_{light} (n \cdot l_c)^+
+++++
+
+The latexmath:[\pi] factor cancels out the latexmath:[1 / \pi] factor that often appears in BRDFs.
+
+== 9.5 Fresnel Reflectance
+
+[latexmath]
+++++
+r_i = 2 (n \cdot l)n - l
+++++
+
+=== 9.5.1 External Reflection
+
+[latexmath]
+++++
+F(n, l) \approx F_0 + (1 - F_0)(1 - (n \cdot l)^+)^5
+++++
+
+== 9.6 Microgeometry
+
+Since the orientations of individual microfacets are somewhat random, it makes sense to model them as a statistical distribution.
+
+For most surfaces, the distribution of the microscale surface normals is isotropic, meaning it is rotationally symmetrical, lacking any inherent directionality.
+Other sur-faces have microscale structure that is anisotropic.
+
+Shadowing refers to occlusion of the light source by microscale surface detail. Masking happens when some facets hide others from the camera.
+
+== 9.7 Microfacet Theory
+
+The _normal distribution function_ (NDF) **D(m)** is the statistical distribution of microfacet surface normals over the microgeometry surface area.
+Integrating it over the entire sphere of microfacet normals gives the area of the microsurface patch, equal to 1 by convention.
+
+[latexmath]
+++++
+\int_{m \in \Theta}{D(m) (n \cdot m) dm} = 1
+++++
+
+The integral is over the entire sphere (latexmath:[\Theta]) and not hemisphere centered on **n** (latexmath:[\Omega]).
+
+More generally, the projections of the microsurface and macrosurface onto the plane perpendicular to any view direction **v** are equal:
+
+[latexmath]
+++++
+\int_{m \in \Theta}{D(m) (v \cdot m) dm} = v \cdot n
+++++
+
+Intuitively, the NDF is like a histogram of the microfacet normals. It has high values in directions where the microfacet normals are more likely to be pointing.
+
+The sum of the projected areas of the visible microfacets is equal to the projected area of the macrosurface.
+We can express this mathematically by defining the masking function **G1(m, v)**, which gives the fraction of microfacets with normal **m** that are visible along the view vector **v**.
+
+The integral over the sphere then gives the area of the macrosurface projected onto the plane perpendicular to **v** (**G1(m, v)D(m)** is the _distribution of visible normals_):
+
+[latexmath]
+++++
+\int_{\in \Theta}{G_1(m, v) D(m) (v \cdot m)^+ dm} = v \cdot n
+++++
+
+Heitz shows that only the Torrance-Sparrow “V-cavity” and the Smith function are mathematically valid, but the Smith one is much closer to the behavior of random microsurfaces.
+
+.Smith function
+[latexmath]
+++++
+G_1(m, v) = \frac{X^+ (m \cdot v)}{1 + \lambda(v)}
+++++
+
+Where latexmath:[X^+(x)] is the positive characteristic function (1 when **x** is positive, 0 when **x** is negative or zero).
+
+.Overall macrosurface BRDF (t variable introduced to shorten the equation)
+[latexmath]
+++++
+\begin{split}
+&t = \frac{(m \cdot l)^+}{|n \cdot l|} \frac{(m \cdot v)^+}{|n \cdot v|} \\
+&f(l, v) = \int_{m \in \Omega}{f_{\mu}(l, v, m) G_2(l, v, m) D(m) t} dm
+\end{split}
+++++
+
+.Smith height-correlated masking-shadowing function
+[latexmath]
+++++
+G_2(l, v, m) = \frac{X^+ (m \cdot v) X^+ (m \cdot l)}{1 + \lambda(v) + \lambda(l)}
+++++
+
+== 9.8 BRDF Models for Surface Reflections
+
+Only the microfacts which have their surface normal aligned with the half vector **h** (pointing halfway between **l** and **v** participate in the specular reflection of light.
+
+[latexmath]
+++++
+h = \frac{l + v}{ \|l + v\|}
+++++
+
+The reflection is equal to zero for all latexmath:[m \neq h], and collapses the integral into the evaluation of the integrated function at latexmath:[m = h].
+
+[latexmath]
+++++
+f_{spec}(l, v) = \frac{F(h, l) G_2(l, v, h) D(h)}{4 |n \cdot l| |n \cdot v|}
+++++
+
+=== 9.8.1 Normal Distribution Functions
+
+The shape of the NDF determines the width and shape of the cone of reflected rays (the specular lobe) and specular highlights.
+
+The Beckmann NDF was the distribution used in the first microfact models. It is the NDF chosen for the Cook-Torrance BRDF.
+
+The Blinn-Phong NDF was widely used in the past but has been largely superseded. It is still used to save some computation (for example on mobile).
+
+The Trowbridge-Reitz distribution (or GGX) is the most often used distribution today.
+
+.GGX distribution
+[latexmath]
+++++
+D(m) = \frac{X^+ (n \cdot m) \alpha_g^2 }{\pi (1 + (n \cdot m)^2 (\alpha_g^2 -1))^2}
+++++
+
+Burley exposes the roughness control to users as latexmath:[\alpha_g = r^2], where **r** is the user-interface roughness parameter value between 0 and 1.
+
+= Physically-Based Shading Models in Film and Game Production (Hoffman 2010)
+From <<Gotanda-Hoffman-Martinez-Snow10>> course notes.
+
+[latexmath]
+++++
+f_{\mu facet} (l, v) = \frac{F(l, h) G(l, v, h) D(h)}{4(n \cdot l)(n \cdot v)}
+++++
+
+The denominator is a correction factor which accounts for quantities being transformed between the local space of the microfacets and that of the overall macrosurface.
+
+== Fresnel Reflectance Term (F)
+This term computes the fraction of light reflected (specular) versus refracted (diffuse).
+
+The term is restricted to lie between 0 and 1 and it is spectral (RGB-valued).
+
+.Schlick approximation
+[latexmath]
+++++
+F_{Schlick} (C_{spec}, l, n) = c_{spec} + (1 - c_{spec})(1 - (l \cdot n))^5
+++++
+
+== Normal Distribution Term (D)
+
+In most surfaces, microfacet normals closer to the macroscopic surface normal tend to appear with higher frequency. The function determines the size, brightness, and shape of the specular highlight.
+
+The term is non-negative (can be arbitrarily large) and scalar valued.
+
+Several different normal distribution functions appear in the graphics literature, all are somewhat Gaussian-
+like, with some kind of “roughness” or variance parameter (anisotropic functions typically have two
+variance parameters).
+
+== Shadowing-Masking Term (G)
+
+Often called the _geometry term_ in the BRDF literature.
+
+The function represents the probability that microfacets with a given normal *m* will be visible from both the light direction *l* and the view direction *v*.
+
+Since it represents a probability, its values are scalars and are constrained to lie between 0 and 1.
+
+It either has no parameters, or uses roughness parameters from the D function.
+
+= DirectX Raytracing, Tutorial 14 (Wyman 2014)
+
+From <<WymanDXR14>>, at https://cwyman.org/code/dxrTutors/tutors/Tutor14/tutorial14.md.html.
+
+GGX BRDF from Cook and Torrance: `+D * G * F / (4 * NdotL * NdotV)+`.
+
+== GGX normal distribution (D)
+
+Math taken from <<Hoffman12>>.
+
+[source,hlsl]
+----
+float ggxNormalDistribution( float NdotH, float roughness )
+{
+	float a2 = roughness * roughness;
+	float d = ((NdotH * a2 - NdotH) * NdotH + 1);
+	return a2 / (d * d * M_PI);
+}
+----
+
+The division at the last line may cause a divide by zero, so you may wish to clamp.
+
+== Geometric masking (G)
+
+Model from <<Schlick94>>, formulation from <<Karis13>>.
+
+[source,hlsl]
+----
+float schlickMaskingTerm(float NdotL, float NdotV, float roughness)
+{
+	// Karis notes they use alpha / 2 (or roughness^2 / 2)
+	float k = roughness*roughness / 2;
+
+	// Compute G(v) and G(l).  These equations directly from Schlick 1994
+	//     (Though note, Schlick's notation is cryptic and confusing.)
+	float g_v = NdotV / (NdotV*(1 - k) + k);
+	float g_l = NdotL / (NdotL*(1 - k) + k);
+	return g_v * g_l;
+}
+----
+
+== Fresnel term (F)
+
+Using the https://en.wikipedia.org/wiki/Schlick%27s_approximation[Schlick's approximation].
+
+[source,hlsl]
+----
+float3 schlickFresnel(float3 f0, float lDotH)
+{
+	return f0 + (float3(1.0f, 1.0f, 1.0f) - f0) * pow(1.0f - lDotH, 5.0f);
+}
+----
+
+= Real Shading in Unreal Engine 4 (Karis 2013)
+
+From <<Karis13>>.
+
+== Diffuse BRDF
+
+Using standard Lambertian diffuse, latexmath:[c_{diff}] is the diffuse albedo of the material.
+
+[latexmath]
+++++
+f(l, v) = \frac{c_{diff}}{\pi}
+++++
+
+== Microfacet Specular BRDF
+
+General Cook-Torrance microfacet specular shading model:
+
+[latexmath]
+++++
+f(l, v) = \frac{D(h) F(v, h) G(l, v, h)}{4(n \cdot l)(n \cdot v)}
+++++
+
+=== Specular D
+
+Using Disney's GGX/Trowbridge-Reitz for the normal distribution function (NDF) instead of Blinn-Phong.
+
+Also using Disney's reparameterization of latexmath:[\alpha = Roughness^2].
+
+[latexmath]
+++++
+D(h) = \frac{\alpha ^ 2}{\pi((n \cdot h)^2 (\alpha ^2 - 1) + 1)^2}
+++++
+
+=== Specular G
+
+Using the Schlick model from <<Schlick94>> for the specular geometric attenuation, but with latexmath:[k = \alpha / 2] to better fith the Smith model for GGX from <<Walter07>>.
+
+[latexmath]
+++++
+k = \frac{(Roughness + 1)^2}{8}
+++++
+
+[latexmath]
+++++
+G_1(v) = \frac{n \cdot v}{(n \cdot v) (1 - k) + k}
+++++
+
+[latexmath]
+++++
+G(l, v, h) = G_1(l) G_1(v)
+++++
+
+=== Specular F
+
+Using the typical Schlick's approximation for the Fresnel, but with a _Spherical Gaussian_ approximation from <<Lagarde12>> to replace the power.
+
+[latexmath]
+++++
+F(v, h) = F_0 + (1 - F_0) 2^{(-5.55473 (v \cdot h) - 6.98316)(v \cdot h)}
+++++
+
+= Lighting of Killzone: Shadow Fall (Drobot 2013)
+
+From <<Drobot13>>, at http://www.guerrilla-games.com/presentations/Drobot_Lighting_of_Killzone_Shadow_Fall.pptx.
+
+== Physically Based Lighting
+
+* Irradiance: integrated light incoming from all directions (diffuse)
+* Radiance: light incoming from one direction (specular reflection)
+
+=== Workflow
+
+* 3 main material parameters
+** Albedo (_RGB8_)
+** Roughness (_R8_)
+** Specular Reflectance (_RGB8_)
+
+=== BRDF
+* Based on Cook-Torrance
+** Fresnel
+** Smith Schlick visibility function
+** Normalization based on specular reflectance
+** Roughness as specular importance cone angle
+* Approximate transulucency
+** Density maps
+** Translucency diffuision maps
+
+== Physically Based Lights
+
+* Area lights with size, shape, and intensity
+* Spherical, disc, rectangular, textured rectangular
+* IES light profiles
+
+.Irradiance integral
+[latexmath]
+++++
+I(p, n) = \int_A{\frac{L cos(f_i) cos(f_o) dA}{d^2}}
+++++
+
+= Real-Time Area Lighting: a Journey from Research to Production (Hill & Heitz 2016)
+
+From <<Hill-Heitz16>>.
+
+Doing area lighting in real-time with a wide range of materials (not just diffuse).
+
+== Theory
+
+Lighting with polygon light sources:
+
+* **BRDF**: A spherical function that describes how the material scatters light at a particular shading point.
+* **Spherical polygon**: Incoming radiance from a polygon that's arriving at the shading point.
+* **Integration**: The shading result, or outgoing radiance, is the integral of the BRDF over this spherical polygon.
+
+We need to evaluate the BRDF from many directions and we can't use Monte Carlo sampling (too slow or noisy for real-time).
+We'd like to fond a closed-form solution, an equation that will give us the right answer immediately without any sampling.
+
+Simple cases:
+
+* **Sphere**: solid angle.
+* **Hemisphere**: clipped solid angle
+* **Clamped cosine**: computing it gives the irradiance or form factor.
+
+*Linearly Transformed Cosines** (LTCs) provide a solution than accounts for varying roughness and anisotropy by applying a linear transform to a simple clamped cosine distribution.
+
+We can vary the roughtness applying a uniform x and y scale. We can create anisotropy by using different x and y scaling factors, or introduce “skewness” by changing the bottom-left element of out 3x3 transformation matrix.
+
+If we want to compute the integral of a GGX-based BRDF with a polygonal light source we first find a linear transform that best approximates this BRDF, for a given roughness and view angle.
+We pre-compute all roughnesses and view angles and store the resulting matrices in a texture.
+
+At runtime we take our BRDF-polygon configuration and apply the inverse transform to the vertices of the polygon, based on out LTC fitting for the view angle and roughness at the current shading point.
+This turns the configuration into an equivalent but simpler integration problem, we are transforming it back to “cosine space”.
+
+To calculate the area integral we just need to evaluate a series of line/edge integrals over the boundery of the spherical polygon.
+
+We are computing a spherical line integral, using the arc lenght in radians, the perpendicular vector and the local surface normal. We then repeat this process over all edges and sum the results up.
+
+[latexmath]
+++++
+\frac{1}{2 \pi} \sum_{i=1}^n {acos(v_i \cdot v_j) \frac{v_i \times t_j}{\left\Vert  v_i \times v_j \right\Vert} \cdot n}
+++++
+
+[source,hlsl]
+----
+float EdgeIntegral(float3 v1, float3 v2, float3 n)
+{
+    float theta = acos(dot(v1, v2));
+    float3 u = normalize(cross(v1, v2));
+    return theta*dot(u, n);
+}
+
+float PolyIntegral(float3 v[4], float3 n)
+{
+    float sum;
+    sum  = EdgeIntegral(v[0], v[1]);
+    sum += EdgeIntegral(v[1], v[2]);
+    sum += EdgeIntegral(v[2], v[3]);
+    sum += EdgeIntegral(v[3], v[0]);
+    return sum/(2.0*pi);
+}
+----
+
+== Implementation
+
+1. Lookup `M^-1`, based on roughness and view angle
+2. Transform polygon by `M^-1`
+3. Clip polygon to upper hemisphere
+4. Compute edge integrals
+
+=== 4. Compute edge integrals
+
+If you crank up the light intensity, artefacts start to appear.
+
+.Equivalent u vector calculation, but more numerically stable
+[source,hlsl]
+----
+float EdgeIntegral(float3 v1, float3 v2, float3 n)
+{
+    float theta = acos(dot(v1, v2));
+    float3 u = cross(v1, v2)/sin(theta);
+    return theta*dot(u, n);
+}
+----
+
+The main issue for that is the `acos` implementation, which is not an intrinsic and it's not precise enough.
+
+In order to obtain enough accuracy, this required a cubic rational fit of `theta/sin(theta)`.
+
+.Final implementation of the edge integral function
+[source,hlsl]
+----
+float EdgeIntegral(float3 v1, float3 v2, float3 n)
+{
+    float x = dot(v1, v2);
+    float y = abs(x);
+    
+    float a = 5.42031 + (3.12829 + 0.0902326*y)*y;
+    float b = 3.45068 + (4.18814 +y)*y;
+    float theta_sintheta = a / b;
+    
+    if (x < 0.0)
+        theta_sintheta = pi*rsqrt(1.0 - x*x) - theta_sintheta;
+
+    float3 u = cross(v1, v2);
+    
+    return theta_sintheta*dot(u, n);
+}
+----
+
+=== 1. Matrix lookup
+
+Two RGBA matrices needed to store 6 values, the 5 matrix elements (latexmath:[m_{00}, m_{02}, m_{11}, m_{20}, m_{22}]) and a component for the BRDF magnitude.
+
+Another workaround to reduce artefats is to parameterise the lookup table by `theta` and not `cos(theta)`.
+
+[source,hlsl]
+----
+//vec2 uv = vec2(roughness, acos(dot(n, v)));
+vec2 uv = vec2(roughness, dot(n, v));
+----
+
+=== 3. Polygon clipping
+
+Clipping is hard problem that might involve a lot of data shuffling, big switch/if-else cases or a variable number of edges. In all cases the code generates a large number of instructions or branches.
+
+If we don't project the edge integral onto the plane (the last `dot` with the normal), we end up with a vector form.
+
+The length of this **F** irradiance vector is the form factor of the polygon in the direction of **F**. We can use this to approximate the polygon as if it had been clipped to the horizon by using a proxy sphere of the same form factor.
+
+At runtime we can lookup into a 2D texture that contains the clipped form factors for spheres of different angular extents and elevation angles, giving us an approximation of the clipped form factor of the polygon.
+
+It is more precise to divide through by the original form factor and store a multiplier in the texture instead.
+
+.PolygonVectorFormFactorToHorizonClippedSphereFormFactor()
+[source,hlsl]
+----
+float SphereIntegral(float3 F)
+{
+    float l = length(F);
+    return max((l*l + F.z)/(l+1), 0);
+}
+----
+
+[glossary]
+= Glossary
+
+[glossary]
+BRDF:: Bidirectional reflectance distribution function.
+BSDF:: Bidirectional scattering distribution function.
+BTDF:: Bidirectional transmittance distribution function.
+D term:: A normal distribution function (NDF).
+F term:: A Fresnel approximation function that dictates how much light is reflected at grazing angles.
+G term:: A geometric shadowing and masking function.
+GGX:: Trowbridge–Reitz microfacet distribution. Is a NDF (D).
+HBAO:: Horizon Based Ambient Occlusion.
+IBL:: Image Based Lighting.
+LTC:: Linearly Transformed Cosine.
+NDF:: Normal Distribution Function. Models the distribution of the microfacets.
+OETF:: Opto-Electronic Transfer Function
+Roughness:: A parameter which describes how smooth or how rough a surface is at a micro level.
+SSAO:: Screen-Space Ambient Occlusion.
+
+[bibliography]
+= Bibliography
+* [[[Burley12]]] Brent Burley. 2012. Physically Based Shading at Disney. Physically Based Shading in Film and Game Production, ACM SIGGRAPH 2012 Courses.
+* [[[Heitz14]]] Eric Heitz. 2014. Understanding the Masking-Shadowing Function in Microfacet-Based BRDFs. Journal of Computer Graphics Techniques, 3 (2).
+* [[[Hill12]]] Colin Barré-Brisebois and Stephen Hill. 2012. Blending in Detail. http://blog.selfshadow.com/publications/blending-in-detail/
+* [[[Karis13]]] Brian Karis. 2013. Real Shading in Unreal Engine 4. https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf
+* [[[Karis14]]] Brian Karis. 2014. Physically Based Shading on Mobile. https://www.unrealengine.com/blog/physically-based-shading-on-mobile
+* [[[Kelemen01]]] Csaba Kelemen et al. 2001. A Microfacet Based Coupled Specular-Matte BRDF Model with Importance Sampling. Eurographics Short Presentations.
+* [[[Kulla17]]] Christopher Kulla and Alejandro Conty. 2017. Revisiting Physically Based Shading at Imageworks. ACM SIGGRAPH 2017
+* [[[Lagarde14]]] Sébastien Lagarde and Charles de Rousiers. 2014. Moving Frostbite to PBR. Physically Based Shading in Theory and Practice, ACM SIGGRAPH 2014 Courses.
+* [[[Lazarov13]]] Dimitar Lazarov. 2013. Physically-Based Shading in Call of Duty: Black Ops. Physically Based Shading in Theory and Practice, ACM SIGGRAPH 2013 Courses.
+* [[[McAuley15]]] Stephen McAuley. 2015. Rendering the World of Far Cry 4. GDC 2015.
+* [[[McGuire10]]] Morgan McGuire. 2010. Ambient Occlusion Volumes. High Performance Graphics.
+* [[[Neubelt13]]] David Neubelt and Matt Pettineo. 2013. Crafting a Next-Gen Material Pipeline for The Order: 1886. Physically Based Shading in Theory and Practice, ACM SIGGRAPH 2013 Courses.
+* [[[Oren94]]] Michael Oren and Shree K. Nayar. 1994. Generalization of lambert's reflectance model. SIGGRAPH, 239–246. ACM.
+* [[[Revie12]]] Donald Revie. 2012. Implementing Fur in Deferred Shading. GPU Pro 2, Chapter 2.
+* [[[Russell15]]] Jeff Russell. 2015. Horizon Occlusion for Normal Mapped Reflections. http://marmosetco.tumblr.com/post/81245981087
+* [[[Schlick94]]] Cristophe Schlick. 1994. An Inexpensive BRDF Model for Physically-based Rendering.
+* [[[Walter07]]] Walter, Bruce, Stephen R. Marschner, Hongsong Li, Kenneth E. Torrance, “Microfacet Models for Refraction through Rough Surfaces”, Eurographics Symposium on Rendering (2007), 195–206, June 2007. http://www.cs.cornell.edu/~srm/publications/EGSR07-btdf.html
+
+[bibliography]
+== Additional References
+* [[[Drobot13]]] Michal Drobot. 2013. Lighting of Killzone: Shadow Fall, Digital Dragons 2013. http://www.guerrilla-games.com/presentations/Drobot_Lighting_of_Killzone_Shadow_Fall.pptx
+* [[[Filament]]] Physically Based Rendering in Filament. https://google.github.io/filament/Filament.html
+* [[[Gotanda-Hoffman-Martinez-Snow10]]] Yoshiharu Gotanda, Naty Hoffman, Adam Martinez, and Ben Snow. 2010. Physically Based Shading Models for Film and Game Production, ACM SIGGRAPH 2010 Courses.
+* [[[Hill-Heitz16]]] Stephen Hill & Eric Heitz. 2016. Real-Time Area Lighting: a Journey from Research to Production. Advances in Real-Time Rendering in Games, ACM SIGGRPAH 2016 Courses.
+* [[[Hoffman12]]] Naty Hoffmann. 2012. Background: Physics and Math of Shading, ACM SIGGRAPH 2012 Courses.
+* [[[Iwanicki-Pesce15]]] Michał Iwanicki and Angelo Pesce. 2015. Approximate Models for Physically Based Rendering, ACM SIGGRAPH 2015 Courses.
+* [[[Lagarde12]]] Sébastien Lagarde, “Spherical Gaussian approximation for Blinn-Phong, Phong and Fresnel”, June 2012. http://seblagarde.wordpress.com/2012/06/03/spherical-gaussien-approximation-for-blinn-phong-phong-and-fresnel/
+* [[[RealTimeRendering4]]] Tomas Akenine-Möller, Eric Haines, Naty Hoffman. 2018. Real-Time Rendering, 4th edition.
+* [[[WymanDXR14]]] Chris Wyman. DirectX Raytracing code tutorials. Chapter 14.
