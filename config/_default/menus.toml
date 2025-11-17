@@ -43,6 +43,12 @@
   url = "/trip_through_graphics_pipeline_2011.html"
   weight = 25
 
+[[main]]
+  parent = "pages"
+  name = "PBR Notes"
+  url = "/pbr_notes.html"
+  weight = 30
+
 [[footer]]
   name = "Public Key"
   title = "My GnuPG public key for verifying signed commits"

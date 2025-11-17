@@ -1,7 +1,7 @@
 :nofooter:
 :toc: left
 :toclevels: 3
-== My study notes
+== My Study Notes
 I hope you will find my notes useful in case you intend to study more about engine and graphics programming.
 
 === C++
@@ -152,12 +152,12 @@ The numbers in round brackets are a reference inside the 29/07/2011 Marshall Cli
 * https://en.wikipedia.org/wiki/Run-time_type_information[Run-Time Type Information] (RTTI)
 * https://en.wikipedia.org/wiki/SOLID[SOLID] principles
 
-==== More topics
+==== More Topics
 A second list of concepts to keep in mind, only a bit harder this time.
 As before, the numbers in round brackets are a reference inside the 29/07/2011 Marshall Cline's C++ FAQ.
 
 For optimizations have also a look at https://www.agner.org/optimize/optimizing_cpp.pdf[Optimizing software in C{plus}{plus}] and at the other free https://www.agner.org/optimize/[optimization] books by Agner Fog.
-Another free C++ book is http://www.icce.rug.nl/documents/cplusplus/[The C{plus}{plus} Annotations].
+Another free C++ book is https://fbb-git.gitlab.io/cppannotations/cppannotations/html/[The C{plus}{plus} Annotations].
 
 * Placement new (https://isocpp.org/wiki/faq/dtors#placement-new[11.10])
 * https://isocpp.org/wiki/faq/pointers-to-members[Pointers to Member Function]
@@ -165,11 +165,11 @@ Another free C++ book is http://www.icce.rug.nl/documents/cplusplus/[The C{plus}
 * Hiding rule (https://isocpp.org/wiki/faq/strange-inheritance#hiding-rule[23.9], https://isocpp.org/wiki/faq/strange-inheritance#protected-virtuals[23.3]), https://stackoverflow.com/questions/4837399/c-rationale-behind-hiding-rule[C++: rationale behind hiding rule]
 * Templates (https://isocpp.org/wiki/faq/templates[Section 35])
 * https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)[Rule of Three] / five / zero, https://en.wikipedia.org/wiki/Special_member_functions[special member functions]
-* Return value optimization (NRVO, RVO) (https://isocpp.org/wiki/faq/ctors#return-by-value-optimization[10.9]) / Copy elision (https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/[C++ Cargo Cults, RVO and Copy Elision], http://www.icce.rug.nl/documents/cplusplus/cplusplus09.html#l201[9.8] of C{plus}{plus} Annotations)
+* Return value optimization (NRVO, RVO) (https://isocpp.org/wiki/faq/ctors#return-by-value-optimization[10.9]) / Copy elision (https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/[C++ Cargo Cults, RVO and Copy Elision], https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus09.html#l199[9.8] of C{plus}{plus} Annotations)
 * Copy-and-swap idiom (http://stackoverflow.com/a/3279550[Why do we need the copy-and-swap idiom?], https://stackoverflow.com/questions/5695548/public-friend-swap-member-function[public friend swap member function
 ])
-* http://en.cppreference.com/w/cpp/language/adl[Argument-dependant lookup] or http://www.icce.rug.nl/documents/cplusplus/cplusplus04.html#l75[Koenig lookup] (4.1.2.2 of C++ Annotations)
-* Substitution Failure Is Not An Error (SFINAE) (https://isocpp.org/wiki/faq/templates#templates-vs-overloading[35.11], http://www.icce.rug.nl/documents/cplusplus/cplusplus21.html#l552[21.15] of C++ Annotations)
+* http://en.cppreference.com/w/cpp/language/adl[Argument-dependant lookup] or https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus04.html#l75[Koenig lookup] (4.1.2.2 of C++ Annotations)
+* Substitution Failure Is Not An Error (SFINAE) (https://isocpp.org/wiki/faq/templates#templates-vs-overloading[35.11], https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus21.html#l560[21.15] of C++ Annotations)
 * non-dependent types and members (https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-types[35.18], https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-members[35.19], https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-silent-bug[35.20])
 * Proxy template (https://isocpp.org/wiki/faq/templates#template-proxies[35.22]), in C{plus}{plus}11 you would employ the Type alias declaration with `using`
 * Type traits, concepts, tag dispatching (http://www.boost.org/community/generic_programming.html[Generic Programming Techniques])
@@ -184,32 +184,32 @@ Another free C++ book is http://www.icce.rug.nl/documents/cplusplus/[The C{plus}
 The book "_Effective Modern C++_" by Scott Meyers is a must-have.
 Chapters and items are references to this book.
 
-* https://isocpp.org/wiki/faq/cpp11-language-classes#delegating-ctor[Delegating constructors] (supersede https://isocpp.org/wiki/faq/ctors#init-methods[10.3], http://www.icce.rug.nl/documents/cplusplus/cplusplus07.html#l147[7.4.1] of C++ Annotations)
-* Rvalues (http://thbecker.net/articles/rvalue_references/section_01.html[C++ Rvalue References Explained] by Thomas Becker, http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l38[3.3.2] and http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l39[3.3.3] of C{plus}{plus} Annotations)
-* Auto keyword (Chapter 2, https://isocpp.org/wiki/faq/cpp11-language#auto[`auto`] in Super-FAQ, http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l44[3.3.7] of C++ Annotations) and type deduction (Chapter 1)
-* https://stackoverflow.com/questions/3106110/what-is-move-semantics[Move semantics] (http://www.icce.rug.nl/documents/cplusplus/cplusplus09.html#l192[9.7] of C++ Annotations), Rule of Five
+* https://isocpp.org/wiki/faq/cpp11-language-classes#delegating-ctor[Delegating constructors] (supersede https://isocpp.org/wiki/faq/ctors#init-methods[10.3], https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus07.html#l146[7.4.1] of C++ Annotations)
+* Rvalues (http://squall.cs.ntou.edu.tw/cpp/1052/rvalue-reference.pdf[C++ Rvalue References Explained] by Thomas Becker, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l38[3.3.2] and https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l39[3.3.3] of C{plus}{plus} Annotations)
+* Auto keyword (Chapter 2, https://isocpp.org/wiki/faq/cpp11-language#auto[`auto`] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l44[3.3.7] of C++ Annotations) and type deduction (Chapter 1)
+* https://stackoverflow.com/questions/3106110/what-is-move-semantics[Move semantics] (https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus09.html#l190[9.7] of C++ Annotations), Rule of Five
 * Reference collapsing (Item 28)
 * Reference qualifiers
 * Forwarding AKA universal references (https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers[Universal References in C++11] by Scott Meyers)
-* Perfect forwarding (http://www.icce.rug.nl/documents/cplusplus/cplusplus22.html#l582[22.5.2] of C++ Annotations)
-* Enum classes (Item 10, https://isocpp.org/wiki/faq/cpp11-language-types#enum-class[`enum class`] in Super-FAQ, http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l40[3.3.4] of C++ Annotations)
-* Range-based for loops and issues with `auto` and copying objects around (https://isocpp.org/wiki/faq/cpp11-language#range-for[Range-`for` statement] in Super-FAQ, http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l47[3.3.9] of C++ Annotations)
-* List initialization, initializer lists (https://isocpp.org/wiki/faq/cpp11-language#init-list[Initializer lists] in Super-FAQ, http://www.icce.rug.nl/documents/cplusplus/cplusplus03.html#l41[3.3.5] of C++ Annotations)
-* Lambdas (Chapter 6, https://isocpp.org/wiki/faq/cpp11-language#lambda[Lambdas] in Super-FAQ, http://www.icce.rug.nl/documents/cplusplus/cplusplus11.html#l254[11.11] of C++ Annotations)
+* Perfect forwarding (https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus22.html#l590[22.5.2] of C++ Annotations)
+* Enum classes (Item 10, https://isocpp.org/wiki/faq/cpp11-language-types#enum-class[`enum class`] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l40[3.3.4] of C++ Annotations)
+* Range-based for loops and issues with `auto` and copying objects around (https://isocpp.org/wiki/faq/cpp11-language#range-for[Range-`for` statement] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l47[3.3.9] of C++ Annotations)
+* List initialization, initializer lists (https://isocpp.org/wiki/faq/cpp11-language#init-list[Initializer lists] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l41[3.3.5] of C++ Annotations)
+* Lambdas (Chapter 6, https://isocpp.org/wiki/faq/cpp11-language#lambda[Lambdas] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus11.html#l255[11.11] of C++ Annotations)
 ** https://www.bfilipek.com/2019/02/lambdas-story-part1.html[Lambdas: From C++11 to C++20, Part 1] by Bartłomiej Filipek
 ** https://www.bfilipek.com/2019/03/lambdas-story-part2.html[Lambdas: From C++11 to C++20, Part 2] by Bartłomiej Filipek
 ** https://www.bfilipek.com/2016/11/iife-for-complex-initialization.html[IIFE for Complex Initialization] by Bartłomiej Filipek
 
-==== Design patterns and OOP
+==== Design Patterns and OOP
 * https://en.wikipedia.org/wiki/Single_responsibility_principle[Single responsibility principle]
 * https://en.wikipedia.org/wiki/Cohesion_(computer_science)[Cohesion] / https://en.wikipedia.org/wiki/Coupling_(computer_programming)[Coupling]
 * https://en.wikipedia.org/wiki/Factory_method_pattern[Factory method] / https://en.wikipedia.org/wiki/Abstract_factory_pattern[Abstract factory pattern]
 * https://en.wikipedia.org/wiki/Builder_pattern[Builder pattern]
 * Meyer's singleton
 * https://en.wikipedia.org/wiki/Object_pool_pattern[Object pool], https://en.wikipedia.org/wiki/Thread_pool[Thread pool], https://en.wikipedia.org/wiki/Flyweight_pattern[Flyweight pattern]
-* https://davekilian.com/cpp-type-erasure.html[C++ 'Type Erasure' Explained] by Dave Kilian
+* https://en.wikipedia.org/wiki/Type_punning[Type punning], https://davekilian.com/cpp-type-erasure.html[C++ 'Type Erasure' Explained] by Dave Kilian
 
-=== Math and geometry
+=== Math and Geometry
 ==== Books
 Read about the same math concepts on more than one book.
 Some books are targeted to game developers, like:
@@ -225,14 +225,14 @@ Some books are targeted to game developers, like:
 * OpenGL transformations and matrices:
 ** http://www.songho.ca/opengl/gl_transform.html[OpenGL Transformation]
 ** http://www.songho.ca/opengl/gl_projectionmatrix.html[OpenGL Projection Matrix]
-** https://www.scratchapixel.com/lessons/3d-basic-rendering/computing-pixel-coordinates-of-3d-point[Computing the Pixel Coordinates of a 3D Point]
+** https://www.scratchapixel.com/lessons/3d-basic-rendering/computing-pixel-coordinates-of-3d-point/mathematics-computing-2d-coordinates-of-3d-points.html[Computing the Pixel Coordinates of a 3D Point]
 ** http://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrix-introduction[The Perspective and Orthographic Projection Matrix]
 ** https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/transforming-normals[Transforming Normals]
 ** https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/projection-stage[The Projection Stage]
 ** http://www.terathon.com/gdc07_lengyel.pdf[Projection Matrix Tricks by Eric Lengyel (PDF)]
 ** http://stackoverflow.com/questions/76134/how-do-i-reverse-project-2d-points-into-3d/33976739#33976739[How do I reverse-project 2D points into 3D?]
 
-=== Algorithms and more
+=== Algorithms and More
 * Sorting and data structures (lists, arrays, hash tables)
 ** About hash tables: linear probing, quadratic probing, http://preshing.com/20160314/leapfrog-probing/[leapfrog probing], double hashing, cuckoo hashing, hopscotch hashing
 * Floating point (29.17 and https://randomascii.wordpress.com/[Random ASCII blog])
@@ -267,6 +267,7 @@ One of the book you could read to learn more on the subject is "_Computer Archit
 ==== Multi-threading
 One of the book on the topic is "_The Art of Multiprocessor Programming_" by Maurice Herlihy and Nir Shavit
 
+* https://en.wikipedia.org/wiki/Amdahl%27s_law[Amdahl's Law]
 * Critical section, mutex, semaphore, https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem[Producer-consumer problem], https://en.wikipedia.org/wiki/Dining_philosophers_problem[Dining philosophers problem], https://en.wikipedia.org/wiki/Priority_inversion[Priority inversion], race condition
 * Atomics and lock-free programming (http://preshing.com/[Preshing on Programming]), https://preshing.com/20120710/memory-barriers-are-like-source-control-operations/[memory barriers], https://preshing.com/20120930/weak-vs-strong-memory-models/[memory models], http://preshing.com/20120226/roll-your-own-lightweight-mutex/[Benaphore], https://en.wikipedia.org/wiki/Compare-and-swap[Compare-and-swap], https://en.wikipedia.org/wiki/ABA_problem[ABA problem], https://en.wikipedia.org/wiki/Load-link/store-conditional[Load-link/store-conditional], http://preshing.com/20120913/acquire-and-release-semantics/[acquire and release semantics] (Load-Acquire/Store-Release in the ARM Reference Manual)
 * Cache coherency, https://en.wikipedia.org/wiki/MOESI_protocol[MOESI protocol], https://en.wikipedia.org/wiki/MESIF_protocol[MESIF protocol], https://en.wikipedia.org/wiki/False_sharing[false sharing], https://en.wikipedia.org/wiki/Branch_misprediction[branch misprediction], https://en.wikipedia.org/wiki/Scratchpad_memory[scratchpad memory]
@@ -276,17 +277,172 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 * https://en.wikipedia.org/wiki/Hazard_pointer[Hazard pointer]
 * Aligning AoS to cache line size to avoid false sharing
 * https://fgiesen.wordpress.com/2016/08/07/why-do-cpus-have-multiple-cache-levels/[Why do CPUs have multiple cache levels?]
+* https://greenteapress.com/wp/semaphores/[The Little Book of Semaphores] by Allen B. Downey
+* https://opencsf.org/Books/csf/html/[Computer System Fundamentals: Principles of Concurrent Systems] by Dr. Michael S. Kirkpatrick (2019)
 
-==== More topics
+==== More Topics
 * http://assemblyrequired.crashworks.org/load-hit-stores-and-the-\__restrict-keyword/[Load-Hit-Stores and the `__restrict` keyword] by Elan Ruskin
 * http://www.gamasutra.com/view/feature/132084/sponsored_feature_common_.php[Sponsored Feature: Common Performance Issues in Game Programming] by Becky Heineman
 
 === Graphics
 
 * https://www.scratchapixel.com/[Scratchapixel - Learn Computer Graphics From Scratch!]
-* https://www.cs.uu.nl/docs/vakken/magr/2021-2022/index.html[Advanced Graphics] Course 2021/22 from Universiteit Utrecht
+* https://ics-websites.science.uu.nl/docs/vakken/magr/2022-2023/index.html[Advanced Graphics] Course 2022/23 from Universiteit Utrecht
+* http://advances.realtimerendering.com/[Advances in Real-Time Rendering in 3D Graphics and Games]
 
-==== Mobile GPUs architecture
+==== Fundamentals
+* https://www.opengl.org/pipeline/article/vol003_6/[GLSL: Center or Centroid? (Or When Shaders Attack!)] by Bill Licea-Kane (AMD)
+* https://www.cs.cornell.edu/courses/cs4620/2008fa/lectures/texture-filtering.pdf[Texture filtering (PDF)] (Mipmap selection with derivatives) by Steve Marschner
+* https://computergraphics.stackexchange.com/a/5560[How are mipmap levels computed in Metal?] replied by Nathan Reed
+* http://www.3dkingdoms.com/weekly/weekly.php?a=2[Reflecting a Vector] (Vector reflection with vector projection and dot product)
+* https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process[Gram-Schmidt orthogonalization] with vector projection and dot product
+* https://developer.nvidia.com/content/depth-precision-visualized[Depth Precision Visualized] by Nathan Reed (NVIDIA)
+* https://gamedev.stackexchange.com/questions/130888/what-are-screen-space-derivatives-and-when-would-i-use-them/130933#130933[What are screen space derivatives and when would I use them?]
+* https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_HelperInvocation.xhtml[gl_HelperInvocation] - OpenGL 4 Reference Pages
+* https://developer.nvidia.com/content/life-triangle-nvidias-logical-pipeline[Life of a triangle - NVIDIA's logical pipeline] by Christoph Kubisch
+* 1 - https://mynameismjp.wordpress.com/2012/10/15/signal-processing-primer/[Signal Processing Primer] by Matt Pettineo
+* 2 - https://mynameismjp.wordpress.com/2012/10/21/applying-sampling-theory-to-real-time-graphics/[Applying Sampling Theory To Real-Time Graphics] by Matt Pettineo
+* 3 - https://mynameismjp.wordpress.com/2012/10/24/msaa-overview/[A Quick Overview of MSAA] by Matt Pettineo
+* 4 - https://mynameismjp.wordpress.com/2012/10/28/msaa-resolve-filters/[Experimenting With Reconstruction Filters for MSAA Resolve] by Matt Pettineo
+* https://therealmjp.github.io/posts/to-earlyz-or-not-to-earlyz/[To Early-Z, or Not To Early-Z] by Matt Pettineo (2025)
+* https://modal.com/gpu-glossary[GPU Glossary] by Modal
+
+==== Compute
+* https://mynameismjp.wordpress.com/2018/03/06/breaking-down-barriers-part-1-whats-a-barrier/[Breaking Down Barriers - Part 1: What's a Barrier?] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/04/01/breaking-down-barriers-part-2-synchronizing-gpu-threads/[Breaking Down Barriers - Part 2: Synchronizing GPU Threads] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/06/17/breaking-down-barriers-part-3-multiple-command-processors/[Breaking Down Barriers - Part 3: Multiple Command Processors] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/07/03/breaking-down-barriers-part-4-gpu-preemption/[Breaking Down Barriers - Part 4: GPU Preemption] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/09/08/breaking-down-barriers-part-5-back-to-the-real-world/[Breaking Down Barriers - Part 5: Back to the Real World] by Matt Pettineo
+* https://mynameismjp.wordpress.com/2018/12/09/breaking-down-barriers-part-6-experimenting-with-overlap-and-preemption/[Breaking Down Barriers - Part 6: Experimenting with Overlap and Preemption] by Matt Pettineo
+* https://gpuopen.com/download/gdc-2019-agtd5-breaking-down-barriers.pdf[Breaking Down Barriers: An Intro to GPU Synchronization] by Matt Pettineo (GDC 2019)
+* https://anteru.net/blog/2018/intro-to-compute-shaders/index.html[Introduction to compute shaders] by Matthäus G. Chajdas
+* https://anteru.net/blog/2018/more-compute-shaders/index.html[More compute shaders] by Matthäus G. Chajdas
+* https://anteru.net/blog/2018/even-more-compute-shaders/index.html[Even more compute shaders] by Matthäus G. Chajdas
+* https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-1/[Intro to GPU Scalarization: Part 1] by Francesco Cifariello Ciardi
+* https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-2-scalarize-all-the-lights/[Intro to GPU Scalarization: Part 2 - Scalarize All the Lights] by Francesco Cifariello Ciardi
+* https://gpuopen.com/learn/optimizing-gpu-occupancy-resource-usage-large-thread-groups/[Optimizing GPU occupancy and resource usage with large thread groups] by Sebastian Aaltonen
+* https://interplayoflight.wordpress.com/2020/11/11/what-is-shader-occupancy-and-why-do-we-care-about-it/[What is shader occupancy and why do we care about it?] by Kostas Anagnostou (2020)
+* https://medium.com/@marehtcone/compute-shader-wave-intrinsics-tricks-e237ffb159ef[Compute shader wave intrinsics tricks] by Angry Tomato (2024)
+
+==== Shading
+* http://newq.net/publications/more/s2015-many-lights-course[Real-Time Many-Light Management and Shadows with Clustered Shading] a SIGGRAPH 2015 Course
+* http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf[Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)] by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo
+* https://therealmjp.github.io/posts/sss-intro/[An Introduction To Real-Time Subsurface Scattering] by Matt Pettineo
+* http://jcgt.org/published/0002/02/04/[The Visibility Buffer: A Cache-Friendly Approach to Deferred Shading] by Christopher A. Burns and Warren A. Hunt (Intel)
+* https://www.aortiz.me/2018/12/21/CG.html[A Primer On Efficient Rendering Algorithms & Clustered Shading] by Ángel Ortiz (2018)
+* https://takahiroharada.wordpress.com/wp-content/uploads/2015/04/forward_plus.pdf[Forward+: Bringing Deferred Lighting to the Next Level] by AMD (2012)
+* https://advances.realtimerendering.com/s2016/Siggraph2016_idTech6.pdf[The Devil Is In The Details - id Tech 666] by Tiago Sousa and Jean Geffroy (SIGGRAPH 2016)
+
+==== Shadows
+* https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping[Shadow Mapping] from Learn OpenGL
+* https://www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-mapping/[Tutorial 16 : Shadow mapping] from opengl-tutorial.org
+* https://ogldev.org/www/tutorial49/tutorial49.html[Tutorial 49: Cascaded Shadow Mapping] from ogldev.org
+* https://learn.microsoft.com/en-us/windows/win32/dxtecharts/cascaded-shadow-maps[Cascaded Shadow Maps] from Microsoft Learn
+
+==== Global Illumination
+* https://www.ea.com/frostbite/news/precomputed-global-illumination-in-frostbite[Precomputed Global Illumination in Frostbite] by Yuriy O'Donnell at GDC 2018
+* https://www.ea.com/frostbite/news/real-time-raytracing-for-interactive-global-illumination-workflows-in-frostbite[Real-time Raytracing for Interactive Global Illumination Workflows in Frostbite] by Sébastien Hillaire at GDC 2018
+* https://morgan3d.github.io/articles/2019-04-01-ddgi/[Dynamic Diffuse Global Illumination] by Morgan McGuire (2019)
+
+==== Physically Based Rendering
+* https://blog.selfshadow.com/publications/s2012-shading-course/[SIGGRAPH 2012 Course: Practical Physically Based Shading in Film and Game Production]
+* https://blog.selfshadow.com/publications/s2013-shading-course/[SIGGRAPH 2013 Course: Physically Based Shading in Theory and Practice]
+* http://blog.selfshadow.com/publications/s2016-shading-course/[SIGGRAPH 2016 Course: Physically Based Shading in Theory and Practice]
+* https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf[Moving Frostbite to Physically Based Rendering 3.0]
+* https://google.github.io/filament/Filament.html[Physically Based Rendering in Filament]
+* https://graphics.pixar.com/library/PhysicallyBasedLighting/[Physically Based Lighting at Pixar]
+* https://eheitzresearch.wordpress.com/415-2/[Real-Time Polygonal-Light Shading with Linearly Transformed Cosines]
+* Learn OpenGL: PBR https://learnopengl.com/PBR/Theory[Theory], https://learnopengl.com/PBR/Lighting[Lighting], https://learnopengl.com/PBR/IBL/Diffuse-irradiance[Diffuse irradiance], https://learnopengl.com/PBR/IBL/Specular-IBL[Specular IBL]
+* http://lousodrome.net/blog/light/2020/01/04/physically-based-rendering-references-at-the-end-of-2019/[Physically based shading references, at the end of 2019]
+* http://www.reedbeta.com/blog/hows-the-ndf-really-defined/[How Is The NDF Really Defined?]
+* The PBR Guide by Allegorithmic: https://academy.substance3d.com/courses/the-pbr-guide-part-1[Part 1], https://academy.substance3d.com/courses/the-pbr-guide-part-2[Part 2]
+* https://www.jordanstevenstechart.com/physically-based-rendering[Physically Based Rendering Algorithms: A Comprehensive Study In Unity3D]
+
+==== GPU-Driven Rendering
+* https://advances.realtimerendering.com/s2015/aaltonenhaar_siggraph2015_combined_final_footer_220dpi.pdf[GPU-Driven Rendering Pipelines] by Sebastian Aaltonen (SIGGRAPH 2015)
+* https://advances.realtimerendering.com/s2017/2017_Sig_Improved_Culling_final.pdf[Improved Culling for Tiled and Clustered Rendering] by Michal Drobot (SIGGRAPH 2017)
+* https://blog.traverseresearch.nl/creating-a-directed-acyclic-graph-from-a-mesh-1329e57286e5[Creating a Directed Acyclic Graph from a Mesh] by Sylvester Hesp (2023)
+
+==== Various Topics
+
+* https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92[The Elusive Frame Timing] by Alen Ladavac
+* http://www.joshbarczak.com/blog/?p=667[Why Geometry Shaders Are Slow (Unless you’re Intel)] by Joshua Barczak
+* https://www.elopezr.com/temporal-aa-and-the-quest-for-the-holy-trail/[Temporal AA and the Quest for the Holy Trail] by Emilio López
+* https://bgolus.medium.com/anti-aliased-alpha-test-the-esoteric-alpha-to-coverage-8b177335ae4f[Anti-aliased Alpha Test: The Esoteric Alpha To Coverage] by Ben Golus
+* (https://developer.download.nvidia.com/video/gputechconf/gtc/2019/presentation/s9985-exploring-ray-traced-future-in-metro-exodus.pdf)[Exploring the Ray Traced Future in 'Metro Exodus' (PDF)] https://www.gdcvault.com/play/1026159/Exploring-the-Ray-Traced-Future[(GDC Vault video)] by 4A Games (2019)
+
+==== Vulkan
+* https://renderdoc.org/vulkan-in-30-minutes.html[Vulkan in 30 minutes] by Baldur Karlsson
+* https://vulkan-tutorial.com/[Vulkan Tutorial]
+* https://github.com/KhronosGroup/Vulkan-Samples[Vulkan Samples] on GitHub
+* http://gpuopen.com/vulkan-renderpasses/[Vulkan Renderpasses] on GPUOpen
+* http://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/[Yet another blog explaining Vulkan synchronization] by Hans-Kristian Arntzen
+* https://zeux.io/2020/02/27/writing-an-efficient-vulkan-renderer/[Writing an efficient Vulkan renderer] by Arseny Kapoulkine
+* https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_getting_started_on_mobile_and_best_practices_for_arm_gpus.pdf[Getting started on mobile and
+Best practices for Arm GPUs (PDF)] by Pete Harris (ARM)
+* https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_battle_tested_optimisations_for_mobile_v2.pdf[Battle-tested Optimisations for Mobile (PDF)] by Ralph Potter (Samsung)
+* https://developer.samsung.com/sdp/blog/en-us/2019/08/05/reboot-recap-seriously-explicit-lessons-in-vulkan[Some Seriously Explicit Lessons in Vulkan (Video)] by Croteam and Samsung at Reboot 2019
+
+==== Older Resources
+* http://kayru.org/articles/deferred-stencil/[Rendering deferred lights using Stencil culling algorithm] by Yuriy O'Donnell
+* https://pierremezieres.github.io/site-co-master/references/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen
+* http://www.cescg.org/CESCG-2006/papers/TUBudapest-Premecz-Matyas.pdf[Iterative Parallax Mapping with Slope Information (PDF)] by Mátyás Premecz
+* https://www.gamedev.net/resources/_/technical/graphics-programming-and-theory/a-simple-and-practical-approach-to-ssao-r2753[A Simple and Practical Approach to SSAO] by José María Méndez
+* http://amd-dev.wpengine.netdna-cdn.com/wordpress/media/2012/10/Scheuermann_DepthOfField.pdf[Advanced Depth of Field (PDF)] by Thorsten Scheuermann
+* http://realtimecollisiondetection.net/blog/?p=86[Order your graphics draw calls around!] from the Real-Time Collision Detection blog
+* http://www.slideshare.net/CassEveritt/approaching-zero-driver-overhead[Approaching Zero Driver Overhead in OpenGL (PDF)] http://gdcvault.com/play/1020791/[(GDC Vault video)], persistent mapping
+* https://mrl.cs.vsb.cz/people/gaura/agu/05-JP_id_Tech_5_Challenges.pdf[id Tech 5 Challanges - From Texture Virtualization to Massive Parallelization (PDF)] by J.M.P. van Wavewer (id Software) (virtual texturing, sparse resources, parallel job system)
+* http://media.steampowered.com/apps/steamdevdays/slides/beyondporting.pdf[Beyond Porting (PDF)] https://www.youtube.com/watch?v=-bCeNzgiJ8I[(Steam Dev Days video)] by Cass Everitt and John McDonald (NVIDIA) (persistent mapping, texture arrays, sparse and bindless textures)
+* https://www.gamedevs.org/uploads/culling-the-battlefield-battlefield3.pdf[Culling the Battlefield] by Daniel Collin (GDC 2011)
+
+==== Graphics Studies of Games
+* http://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/[Deus Ex: Human Revolution - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2015/06/23/supreme-commander-graphics-study/[Supreme Commander - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/[GTA V - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges
+* http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges
+* https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html[DOOM Eternal - Graphics Study] by Simon Coenen
+* http://c0de517e.blogspot.com/2020/12/hallucinations-re-rendering-of.html[Hallucinations re: the rendering of Cyberpunk 2077] by Angelo Pesce
+* http://www.elopezr.com/castlevania-lords-of-shadow-2-graphics-study/[The Rendering of Castlevania Lords of Shadow 2] by Emilio López
+* http://www.elopezr.com/the-rendering-of-middle-earth-shadow-of-mordor/[The Rendering of Middle Earth: Shadow of Mordor] by Emilio López
+* http://www.elopezr.com/the-rendering-of-rise-of-the-tomb-raider/[The Rendering of Rise of the Tomb Raider] by Emilio López
+* http://www.elopezr.com/the-rendering-of-jurassic-world-evolution/[The Rendering of Jurassic World: Evolution] by Emilio López
+* http://www.elopezr.com/the-rendering-of-mafia-definitive-edition/[The Rendering of Mafia: Definitive Edition] by Emilio López
+* https://www.mamoniem.com/behind-the-pretty-frames-god-of-war/[Behind the Pretty Frames: God of War] by Muhammad A. Moniem
+* https://www.mamoniem.com/behind-the-pretty-frames-elden-ring/[Behind the Pretty Frames: Elden Ring] by Muhammad A. Moniem
+* https://www.mamoniem.com/behind-the-pretty-frames-resident-evil/[Behind the Pretty Frames: Resident Evil] by Muhammad A. Moniem
+* https://www.mamoniem.com/behind-the-pretty-frames-diablo-iv/[Behind the Pretty Frames: Diablo IV] by Muhammad A. Moniem
+* https://acko.net/blog/teardown-frame-teardown/[Teardown Frame Teardown: Rendering analysis] by Steven "Acko"
+* https://www.froyok.fr/blog/2024-01-breakdown-syndicate/[Breakdown: Syndicate (2012) - The greasy bloom finally demystified] by Léna "Froyok" Piquet
+* https://www.mamoniem.com/behind-the-pretty-frames-detroit-become-human/[Behind the Pretty Frames: Detroit Become Human] by Muhammad A. Moniem
+* https://blog.thomaspoulet.fr/posts/anno-1800-frame-analysis/[Anno 1800: Frame Analysis] by Thomas Poulet
+
+==== Desktop GPUs Architecture
+* https://courses.cs.washington.edu/courses/cse558/11wi/lectures/05_gpuArchShaderCores_BPS_2011.pdf[From Shader Code to a Teraflop: How GPU Shader Cores Work (PDF)] by Kayvon Fatahalian (SIGGRAPH 2010)
+* https://fileadmin.cs.lth.se/graphics/tmp/jrk/scheduling.pdf[Keeping Many Cores Busy: Scheduling the Graphics Pipeline] by Jonathan Ragan-Kelley (2010)
+* https://courses.cs.washington.edu/courses/cse558/11wi/lectures/08-GPU-architecture-II_BPS-2011.pdf[Scheduling the Graphics Pipeline (PDF)] by Jonathan Ragan-Kelley (SIGGRAPH 2011)
+* https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf[Triangles Are Precious - Let's Treat Them With Care (PDF)] by Dominik Baumeister (AMD)
+* https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/[A trip through the Graphics Pipeline 2011: Index] by Fabian "ryg" Giesen
+* https://vksegfault.github.io/posts/gentle-intro-gpu-inner-workings/[Gentle introduction to GPUs inner workings] by Adrian Jurczak
+
+===== Nvidia GeForce
+* https://www.academia.edu/28633432/NVIDIA_Tesla_A_Unified_Graphics_and_Computing_Architecture[NVIDIA Tesla: A Unified Graphics and Computing Architecture] from IEEE Micro, March-April 2008
+* https://fabiensanglard.net/cuda/[A History of Nvidia Stream Multiprocessor] by Fabien Sanglard
+* https://fabiensanglard.net/cuda/fermi-the_first_complete_gpu_architecture.pdf[Fermi: The First Complete GPU Computing Architecture] by Peter N. Glaskowsky
+* https://fabiensanglard.net/cuda/Fermi_Compute_Architecture_Whitepaper.pdf[Fermi (GF100) whitepaper]
+* https://fabiensanglard.net/cuda/nvidia-gtx-680.pdf[Kepler (GK104) whitepaper]
+* https://fabiensanglard.net/cuda/GeForce-GTX-750-Ti-Whitepaper.pdf[Maxwell Gen1 (GM107) whitepaper]
+* https://fabiensanglard.net/cuda/GeForce_GTX_980_Whitepaper.pdf[Maxwell Gen2 (GM200) whitepaper]
+* https://fabiensanglard.net/cuda/GeForce_GTX_1080_Whitepaper.pdf[Pascal (GP102) whitepaper]
+* https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf[Volta (V100) whitepaper]
+* https://fabiensanglard.net/cuda/Turing-Architecture-Whitepaper.pdf[Turing (TU102) whitepaper]
+
+===== AMD Radeon
+* https://gpuopen.com/discovering-rdna/[Discovering the structure of RDNA]
+* https://gpuopen.com/compute-product/amd-rdna-1-0-instruction-set-architecture/[AMD RDNA 1.0 Instruction Set Architecture]
+* http://gpuopen.com/compute-product/amd-gcn3-isa-architecture-manual/[AMD GCN3 ISA Architecture Manual]
+
+==== Mobile GPUs Architecture
 The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Purnomo is a must-have.
 
 * http://www.seas.upenn.edu/~pcozzi/OpenGLInsights/OpenGLInsights-TileBasedArchitectures.pdf[Performance Tuning for Tile-Based Architectures (PDF)], from chapter 23 of the "OpenGL Insights" book
@@ -305,7 +461,7 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 ** https://www.community.arm.com/graphics/b/blog/posts/the-mali-gpu-an-abstract-machine-part-4---the-bifrost-shader-core[Part 4 - The Bifrost Shader Core]
 * https://www.community.arm.com/graphics/b/blog/posts/killing-pixels---a-new-optimization-for-shading-on-arm-mali-gpus[Killing Pixels - A New Optimization for Shading on ARM Mali GPUs] (Forward Pixel Kill)
 * https://www.community.arm.com/graphics/b/blog/posts/how-low-can-you-go-building-low-power-low-bandwidth-arm-mali-gpus[How low can you go? Building low-power, low-bandwidth ARM Mali GPUs] (Transaction elimination)
-* Mali Performance
+* Mali Performance series
 ** https://www.community.arm.com/graphics/b/blog/posts/mali-performance-1-checking-the-pipeline[1: Checking the Pipeline]
 ** https://www.community.arm.com/graphics/b/blog/posts/mali-performance-2-how-to-correctly-handle-framebuffers[2: How to Correctly Handle Framebuffers]
 ** https://www.community.arm.com/graphics/b/blog/posts/mali-performance-3-is-egl_5f00_buffer_5f00_preserved-a-good-thing[3: Is `EGL_BUFFER_PRESERVED` a good thing?]
@@ -340,129 +496,6 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * https://developer.nvidia.com/embedded/tegra-4-reference[Tegra 4 Reference]
 * https://developer.nvidia.com/embedded/tegra-k1-reference[Tegra K1 Reference]
 * http://developer.download.nvidia.com/assets/mobile/files/tegra_gles2_development.pdf[OpenGL ES 2.0 Development for the Tegra Platform (PDF)]
-
-==== Desktop GPUs architecture
-* https://courses.cs.washington.edu/courses/cse558/11wi/lectures/05_gpuArchShaderCores_BPS_2011.pdf[From Shader Code to a Teraflop: How GPU Shader Cores Work (PDF)] by Kayvon Fatahalian (SIGGRAPH 2010)
-* https://courses.cs.washington.edu/courses/cse558/11wi/lectures/08-GPU-architecture-II_BPS-2011.pdf[Scheduling the Graphics Pipeline (PDF)] by Jonathan Ragan-Kelley (SIGGRAPH 2011)
-* https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf[Triangles Are Precious - Let's Treat Them With Care (PDF)] by Dominik Baumeister (AMD)
-* https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/[A trip through the Graphics Pipeline 2011: Index] by Fabian "ryg" Giesen
-* https://vksegfault.github.io/posts/gentle-intro-gpu-inner-workings/[Gentle introduction to GPUs inner workings] by Adrian Jurczak
-
-===== Nvidia GeForce
-* https://www.academia.edu/28633432/NVIDIA_Tesla_A_Unified_Graphics_and_Computing_Architecture[NVIDIA Tesla: A Unified Graphics and Computing Architecture] from IEEE Micro, March-April 2008
-* https://fabiensanglard.net/cuda/[A History of Nvidia Stream Multiprocessor] by Fabien Sanglard
-* https://fabiensanglard.net/cuda/fermi-the_first_complete_gpu_architecture.pdf[Fermi: The First Complete GPU Computing Architecture] by Peter N. Glaskowsky
-* https://fabiensanglard.net/cuda/Fermi_Compute_Architecture_Whitepaper.pdf[Fermi (GF100) whitepaper]
-* https://fabiensanglard.net/cuda/nvidia-gtx-680.pdf[Kepler (GK104) whitepaper]
-* https://fabiensanglard.net/cuda/GeForce-GTX-750-Ti-Whitepaper.pdf[Maxwell Gen1 (GM107) whitepaper]
-* https://fabiensanglard.net/cuda/GeForce_GTX_980_Whitepaper.pdf[Maxwell Gen2 (GM200) whitepaper]
-* https://fabiensanglard.net/cuda/GeForce_GTX_1080_Whitepaper.pdf[Pascal (GP102) whitepaper]
-* https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf[Volta (V100) whitepaper]
-* https://fabiensanglard.net/cuda/Turing-Architecture-Whitepaper.pdf[Turing (TU102) whitepaper]
-
-===== AMD Radeon
-* https://gpuopen.com/discovering-rdna/[Discovering the structure of RDNA]
-* https://gpuopen.com/compute-product/amd-rdna-1-0-instruction-set-architecture/[AMD RDNA 1.0 Instruction Set Architecture]
-* http://gpuopen.com/compute-product/amd-gcn3-isa-architecture-manual/[AMD GCN3 ISA Architecture Manual]
-
-==== Graphics techniques
-* http://advances.realtimerendering.com/[Advances in Real-Time Rendering in 3D Graphics and Games]
-* http://newq.net/publications/more/s2015-many-lights-course[Real-Time Many-Light Management and Shadows with Clustered Shading] a SIGGRAPH 2015 Course
-* http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf[Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)] by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo
-* https://therealmjp.github.io/posts/sss-intro/[An Introduction To Real-Time Subsurface Scattering] by Matt Pettineo
-* https://www.ea.com/frostbite/news/precomputed-global-illumination-in-frostbite[Precomputed Global Illumination in Frostbite] by Yuriy O'Donnell at GDC 2018
-* https://www.ea.com/frostbite/news/real-time-raytracing-for-interactive-global-illumination-workflows-in-frostbite[Real-time Raytracing for Interactive Global Illumination Workflows in Frostbite] by Sébastien Hillaire at GDC 2018
-* http://jcgt.org/published/0002/02/04/[The Visibility Buffer: A Cache-Friendly Approach to Deferred Shading] by Christopher A. Burns and Warren A. Hunt (Intel)
-* https://bgolus.medium.com/anti-aliased-alpha-test-the-esoteric-alpha-to-coverage-8b177335ae4f[Anti-aliased Alpha Test: The Esoteric Alpha To Coverage] by Ben Golus
-
-===== Physically Based Rendering
-* https://blog.selfshadow.com/publications/s2012-shading-course/[SIGGRAPH 2012 Course: Practical Physically Based Shading in Film and Game Production]
-* https://blog.selfshadow.com/publications/s2013-shading-course/[SIGGRAPH 2013 Course: Physically Based Shading in Theory and Practice]
-* http://blog.selfshadow.com/publications/s2016-shading-course/[SIGGRAPH 2016 Course: Physically Based Shading in Theory and Practice]
-* https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf[Moving Frostbite to Physically Based Rendering 3.0]
-* https://google.github.io/filament/Filament.html[Physically Based Rendering in Filament]
-* https://graphics.pixar.com/library/PhysicallyBasedLighting/[Physically Based Lighting at Pixar]
-* https://eheitzresearch.wordpress.com/415-2/[Real-Time Polygonal-Light Shading with Linearly Transformed Cosines]
-* Learn OpenGL: PBR https://learnopengl.com/PBR/Theory[Theory], https://learnopengl.com/PBR/Lighting[Lighting], https://learnopengl.com/PBR/IBL/Diffuse-irradiance[Diffuse irradiance], https://learnopengl.com/PBR/IBL/Specular-IBL[Specular IBL]
-* http://lousodrome.net/blog/light/2020/01/04/physically-based-rendering-references-at-the-end-of-2019/[Physically based shading references, at the end of 2019]
-* http://www.reedbeta.com/blog/hows-the-ndf-really-defined/[How Is The NDF Really Defined?]
-* The PBR Guide by Allegorithmic: https://academy.substance3d.com/courses/the-pbr-guide-part-1[Part 1], https://academy.substance3d.com/courses/the-pbr-guide-part-2[Part 2]
-* https://www.jordanstevenstechart.com/physically-based-rendering[Physically Based Rendering Algorithms: A Comprehensive Study In Unity3D]
-
-===== Graphics Studies of Games
-* http://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/[Deus Ex: Human Revolution - Graphics Study] by Adrian Courreges
-* http://www.adriancourreges.com/blog/2015/06/23/supreme-commander-graphics-study/[Supreme Commander - Graphics Study] by Adrian Courreges
-* http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/[GTA V - Graphics Study] by Adrian Courreges
-* http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges
-* http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges
-* https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html[DOOM Eternal - Graphics Study] by Simon Coenen
-* http://c0de517e.blogspot.com/2020/12/hallucinations-re-rendering-of.html[Hallucinations re: the rendering of Cyberpunk 2077] by Angelo Pesce
-* http://www.elopezr.com/castlevania-lords-of-shadow-2-graphics-study/[The Rendering of Castlevania Lords of Shadow 2] by Emilio López
-* http://www.elopezr.com/the-rendering-of-middle-earth-shadow-of-mordor/[The Rendering of Middle Earth: Shadow of Mordor] by Emilio López
-* http://www.elopezr.com/the-rendering-of-rise-of-the-tomb-raider/[The Rendering of Rise of the Tomb Raider] by Emilio López
-* http://www.elopezr.com/the-rendering-of-jurassic-world-evolution/[The Rendering of Jurassic World: Evolution] by Emilio López
-* http://www.elopezr.com/the-rendering-of-mafia-definitive-edition/[The Rendering of Mafia: Definitive Edition] by Emilio López
-* https://www.mamoniem.com/behind-the-pretty-frames-god-of-war/[Behind the Pretty Frames: God of War] by Muhammad A. Moniem
-* https://www.mamoniem.com/behind-the-pretty-frames-elden-ring/[Behind the Pretty Frames: Elden Ring] by Muhammad A. Moniem
-* https://www.mamoniem.com/behind-the-pretty-frames-resident-evil/[Behind the Pretty Frames: Resident Evil] by Muhammad A. Moniem
-* https://www.mamoniem.com/behind-the-pretty-frames-diablo-iv/[Behind the Pretty Frames: Diablo IV] by Muhammad A. Moniem
-* https://acko.net/blog/teardown-frame-teardown/[Teardown Frame Teardown: Rendering analysis] by Steven "Acko"
-* https://www.froyok.fr/blog/2024-01-breakdown-syndicate/[Breakdown: Syndicate (2012) - The greasy bloom finally demystified] by Léna "Froyok" Piquet
-* https://www.mamoniem.com/behind-the-pretty-frames-detroit-become-human/[Behind the Pretty Frames: Detroit Become Human] by Muhammad A. Moniem
-* https://blog.thomaspoulet.fr/posts/anno-1800-frame-analysis/[Anno 1800: Frame Analysis] by Thomas Poulet
-
-===== Older resources
-* http://www.punkuser.net/vsm/vsm_paper.pdf[Variance Shadow Maps (PDF)] by William Donnelly and Andrew Lauritzen
-* http://www.cescg.org/CESCG-2006/papers/TUBudapest-Premecz-Matyas.pdf[Iterative Parallax Mapping with Slope Information (PDF)] by Mátyás Premecz
-* https://www.gamedev.net/resources/_/technical/graphics-programming-and-theory/a-simple-and-practical-approach-to-ssao-r2753[A Simple and Practical Approach to SSAO] by José María Méndez
-* http://amd-dev.wpengine.netdna-cdn.com/wordpress/media/2012/10/Scheuermann_DepthOfField.pdf[Advanced Depth of Field (PDF)] by Thorsten Scheuermann
-* http://realtimecollisiondetection.net/blog/?p=86[Order your graphics draw calls around!] from the Real-Time Collision Detection blog
-
-==== Vulkan
-* https://renderdoc.org/vulkan-in-30-minutes.html[Vulkan in 30 minutes] by Baldur Karlsson
-* https://vulkan-tutorial.com/[Vulkan Tutorial]
-* https://github.com/KhronosGroup/Vulkan-Samples[Vulkan Samples] on GitHub
-* http://gpuopen.com/vulkan-renderpasses/[Vulkan Renderpasses] on GPUOpen
-* http://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/[Yet another blog explaining Vulkan synchronization] by Hans-Kristian Arntzen
-* https://zeux.io/2020/02/27/writing-an-efficient-vulkan-renderer/[Writing an efficient Vulkan renderer] by Arseny Kapoulkine
-* https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_getting_started_on_mobile_and_best_practices_for_arm_gpus.pdf[Getting started on mobile and
-Best practices for Arm GPUs (PDF)] by Pete Harris (ARM)
-* https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_battle_tested_optimisations_for_mobile_v2.pdf[Battle-tested Optimisations for Mobile (PDF)] by Ralph Potter (Samsung)
-* https://developer.samsung.com/sdp/blog/en-us/2019/08/05/reboot-recap-seriously-explicit-lessons-in-vulkan[Some Seriously Explicit Lessons in Vulkan (Video)] by Croteam and Samsung at Reboot 2019
-
-==== More topics
-* https://www.opengl.org/pipeline/article/vol003_6/[GLSL: Center or Centroid? (Or When Shaders Attack!)] by Bill Licea-Kane (AMD)
-* https://www.cs.cornell.edu/courses/cs4620/2008fa/lectures/texture-filtering.pdf[Texture filtering (PDF)] (Mipmap selection with derivatives) by Steve Marschner
-* https://computergraphics.stackexchange.com/a/5560[How are mipmap levels computed in Metal?] replied by Nathan Reed
-* http://www.3dkingdoms.com/weekly/weekly.php?a=2[Reflecting a Vector] (Vector reflection with vector projection and dot product)
-* https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process[Gram-Schmidt orthogonalization] with vector projection and dot product
-* http://s09.idav.ucdavis.edu/talks/05-JP_id_Tech_5_Challenges.pdf[id Tech 5 Challanges - From Texture Virtualization to Massive Parallelization (PDF)] by J.M.P. van Wavewer (id Software) (virtual texturing, sparse resources, parallel job system)
-* http://www.slideshare.net/CassEveritt/approaching-zero-driver-overhead[Approaching Zero Driver Overhead in OpenGL (PDF)] http://gdcvault.com/play/1020791/[(GDC Vault video)], persistent mapping
-* http://media.steampowered.com/apps/steamdevdays/slides/beyondporting.pdf[Beyond Porting (PDF)] https://www.youtube.com/watch?v=-bCeNzgiJ8I[(Steam Dev Days video)] by Cass Everitt and John McDonald (NVIDIA) (persistent mapping, texture arrays, sparse and bindless textures)
-* http://kayru.org/articles/deferred-stencil/[Rendering deferred lights using Stencil culling algorithm] by Yuriy O'Donnell
-* https://developer.nvidia.com/content/depth-precision-visualized[Depth Precision Visualized] by Nathan Reed (NVIDIA)
-* https://gamedev.stackexchange.com/questions/130888/what-are-screen-space-derivatives-and-when-would-i-use-them/130933#130933[What are screen space derivatives and when would I use them?]
-* https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/gl_HelperInvocation.xhtml[gl_HelperInvocation] - OpenGL 4 Reference Pages
-* https://developer.nvidia.com/content/life-triangle-nvidias-logical-pipeline[Life of a triangle - NVIDIA's logical pipeline] by Christoph Kubisch
-* 1 - https://mynameismjp.wordpress.com/2012/10/15/signal-processing-primer/[Signal Processing Primer] by Matt Pettineo
-* 2 - https://mynameismjp.wordpress.com/2012/10/21/applying-sampling-theory-to-real-time-graphics/[Applying Sampling Theory To Real-Time Graphics] by Matt Pettineo
-* 3 - https://mynameismjp.wordpress.com/2012/10/24/msaa-overview/[A Quick Overview of MSAA] by Matt Pettineo
-* 4 - https://mynameismjp.wordpress.com/2012/10/28/msaa-resolve-filters/[Experimenting With Reconstruction Filters for MSAA Resolve] by Matt Pettineo
-* https://mynameismjp.wordpress.com/2018/03/06/breaking-down-barriers-part-1-whats-a-barrier/[Breaking Down Barriers - Part 1: What's a Barrier?] by Matt Pettineo
-* https://mynameismjp.wordpress.com/2018/04/01/breaking-down-barriers-part-2-synchronizing-gpu-threads/[Breaking Down Barriers - Part 2: Synchronizing GPU Threads] by Matt Pettineo
-* https://mynameismjp.wordpress.com/2018/06/17/breaking-down-barriers-part-3-multiple-command-processors/[Breaking Down Barriers - Part 3: Multiple Command Processors] by Matt Pettineo
-* https://mynameismjp.wordpress.com/2018/07/03/breaking-down-barriers-part-4-gpu-preemption/[Breaking Down Barriers - Part 4: GPU Preemption] by Matt Pettineo
-* https://mynameismjp.wordpress.com/2018/09/08/breaking-down-barriers-part-5-back-to-the-real-world/[Breaking Down Barriers - Part 5: Back to the Real World] by Matt Pettineo
-* https://mynameismjp.wordpress.com/2018/12/09/breaking-down-barriers-part-6-experimenting-with-overlap-and-preemption/[Breaking Down Barriers - Part 6: Experimenting with Overlap and Preemption] by Matt Pettineo
-* https://anteru.net/blog/2018/intro-to-compute-shaders/index.html[Introduction to compute shaders] by Matthäus G. Chajdas
-* https://anteru.net/blog/2018/more-compute-shaders/index.html[More compute shaders] by Matthäus G. Chajdas
-* https://anteru.net/blog/2018/even-more-compute-shaders/index.html[Even more compute shaders] by Matthäus G. Chajdas
-* https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92[The Elusive Frame Timing] by Alen Ladavac
-* https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-1/[Intro to GPU Scalarization: Part 1] by Francesco Cifariello Ciardi
-* https://flashypixels.wordpress.com/2018/11/10/intro-to-gpu-scalarization-part-2-scalarize-all-the-lights/[Intro to GPU Scalarization: Part 2 - Scalarize All the Lights] by Francesco Cifariello Ciardi
-* http://www.joshbarczak.com/blog/?p=667[Why Geometry Shaders Are Slow (Unless you’re Intel)] by Joshua Barczak
-* https://gpuopen.com/learn/optimizing-gpu-occupancy-resource-usage-large-thread-groups/[Optimizing GPU occupancy and resource usage with large thread groups] by Sebastian Aaltonen
-* https://www.elopezr.com/temporal-aa-and-the-quest-for-the-holy-trail/[Temporal AA and the Quest for the Holy Trail] by Emilio López
 
 === Data Oriented Design
 * http://harmful.cat-v.org/software/OO_programming/_pdf/Pitfalls_of_Object_Oriented_Programming_GCAP_09.pdf[Pitfalls of Object Oriented Programming (PDF)] by Tony Albrecht (SCEE)
