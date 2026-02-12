@@ -474,6 +474,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_gpu_driven_rendering">GPU-Driven Rendering</a></li>
 <li><a href="#_various_topics">Various Topics</a></li>
 <li><a href="#_vulkan">Vulkan</a></li>
+<li><a href="#_direct3d_12">Direct3D 12</a></li>
+<li><a href="#_vulkan_direct3d_12">Vulkan &amp; Direct3D 12</a></li>
 <li><a href="#_older_resources">Older Resources</a></li>
 <li><a href="#_graphics_studies_of_games">Graphics Studies of Games</a></li>
 <li><a href="#_desktop_gpus_architecture">Desktop GPUs Architecture</a></li>
@@ -986,7 +988,7 @@ The numbers in round brackets are a reference inside the 29/07/2011 Marshall Cli
 <p>Pure virtual member functions (<a href="https://isocpp.org/wiki/faq/abcs#pure-virtual-fns">22.4</a>) (can have an <a href="https://stackoverflow.com/questions/2089083/pure-virtual-function-with-implementation">implementation</a>), abstract base classes (<a href="https://isocpp.org/wiki/faq/abcs">Section 22</a>)</p>
 </li>
 <li>
-<p>Covariant Return Types and "virtual constructor" (<a href="https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors">20.8</a>, <a href="https://isocpp.org/wiki/faq/abcs#copy-of-abc-via-clone">22.5</a>, <a href="https://www.lwithers.me.uk/articles/covariant.html">HOWTO: Covariant Return Types in C++</a>)</p>
+<p>Covariant Return Types and "virtual constructor" (<a href="https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors">20.8</a>, <a href="https://isocpp.org/wiki/faq/abcs#copy-of-abc-via-clone">22.5</a>, <a href="https://web.archive.org/web/20221007133759/https://www.lwithers.me.uk/articles/covariant.html">HOWTO: Covariant Return Types in C++</a>)</p>
 </li>
 <li>
 <p>Object slicing (<a href="https://isocpp.org/wiki/faq/proper-inheritance#array-derived-vs-base">21.4</a>, <a href="https://isocpp.org/wiki/faq/value-vs-ref-semantics#pass-by-value">31.8</a>, <a href="https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors">20.8</a>)</p>
@@ -1055,7 +1057,7 @@ Another free C++ book is <a href="https://fbb-git.gitlab.io/cppannotations/cppan
 <p><a href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of Three</a> / five / zero, <a href="https://en.wikipedia.org/wiki/Special_member_functions">special member functions</a></p>
 </li>
 <li>
-<p>Return value optimization (NRVO, RVO) (<a href="https://isocpp.org/wiki/faq/ctors#return-by-value-optimization">10.9</a>) / Copy elision (<a href="https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/">C++ Cargo Cults, RVO and Copy Elision</a>, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus09.html#l199">9.8</a> of C&#43;&#43; Annotations)</p>
+<p>Return value optimization (NRVO, RVO) (<a href="https://isocpp.org/wiki/faq/ctors#return-by-value-optimization">10.9</a>) / Copy elision (<a href="https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/">C++ Cargo Cults, RVO and Copy Elision</a>, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus09.html#l200">9.8</a> of C&#43;&#43; Annotations)</p>
 </li>
 <li>
 <p>Copy-and-swap idiom (<a href="http://stackoverflow.com/a/3279550">Why do we need the copy-and-swap idiom?</a>, <a href="https://stackoverflow.com/questions/5695548/public-friend-swap-member-function">public friend swap member function
@@ -1065,7 +1067,7 @@ Another free C++ book is <a href="https://fbb-git.gitlab.io/cppannotations/cppan
 <p><a href="http://en.cppreference.com/w/cpp/language/adl">Argument-dependant lookup</a> or <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus04.html#l75">Koenig lookup</a> (4.1.2.2 of C++ Annotations)</p>
 </li>
 <li>
-<p>Substitution Failure Is Not An Error (SFINAE) (<a href="https://isocpp.org/wiki/faq/templates#templates-vs-overloading">35.11</a>, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus21.html#l560">21.15</a> of C++ Annotations)</p>
+<p>Substitution Failure Is Not An Error (SFINAE) (<a href="https://isocpp.org/wiki/faq/templates#templates-vs-overloading">35.11</a>, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus21.html#l563">21.15</a> of C++ Annotations)</p>
 </li>
 <li>
 <p>non-dependent types and members (<a href="https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-types">35.18</a>, <a href="https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-members">35.19</a>, <a href="https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-silent-bug">35.20</a>)</p>
@@ -1092,7 +1094,7 @@ Another free C++ book is <a href="https://fbb-git.gitlab.io/cppannotations/cppan
 <p><a href="https://en.wikipedia.org/wiki/Optimizing_compiler">Optimizing compiler</a> (<a href="https://en.wikipedia.org/wiki/Tail_call">Tail call</a>, <a href="https://en.wikipedia.org/wiki/Constant_folding">Constant folding</a>, <a href="https://en.wikipedia.org/wiki/Dead_code_elimination">Dead code elimination</a>, &#8230;&#8203;)</p>
 </li>
 <li>
-<p><a href="https://en.cppreference.com/w/cpp/language/ebo">Empty base optimization</a>, <a href="http://tinf2.vub.ac.be/~dvermeir/c&#43;&#43;/emptyopt.html">The "Empty Member" C++ Optimization</a></p>
+<p><a href="https://en.cppreference.com/w/cpp/language/ebo">Empty base optimization</a>, <a href="https://www.cantrip.org/emptyopt.html">The "Empty Member" C++ Optimization</a></p>
 </li>
 </ul>
 </div>
@@ -1106,16 +1108,19 @@ Chapters and items are references to this book.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://isocpp.org/wiki/faq/cpp11-language-classes#delegating-ctor">Delegating constructors</a> (supersede <a href="https://isocpp.org/wiki/faq/ctors#init-methods">10.3</a>, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus07.html#l146">7.4.1</a> of C++ Annotations)</p>
+<p><a href="https://isocpp.org/wiki/faq/cpp11-language-classes#delegating-ctor">Delegating constructors</a> (supersede <a href="https://isocpp.org/wiki/faq/ctors#init-methods">10.3</a>, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus07.html#l147">7.4.1</a> of C++ Annotations)</p>
 </li>
 <li>
-<p>Rvalues (<a href="http://squall.cs.ntou.edu.tw/cpp/1052/rvalue-reference.pdf">C++ Rvalue References Explained</a> by Thomas Becker, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l38">3.3.2</a> and <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l39">3.3.3</a> of C&#43;&#43; Annotations)</p>
+<p>Rvalues (<a href="https://www.scribd.com/document/435369721/C-Rvalue-References-Explained-pdf">C++ Rvalue References Explained</a> by Thomas Becker, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l38">3.3.2</a> and <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l39">3.3.3</a> of C&#43;&#43; Annotations)</p>
+</li>
+<li>
+<p><a href="https://talks.petrzemek.net/Petr-Zemek_-<em>2016-07-01</em>-_Rvalue-References.pdf">Rvalue References, Move Semantics, and the Magic Thereof</a> by Petr Zemek (2016)</p>
 </li>
 <li>
 <p>Auto keyword (Chapter 2, <a href="https://isocpp.org/wiki/faq/cpp11-language#auto"><code>auto</code></a> in Super-FAQ, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l44">3.3.7</a> of C++ Annotations) and type deduction (Chapter 1)</p>
 </li>
 <li>
-<p><a href="https://stackoverflow.com/questions/3106110/what-is-move-semantics">Move semantics</a> (<a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus09.html#l190">9.7</a> of C++ Annotations), Rule of Five</p>
+<p><a href="https://stackoverflow.com/questions/3106110/what-is-move-semantics">Move semantics</a> (<a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus09.html#l191">9.7</a> of C++ Annotations), Rule of Five</p>
 </li>
 <li>
 <p>Reference collapsing (Item 28)</p>
@@ -1127,7 +1132,7 @@ Chapters and items are references to this book.</p>
 <p>Forwarding AKA universal references (<a href="https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers">Universal References in C++11</a> by Scott Meyers)</p>
 </li>
 <li>
-<p>Perfect forwarding (<a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus22.html#l590">22.5.2</a> of C++ Annotations)</p>
+<p>Perfect forwarding (<a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus22.html#l594">22.5.2</a> of C++ Annotations)</p>
 </li>
 <li>
 <p>Enum classes (Item 10, <a href="https://isocpp.org/wiki/faq/cpp11-language-types#enum-class"><code>enum class</code></a> in Super-FAQ, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l40">3.3.4</a> of C++ Annotations)</p>
@@ -1139,7 +1144,7 @@ Chapters and items are references to this book.</p>
 <p>List initialization, initializer lists (<a href="https://isocpp.org/wiki/faq/cpp11-language#init-list">Initializer lists</a> in Super-FAQ, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l41">3.3.5</a> of C++ Annotations)</p>
 </li>
 <li>
-<p>Lambdas (Chapter 6, <a href="https://isocpp.org/wiki/faq/cpp11-language#lambda">Lambdas</a> in Super-FAQ, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus11.html#l255">11.11</a> of C++ Annotations)</p>
+<p>Lambdas (Chapter 6, <a href="https://isocpp.org/wiki/faq/cpp11-language#lambda">Lambdas</a> in Super-FAQ, <a href="https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus11.html#l256">11.12</a> of C++ Annotations)</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1150,6 +1155,9 @@ Chapters and items are references to this book.</p>
 </li>
 <li>
 <p><a href="https://www.bfilipek.com/2016/11/iife-for-complex-initialization.html">IIFE for Complex Initialization</a> by Bartłomiej Filipek</p>
+</li>
+<li>
+<p><a href="https://www.learncpp.com/cpp-tutorial/ref-qualifiers/">Ref qualifiers</a></p>
 </li>
 </ul>
 </div>
@@ -1338,7 +1346,7 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 <p><a href="https://en.wikipedia.org/wiki/Branch_predictor">Branch predictor</a>, <a href="https://en.wikipedia.org/wiki/Branch_target_predictor">Branch target predictor</a></p>
 </li>
 <li>
-<p><a href="https://en.wikipedia.org/wiki/Hazard_%28computer_architecture%29">Hazard (computer architecture)</a> &#8594; (RAW, WAR, WAW data hazards, pipeline bubbling, register forwarding)</p>
+<p><a href="https://en.wikipedia.org/wiki/Hazard_%28computer_architecture%29">Hazard (computer architecture)</a> &#8594; (RAW, WAR, WAW data hazards, <a href="https://en.wikipedia.org/wiki/Pipeline_stall">pipeline stall</a>, register forwarding)</p>
 </li>
 <li>
 <p><a href="https://en.wikipedia.org/wiki/Speculative_execution">Speculative execution</a>, <a href="https://en.wikipedia.org/wiki/Instruction_prefetch">Instruction prefetch</a>, <a href="https://en.wikipedia.org/wiki/Prefetch_input_queue">Prefetch input queue</a></p>
@@ -1348,6 +1356,9 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 </li>
 <li>
 <p><a href="https://en.wikipedia.org/wiki/Cache_coherence">Cache coherence</a> (<a href="https://en.wikipedia.org/wiki/MESI_protocol">MESI protocol</a>, <a href="https://en.wikipedia.org/wiki/MOESI_protocol">MOESI protocol</a>), <a href="https://en.wikipedia.org/wiki/Bus_snooping">Bus snooping</a>, <a href="https://en.wikipedia.org/wiki/Write_combining">Write combining</a></p>
+</li>
+<li>
+<p><a href="https://www.geeksforgeeks.org/computer-organization-architecture/write-through-and-write-back-in-cache/">Write Through and Write Back in Cache</a></p>
 </li>
 <li>
 <p><a href="https://en.wikipedia.org/wiki/Clock_gating">Clock gating</a></p>
@@ -1411,7 +1422,7 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://assemblyrequired.crashworks.org/load-hit-stores-and-the-__restrict-keyword/">Load-Hit-Stores and the <code>__restrict</code> keyword</a> by Elan Ruskin</p>
+<p><a href="https://web.archive.org/web/20210415130605/http://assemblyrequired.crashworks.org/load-hit-stores-and-the-<em>restrict-keyword/">Load-Hit-Stores and the <code></em>restrict</code> keyword</a> by Elan Ruskin</p>
 </li>
 <li>
 <p><a href="http://www.gamasutra.com/view/feature/132084/sponsored_feature_common_.php">Sponsored Feature: Common Performance Issues in Game Programming</a> by Becky Heineman</p>
@@ -1556,6 +1567,9 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 <p><a href="http://jcgt.org/published/0002/02/04/">The Visibility Buffer: A Cache-Friendly Approach to Deferred Shading</a> by Christopher A. Burns and Warren A. Hunt (Intel)</p>
 </li>
 <li>
+<p><a href="http://filmicworlds.com/blog/visibility-buffer-rendering-with-material-graphs/">Visibility Buffer Rendering with Material Graphs</a> by John Hable</p>
+</li>
+<li>
 <p><a href="https://www.aortiz.me/2018/12/21/CG.html">A Primer On Efficient Rendering Algorithms &amp; Clustered Shading</a> by Ángel Ortiz (2018)</p>
 </li>
 <li>
@@ -1694,6 +1708,9 @@ One of the book you could read to learn more on the subject is "<em>Computer Arc
 <p><a href="https://vulkan-tutorial.com/">Vulkan Tutorial</a></p>
 </li>
 <li>
+<p><a href="https://www.howtovulkan.com/">How to Vulkan in 2026</a> by Sascha Willems</p>
+</li>
+<li>
 <p><a href="https://github.com/KhronosGroup/Vulkan-Samples">Vulkan Samples</a> on GitHub</p>
 </li>
 <li>
@@ -1714,6 +1731,47 @@ Best practices for Arm GPUs (PDF)</a> by Pete Harris (ARM)</p>
 </li>
 <li>
 <p><a href="https://developer.samsung.com/sdp/blog/en-us/2019/08/05/reboot-recap-seriously-explicit-lessons-in-vulkan">Some Seriously Explicit Lessons in Vulkan (Video)</a> by Croteam and Samsung at Reboot 2019</p>
+</li>
+<li>
+<p><a href="https://chunkstories.xyz/blog/a-note-on-descriptor-indexing/">A note on Descriptor Indexing</a> (2019)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_direct3d_12">Direct3D 12</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.slideshare.net/slideshow/efficient-rendering-with-directx-12-on-intel-graphics/47572150">Efficient Rendering with DirectX 12 on Intel Graphics</a> by Intel (2015)</p>
+</li>
+<li>
+<p><a href="https://gpuopen.com/download/Practical_DX12_Programming_Model_and_Hardware_Capabilities.pdf">Practical DirectX 12 - Programming Model and Hardware Capabilities</a> by AMD &amp; NVIDIA (GDC 2016)</p>
+</li>
+<li>
+<p><a href="https://alextardif.com/Bindless.html">Binding Bindlessly</a> by Alex Tardif (2021)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_vulkan_direct3d_12">Vulkan &amp; Direct3D 12</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gpuopen.com/download/GDC2017-Wave-Programming-D3D12-Vulkan.pdf">Wave Programming in D3D12 and Vulkan</a> by AMD &amp; NVIDIA (GDC 2017)</p>
+</li>
+<li>
+<p><a href="https://gpuopen.com/download/GDC2017-D3D12-And-Vulkan-Done-Right.pdf">D3D12 &amp; Vulkan Done Right</a> by AMD (GDC 2017)</p>
+</li>
+<li>
+<p><a href="http://media.gdcvault.com/gdc2018/presentations/Sawicki_Adam_Memory%20management%20in%20Vulkan.pdf">Memory Management in Vulkan and DX12</a> by Adam Sawicki (GDC 2018)</p>
+</li>
+<li>
+<p><a href="https://gpuopen.com/download/gdc-2019-agtd5-breaking-down-barriers.pdf">Breaking Down Barriers: An Intro to GPU Synchronization</a> by Matt Pettineo (GDC 2019)</p>
+</li>
+<li>
+<p><a href="https://gpuopen.com/download/Surfing_the_Wavefronts.pdf">Surfing the wave(front)s with Radeon TM GPU Profiler</a> by AMD (GDC 2019)</p>
 </li>
 </ul>
 </div>
@@ -1751,6 +1809,9 @@ Best practices for Arm GPUs (PDF)</a> by Pete Harris (ARM)</p>
 </li>
 <li>
 <p><a href="https://www.gamedevs.org/uploads/culling-the-battlefield-battlefield3.pdf">Culling the Battlefield</a> by Daniel Collin (GDC 2011)</p>
+</li>
+<li>
+<p><a href="https://ktstephano.github.io/rendering/opengl/prog_vtx_pulling">Programmable Vertex Pulling</a></p>
 </li>
 </ul>
 </div>
@@ -1827,13 +1888,10 @@ Best practices for Arm GPUs (PDF)</a> by Pete Harris (ARM)</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://courses.cs.washington.edu/courses/cse558/11wi/lectures/05_gpuArchShaderCores_BPS_2011.pdf">From Shader Code to a Teraflop: How GPU Shader Cores Work (PDF)</a> by Kayvon Fatahalian (SIGGRAPH 2010)</p>
+<p><a href="https://engineering.purdue.edu/~smidkiff/KKU/files/GPUIntro.pdf">From Shader Code to a Teraflop: How Shader Cores Work (PDF)</a> by Kayvon Fatahalian (SIGGRAPH 2009)</p>
 </li>
 <li>
 <p><a href="https://fileadmin.cs.lth.se/graphics/tmp/jrk/scheduling.pdf">Keeping Many Cores Busy: Scheduling the Graphics Pipeline</a> by Jonathan Ragan-Kelley (2010)</p>
-</li>
-<li>
-<p><a href="https://courses.cs.washington.edu/courses/cse558/11wi/lectures/08-GPU-architecture-II_BPS-2011.pdf">Scheduling the Graphics Pipeline (PDF)</a> by Jonathan Ragan-Kelley (SIGGRAPH 2011)</p>
 </li>
 <li>
 <p><a href="https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf">Triangles Are Precious - Let&#8217;s Treat Them With Care (PDF)</a> by Dominik Baumeister (AMD)</p>
@@ -1891,10 +1949,22 @@ Best practices for Arm GPUs (PDF)</a> by Pete Harris (ARM)</p>
 <p><a href="https://gpuopen.com/discovering-rdna/">Discovering the structure of RDNA</a></p>
 </li>
 <li>
-<p><a href="https://gpuopen.com/compute-product/amd-rdna-1-0-instruction-set-architecture/">AMD RDNA 1.0 Instruction Set Architecture</a></p>
+<p><a href="https://docs.amd.com/v/u/en-US/rdna4-instruction-set-architecture">AMD RDNA 4.0 Instruction Set Architecture</a> (2025)</p>
 </li>
 <li>
-<p><a href="http://gpuopen.com/compute-product/amd-gcn3-isa-architecture-manual/">AMD GCN3 ISA Architecture Manual</a></p>
+<p><a href="https://docs.amd.com/v/u/en-US/rdna3-shader-instruction-set-architecture-feb-2023_0">AMD RDNA 3.0 Instruction Set Architecture</a> (2023)</p>
+</li>
+<li>
+<p><a href="https://docs.amd.com/v/u/en-US/rdna2-shader-instruction-set-architecture">AMD RDNA 2.0 Instruction Set Architecture</a> (2020)</p>
+</li>
+<li>
+<p><a href="https://docs.amd.com/v/u/en-US/rdna-shader-instruction-set-architecture">AMD RDNA 1.0 Instruction Set Architecture</a> (2020)</p>
+</li>
+<li>
+<p><a href="https://docs.amd.com/v/u/en-US/gcn3-instruction-set-architecture">AMD GCN3 Instruction Set Architecture</a> (2016)</p>
+</li>
+<li>
+<p><a href="https://gpuopen.com/learn/understanding-gpu-context-rolls/">Understanding GPU context rolls</a></p>
 </li>
 </ul>
 </div>
