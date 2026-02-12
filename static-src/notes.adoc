@@ -139,7 +139,7 @@ The numbers in round brackets are a reference inside the 29/07/2011 Marshall Cli
 * Qualifiers: `const` (https://isocpp.org/wiki/faq/newbie#const-vs-define[29.7]) / `mutable` (https://isocpp.org/wiki/faq/const-correctness#mutable-data-members[18.13]) / https://en.cppreference.com/w/cpp/language/cv[`volatile`] / https://en.cppreference.com/w/c/language/restrict[`restrict`]
 * v-table mechanism https://isocpp.org/wiki/faq/virtual-functions#dyn-binding2[(20.4)]
 * Pure virtual member functions (https://isocpp.org/wiki/faq/abcs#pure-virtual-fns[22.4]) (can have an https://stackoverflow.com/questions/2089083/pure-virtual-function-with-implementation[implementation]), abstract base classes (https://isocpp.org/wiki/faq/abcs[Section 22])
-* Covariant Return Types and "virtual constructor" (https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors[20.8], https://isocpp.org/wiki/faq/abcs#copy-of-abc-via-clone[22.5], https://www.lwithers.me.uk/articles/covariant.html[HOWTO: Covariant Return Types in C++])
+* Covariant Return Types and "virtual constructor" (https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors[20.8], https://isocpp.org/wiki/faq/abcs#copy-of-abc-via-clone[22.5], https://web.archive.org/web/20221007133759/https://www.lwithers.me.uk/articles/covariant.html[HOWTO: Covariant Return Types in C++])
 * Object slicing (https://isocpp.org/wiki/faq/proper-inheritance#array-derived-vs-base[21.4], https://isocpp.org/wiki/faq/value-vs-ref-semantics#pass-by-value[31.8], https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors[20.8])
 * Template Method pattern and private virtuals (https://isocpp.org/wiki/faq/strange-inheritance#private-virtuals[23.4]) (http://www.gotw.ca/publications/mill18.htm[Virtuality] by Herb Sutter)
 * Private inheritance (https://isocpp.org/wiki/faq/private-inheritance#priv-inherit-like-compos[24.2], https://isocpp.org/wiki/faq/private-inheritance#priv-inherit-vs-compos[24.3]) (http://www.gotw.ca/publications/mill06.htm[Uses and Abuses of Inheritance, Part 1] by Herb Sutter)
@@ -165,11 +165,11 @@ Another free C++ book is https://fbb-git.gitlab.io/cppannotations/cppannotations
 * Hiding rule (https://isocpp.org/wiki/faq/strange-inheritance#hiding-rule[23.9], https://isocpp.org/wiki/faq/strange-inheritance#protected-virtuals[23.3]), https://stackoverflow.com/questions/4837399/c-rationale-behind-hiding-rule[C++: rationale behind hiding rule]
 * Templates (https://isocpp.org/wiki/faq/templates[Section 35])
 * https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)[Rule of Three] / five / zero, https://en.wikipedia.org/wiki/Special_member_functions[special member functions]
-* Return value optimization (NRVO, RVO) (https://isocpp.org/wiki/faq/ctors#return-by-value-optimization[10.9]) / Copy elision (https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/[C++ Cargo Cults, RVO and Copy Elision], https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus09.html#l199[9.8] of C{plus}{plus} Annotations)
+* Return value optimization (NRVO, RVO) (https://isocpp.org/wiki/faq/ctors#return-by-value-optimization[10.9]) / Copy elision (https://eatplayhate.me/2013/10/01/c-cargo-cults-rvo-and-copy-elision/[C++ Cargo Cults, RVO and Copy Elision], https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus09.html#l200[9.8] of C{plus}{plus} Annotations)
 * Copy-and-swap idiom (http://stackoverflow.com/a/3279550[Why do we need the copy-and-swap idiom?], https://stackoverflow.com/questions/5695548/public-friend-swap-member-function[public friend swap member function
 ])
 * http://en.cppreference.com/w/cpp/language/adl[Argument-dependant lookup] or https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus04.html#l75[Koenig lookup] (4.1.2.2 of C++ Annotations)
-* Substitution Failure Is Not An Error (SFINAE) (https://isocpp.org/wiki/faq/templates#templates-vs-overloading[35.11], https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus21.html#l560[21.15] of C++ Annotations)
+* Substitution Failure Is Not An Error (SFINAE) (https://isocpp.org/wiki/faq/templates#templates-vs-overloading[35.11], https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus21.html#l563[21.15] of C++ Annotations)
 * non-dependent types and members (https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-types[35.18], https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-members[35.19], https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-silent-bug[35.20])
 * Proxy template (https://isocpp.org/wiki/faq/templates#template-proxies[35.22]), in C{plus}{plus}11 you would employ the Type alias declaration with `using`
 * Type traits, concepts, tag dispatching (http://www.boost.org/community/generic_programming.html[Generic Programming Techniques])
@@ -178,27 +178,29 @@ Another free C++ book is https://fbb-git.gitlab.io/cppannotations/cppannotations
 * https://en.wikipedia.org/wiki/Maximal_munch[Maximal munch]
 * https://en.wikipedia.org/wiki/Sequence_point[Sequence point]
 * https://en.wikipedia.org/wiki/Optimizing_compiler[Optimizing compiler] (https://en.wikipedia.org/wiki/Tail_call[Tail call], https://en.wikipedia.org/wiki/Constant_folding[Constant folding], https://en.wikipedia.org/wiki/Dead_code_elimination[Dead code elimination], ...)
-* https://en.cppreference.com/w/cpp/language/ebo[Empty base optimization], http://tinf2.vub.ac.be/~dvermeir/c{plus}{plus}/emptyopt.html[The "Empty Member" C++ Optimization]
+* https://en.cppreference.com/w/cpp/language/ebo[Empty base optimization], https://www.cantrip.org/emptyopt.html[The "Empty Member" C++ Optimization]
 
 ==== C++11
 The book "_Effective Modern C++_" by Scott Meyers is a must-have.
 Chapters and items are references to this book.
 
-* https://isocpp.org/wiki/faq/cpp11-language-classes#delegating-ctor[Delegating constructors] (supersede https://isocpp.org/wiki/faq/ctors#init-methods[10.3], https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus07.html#l146[7.4.1] of C++ Annotations)
-* Rvalues (http://squall.cs.ntou.edu.tw/cpp/1052/rvalue-reference.pdf[C++ Rvalue References Explained] by Thomas Becker, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l38[3.3.2] and https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l39[3.3.3] of C{plus}{plus} Annotations)
+* https://isocpp.org/wiki/faq/cpp11-language-classes#delegating-ctor[Delegating constructors] (supersede https://isocpp.org/wiki/faq/ctors#init-methods[10.3], https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus07.html#l147[7.4.1] of C++ Annotations)
+* Rvalues (https://www.scribd.com/document/435369721/C-Rvalue-References-Explained-pdf[C++ Rvalue References Explained] by Thomas Becker, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l38[3.3.2] and https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l39[3.3.3] of C{plus}{plus} Annotations)
+* https://talks.petrzemek.net/Petr-Zemek_-_2016-07-01_-_Rvalue-References.pdf[Rvalue References, Move Semantics, and the Magic Thereof] by Petr Zemek (2016)
 * Auto keyword (Chapter 2, https://isocpp.org/wiki/faq/cpp11-language#auto[`auto`] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l44[3.3.7] of C++ Annotations) and type deduction (Chapter 1)
-* https://stackoverflow.com/questions/3106110/what-is-move-semantics[Move semantics] (https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus09.html#l190[9.7] of C++ Annotations), Rule of Five
+* https://stackoverflow.com/questions/3106110/what-is-move-semantics[Move semantics] (https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus09.html#l191[9.7] of C++ Annotations), Rule of Five
 * Reference collapsing (Item 28)
 * Reference qualifiers
 * Forwarding AKA universal references (https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers[Universal References in C++11] by Scott Meyers)
-* Perfect forwarding (https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus22.html#l590[22.5.2] of C++ Annotations)
+* Perfect forwarding (https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus22.html#l594[22.5.2] of C++ Annotations)
 * Enum classes (Item 10, https://isocpp.org/wiki/faq/cpp11-language-types#enum-class[`enum class`] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l40[3.3.4] of C++ Annotations)
 * Range-based for loops and issues with `auto` and copying objects around (https://isocpp.org/wiki/faq/cpp11-language#range-for[Range-`for` statement] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l47[3.3.9] of C++ Annotations)
 * List initialization, initializer lists (https://isocpp.org/wiki/faq/cpp11-language#init-list[Initializer lists] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus03.html#l41[3.3.5] of C++ Annotations)
-* Lambdas (Chapter 6, https://isocpp.org/wiki/faq/cpp11-language#lambda[Lambdas] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus11.html#l255[11.11] of C++ Annotations)
+* Lambdas (Chapter 6, https://isocpp.org/wiki/faq/cpp11-language#lambda[Lambdas] in Super-FAQ, https://fbb-git.gitlab.io/cppannotations/cppannotations/html/cplusplus11.html#l256[11.12] of C++ Annotations)
 ** https://www.bfilipek.com/2019/02/lambdas-story-part1.html[Lambdas: From C++11 to C++20, Part 1] by Bartłomiej Filipek
 ** https://www.bfilipek.com/2019/03/lambdas-story-part2.html[Lambdas: From C++11 to C++20, Part 2] by Bartłomiej Filipek
 ** https://www.bfilipek.com/2016/11/iife-for-complex-initialization.html[IIFE for Complex Initialization] by Bartłomiej Filipek
+** https://www.learncpp.com/cpp-tutorial/ref-qualifiers/[Ref qualifiers]
 
 ==== Design Patterns and OOP
 * https://en.wikipedia.org/wiki/Single_responsibility_principle[Single responsibility principle]
@@ -256,10 +258,11 @@ One of the book you could read to learn more on the subject is "_Computer Archit
 * https://en.wikipedia.org/wiki/Instruction-level_parallelism[Instruction-level parallelism], https://en.wikipedia.org/wiki/Out-of-order_execution[Out-of-order execution], https://en.wikipedia.org/wiki/Register_renaming[Register renaming], https://en.wikipedia.org/wiki/Register_allocation#Spilling[Register spilling], https://en.wikipedia.org/wiki/Superscalar_processor[Superscalar processor], https://en.wikipedia.org/wiki/Very_long_instruction_word[VLIW (Very Long Instruction Word)], https://en.wikipedia.org/wiki/Barrel_processor[Barrell processor]
 * https://en.wikipedia.org/wiki/Cycles_per_instruction[Cycles per instruction], https://en.wikipedia.org/wiki/Instructions_per_cycle[Instructions per cycle (IPC)]
 * https://en.wikipedia.org/wiki/Branch_predictor[Branch predictor], https://en.wikipedia.org/wiki/Branch_target_predictor[Branch target predictor]
-* https://en.wikipedia.org/wiki/Hazard_%28computer_architecture%29[Hazard (computer architecture)] -> (RAW, WAR, WAW data hazards, pipeline bubbling, register forwarding)
+* https://en.wikipedia.org/wiki/Hazard_%28computer_architecture%29[Hazard (computer architecture)] -> (RAW, WAR, WAW data hazards, https://en.wikipedia.org/wiki/Pipeline_stall[pipeline stall], register forwarding)
 * https://en.wikipedia.org/wiki/Speculative_execution[Speculative execution], https://en.wikipedia.org/wiki/Instruction_prefetch[Instruction prefetch], https://en.wikipedia.org/wiki/Prefetch_input_queue[Prefetch input queue]
 * https://en.wikipedia.org/wiki/CPU_cache[CPU cache], https://en.wikipedia.org/wiki/Cache_replacement_policies[Cache replacement policies], https://en.wikipedia.org/wiki/Translation_lookaside_buffer[Translation Lookaside Buffer (TLB)], https://en.wikipedia.org/wiki/Scratchpad_memory[Scratchpad memory]
 * https://en.wikipedia.org/wiki/Cache_coherence[Cache coherence] (https://en.wikipedia.org/wiki/MESI_protocol[MESI protocol], https://en.wikipedia.org/wiki/MOESI_protocol[MOESI protocol]), https://en.wikipedia.org/wiki/Bus_snooping[Bus snooping], https://en.wikipedia.org/wiki/Write_combining[Write combining]
+* https://www.geeksforgeeks.org/computer-organization-architecture/write-through-and-write-back-in-cache/[Write Through and Write Back in Cache]
 * https://en.wikipedia.org/wiki/Clock_gating[Clock gating]
 * https://en.wikipedia.org/wiki/Multiply%E2%80%93accumulate_operation[Multiply–accumulate operation] -> (Fused multiply–add)
 * https://en.wikipedia.org/wiki/Symmetric_multiprocessing[Symmetric multiprocessing], https://en.wikipedia.org/wiki/Simultaneous_multithreading[Simultaneous multithreading]
@@ -281,7 +284,7 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 * https://opencsf.org/Books/csf/html/[Computer System Fundamentals: Principles of Concurrent Systems] by Dr. Michael S. Kirkpatrick (2019)
 
 ==== More Topics
-* http://assemblyrequired.crashworks.org/load-hit-stores-and-the-\__restrict-keyword/[Load-Hit-Stores and the `__restrict` keyword] by Elan Ruskin
+* https://web.archive.org/web/20210415130605/http://assemblyrequired.crashworks.org/load-hit-stores-and-the-__restrict-keyword/[Load-Hit-Stores and the `__restrict` keyword] by Elan Ruskin
 * http://www.gamasutra.com/view/feature/132084/sponsored_feature_common_.php[Sponsored Feature: Common Performance Issues in Game Programming] by Becky Heineman
 
 === Graphics
@@ -329,6 +332,7 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 * http://iryoku.com/downloads/Practical-Realtime-Strategies-for-Accurate-Indirect-Occlusion.pdf[Practical Realtime Strategies for Accurate Indirect Occlusion (PDF)] by Jorge Jimenez, Xian-Chun Wu, Angelo Pesce and Adrian Jarabo
 * https://therealmjp.github.io/posts/sss-intro/[An Introduction To Real-Time Subsurface Scattering] by Matt Pettineo
 * http://jcgt.org/published/0002/02/04/[The Visibility Buffer: A Cache-Friendly Approach to Deferred Shading] by Christopher A. Burns and Warren A. Hunt (Intel)
+* http://filmicworlds.com/blog/visibility-buffer-rendering-with-material-graphs/[Visibility Buffer Rendering with Material Graphs] by John Hable
 * https://www.aortiz.me/2018/12/21/CG.html[A Primer On Efficient Rendering Algorithms & Clustered Shading] by Ángel Ortiz (2018)
 * https://takahiroharada.wordpress.com/wp-content/uploads/2015/04/forward_plus.pdf[Forward+: Bringing Deferred Lighting to the Next Level] by AMD (2012)
 * https://advances.realtimerendering.com/s2016/Siggraph2016_idTech6.pdf[The Devil Is In The Details - id Tech 666] by Tiago Sousa and Jean Geffroy (SIGGRAPH 2016)
@@ -374,6 +378,7 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 ==== Vulkan
 * https://renderdoc.org/vulkan-in-30-minutes.html[Vulkan in 30 minutes] by Baldur Karlsson
 * https://vulkan-tutorial.com/[Vulkan Tutorial]
+* https://www.howtovulkan.com/[How to Vulkan in 2026] by Sascha Willems
 * https://github.com/KhronosGroup/Vulkan-Samples[Vulkan Samples] on GitHub
 * http://gpuopen.com/vulkan-renderpasses/[Vulkan Renderpasses] on GPUOpen
 * http://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/[Yet another blog explaining Vulkan synchronization] by Hans-Kristian Arntzen
@@ -382,6 +387,19 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 Best practices for Arm GPUs (PDF)] by Pete Harris (ARM)
 * https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_battle_tested_optimisations_for_mobile_v2.pdf[Battle-tested Optimisations for Mobile (PDF)] by Ralph Potter (Samsung)
 * https://developer.samsung.com/sdp/blog/en-us/2019/08/05/reboot-recap-seriously-explicit-lessons-in-vulkan[Some Seriously Explicit Lessons in Vulkan (Video)] by Croteam and Samsung at Reboot 2019
+* https://chunkstories.xyz/blog/a-note-on-descriptor-indexing/[A note on Descriptor Indexing] (2019)
+
+==== Direct3D 12
+* https://www.slideshare.net/slideshow/efficient-rendering-with-directx-12-on-intel-graphics/47572150[Efficient Rendering with DirectX 12 on Intel Graphics] by Intel (2015)
+* https://gpuopen.com/download/Practical_DX12_Programming_Model_and_Hardware_Capabilities.pdf[Practical DirectX 12 - Programming Model and Hardware Capabilities] by AMD & NVIDIA (GDC 2016)
+* https://alextardif.com/Bindless.html[Binding Bindlessly] by Alex Tardif (2021)
+
+==== Vulkan & Direct3D 12
+* https://gpuopen.com/download/GDC2017-Wave-Programming-D3D12-Vulkan.pdf[Wave Programming in D3D12 and Vulkan] by AMD & NVIDIA (GDC 2017)
+* https://gpuopen.com/download/GDC2017-D3D12-And-Vulkan-Done-Right.pdf[D3D12 & Vulkan Done Right] by AMD (GDC 2017)
+* http://media.gdcvault.com/gdc2018/presentations/Sawicki_Adam_Memory%20management%20in%20Vulkan.pdf[Memory Management in Vulkan and DX12] by Adam Sawicki (GDC 2018)
+* https://gpuopen.com/download/gdc-2019-agtd5-breaking-down-barriers.pdf[Breaking Down Barriers: An Intro to GPU Synchronization] by Matt Pettineo (GDC 2019)
+* https://gpuopen.com/download/Surfing_the_Wavefronts.pdf[Surfing the wave(front)s with Radeon TM GPU Profiler] by AMD (GDC 2019)
 
 ==== Older Resources
 * http://kayru.org/articles/deferred-stencil/[Rendering deferred lights using Stencil culling algorithm] by Yuriy O'Donnell
@@ -394,33 +412,33 @@ Best practices for Arm GPUs (PDF)] by Pete Harris (ARM)
 * https://mrl.cs.vsb.cz/people/gaura/agu/05-JP_id_Tech_5_Challenges.pdf[id Tech 5 Challanges - From Texture Virtualization to Massive Parallelization (PDF)] by J.M.P. van Wavewer (id Software) (virtual texturing, sparse resources, parallel job system)
 * http://media.steampowered.com/apps/steamdevdays/slides/beyondporting.pdf[Beyond Porting (PDF)] https://www.youtube.com/watch?v=-bCeNzgiJ8I[(Steam Dev Days video)] by Cass Everitt and John McDonald (NVIDIA) (persistent mapping, texture arrays, sparse and bindless textures)
 * https://www.gamedevs.org/uploads/culling-the-battlefield-battlefield3.pdf[Culling the Battlefield] by Daniel Collin (GDC 2011)
+* https://ktstephano.github.io/rendering/opengl/prog_vtx_pulling[Programmable Vertex Pulling]
 
 ==== Graphics Studies of Games
-* http://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/[Deus Ex: Human Revolution - Graphics Study] by Adrian Courreges
-* http://www.adriancourreges.com/blog/2015/06/23/supreme-commander-graphics-study/[Supreme Commander - Graphics Study] by Adrian Courreges
-* http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/[GTA V - Graphics Study] by Adrian Courreges
-* http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges
-* http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges
-* https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html[DOOM Eternal - Graphics Study] by Simon Coenen
-* http://c0de517e.blogspot.com/2020/12/hallucinations-re-rendering-of.html[Hallucinations re: the rendering of Cyberpunk 2077] by Angelo Pesce
-* http://www.elopezr.com/castlevania-lords-of-shadow-2-graphics-study/[The Rendering of Castlevania Lords of Shadow 2] by Emilio López
-* http://www.elopezr.com/the-rendering-of-middle-earth-shadow-of-mordor/[The Rendering of Middle Earth: Shadow of Mordor] by Emilio López
-* http://www.elopezr.com/the-rendering-of-rise-of-the-tomb-raider/[The Rendering of Rise of the Tomb Raider] by Emilio López
-* http://www.elopezr.com/the-rendering-of-jurassic-world-evolution/[The Rendering of Jurassic World: Evolution] by Emilio López
-* http://www.elopezr.com/the-rendering-of-mafia-definitive-edition/[The Rendering of Mafia: Definitive Edition] by Emilio López
-* https://www.mamoniem.com/behind-the-pretty-frames-god-of-war/[Behind the Pretty Frames: God of War] by Muhammad A. Moniem
-* https://www.mamoniem.com/behind-the-pretty-frames-elden-ring/[Behind the Pretty Frames: Elden Ring] by Muhammad A. Moniem
-* https://www.mamoniem.com/behind-the-pretty-frames-resident-evil/[Behind the Pretty Frames: Resident Evil] by Muhammad A. Moniem
-* https://www.mamoniem.com/behind-the-pretty-frames-diablo-iv/[Behind the Pretty Frames: Diablo IV] by Muhammad A. Moniem
-* https://acko.net/blog/teardown-frame-teardown/[Teardown Frame Teardown: Rendering analysis] by Steven "Acko"
-* https://www.froyok.fr/blog/2024-01-breakdown-syndicate/[Breakdown: Syndicate (2012) - The greasy bloom finally demystified] by Léna "Froyok" Piquet
-* https://www.mamoniem.com/behind-the-pretty-frames-detroit-become-human/[Behind the Pretty Frames: Detroit Become Human] by Muhammad A. Moniem
-* https://blog.thomaspoulet.fr/posts/anno-1800-frame-analysis/[Anno 1800: Frame Analysis] by Thomas Poulet
+* http://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/[Deus Ex: Human Revolution - Graphics Study] by Adrian Courreges (2015)
+* http://www.adriancourreges.com/blog/2015/06/23/supreme-commander-graphics-study/[Supreme Commander - Graphics Study] by Adrian Courreges (2015)
+* http://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/[GTA V - Graphics Study] by Adrian Courreges (2015)
+* http://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/[DOOM (2016) - Graphics Study] by Adrian Courreges (2016)
+* http://www.adriancourreges.com/blog/2017/12/15/mgs-v-graphics-study/[Metal Gear Solid V - Graphics Study] by Adrian Courreges (2017)
+* https://simoncoenen.com/blog/programming/graphics/DoomEternalStudy.html[DOOM Eternal - Graphics Study] by Simon Coenen (2020)
+* http://c0de517e.blogspot.com/2020/12/hallucinations-re-rendering-of.html[Hallucinations re: the rendering of Cyberpunk 2077] by Angelo Pesce (2020)
+* http://www.elopezr.com/castlevania-lords-of-shadow-2-graphics-study/[The Rendering of Castlevania Lords of Shadow 2] by Emilio López (2015)
+* http://www.elopezr.com/the-rendering-of-middle-earth-shadow-of-mordor/[The Rendering of Middle Earth: Shadow of Mordor] by Emilio López (2017)
+* http://www.elopezr.com/the-rendering-of-rise-of-the-tomb-raider/[The Rendering of Rise of the Tomb Raider] by Emilio López (2018)
+* http://www.elopezr.com/the-rendering-of-jurassic-world-evolution/[The Rendering of Jurassic World: Evolution] by Emilio López (2021)
+* http://www.elopezr.com/the-rendering-of-mafia-definitive-edition/[The Rendering of Mafia: Definitive Edition] by Emilio López (2021)
+* https://www.mamoniem.com/behind-the-pretty-frames-god-of-war/[Behind the Pretty Frames: God of War] by Muhammad A. Moniem (2022)
+* https://www.mamoniem.com/behind-the-pretty-frames-elden-ring/[Behind the Pretty Frames: Elden Ring] by Muhammad A. Moniem (2022)
+* https://www.mamoniem.com/behind-the-pretty-frames-resident-evil/[Behind the Pretty Frames: Resident Evil] by Muhammad A. Moniem (2022)
+* https://www.mamoniem.com/behind-the-pretty-frames-diablo-iv/[Behind the Pretty Frames: Diablo IV] by Muhammad A. Moniem (2023)
+* https://www.mamoniem.com/behind-the-pretty-frames-detroit-become-human/[Behind the Pretty Frames: Detroit Become Human] by Muhammad A. Moniem (2024)
+* https://acko.net/blog/teardown-frame-teardown/[Teardown Frame Teardown: Rendering analysis] by Steven "Acko" (2023)
+* https://www.froyok.fr/blog/2024-01-breakdown-syndicate/[Breakdown: Syndicate (2012) - The greasy bloom finally demystified] by Léna "Froyok" Piquet (2024)
+* https://blog.thomaspoulet.fr/posts/anno-1800-frame-analysis/[Anno 1800: Frame Analysis] by Thomas Poulet (2025)
 
 ==== Desktop GPUs Architecture
-* https://courses.cs.washington.edu/courses/cse558/11wi/lectures/05_gpuArchShaderCores_BPS_2011.pdf[From Shader Code to a Teraflop: How GPU Shader Cores Work (PDF)] by Kayvon Fatahalian (SIGGRAPH 2010)
+* https://engineering.purdue.edu/~smidkiff/KKU/files/GPUIntro.pdf[From Shader Code to a Teraflop: How Shader Cores Work (PDF)] by Kayvon Fatahalian (SIGGRAPH 2009)
 * https://fileadmin.cs.lth.se/graphics/tmp/jrk/scheduling.pdf[Keeping Many Cores Busy: Scheduling the Graphics Pipeline] by Jonathan Ragan-Kelley (2010)
-* https://courses.cs.washington.edu/courses/cse558/11wi/lectures/08-GPU-architecture-II_BPS-2011.pdf[Scheduling the Graphics Pipeline (PDF)] by Jonathan Ragan-Kelley (SIGGRAPH 2011)
 * https://gpuopen.com/presentations/2019/nordic-game-2019-triangles-are-precious.pdf[Triangles Are Precious - Let's Treat Them With Care (PDF)] by Dominik Baumeister (AMD)
 * https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011-index/[A trip through the Graphics Pipeline 2011: Index] by Fabian "ryg" Giesen
 * https://vksegfault.github.io/posts/gentle-intro-gpu-inner-workings/[Gentle introduction to GPUs inner workings] by Adrian Jurczak
@@ -439,8 +457,12 @@ Best practices for Arm GPUs (PDF)] by Pete Harris (ARM)
 
 ===== AMD Radeon
 * https://gpuopen.com/discovering-rdna/[Discovering the structure of RDNA]
-* https://gpuopen.com/compute-product/amd-rdna-1-0-instruction-set-architecture/[AMD RDNA 1.0 Instruction Set Architecture]
-* http://gpuopen.com/compute-product/amd-gcn3-isa-architecture-manual/[AMD GCN3 ISA Architecture Manual]
+* https://docs.amd.com/v/u/en-US/rdna4-instruction-set-architecture[AMD RDNA 4.0 Instruction Set Architecture] (2025)
+* https://docs.amd.com/v/u/en-US/rdna3-shader-instruction-set-architecture-feb-2023_0[AMD RDNA 3.0 Instruction Set Architecture] (2023)
+* https://docs.amd.com/v/u/en-US/rdna2-shader-instruction-set-architecture[AMD RDNA 2.0 Instruction Set Architecture] (2020)
+* https://docs.amd.com/v/u/en-US/rdna-shader-instruction-set-architecture[AMD RDNA 1.0 Instruction Set Architecture] (2020)
+* https://docs.amd.com/v/u/en-US/gcn3-instruction-set-architecture[AMD GCN3 Instruction Set Architecture] (2016)
+* https://gpuopen.com/learn/understanding-gpu-context-rolls/[Understanding GPU context rolls]
 
 ==== Mobile GPUs Architecture
 The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Purnomo is a must-have.
