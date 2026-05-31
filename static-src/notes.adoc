@@ -217,13 +217,14 @@ Read about the same math concepts on more than one book.
 Some books are targeted to game developers, like:
 
 * "_Essential Mathematics for Games and Interactive Applications_" by James M. Van Verth and Lars M. Bishop
-* "_3D Math Primer for Graphics and Game Development_" by Fletcher Dunn and Ian Parberry
+* https://gamemath.com/["_3D Math Primer for Graphics and Game Development_"] by Fletcher Dunn and Ian Parberry (2nd Ed.)
 * "_Mathematics for 3D Game Programming and Computer Graphics_" by Eric Lengyel and John Flynt
 
 ==== Topics
 * Trigonometry
 * Vectors and matrices
 * Rendering pipeline
+* https://mathinsight.org/thread/vector_algebra[Vector algebra] on Math Insight
 * OpenGL transformations and matrices:
 ** http://www.songho.ca/opengl/gl_transform.html[OpenGL Transformation]
 ** http://www.songho.ca/opengl/gl_projectionmatrix.html[OpenGL Projection Matrix]
@@ -233,6 +234,7 @@ Some books are targeted to game developers, like:
 ** https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/projection-stage[The Projection Stage]
 ** http://www.terathon.com/gdc07_lengyel.pdf[Projection Matrix Tricks by Eric Lengyel (PDF)]
 ** http://stackoverflow.com/questions/76134/how-do-i-reverse-project-2d-points-into-3d/33976739#33976739[How do I reverse-project 2D points into 3D?]
+** https://stackoverflow.com/questions/46811240/perspective-division-explanation[Perspective division explanation?]
 
 === Algorithms and More
 * Sorting and data structures (lists, arrays, hash tables)
@@ -376,18 +378,25 @@ One of the book on the topic is "_The Art of Multiprocessor Programming_" by Mau
 * (https://developer.download.nvidia.com/video/gputechconf/gtc/2019/presentation/s9985-exploring-ray-traced-future-in-metro-exodus.pdf)[Exploring the Ray Traced Future in 'Metro Exodus' (PDF)] https://www.gdcvault.com/play/1026159/Exploring-the-Ray-Traced-Future[(GDC Vault video)] by 4A Games (2019)
 
 ==== Vulkan
+* https://docs.vulkan.org/guide/latest/[Khronos Vulkan Guide]
+** https://docs.vulkan.org/guide/latest/tile_based_rendering_best_practices.html[Tile Based Rendering (TBR) Best Practices]
+* https://docs.vulkan.org/samples/latest/README.html[Khronos Vulkan Samples]
+** https://docs.vulkan.org/samples/latest/samples/performance/README.html[Performance samples]
 * https://renderdoc.org/vulkan-in-30-minutes.html[Vulkan in 30 minutes] by Baldur Karlsson
 * https://vulkan-tutorial.com/[Vulkan Tutorial]
 * https://www.howtovulkan.com/[How to Vulkan in 2026] by Sascha Willems
 * https://github.com/KhronosGroup/Vulkan-Samples[Vulkan Samples] on GitHub
 * http://gpuopen.com/vulkan-renderpasses/[Vulkan Renderpasses] on GPUOpen
 * http://themaister.net/blog/2019/08/14/yet-another-blog-explaining-vulkan-synchronization/[Yet another blog explaining Vulkan synchronization] by Hans-Kristian Arntzen
+* https://www.rastergrid.com/blog/gpu-tech/2026/03/vulkan-memory-barriers-and-image-layouts-explained/[Vulkan memory barriers and image layouts explained] by RasterGrid
 * https://zeux.io/2020/02/27/writing-an-efficient-vulkan-renderer/[Writing an efficient Vulkan renderer] by Arseny Kapoulkine
 * https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_getting_started_on_mobile_and_best_practices_for_arm_gpus.pdf[Getting started on mobile and
 Best practices for Arm GPUs (PDF)] by Pete Harris (ARM)
 * https://vulkan.org/user/pages/09.events/vulkanised-2023/vulkanised_2023_battle_tested_optimisations_for_mobile_v2.pdf[Battle-tested Optimisations for Mobile (PDF)] by Ralph Potter (Samsung)
 * https://developer.samsung.com/sdp/blog/en-us/2019/08/05/reboot-recap-seriously-explicit-lessons-in-vulkan[Some Seriously Explicit Lessons in Vulkan (Video)] by Croteam and Samsung at Reboot 2019
 * https://chunkstories.xyz/blog/a-note-on-descriptor-indexing/[A note on Descriptor Indexing] (2019)
+* https://www.khronos.org/assets/uploads/developers/library/2018-vulkan-devday/06-subgroups.pdf[Vulkan Subgroup Explained] (2018)
+* https://www.khronos.org/blog/so-long-image-layouts-simplifying-vulkan-synchronisation[So Long, Image Layouts: Simplifying Vulkan Synchronization] (2025)
 
 ==== Direct3D 12
 * https://www.slideshare.net/slideshow/efficient-rendering-with-directx-12-on-intel-graphics/47572150[Efficient Rendering with DirectX 12 on Intel Graphics] by Intel (2015)
@@ -435,6 +444,7 @@ Best practices for Arm GPUs (PDF)] by Pete Harris (ARM)
 * https://acko.net/blog/teardown-frame-teardown/[Teardown Frame Teardown: Rendering analysis] by Steven "Acko" (2023)
 * https://www.froyok.fr/blog/2024-01-breakdown-syndicate/[Breakdown: Syndicate (2012) - The greasy bloom finally demystified] by Léna "Froyok" Piquet (2024)
 * https://blog.thomaspoulet.fr/posts/anno-1800-frame-analysis/[Anno 1800: Frame Analysis] by Thomas Poulet (2025)
+* https://mamoniem.com/behind-the-pretty-frames-pragmata/[Behind the Pretty Frames: PRAGMATA] by Muhammad A. Moniem (2026)
 
 ==== Desktop GPUs Architecture
 * https://engineering.purdue.edu/~smidkiff/KKU/files/GPUIntro.pdf[From Shader Code to a Teraflop: How Shader Cores Work (PDF)] by Kayvon Fatahalian (SIGGRAPH 2009)
@@ -498,6 +508,15 @@ The book "_OpenGL ES 3.0 Programming Guide_" by Dan Ginsburg and Budirijanto Pur
 * http://www.anandtech.com/show/8234/arms-mali-midgard-architecture-explored[ARM's Mali Midgard Architecture Explored]
 * http://www.anandtech.com/show/10375/arm-unveils-bifrost-and-mali-g71[ARM Unveils Next Generation Bifrost GPU Architexture & Mali-G71: The New High-End Mali]
 * https://developer.arm.com/documentation/101897/0301[ARM GPU Best Practices Developer Guide]
+* https://developer.arm.com/community/arm-community-blogs/b/mobile-graphics-and-gaming-blog/posts/immortalis-g925-the-fragment-prepass[Hidden Surface Removal in Immortalis-G925: The Fragment Prepass]
+
+====== Vulkan
+* https://developer.arm.com/community/arm-community-blogs/b/mobile-graphics-and-gaming-blog/posts/using-compute-post-processing-in-vulkan-on-mali[Using Compute Post-Processing in Vulkan on Mali] (2018)
+* https://developer.arm.com/community/arm-community-blogs/b/mobile-graphics-and-gaming-blog/posts/vulkan-samples[Vulkan samples: Bandwidth and throughput optimizations for mobile] (2020)
+* https://developer.arm.com/community/arm-community-blogs/b/mobile-graphics-and-gaming-blog/posts/using-asynchronous-compute-on-arm-mali-gpus[Using asynchronous compute on Arm Mali GPUs: A practical sample] (2021)
+* https://developer.arm.com/community/arm-community-blogs/b/mobile-graphics-and-gaming-blog/posts/deferred-shading-on-mobile[Deferred shading on mobile: An API overview] (2021)
+* https://www.vulkan.org/user/pages/09.events/vulkanised-2025/T18-Pete-Harris-Arm-MobileBestPractices.pdf[Vulkan Best Practices for Mobile Development] (Vulkanised 2025)
+* https://developer.arm.com/community/arm-community-blogs/b/mobile-graphics-and-gaming-blog/posts/vulkan-synchronization-how-pipeline-barriers-map-to-mali-gpu-hardware[Vulkan synchronization on Mali GPUs] (2026)
 
 ===== Imagination PowerVR
 * https://www.imgtec.com/blog/a-look-at-the-powervr-graphics-architecture-tile-based-rendering/[A look at the PowerVR graphics architecture: Tile-based rendering]
