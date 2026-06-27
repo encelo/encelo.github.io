@@ -1,4 +1,271 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>encelo.github.io</title><link>https://encelo.github.io/</link><description>Recent content on encelo.github.io</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://encelo.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>An Intro to Wave Intrinsics</title><link>https://encelo.github.io/2026-03-27-an-intro-to-wave-intrinsics/</link><pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2026-03-27-an-intro-to-wave-intrinsics/</guid><description>&lt;p&gt;Most graphics programmers know about the concept of a warp (or a wave in AMD parlance).
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>encelo.github.io</title><link>https://encelo.github.io/</link><description>Recent content on encelo.github.io</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 27 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://encelo.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>nCine Dev Update 23</title><link>https://encelo.github.io/2026-06-27-ncine-dev-update-23/</link><pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2026-06-27-ncine-dev-update-23/</guid><description>&lt;p&gt;Welcome back to another development update for the nCine, covering what has been accomplished in the last quarter of 2025 and the first half of 2026.&lt;/p&gt;
+&lt;p&gt;Before diving into the technical part of the article, I should probably mention that a few days ago marked the 15th anniversary of the &lt;a href="https://github.com/nCine/nCine/commit/6bf318de" target="_blank" rel="noreferrer"&gt;first commit&lt;/a&gt; of the project. &amp;#x1f382;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s also cheer for the &lt;a href="https://ncine.github.io/news/2025-09-28-new-site/" target="_blank" rel="noreferrer"&gt;new Hugo site&lt;/a&gt; and the availability of &lt;a href="https://ncine.github.io/news/2025-11-05-signed-commits/" target="_blank" rel="noreferrer"&gt;signed commits&lt;/a&gt; &amp;#x1f511;, two important infrastructure updates from last year.&lt;/p&gt;
+&lt;h2 class="relative group"&gt;GrAIL
+&lt;div id="grail" class="anchor"&gt;&lt;/div&gt;
+&lt;/h2&gt;
+&lt;p&gt;Probably the biggest development news is the work in progress toward a Render Hardware Interface (RHI) that will allow modern graphics APIs to be employed.
+In the nCine the RHI is called &lt;em&gt;Graphics API Integration Layer&lt;/em&gt;, or GrAIL.&lt;/p&gt;
+&lt;p&gt;The first iteration only supports Vulkan, but implements the underlying architecture that will make it possible to support other backends.
+From the &lt;a href="https://advances.realtimerendering.com/s2023/AaltonenHypeHypeAdvances2023.pdf" target="_blank" rel="noreferrer"&gt;HypeHype&lt;/a&gt; rendering architecture presentation by Sebastian Aaltonen, I borrowed the concept of using an opaque handle (made of an index and a generation, like in my job system) for all the common resources, like textures, pipelines, and buffers. I also copied the concept of immutable bind groups, an abstraction over descriptors, from WebGPU.&lt;/p&gt;
+&lt;p&gt;The entry point of GrAIL, similarly to other modern APIs, is the device object. The device is not a traditional C++ base class, but a common header with different implementation files chosen at compile time by CMake. I chose to sacrifice run-time API selection to remove a layer of virtual call dispatch.&lt;/p&gt;
+&lt;p&gt;The plan is to use Vulkan on Linux and Windows (maybe I will add D3D12 in the future), to add WebGPU for Emscripten, and to test KosmicKrisp and MoltenVK on macOS before eventually adding a Metal backend.&lt;/p&gt;
+&lt;p&gt;Another important missing piece is the actual link between GrAIL and the scenegraph system, which will be handled by a new renderer class. The renderer will make it possible to remove rendering code from the nodes and will represent a chance to reorganize rendering data in a more data-oriented fashion.
+For the time being I will also keep the legacy OpenGL code around, which means I will need to port the old system to this new renderer approach.&lt;/p&gt;
+&lt;p&gt;At the moment, to isolate the work on this feature, I&amp;rsquo;m taking advantage of the new &lt;code&gt;NCINE_WITH_SCENEGRAPH&lt;/code&gt; CMake variable that allows the nCine to be compiled without any scenegraph-related classes, like the nodes, the render commands, or viewports.&lt;/p&gt;
+&lt;p&gt;There is still a lot of work before you can use GrAIL instead of OpenGL, but you can already try the &lt;code&gt;grail&lt;/code&gt; branch on GitHub and play with the particle simulation test.&lt;/p&gt;
+&lt;p&gt;&lt;figure&gt;&lt;img
+class="my-0 rounded-md"
+loading="lazy"
+decoding="async"
+fetchpriority="low"
+alt="Current GrAIL apptest, with compute simulated particles and a rotating nCine logo"
+src="/images/grlapptest_compute_texture.png"
+&gt;&lt;figcaption&gt;Current GrAIL apptest, with compute simulated particles and a rotating nCine logo&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 class="relative group"&gt;Batching with instances
+&lt;div id="batching-with-instances" class="anchor"&gt;&lt;/div&gt;
+&lt;/h2&gt;
+&lt;p&gt;While GrAIL represents the future, it does not mean that the OpenGL path would be deprecated any time soon. As a matter of fact, in June I have worked on optimizing regular sprite blitting.&lt;/p&gt;
+&lt;p&gt;As you might remember, the &lt;code&gt;RenderBatcher&lt;/code&gt; class is in charge of automatically creating draw batches for every type of rendering commands that it encounters while navigating the sorted queues.&lt;/p&gt;
+&lt;p&gt;I have added another command collection path that works with regular sprites (so no &lt;code&gt;TextNode&lt;/code&gt; or &lt;code&gt;MeshSprite&lt;/code&gt; nodes) and uses a completely different approach.
+Instead of using a Uniform Buffer Object (UBO) to gather the information about each sprite and expand their 4 vertices triangle strip into two triangles and 6 vertices, it uses instancing and vertex attributes.&lt;/p&gt;
+&lt;p&gt;This introduces two nice properties: with instances we can still use the 4 vertices triangle strip primitives for each sprite, and with the attributes we can gather the data in a Vertex Buffer Object (VBO). VBOs don&amp;rsquo;t have the size restriction that UBOs have (usually 64 kb), meaning that it is now possible to batch a lot more sprites together in the same draw call.&lt;/p&gt;
+&lt;p&gt;The trick that enables vertex attributes to be used per instance and not per vertex is a call to &lt;code&gt;glVertexAttribDivisor()&lt;/code&gt; with a divisor value of 1.&lt;/p&gt;
+&lt;p&gt;There is also another optimization that allows for bigger batches, and it also works when using UBOs: packing the data needed to render nodes.&lt;/p&gt;
+&lt;p&gt;For example, let&amp;rsquo;s have a look at the &lt;code&gt;InstanceBlock&lt;/code&gt; structure in the &lt;code&gt;sprite_vs.glsl&lt;/code&gt; shader:&lt;/p&gt;
+&lt;div
+class="tab__container w-full"
+&gt;
+&lt;div class="tab__nav" role="tablist"&gt;
+&lt;div class="flex flex-wrap gap-1"&gt;&lt;button
+class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md hover:bg-neutral-200 dark:hover:bg-neutral-700 tab--active"
+role="tab"
+aria-selected="true"
+data-tab-index="0"
+data-tab-label="Before"&gt;
+&lt;span class="flex items-center gap-1"&gt;
+Before
+&lt;/span&gt;
+&lt;/button&gt;&lt;button
+class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md hover:bg-neutral-200 dark:hover:bg-neutral-700 "
+role="tab"
+aria-selected="false"
+data-tab-index="1"
+data-tab-label="After"&gt;
+&lt;span class="flex items-center gap-1"&gt;
+After
+&lt;/span&gt;
+&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="tab__content mt-4"&gt;&lt;div class="tab__panel tab--active" data-tab-index="0"&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-glsl" data-lang="glsl"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// 104 bytes, rounded to 112 for alignment purposes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;layout (std140) &lt;span style="color:#66d9ef"&gt;uniform&lt;/span&gt; InstanceBlock
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; mat4 modelMatrix;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;vec4&lt;/span&gt; color;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;vec4&lt;/span&gt; texRect;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;vec2&lt;/span&gt; spriteSize;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;};&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;div class="tab__panel " data-tab-index="1"&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-glsl" data-lang="glsl"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// 48 bytes in total, no padding needed&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;layout (std140) &lt;span style="color:#66d9ef"&gt;uniform&lt;/span&gt; InstanceBlock
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;vec4&lt;/span&gt; transform;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;vec4&lt;/span&gt; translation;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; uint color;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; uint spriteSize;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; uint uvEndpointsU;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; uint uvEndpointsV;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;};&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The new structure needs less than half the memory, allowing for more than double the number of sprites in the same batch.&lt;/p&gt;
+&lt;p&gt;On the C++ code side, the framework will try to first update the new uniforms, but it will fall back to the old fields if the process fails.
+On the shader side, new functions will unpack the data into floats, trading the space gains for some additional low-effort per vertex computation.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Benchmarks
+&lt;div id="benchmarks" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;I have tested the instancing on my slowest laptop, a Xiaomi Mi Notebook Pro with an i7-8550U, and further limited the CPU and GPU frequencies to the minimum to stabilize the results and to highlight any performance benefit on slow devices. I ran the updated &lt;code&gt;apptest_bunnymark&lt;/code&gt; with 5000 bunnies and no V-Sync, then I toggled instancing on and off.&lt;/p&gt;
+&lt;pre class="not-prose mermaid"&gt;
+xychart
+title "Five seconds average runs"
+x-axis ["Run 1", "Run 2", "Run 3", "Run 4", "Run 5"]
+y-axis "Frametime (ms)" 0 --&gt; 35
+bar "A" [26.201, 27.067, 25.969, 26.232, 26.187]
+bar "B" [19.890, 19.366, 18.398, 19.654, 19.780]
+&lt;/pre&gt;
+&lt;p&gt;As you can see from the chart, enabling instancing cut the frametime to 74% of the baseline, from an average of 26.3312 ms to 19.4176 ms.&lt;/p&gt;
+&lt;h2 class="relative group"&gt;Faster directory traversing on Windows
+&lt;div id="faster-directory-traversing-on-windows" class="anchor"&gt;&lt;/div&gt;
+&lt;/h2&gt;
+&lt;p&gt;I am certainly not an expert in Windows API, but I remember reading an article about how to make directory traversal faster by using &lt;code&gt;FindFirstFileExA()&lt;/code&gt; and its additional parameters, like &lt;a href="https://blog.s-schoener.com/2024-06-09-find-first-large-fetch/" target="_blank" rel="noreferrer"&gt;FIND_FIRST_EX_LARGE_FETCH&lt;/a&gt;.
+I then went to have a look in the &lt;code&gt;FileSystem&lt;/code&gt; namespace and I experimented with the new approach. I removed some unneeded string copies, and I changed the API call from a simple &lt;code&gt;FindFirstFile()&lt;/code&gt; to:&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;hFindFile_ &lt;span style="color:#f92672"&gt;=&lt;/span&gt; FindFirstFileExA(buffer, FindExInfoBasic, &lt;span style="color:#f92672"&gt;&amp;amp;&lt;/span&gt;findFileData, FindExSearchNameMatch, &lt;span style="color:#66d9ef"&gt;nullptr&lt;/span&gt;, FIND_FIRST_EX_LARGE_FETCH);&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;pre class="not-prose mermaid"&gt;
+xychart
+title "Scanning C:/Windows/System32 (4786 files)"
+x-axis ["Run 1", "Run 2", "Run 3", "Run 4", "Run 5"]
+y-axis "Time (ms)" 0 --&gt; 4
+bar [3.4946, 2.8509, 2.9092, 2.8022, 3.4254]
+bar [3.2654, 2.3800, 2.3263, 2.3020, 2.4079]
+&lt;/pre&gt;
+&lt;p&gt;In this first case, using the new API call lowered the average from 3.09646 ms to 2.53632 ms, or a new time that is 82% of the old one.&lt;/p&gt;
+&lt;pre class="not-prose mermaid"&gt;
+xychart
+title "Scanning C:/msys64/usr/bin (604 files)"
+x-axis ["Run 1", "Run 2", "Run 3", "Run 4", "Run 5"]
+y-axis "Time (ms)" 0 --&gt; 1
+bar [0.7142, 0.5205, 0.5406, 0.6141, 0.6587]
+bar [0.5092, 0.5084, 0.5168, 0.4214, 0.4306]
+&lt;/pre&gt;
+&lt;p&gt;In the second case, the new API call reduced the average from 0.60962 ms to 0.47728 ms, or a new time that is 78% of the old one.&lt;/p&gt;
+&lt;h2 class="relative group"&gt;nCTL updates
+&lt;div id="nctl-updates" class="anchor"&gt;&lt;/div&gt;
+&lt;/h2&gt;
+&lt;h3 class="relative group"&gt;Optional class
+&lt;div id="optional-class" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;While working on GrAIL, I needed a way to control when to construct objects that are fields of other objects. I usually do this with &lt;code&gt;nctl::UniquePtr&lt;/code&gt;, by choosing the right time to call &lt;code&gt;nctl::makeUnique()&lt;/code&gt;, but in this case I wanted to reserve the space for the object beforehand, and avoid allocating memory.&lt;/p&gt;
+&lt;p&gt;I ended up replicating some functionalities from &lt;code&gt;std::optional&lt;/code&gt;, a class that is usually used to return an object or a value that can be interpreted as &lt;em&gt;null&lt;/em&gt; (when the optional class is not &amp;ldquo;engaged&amp;rdquo;) when a function returns.&lt;/p&gt;
+&lt;p&gt;The class is really just a buffer as big as its template argument, and objects are created there with a placement new call. These features satisfy my requirements and that&amp;rsquo;s how &lt;code&gt;nctl::Optional&lt;/code&gt; was born, of course with its accompanying set of unit tests, as is tradition in nCTL.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Iterators refactoring
+&lt;div id="iterators-refactoring" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;All iterators have been refactored so that they obey the same invariants, and behave similarly to STL.&lt;/p&gt;
+&lt;p&gt;For example, a reverse iterator at the beginning of a container is now always constructed from a regular iterator at the end of the same container.
+The same is valid for the symmetric situation, a reverse iterator at the end of a container.&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// Returns a reverse iterator to the beginning
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;inline&lt;/span&gt; ReverseIterator &lt;span style="color:#a6e22e"&gt;rBegin&lt;/span&gt;() { &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; ReverseIterator(end()); }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// Returns a reverse iterator to the end
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;inline&lt;/span&gt; ReverseIterator &lt;span style="color:#a6e22e"&gt;rEnd&lt;/span&gt;() { &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; ReverseIterator(begin()); }&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;I now explicitly check for those equivalences in the unit tests, together with other invariant checks, like checking that when I increment then decrement a &lt;code&gt;begin()&lt;/code&gt; iterator, or do the opposite with an &lt;code&gt;end()&lt;/code&gt; one, I don&amp;rsquo;t alter it in a way that makes it no longer equivalent to &lt;code&gt;begin()&lt;/code&gt; or &lt;code&gt;end()&lt;/code&gt; themselves.&lt;/p&gt;
+&lt;p&gt;Last but not least, I rewrote the &lt;code&gt;operator!=&lt;/code&gt; in all iterators to be consistent and just always negate the result from &lt;code&gt;operator==&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Pair class
+&lt;div id="pair-class" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;Just like &lt;code&gt;nctl::Optional&lt;/code&gt;, the template library keeps extending with some less used but sometimes useful classes, for example a reimplementation of &lt;code&gt;std::pair&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It does not replace the custom pair implementation used by &lt;code&gt;nctl::UniquePtr&lt;/code&gt; to store its deleter, as it is a class intended for general use cases.&lt;/p&gt;
+&lt;p&gt;While the optional class needed some new type traits to remove both the &lt;code&gt;const&lt;/code&gt; and the &lt;code&gt;volatile&lt;/code&gt; qualifiers from types, the pair class needs type decay when creating objects with &lt;code&gt;makePair()&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Hash containers refactoring
+&lt;div id="hash-containers-refactoring" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;Hash containers have also been refactored. Hashmaps, for example, now accept a &lt;code&gt;nctl::Pair&lt;/code&gt; when inserting a key and a value.&lt;/p&gt;
+&lt;p&gt;Most importantly, I have refactored the &lt;code&gt;HashMap&lt;/code&gt;/&lt;code&gt;StaticHashMap&lt;/code&gt; and &lt;code&gt;HashSet&lt;/code&gt;/&lt;code&gt;StaticHashSet&lt;/code&gt; classes so they don&amp;rsquo;t duplicate any code when traversing the data structure.&lt;/p&gt;
+&lt;p&gt;The results of probing into them are now grouped in a structure:&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// The returning structure after probing for a key
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;struct&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;ProbeResult&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// The ideal bucket index for the hash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;unsigned&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; ideal;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// Only valid if the found flag is true
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;unsigned&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; found;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// First empty node in a chain
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;unsigned&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; empty;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// Previous node in a chain (for delta patching)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;unsigned&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt; prev;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// True if the node contains a value
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;bool&lt;/span&gt; foundFlag;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; };&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;For &lt;code&gt;HashMapList&lt;/code&gt; and &lt;code&gt;HashSetList&lt;/code&gt; classes, the total number of elements stored is now saved in a variable, instead of calculated from the buckets.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Initializer list support
+&lt;div id="initializer-list-support" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;I have added yet another feature that makes nCTL containers more powerful and compatible with STL ones, the ability to use initializer lists to specify the initial content at construct time.&lt;/p&gt;
+&lt;p&gt;Take a look at this snippet from a &lt;code&gt;nctl::Array&lt;/code&gt; unit test, for example:&lt;/p&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;nctl&lt;span style="color:#f92672"&gt;::&lt;/span&gt;Array&lt;span style="color:#f92672"&gt;&amp;lt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;&lt;span style="color:#f92672"&gt;&amp;gt;&lt;/span&gt; newArray({ &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt; }, Capacity);&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The array is constructed with a copy of the objects passed in the initializer list, similarly to what you would do with a &lt;code&gt;std::vector&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For this to work I had to add &lt;code&gt;#include &amp;lt;initializer_list&amp;gt;&lt;/code&gt;, as there is no way to reimplement this header, the implementation is too tightly integrated with the compiler. But it does not bring in any STL dependency, the include is minimal and only serves the purpose of supporting the initialization through the curly braces.&lt;/p&gt;
+&lt;p&gt;Initializer lists can now be used with nearly all containers (&lt;code&gt;Array&lt;/code&gt;, &lt;code&gt;HashMap&lt;/code&gt;, &lt;code&gt;HashSet&lt;/code&gt;, &lt;code&gt;List&lt;/code&gt;, &lt;code&gt;SparseSet&lt;/code&gt;) and unit tests have been updated to use them.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Other additions
+&lt;div id="other-additions" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;I removed the fixed capacity option from the &lt;code&gt;nctl::String&lt;/code&gt; class, and extended the size for the small buffer from 16 to 24 bytes.&lt;/li&gt;
+&lt;li&gt;I have added a new &lt;code&gt;nctl::StringView&lt;/code&gt; class that doesn&amp;rsquo;t own memory and allows you to format C-style arrays of characters, similarly to &lt;code&gt;std::string_view&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The new &lt;code&gt;nctl::Span&lt;/code&gt; class does something similar to &lt;code&gt;nctl::StringView&lt;/code&gt;, but for arrays that are not characters.&lt;/li&gt;
+&lt;li&gt;Surprisingly I wasn&amp;rsquo;t checking for self-assignment in &lt;code&gt;StaticHashMap&lt;/code&gt; and &lt;code&gt;StaticHashSet&lt;/code&gt; classes, this has been fixed.&lt;/li&gt;
+&lt;li&gt;I rewrote the functions in the &lt;code&gt;nctl::PointerMath&lt;/code&gt; namespace, now all the alignment parameters have been extended from &lt;code&gt;uint8_t&lt;/code&gt; to &lt;code&gt;size_t&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 class="relative group"&gt;Hashing functions
+&lt;div id="hashing-functions" class="anchor"&gt;&lt;/div&gt;
+&lt;/h2&gt;
+&lt;p&gt;This is another change that was needed for GrAIL, where I heavily use hashing for caching purposes.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;fasthash64()&lt;/code&gt; function now works more reliably, as it does not require padding to 64 bits anymore. I have also made it the default function for hashing keys in all &lt;code&gt;HashMap&lt;/code&gt; and &lt;code&gt;HashSet&lt;/code&gt; containers. It is a lot faster than &lt;em&gt;FNV1a&lt;/em&gt; and statistically stronger.&lt;/p&gt;
+&lt;p&gt;To reach this conclusion I added a micro-benchmark and some unit tests that compare the various hashing functions on different inputs.&lt;/p&gt;
+&lt;p&gt;I have also added a couple of functions that, given a 64-bit hash, can create a proper 32-bit version of it without losing too much information. This is a task that is often needed in GrAIL, where 64-bit Vulkan opaque handles are converted to 32-bit keys for containers.&lt;/p&gt;
+&lt;h3 class="relative group"&gt;Benchmarks
+&lt;div id="benchmarks-1" class="anchor"&gt;&lt;/div&gt;
+&lt;/h3&gt;
+&lt;p&gt;Hashing a short string repeatedly with the various functions returns the following results on my Asus laptop in Performance mode.&lt;/p&gt;
+&lt;pre class="not-prose mermaid"&gt;
+xychart
+title "Hashing a 256 bytes string"
+x-axis ["Sax", "Jenkins", "FNV1a", "FastHash64"]
+y-axis "Bandwidth (GiB/s)" 0 --&gt; 10
+bar [1.08797, 0.871923, 1.11025, 7.83879]
+&lt;/pre&gt;
+&lt;p&gt;The FastHash function is nearly 8x faster than all the others, achieving a bandwidth close to 8 GiB/s on a single core. &amp;#x1f680;&lt;/p&gt;
+&lt;h2 class="relative group"&gt;Application configuration structures
+&lt;div id="application-configuration-structures" class="anchor"&gt;&lt;/div&gt;
+&lt;/h2&gt;
+&lt;p&gt;Yet another change that spawned from the work done on GrAIL. This was made to ease future extensions of the &lt;code&gt;AppConfiguration&lt;/code&gt; settings when GrAIL will be merged.&lt;/p&gt;
+&lt;p&gt;Instead of having all the flags and values together as fields of the class, they are now organized in structures.
+There is a &lt;code&gt;Logging&lt;/code&gt; structure, a &lt;code&gt;Window&lt;/code&gt; one, a &lt;code&gt;Graphics&lt;/code&gt; structure, an &lt;code&gt;Audio&lt;/code&gt; one, and so on.&lt;/p&gt;
+&lt;div
+class="tab__container w-full"
+&gt;
+&lt;div class="tab__nav" role="tablist"&gt;
+&lt;div class="flex flex-wrap gap-1"&gt;&lt;button
+class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md hover:bg-neutral-200 dark:hover:bg-neutral-700 tab--active"
+role="tab"
+aria-selected="true"
+data-tab-index="0"
+data-tab-label="Before"&gt;
+&lt;span class="flex items-center gap-1"&gt;
+Before
+&lt;/span&gt;
+&lt;/button&gt;&lt;button
+class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md hover:bg-neutral-200 dark:hover:bg-neutral-700 "
+role="tab"
+aria-selected="false"
+data-tab-index="1"
+data-tab-label="After"&gt;
+&lt;span class="flex items-center gap-1"&gt;
+After
+&lt;/span&gt;
+&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="tab__content mt-4"&gt;&lt;div class="tab__panel tab--active" data-tab-index="0"&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; MyEventHandler&lt;span style="color:#f92672"&gt;::&lt;/span&gt;onPreInit(nc&lt;span style="color:#f92672"&gt;::&lt;/span&gt;AppConfiguration &lt;span style="color:#f92672"&gt;&amp;amp;&lt;/span&gt;config)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; config.consoleLogLevel &lt;span style="color:#f92672"&gt;=&lt;/span&gt; nc&lt;span style="color:#f92672"&gt;::&lt;/span&gt;ILogger&lt;span style="color:#f92672"&gt;::&lt;/span&gt;LogLevel&lt;span style="color:#f92672"&gt;::&lt;/span&gt;OFF;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; config.resolution.set(&lt;span style="color:#ae81ff"&gt;1920&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1080&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; config.deferShaderQueries &lt;span style="color:#f92672"&gt;=&lt;/span&gt; false;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;div class="tab__panel " data-tab-index="1"&gt;
+&lt;div class="highlight-wrapper"&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-cpp" data-lang="cpp"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;void&lt;/span&gt; MyEventHandler&lt;span style="color:#f92672"&gt;::&lt;/span&gt;onPreInit(nc&lt;span style="color:#f92672"&gt;::&lt;/span&gt;AppConfiguration &lt;span style="color:#f92672"&gt;&amp;amp;&lt;/span&gt;config)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; config.logging.consoleLevel &lt;span style="color:#f92672"&gt;=&lt;/span&gt; nc&lt;span style="color:#f92672"&gt;::&lt;/span&gt;ILogger&lt;span style="color:#f92672"&gt;::&lt;/span&gt;LogLevel&lt;span style="color:#f92672"&gt;::&lt;/span&gt;OFF;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; config.window.resolution.set(&lt;span style="color:#ae81ff"&gt;1920&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1080&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; config.graphics.opengl.deferShaderQueries &lt;span style="color:#f92672"&gt;=&lt;/span&gt; false;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This gives a lot of room for future changes, and it has also been ported to the &lt;a href="https://github.com/nCine/nCine/wiki/AppCfg-EnvVars" target="_blank" rel="noreferrer"&gt;environment variables&lt;/a&gt; that you can specify when running an nCine executable.&lt;/p&gt;
+&lt;h2 class="relative group"&gt;Minor changes
+&lt;div id="minor-changes" class="anchor"&gt;&lt;/div&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;Vector4f&lt;/code&gt; and &lt;code&gt;Matrix4x4f&lt;/code&gt; classes now align at 16 bytes, to help the compiler&amp;rsquo;s auto-vectorization.&lt;/li&gt;
+&lt;li&gt;On desktop, it is now possible to set the resizable flag of the window at run-time. The feature was already available in all backends and there was no reason not to expose it.&lt;/li&gt;
+&lt;li&gt;By using &lt;code&gt;RUNPATH&lt;/code&gt; for Linux executables and by copying MinGW dependency libraries when creating a package, those two platforms should now correctly support completely portable installations, without relying on system-wide installed libraries.&lt;/li&gt;
+&lt;li&gt;GitHub Actions workflows now write a manifest JSON file with information about the packages they assemble. This in turn is used by the website to always offer the latest binaries for download.&lt;/li&gt;
+&lt;li&gt;Texture loader classes are now just image loaders and are not coupled with OpenGL at all, facilitating their use with GrAIL.&lt;/li&gt;
+&lt;li&gt;I have split some long CMake scripts in smaller chunks based on the platform, and moved them in subdirectories.&lt;/li&gt;
+&lt;li&gt;Now that &lt;a href="https://www.lua.org/versions.html#5.5" target="_blank" rel="noreferrer"&gt;Lua 5.5&lt;/a&gt; is out, I have added proper support for it.&lt;/li&gt;
+&lt;li&gt;For consistency I renamed all occurrences of &lt;em&gt;FullScreen&lt;/em&gt; to &lt;em&gt;Fullscreen&lt;/em&gt;, &lt;em&gt;fullScreen&lt;/em&gt; to &lt;em&gt;fullscreen&lt;/em&gt;, and &lt;em&gt;full_screen&lt;/em&gt; to &lt;em&gt;fullscreen&lt;/em&gt; in code and documentation, treating it as a single word.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>An Intro to Wave Intrinsics</title><link>https://encelo.github.io/2026-03-27-an-intro-to-wave-intrinsics/</link><pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate><guid>https://encelo.github.io/2026-03-27-an-intro-to-wave-intrinsics/</guid><description>&lt;p&gt;Most graphics programmers know about the concept of a warp (or a wave in AMD parlance).
 It is a group of GPU threads (or lanes), typically 32, though some architectures use more, that execute the same instructions in lockstep.&lt;/p&gt;
 &lt;p&gt;Maybe not all of them know about wave intrinsics, though. They are a group of special GPU instructions exposed in HLSL (and similarly in other shading languages) that a shader programmer can use to orchestrate work across the threads in the same warp.&lt;/p&gt;
 &lt;h2 class="relative group"&gt;Enforcing Uniform Control Flow
