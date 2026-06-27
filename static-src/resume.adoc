@@ -3,7 +3,7 @@
 
 [stripes=odd]
 |===
-|*Blog:* https://encelo.github.io|*LinkedIn:* http://www.linkedin.com/in/encelo
+|*Email:* encelo@gmail.com|*LinkedIn:* http://www.linkedin.com/in/encelo
 |===
 
 === Work Experience
@@ -14,6 +14,9 @@
 a|*Description:*
 
 * Working full-time on https://ncine.github.io/[nCine], a cross-platform 2D open source game engine
+* Presentations:
+** https://encelo.github.io/nCine_14Years_Presentation/[14 Years of Developing nCine] - An Open-Source 2D Game Framework
+** https://encelo.github.io/nCine_JobSystem_Presentation/[The nCine Job System] - A Little Primer on Concurrency and Parallelism in C++
 |===
 
 ==== January 2021 - March 2024, The Multiplayer Group (Remote from Granada)

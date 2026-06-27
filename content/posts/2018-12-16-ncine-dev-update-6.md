@@ -3,7 +3,7 @@ date: "2018-12-16"
 title: nCine Dev Update 6
 description: Updates from October to December 2018
 categories: [ Dev Update ]
-tags: [ nCine, SIMD, AppTest, Tools ]
+tags: [ nCine, SIMD, AppTests, Tools ]
 series: [ Dev Update ]
 series_order: 6
 ---
