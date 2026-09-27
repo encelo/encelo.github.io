@@ -3,9 +3,11 @@ defaultAppearance = "dark"
 autoSwitchAppearance = true
 enableSearch = true
 enableCodeCopy = true
+backgroundImageWidth = 4096
 defaultBackgroundImage = "philip-oroni-EaFX0kRvXT8-unsplash.jpg"
 defaultSocialImage = "author.png"
 smartTOC = true
+backgroundCanvas = true
 
 displayName = "EN"
 isoCode = "en"
@@ -34,7 +36,8 @@ copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0
   ]
 
 [header]
-  layout = "fixed"
+  layout = "floating"
+  mobileMenuStyle = "dropdown"
 
 [footer]
   showMenu = true
@@ -61,6 +64,7 @@ copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0
   showHero = true
   heroStyle = "background"
   layoutBackgroundBlur = true
+  layoutBackgroundBlurStyle = "classic"
   showBreadcrumbs = false
   showDraftLabel = true
   showEdit = false
@@ -78,9 +82,11 @@ copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0
 
 [list]
   showHero = true
+  featureImageHover = true
   heroStyle = "background"
   showBreadcrumbs = false
   layoutBackgroundBlur = true
+  layoutBackgroundBlurStyle = "classic"
   layoutBackgroundHeaderSpace = true
   showTableOfContents = false
   showSummary = true
@@ -98,10 +104,14 @@ copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0
   showTermCount = true
   showHero = true
   heroStyle = "background"
+  layoutBackgroundBlur = true
+  layoutBackgroundBlurStyle = "classic"
 
 [term]
   showHero = true
   heroStyle = "background"
+  layoutBackgroundBlur = true
+  layoutBackgroundBlurStyle = "classic"
 
 [buymeacoffee]
   identifier = "encelo"

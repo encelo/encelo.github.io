@@ -8,7 +8,14 @@
 
 === Work Experience
 
-==== April 2024 - To Date, Self Employed (Granada)
+==== September 2026 - To Date, The Multiplayer Group (Remote from Granada)
+[stripes=odd]
+|===
+|*Role:* Principal Rendering Engineer
+|*Website:* https://themultiplayergroup.com/
+|===
+
+==== April 2024 - August 2026, Self Employed (Granada)
 [stripes=even]
 |===
 a|*Description:*

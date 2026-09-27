@@ -8,7 +8,13 @@
 
 === Work Experience
 
-==== April 2024 - To Date, Self Employed (Granada)
+==== September 2026 - To Date, The Multiplayer Group (Remote from Granada)
+[stripes=odd]
+|===
+|*Role:* Principal Rendering Engineer
+|===
+
+==== April 2024 - August 2026, Self Employed (Granada)
 [stripes=even]
 |===
 a|
@@ -25,7 +31,6 @@ https://encelo.github.io/nCine_JobSystem_Presentation/[The nCine Job System]
 a|*Description:* Worked on Bethesda's Starfield as a Senior Rendering Engineer.
 |*Technologies:* C++, Direct3D 12, Vulkan, HLSL, GLSL
 |*Tools:* Visual Studio, Perforce, RenderDoc, PIX, Nsight Graphics
-|*Website:* https://themultiplayergroup.com/
 |===
 
 ==== March 2019 - December 2020, Self Employed (Granada)
@@ -92,6 +97,3 @@ https://www.mobygames.com/game/from-cheese[_From Cheese_], https://www.mobygames
 |*Technologies:* C++, Qt4, Objective C, UiKit, Java, Android API
 |*Tools:* Visual Studio, Xcode, Qt Creator, qmake, Eclipse, Subversion, Unity
 |===
-
-=== Education
-* Bachelor's Degree in Computer Science, University of Naples "Federico II", awarded 110/110 cum laude in 2009
